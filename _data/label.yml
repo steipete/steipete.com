@@ -7,7 +7,7 @@
 
 panel:
   lastmod: "Recent Update"
-  trending_tags: "Trending Tags"
+  trending_tags: 
   toc: "Contents"
 
 post:

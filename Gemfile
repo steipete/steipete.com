@@ -6,6 +6,7 @@ gem "jekyll", ">=4.0.0"
 group :jekyll_plugins do
   gem "jekyll-paginate"
   gem "jekyll-redirect-from"
+  gem 'jekyll-twitter-plugin'
   gem "jekyll-seo-tag", "~> 2.6.1"
 end
 
