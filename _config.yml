@@ -136,6 +136,19 @@ defaults:
           url: /tabs/tags/
   -
     scope:
+      path: categories
+    values:
+      tab_active: Categories
+      location: Category
+      breadcrumb:
+        -
+          label: Home
+          url: /
+        -
+          label: Categories
+          url: /tabs/categories/
+  -
+    scope:
       path: tabs
     values:
       layout: page
