@@ -19,7 +19,9 @@ I own one of the [cursed](https://mjtsai.com/blog/2020/02/03/macos-display-probl
 
 We've been returning most of the displays to get fixes for various issues, and patiently been updating the firmware multiple times with [LG's crappy Screen Manager](https://twitter.com/steipete/status/915141641308172288) software. 
 
-# Graphic Issues
+There are also [issues with expanding batteries where Apple blamed the LG 5K](https://twitter.com/steipete/status/1232654186598281216), just don't use it a lot and you'll be fine.
+
+# The Great Flickering
 With the 2017-generation of MacBooks, I had particular fun, since plugging in the LG was causing graphic issues on the Mac Display: 
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Now this is happening on the second gen MacBook Pro. (Even better, during an important video call)<br>I tried to ping Apple support but I just don’t have the time/energy to go through that drama again. What’s the closest to the LG 5K Display quality-wise that doesn’t break a MBP? <a href="https://t.co/LyEC4Q8O8z">pic.twitter.com/LyEC4Q8O8z</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/956863946404827136?ref_src=twsrc%5Etfw">January 26, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -28,7 +30,7 @@ I've been writing radars, calling Apple Support, even taking a cab and driving t
 
 This was before we had an Apple Store in Austria, so they couldn't help me. Nobody knew what was going on. Apple eventually agreed to my logic board, but only after multiple escalation levels and countless hours of phone calls and emails. The replacement logic board had the same issue. I mostly gave up and just used my MacBook screen. 
 
-# kernel_task
+# kernel_task is hungry for your CPU
 The graphic issues disappeared with the 2018-generation of MacBooks. However the biggest issue was also the weidest: sometimes, after longer use, my MacBook became unusably slow:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Oh hey kernel_task!<br><br>(I plugged in the LG 5K monitor again.) <a href="https://t.co/E7IDHPfR9d">pic.twitter.com/E7IDHPfR9d</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1128703168697839617?ref_src=twsrc%5Etfw">May 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -42,18 +44,20 @@ When Apple announced the 16-inch MacBook Pro, I just had to get one. I don't enj
 
 The 16-inch was marketed as ["thicker"](https://www.theverge.com/2019/11/18/20971297/macbook-pro-16-inch-battery-apple-thickness-teardown-ifixit) to fix the throttling, and it delivered! Everything is noticeable faster. It also fixed  my biggest issue with the whole MacBook Pro lineup so far, the dreaded kernel_task that eats up CPU like pac-man eats ghosts. 
 
-In April, I stumbled on a stack exchange entry that seemed to explain what was going on all these years.
+In April, I stumbled on a stack exchange entry that seemed to explain what was going on all these years. [This caused waves and I even made it into some tech articles](https://www.trustedreviews.com/news/is-there-really-a-wrong-way-to-charge-a-macbook-pro-4026796).
 
 >high CPU usage by kernel_task is caused by high Thunderbolt Left Proximity temperature, which is caused by charging and having normal peripherals plugged in at the same time.
 
 I PLUGGED THE SCREEN INTO THE WRONG SIDE. YES.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This finally explains what high kernel_task is, and why it happens. I spent so much time on it; wrote radars, escalated to Apple support; replaced hardware (!) to finally see that it‘s temperature emergency code because I plugged in the LG 5k monitor left. <a href="https://t.co/BGuB4ySU9o">https://t.co/BGuB4ySU9o</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1253550223445708800?ref_src=twsrc%5Etfw">April 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 The 16-inch MacBook doesn't seem to suffer from this temperature sensor misplacement and can drive the LG UltraFine without slowdown on both ends. All generations before do have this issue (tested with 2016 and later, purchased every generation.)
 
-The bad news: The LG can provide 87 watts of power, but the notebook comes with a 96 watt adaptor. This means that the battery is constantly compensating. Play StarCraft for 3 hours and your computer will shut off with a dead battery. Apple recommends to use a separate power adapter.
+The bad news: The LG can provide 87 watts of power, but the notebook comes with a 96 watt adaptor. This means that the battery is constantly compensating. Play StarCraft for 3 hours and your computer will shut off with a dead battery. [Apple recommends to use a separate power adapter](https://twitter.com/BesherMaleh/status/1206434150078656512).
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I just noticed this bit on the UltraFine&#39;s store page, must have been added recently <a href="https://t.co/n4NNjb4FnX">pic.twitter.com/n4NNjb4FnX</a></p>&mdash; Besher Al Maleh (@BesherMaleh) <a href="https://twitter.com/BesherMaleh/status/1206434150078656512?ref_src=twsrc%5Etfw">December 16, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+# Conclusion
+
+I am writing this story on the LG Display. My current setup works well
+
+Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). 
 
 [^1]: I managed [to get it working](https://www.reddit.com/r/hackintosh/comments/ae8d6c/is_it_possible_to_build_a_hackintosh_that/) with Gigabyte GC-Titan Ridge card on a Hackintosh.
