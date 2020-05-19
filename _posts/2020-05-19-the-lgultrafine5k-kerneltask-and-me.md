@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "The LG UltraFine 5K, kernel_task and me"
-date:   2020-05-14 19:03:35 +0200
-tags: personal
+date:   2020-05-19 08:00:00 +0200
+tags: hardware
 ---
 
 A good story is nuanced, complicated, contains surprise twists and a happy ending. Me owning an LG UltraFine 5K delivers in all of that. Let's dive right in:
