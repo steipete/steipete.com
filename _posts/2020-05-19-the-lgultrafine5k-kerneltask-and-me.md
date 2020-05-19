@@ -34,6 +34,9 @@ The graphic issues disappeared with the 2018-generation of MacBooks. However the
 I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue. I again mostly gave up and didn't use the external screen.
 
 # 16-inch MacBook & LG UltraFine
+
+I'm spending about 8-10h per day on my MacBook Pro, so updating it every year is a good investment. With that I also had the opportunity to test each hardware generation with the LG Display. 
+
 When Apple announced the 16-inch MacBook Pro, I just had to get one. I don't enjoy splitting my work across multiple machines and I like to move around in my apartment - so it had to be a portable one. Over the years Apple managed to build beefier and beefier portables, however their eight-core 15-inch MacBook Pro was severely thermal throttled - you could [watch](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html) how it runs at top speed for a few seconds only to be thermal throttled.
 
 The 16-inch was marketed as ["thicker"](https://www.theverge.com/2019/11/18/20971297/macbook-pro-16-inch-battery-apple-thickness-teardown-ifixit) to fix the throttling, and it delivered! Everything is noticeable faster. It also fixed  my biggest issue with the whole MacBook Pro lineup so far, the dreaded kernel_task that eats up CPU like pac-man eats ghosts. 
