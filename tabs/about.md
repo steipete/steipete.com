@@ -9,3 +9,5 @@ Peter founded and bootstrapped [PSPDFKit](http://pspdfkit.com) in 2011 and since
 Peter has worked with iOS since the inception of the iPhone, and is regularly invited to [speak at conferences](https://github.com/steipete/speaking/blob/master/README.md) around the world. He also organizes [Cocoaheads](https://cocoaheads.at/), a meetup for developers that work with Apple platforms.
 
 Prior to PSPDFKit, he worked as a Senior iOS Engineer at a startup in San Francisco and taught iOS and Mac development at his alma mater, the Vienna University of Technology.
+
+Imprint: Peter Steinberger, Kaiserstrasse 117/17, 1070 Vienna, Austria.
