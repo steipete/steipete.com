@@ -50,7 +50,7 @@ The bad news: The LG can provide 87 watts of power, but the notebook comes with 
 
 # Conclusion
 
-Can I recommend this setup? Yes. I am writing this story on the LG Display after all. I mostly use the separate power plug to fix the "missing 9-watt" problem. If you have top-notch hardware, it is a beautiful panel and it seems Apple fixed all the issues after a 4-year hiatus. Every time I [look around for other screens](https://mjtsai.com/blog/2019/06/26/the-great-monitor-search-continues/), they all seem terrible.
+Can I recommend this setup? Yes. I am writing this story on the LG Display after all. I mostly use the separate power plug to fix the "missing 9-watt" problem. If you have top-notch hardware, it is a beautiful panel and it seems Apple fixed all the issues after a 4-year hiatus. (And with fixed, I mean they released new hardware, aka [Fix In Next Chip](https://twitter.com/blelbach/status/1258680434432458752)) Every time I [look around for other screens](https://mjtsai.com/blog/2019/06/26/the-great-monitor-search-continues/), they all seem terrible.
 
 Once you are used to retina, you don't wanna go back to 4K. Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). Or maybe it's [not just me](https://mjtsai.com/blog/2017/01/09/lg-ultrafine-5k-reviews/).
 
