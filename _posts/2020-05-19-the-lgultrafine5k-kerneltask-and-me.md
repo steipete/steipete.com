@@ -17,47 +17,41 @@ I own one of the [cursed](https://mjtsai.com/blog/2020/02/03/macos-display-probl
 # Problems
  We've been having issues with [delayed shipping](https://mjtsai.com/blog/2016/12/20/lg-5k-ultrafine-display-delayed/), [ghosting](https://www.reddit.com/r/mac/comments/a2vf8i/lg_5k_ultrafine_ghosting/), [Wi-Fi interference](https://www.macrumors.com/2017/03/15/lg-ultrafine-5k-shielding-fixed/) and also compatibility issues - there's no HDMI, DisplayPort or similar. Only way to use them is a modern Mac[^1]. The last issue was a known tradeoff and acceptable. The benefit of only having a single cable as a modern docking station and a beautiful panel did outweigh these drawbacks. I still remember [my innocent excitement](https://twitter.com/steipete/status/819869709294325760).
 
-We've been returning most of the displays to get fixes for various issues, and patiently been updating the firmware multiple times with [LG's crappy Screen Manager](https://twitter.com/steipete/status/915141641308172288) software. 
-
-There are also [issues with expanding batteries where Apple blamed the LG 5K](https://twitter.com/steipete/status/1232654186598281216), just don't use it a lot and you'll be fine.
+We've been returning most of the displays to get fixes for various issues, and patiently been updating the firmware multiple times with [LG's crappy Screen Manager](https://twitter.com/steipete/status/915141641308172288) software. There are also [issues with expanding batteries where Apple blamed the LG 5K](https://twitter.com/steipete/status/1232654186598281216), just don't use it a lot and you'll be fine.
 
 # The Great Flickering
-With the 2017-generation of MacBooks, I had particular fun, since plugging in the LG was causing graphic issues on the Mac Display: 
+With the 2017-generation of MacBooks, I had particular fun, since plugging in the LG was causing graphic issues on the MacBook Display. I've been writing radars, calling Apple Support, even taking a cab and driving to a repair center with the screen in order to prove that the hardware was broken. It's a difficult situation when neither the screen itself nor the MacBook have issues, but the combination thereof causes problems.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Now this is happening on the second gen MacBook Pro. (Even better, during an important video call)<br>I tried to ping Apple support but I just don’t have the time/energy to go through that drama again. What’s the closest to the LG 5K Display quality-wise that doesn’t break a MBP? <a href="https://t.co/LyEC4Q8O8z">pic.twitter.com/LyEC4Q8O8z</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/956863946404827136?ref_src=twsrc%5Etfw">January 26, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I've been writing radars, calling Apple Support, even taking a cab and driving to a repair center with the screen in order to prove that the hardware was broken. It's a difficult situation when neither the screen itself nor the MacBook have issues, but the combination thereof causes problems.
+This was before we had an Apple Store in Austria, so they couldn't help me. Nobody knew what was going on. Apple eventually agreed to my change logic board for free, but only after multiple escalation levels and countless hours of phone calls and emails. This was all with active Apple Care and a machine that's not even one year old. The replacement took more than a week, upon return it had the exact same issue. I mostly gave up and just didn't use my external screen. 
 
-This was before we had an Apple Store in Austria, so they couldn't help me. Nobody knew what was going on. Apple eventually agreed to my logic board, but only after multiple escalation levels and countless hours of phone calls and emails. The replacement logic board had the same issue. I mostly gave up and just used my MacBook screen. 
-
-# kernel_task is hungry for your CPU
-The graphic issues disappeared with the 2018-generation of MacBooks. However the biggest issue was also the weidest: sometimes, after longer use, my MacBook became unusably slow:
+# kernel_task goes omnomnom
+The graphic issues disappeared with the 2018-generation of MacBooks. However the biggest issue was also the weidest: sometimes, after longer use, my MacBook Pro became unusably slow. Merely seconds after removing the external screen, kernel_task disappeared back into the CPU activity ground-noise. Sometimes I had hours where it worked, other times it happened really fast. (I use [iStat Menus](https://bjango.com/mac/istatmenus/) here) 
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Oh hey kernel_task!<br><br>(I plugged in the LG 5K monitor again.) <a href="https://t.co/E7IDHPfR9d">pic.twitter.com/E7IDHPfR9d</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1128703168697839617?ref_src=twsrc%5Etfw">May 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Merely seconds after removing the external screen, kernel_task disappeared back into the CPU activity ground-noise. Sometimes I had hours where it worked, other times it happened really fast.
-
-I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue.
+I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue. I again mostly gave up and didn't use the external scree.
 
 # 16-inch MacBook & LG UltraFine
 When Apple announced the 16-inch MacBook Pro, I just had to get one. I don't enjoy splitting my work across multiple machines and I like to move around in my apartment - so it had to be a portable one. Over the years Apple managed to build beefier and beefier portables, however their eight-core 15-inch MacBook Pro was severely thermal throttled - you could [watch](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html) how it runs at top speed for a few seconds only to be thermal throttled.
 
 The 16-inch was marketed as ["thicker"](https://www.theverge.com/2019/11/18/20971297/macbook-pro-16-inch-battery-apple-thickness-teardown-ifixit) to fix the throttling, and it delivered! Everything is noticeable faster. It also fixed  my biggest issue with the whole MacBook Pro lineup so far, the dreaded kernel_task that eats up CPU like pac-man eats ghosts. 
 
-In April, I stumbled on a stack exchange entry that seemed to explain what was going on all these years. [This caused waves and I even made it into some tech articles](https://www.trustedreviews.com/news/is-there-really-a-wrong-way-to-charge-a-macbook-pro-4026796).
+In April, I stumbled on a Stack Exchange question that seemed to explain what was going on all these years.
 
 >high CPU usage by kernel_task is caused by high Thunderbolt Left Proximity temperature, which is caused by charging and having normal peripherals plugged in at the same time.
 
 I PLUGGED THE SCREEN INTO THE WRONG SIDE. YES.
 
-The 16-inch MacBook doesn't seem to suffer from this temperature sensor misplacement and can drive the LG UltraFine without slowdown on both ends. All generations before do have this issue (tested with 2016 and later, purchased every generation.)
+The 16-inch MacBook doesn't seem to suffer from this temperature sensor misplacement and can drive the LG UltraFine without slowdown on both ends. All generations before do have this issue (tested with 2016 and later, purchased every generation.) [This caused waves and I even made it into some tech articles](https://www.trustedreviews.com/news/is-there-really-a-wrong-way-to-charge-a-macbook-pro-4026796).
 
 The bad news: The LG can provide 87 watts of power, but the notebook comes with a 96 watt adaptor. This means that the battery is constantly compensating. Play StarCraft for 3 hours and your computer will shut off with a dead battery. [Apple recommends to use a separate power adapter](https://twitter.com/BesherMaleh/status/1206434150078656512).
 
 # Conclusion
 
-I am writing this story on the LG Display. My current setup works well
+Can I recommend this setup? Yes. I am writing this story on the LG Display after all. I mostly use the separate power plug to fix the "missing 9-watt" problem. Even when you use Xcode heavily, battery goes down.
 
-Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). 
+If you have top-notch hardware, it is a beautiful panel and it seems Apple fixed all the issues after a 4-year hiatus. Every time I [look around for other screens](https://mjtsai.com/blog/2019/06/26/the-great-monitor-search-continues/), they all seem terrible. Once you are used to retina, you don't wanna go back to 4K. Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). Or maybe it's [not just me](https://mjtsai.com/blog/2017/01/09/lg-ultrafine-5k-reviews/).
 
 [^1]: I managed [to get it working](https://www.reddit.com/r/hackintosh/comments/ae8d6c/is_it_possible_to_build_a_hackintosh_that/) with Gigabyte GC-Titan Ridge card on a Hackintosh.
