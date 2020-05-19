@@ -31,7 +31,7 @@ The graphic issues disappeared with the 2018-generation of MacBooks. However the
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Oh hey kernel_task!<br><br>(I plugged in the LG 5K monitor again.) <a href="https://t.co/E7IDHPfR9d">pic.twitter.com/E7IDHPfR9d</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1128703168697839617?ref_src=twsrc%5Etfw">May 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue. I again mostly gave up and didn't use the external scree.
+I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue. I again mostly gave up and didn't use the external screen.
 
 # 16-inch MacBook & LG UltraFine
 When Apple announced the 16-inch MacBook Pro, I just had to get one. I don't enjoy splitting my work across multiple machines and I like to move around in my apartment - so it had to be a portable one. Over the years Apple managed to build beefier and beefier portables, however their eight-core 15-inch MacBook Pro was severely thermal throttled - you could [watch](https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html) how it runs at top speed for a few seconds only to be thermal throttled.
