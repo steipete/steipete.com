@@ -46,12 +46,12 @@ I PLUGGED THE SCREEN INTO THE WRONG SIDE. YES.
 
 The 16-inch MacBook doesn't seem to suffer from this temperature sensor misplacement and can drive the LG UltraFine without slowdown on both ends. All generations before do have this issue (tested with 2016 and later, purchased every generation.) [This caused waves and I even made it into some tech articles](https://www.trustedreviews.com/news/is-there-really-a-wrong-way-to-charge-a-macbook-pro-4026796).
 
-The bad news: The LG can provide 87 watts of power, but the notebook comes with a 96 watt adaptor. This means that the battery is constantly compensating. Play StarCraft for 3 hours and your computer will shut off with a dead battery. [Apple recommends to use a separate power adapter](https://twitter.com/BesherMaleh/status/1206434150078656512).
+The bad news: The LG can provide 87 watts of power, but the notebook comes with a 96 watt adaptor. This means that the battery is constantly compensating. Play StarCraft for 3 hours and your computer will shut off with a dead battery. Even when compiling code in Xcode, battery fill fluctuate. [Apple recommends to use a separate power adapter](https://twitter.com/BesherMaleh/status/1206434150078656512).
 
 # Conclusion
 
-Can I recommend this setup? Yes. I am writing this story on the LG Display after all. I mostly use the separate power plug to fix the "missing 9-watt" problem. Even when you use Xcode heavily, battery goes down.
+Can I recommend this setup? Yes. I am writing this story on the LG Display after all. I mostly use the separate power plug to fix the "missing 9-watt" problem. If you have top-notch hardware, it is a beautiful panel and it seems Apple fixed all the issues after a 4-year hiatus. Every time I [look around for other screens](https://mjtsai.com/blog/2019/06/26/the-great-monitor-search-continues/), they all seem terrible.
 
-If you have top-notch hardware, it is a beautiful panel and it seems Apple fixed all the issues after a 4-year hiatus. Every time I [look around for other screens](https://mjtsai.com/blog/2019/06/26/the-great-monitor-search-continues/), they all seem terrible. Once you are used to retina, you don't wanna go back to 4K. Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). Or maybe it's [not just me](https://mjtsai.com/blog/2017/01/09/lg-ultrafine-5k-reviews/).
+Once you are used to retina, you don't wanna go back to 4K. Maybe this is all a year-long elaborated ploy to make my buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). Or maybe it's [not just me](https://mjtsai.com/blog/2017/01/09/lg-ultrafine-5k-reviews/).
 
 [^1]: I managed [to get it working](https://www.reddit.com/r/hackintosh/comments/ae8d6c/is_it_possible_to_build_a_hackintosh_that/) with Gigabyte GC-Titan Ridge card on a Hackintosh.
