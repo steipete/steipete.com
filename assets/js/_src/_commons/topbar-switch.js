@@ -18,12 +18,14 @@ $(function() {
     }
   });
 
+/*
   setInterval(function() {
     if (didScroll) {
       hasScrolled();
       didScroll = false;
     }
   }, 250);
+  */
 
   function hasScrolled() {
     var st = $(this).scrollTop();
