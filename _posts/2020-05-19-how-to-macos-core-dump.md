@@ -65,6 +65,7 @@ Articles that helped:
 `DB_ARP 0x40` allows debugging across subnets via ARP (usual flag)
  
 `DB_KERN_DUMP_ON_PANIC 0x400` Trigger core dump on panic
+\
 `DB_KERN_DUMP_ON_NMI 0x800` Trigger core dump on NMI
 
 `DB_REBOOT_POST_CORE 0x4000` Attempt to reboot after post-panic crashdump/paniclog dump
