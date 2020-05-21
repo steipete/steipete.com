@@ -11,7 +11,7 @@ A few weeks in (and many comments where I kept pinging Apple and reporting on th
 
 I bruised it off and almost forgot about it, but two months after I've reported my issue via Feedback Assistant, Apple indeed replied to my Feedback!
  
-![Apple Feedback](/assets/img/2020/appleintelframebufer/feedback.png)
+![Apple Feedback](/assets/img/2020/appleintelframebuffer/feedback.png)
 
 I mean, it's something. But it's also somewhat of a joke. After my initial reaction of getting mad how bad Apple's communication here, I started seeing it as a challenge and started my search as to what they could have possibly meant with a "Core Dump".
 
