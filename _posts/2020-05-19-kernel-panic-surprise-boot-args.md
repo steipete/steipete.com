@@ -5,7 +5,7 @@ date:   2020-05-21 10:00:00 +0200
 tags: personal
 ---
 
-On March 24, 2020, my 16-inch MacBook Pro greeting me with a kernel panic. I ignored it the first time, but it started to become an every-day thing.
+On March 24, 2020, my 16-inch MacBook Pro greeting me with a kernel panic. I ignored it the first time, but it started to become an every-day thing. There I was, a short moment of a bug-free setup, broken yet again. (Read the backstory: [The LG UltraFine 5K, kernel_task and me](/posts/the-lgultrafine5k-kerneltask-and-me/) if you are just starting here)
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4 - FB7642937 is someone cares.</p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1243854244115091456?ref_src=twsrc%5Etfw">March 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -64,4 +64,4 @@ sudo nvram boot-args=""
 
 Turns out, the boot-args were not related to the kernel panics, clearing them changed nothing related to the panic rate, but I'm glad I found and cleaned this.
 
-Will Apple reply to my report? To be continued...
+Will Apple reply to my report? Read more in [How to macOS Core Dump](/posts/how-to-macos-core-dump/)
