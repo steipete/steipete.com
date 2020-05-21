@@ -58,7 +58,7 @@ Al of these flags are related to macOS Kernel Debugging, so here's a great oppor
 
 `0x104c44 = 1 0000 0100 1100 0100 0100`
 
-`DB_NMI 0x4` changes the power-button to create a non-maskable interrupt? (These days, NMI is ctrl+cmd+alt+shift+power, old behaviour is via 0x8000)
+`DB_NMI 0x4` changes the power-button to create a non-maskable interrupt? (These days, NMI is ⌃+⌘+⌥+⇧+power, old behaviour is via 0x8000)
 
 `DB_ARP 0x40` allows debugging across subnets via ARP (usual flag)
  
