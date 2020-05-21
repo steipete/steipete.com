@@ -13,7 +13,7 @@ Was it just me? [No](https://twitter.com/jernejv/status/1243854771905273857?s=20
 
 >Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4
 
-Some reports indicate that this happened earlier, with 10.15.3, but for me it started with 10.15.4. The panic backtrace is surprisingly readable and indicates a timeout in Intel's graphic driver (AppleIntelFramebuffer):
+Some reports indicate that this happened earlier, with 10.15.3, but for me it started with 10.15.4. The panic backtrace is surprisingly readable and indicates a timeout in Intel’s graphic driver (AppleIntelFramebuffer):
 
 ```
 panic(cpu 2 caller 0xffffff8014016487): "AppleIntelFramebuffer::setPowerState(0xffffff835c3b6000 : 0xffffff7f975f5d88, 1 -> 0) timed out after 45938 ms"@/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/xnu/xnu-6153.101.6/iokit/Kernel/IOServicePM.cpp:5296
@@ -30,7 +30,7 @@ Boot args: rootless=0 kext-dev-mode=1 agc=2 smc=0x2 watchdog=0 nvme=0x9 legacy_h
 
 I posted this on Twitter to learn more, but while nobody could tell me what was up, a friend noticed that I have “[fun boot-args](https://twitter.com/NSBiscuit/status/1243294676985294849?s=20).” WTH? 
 
-I didn't set any of these, but previously, I had to send my 16-inch MacBook in for repairs, as it had corrupted memory, resulting in [extremely](https://twitter.com/steipete/status/1230925689098002433) [weird bugs](https://twitter.com/jckarter/status/1230253181495459841) and [frequent kernel panics](https://twitter.com/gparker/status/1231155681991909376). They replaced most of the machine, so it came with a fresh install of macOS... and some interesting boot-args that the engineers there forgot to clear. (If you're curious what these args do, some are [documented here](https://superuser.com/questions/255176/is-there-a-list-of-available-boot-args-for-darwin-os-x), and there are some more if you look toward the Hackintosh scene.)
+I didn’t set any of these, but previously, I had to send my 16-inch MacBook in for repairs, as it had corrupted memory, resulting in [extremely](https://twitter.com/steipete/status/1230925689098002433) [weird bugs](https://twitter.com/jckarter/status/1230253181495459841) and [frequent kernel panics](https://twitter.com/gparker/status/1231155681991909376). They replaced most of the machine, so it came with a fresh install of macOS... and some interesting boot-args that the engineers there forgot to clear. (If you’re curious what these args do, some are [documented here](https://superuser.com/questions/255176/is-there-a-list-of-available-boot-args-for-darwin-os-x), and there are some more if you look toward the Hackintosh scene.)
 
 ## Are These Dangerous?
 
@@ -42,15 +42,15 @@ Having my main computer run with unknown boot-args did worry me. What did they d
 
 [`agc=2`](https://gist.github.com/blackgate/17ac402e35d2f7e0f1c9708db3dc7a44) — This seems related to automatic graphic switching between Intel and AMD Radeon GPU drivers. The setting 2 seems to prevent the AMD chip from powering down. Information around this is shaky.
 
-`smc=0x2` — SMC is short for [system management controller](https://support.apple.com/en-us/HT201295), which is responsible for battery, fans, sensors, and thermal management. While I found some reports with this flag, I couldn't figure out what it does.
+`smc=0x2` — SMC is short for [system management controller](https://support.apple.com/en-us/HT201295), which is responsible for battery, fans, sensors, and thermal management. While I found some reports with this flag, I couldn’t figure out what it does.
 
 [`watchdog=0`](http://www.hari.xyz/2019/01/setting-up-os-x-for-kernel-debugging.html) — This “disables macOS watchdog from firing when returning from the kernel debugger.”
 
-[`nvme=0x9`](https://pikeralpha.wordpress.com/2016/06/15/nvme-boot-argument/) — This controls the Non-Volatile Memory Express controller, and it might disable the ‘Apple SSD’ check. I couldn't find info on 0x9.
+[`nvme=0x9`](https://pikeralpha.wordpress.com/2016/06/15/nvme-boot-argument/) — This controls the Non-Volatile Memory Express controller, and it might disable the ‘Apple SSD’ check. I couldn’t find info on 0x9.
 
 [`legacy_hda_tools_support=1`](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp) — This unlocks “custom audio engines by disabling Apple private entitlement verification.”
 
-`sandcastle=0` — It is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). It sounds security related, but I couldn't find details.
+`sandcastle=0` — It is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). It sounds security related, but I couldn’t find details.
 
 [`chunklist-security-epoch=0 -chunklist-no-rev2-dev`](https://gist.github.com/devzer01/e24dc78150d574ade3382eaddaf1827a) — I link these together because they sound related, and they often show up in combination in random kernel panic reports. I have no idea what they do, but they again seem to disable something related to security.
 
@@ -61,8 +61,6 @@ Clearing boot args only works in Recovery Mode (⌘-R at boot time), unless SIP 
 sudo nvram boot-args=""
 ```
 
-# Conclusion
+## Conclusion
 
-Turns out, the boot-args were not related to the kernel panics, clearing them changed nothing related to the panic rate, but I'm glad I found and cleaned this.
-
-Will Apple reply to my report? Read more in [How to macOS Core Dump](/posts/how-to-macos-core-dump/).
+Clearing the boot-args didn’t resolve the AppleIntelFramebuffer panics. So to fix this I was left wondering, will  Apple reply to my report? Read more in [How to macOS Core Dump](/posts/how-to-macos-core-dump/).
