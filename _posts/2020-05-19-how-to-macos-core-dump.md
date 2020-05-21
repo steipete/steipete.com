@@ -60,7 +60,7 @@ Al of these flags are related to macOS Kernel Debugging, so here's a great oppor
 `DB_ARP 0x40` allows debugging across subnets via ARP (usual flag)
  
 `DB_KERN_DUMP_ON_PANIC 0x400` Trigger core dump on panic
-\
+
 `DB_KERN_DUMP_ON_NMI 0x800` Trigger core dump on NMI
 
 `DB_REBOOT_POST_CORE 0x4000` Attempt to reboot after post-panic crashdump/paniclog dump
@@ -75,10 +75,34 @@ Let's check if we got everything: `0x100000 + 0x4000 + 0x800 + 0x400 + 0x40 + 0x
 - [2019: GeoSn0w, Debugging macOS Kernel For Fun](https://geosn0w.github.io/Debugging-macOS-Kernel-For-Fun/)
 
 # Conclusion
-
 After writing up my story here, I found [an article on "Mr. Macintosh"](https://mrmacintosh.com/10-15-4-update-wake-from-sleep-kernel-panic-in-16-mbpro-2019/) which documents the very same wake-from-sleep kernel panic. It seems it is fixed in macOS 10.15.5 Beta 4, so there's no need for me to actually send a macOS Core Dump anymore.
 
 Still, it was an interesting road and learning experience.
+
+# Update: Human Reply + coredump via Network
+A week after their initial "macOS Core Dump" reply, and me sending a lot of questions their way, I got a really nice reply that explains the process via networking and a second Mac, so I'm sharing this fore future reference:
+
+Any Mac will work as a coredump server; you just need a gigabyte or so of free space per coredump. The kernel dump client can only be configured to transmit on a hard-wired Ethernet port, either built-in or over Thunderbolt. There is no support for transmitting core dumps across the AirPort interface, USB Ethernet, or across third-party Ethernet interfaces. This is an issue for early MacBook Air models which have no built-in Ethernet or Thunderbolt interfaces.
+
+On the server (non-panicking) machine run:
+`sudo mkdir /PanicDumps`
+`sudo chown root:wheel /PanicDumps`
+`sudo chmod 1777 /PanicDumps`
+`sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.kdumpd.plist`
+
+To verify that the core dump server is active
+`sudo launchctl list | grep kdump`
+This should return: `- 0 com.apple.kdumpd`
+
+On the client (panicking) machine run the following commands
+Locate the IP address of the core dump server.
+`sudo nvram boot-args="debug=0xd44 _panicd_ip=10.0.40.2 kdp_match_name=en7”`
+
+Where `10.0.40.2` is replaced by the IP address of the server and en7 is replaced by the name of the client’s Ethernet interface. You can use this command to show all of the network interfaces on the system: `ifconfig -a`
+
+Then reboot: `sudo reboot`
+
+If you hang, NMI the machine by hitting the buttons Left-⌘ + Right-⌘ + Power. This will generate a coredump file on the server machine in the directory `/PanicDumps`. If you panic, the coredump file will be generated automatically on the server machine in the `/PanicDumps` directory. Compress the coredump file saved to `/PanicDumps`, and attach that to a feedback report. (Attachments have to be a zip, not a folder)
 
 
 
