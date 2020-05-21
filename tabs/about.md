@@ -4,7 +4,7 @@ title: About
 
 [![Image of Peter Steinberger speaking at a conference](/assets/img/steipete-about.jpg){:height="100%" width="100%"}](https://github.com/steipete/speaking/blob/master/README.md)
 
-Follow what I’m up to on [Twitter](https://twitter.com/steipete), [GitHub](https://github.com/steipete) and [Instagram](https://www.instagram.com/sportg33k).
+Follow what I’m up to on [Twitter](https://twitter.com/steipete), [GitHub](https://github.com/steipete), and [Instagram](https://www.instagram.com/sportg33k).
 
 ### PSPDFKit
 
@@ -16,7 +16,7 @@ I speak at various conferences around the world, and most recently I was in Buen
 
 <div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/5200619/embed' allowfullscreen frameborder='0' style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
 
-My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), my [presentations on Vimeo](http://steipete.tv/).
+My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), and my [presentations are on Vimeo](http://steipete.tv/).
 
 ### Previous Work
 
@@ -24,7 +24,7 @@ Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Au
 
 ### Newsletter
 
-Want to be the first to hear about more iOS hacks and tech essays? No Spam, at most once a month.
+Want to be the first to hear about more iOS hacks and tech essays? No spam; you’ll only hear from me at most once a month.
 
 <!-- Begin Mailchimp Signup Form -->
 <style type="text/css">
