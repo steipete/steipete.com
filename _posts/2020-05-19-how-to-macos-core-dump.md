@@ -26,6 +26,9 @@ Understanding and Analyzing Application Crash Reports](ttps://developer.apple.co
 
 Problem: This file doesn't even exist on macOS Catalina. The document has been last updated in 2010, so that might explain why.
 
+Via [Quinn “The Eskimo!”](https://twitter.com/justkwin/status/1260674056023572481) I also learned about [the use case for application core dumps to debug crashers](https://forums.developer.apple.com/message/401103#401103).
+
+
 # Kernel Core Dump (lings)
 
 I've asked around on Twitter and learned that [a *kernel* core dump is something else entirely](https://twitter.com/gparker/status/1260714803191885825). Thanks to [Sarah](https://twitter.com/winocm/status/1260815939001446406?s=21) for helping me here!
