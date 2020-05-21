@@ -926,7 +926,7 @@ table {
 
 @media all and (max-width: 576px) {
 
-  $footer-height: 6rem; // overwrite
+  $footer-height: 10rem; // overwrite
 
   #main>div.row:first-child>div:first-child {
     min-height: calc(100vh - #{$topbar-height} - #{$footer-height});
