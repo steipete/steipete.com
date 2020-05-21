@@ -19,7 +19,7 @@ description: >-                        # used by seo meta and the atom feed
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://steipete.com'
 
-author: Peter Steinberger                  # change to your full name
+author: Peter Steinberger         # change to your full name
 
 avatar: /assets/img/avatar.jpg   # support internet resources
 
@@ -36,9 +36,8 @@ social:
     # The first element serves as the copyright owner's link
     - https://twitter.com/steipete      # change to your twitter homepage
     - https://github.com/steipete       # change to your github homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.facebook.com/steipete
+    - https://www.linkedin.com/in/steipete
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
