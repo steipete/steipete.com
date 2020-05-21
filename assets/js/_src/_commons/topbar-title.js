@@ -18,7 +18,6 @@ $(function(){
     }
   }
 
-/*
   // Replace topbar title while scroll screens.
   $(window).scroll(function () {
     if ($("#post-list").length // in Home page
@@ -42,6 +41,6 @@ $(function(){
   // Click title remove hover effect.
   $('#topbar-title').click(function() {
     $('body,html').animate({scrollTop: 0}, 800);
-  
-  */
+  });
+
 });
