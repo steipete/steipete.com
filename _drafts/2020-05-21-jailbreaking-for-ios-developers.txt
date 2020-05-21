@@ -19,9 +19,11 @@ Reddit has a great overview: [Can I jailbreak my device?](https://www.reddit.com
 
 - [unc0ver](https://unc0ver.dev/), a semi-untethered jealbreak using various hacks.They recently announced compatibility with iOS 13.5, the current shipping os as of the time writing this post.
 
-# Useful Cydia Apps
+# FLEX
+[FLEX](https://github.com/Flipboard/FLEX) is an open-source in-app debugging and exploration tool for iOS.
 
-- Filza File Manager
+# Useful Cydia Apps
+- [Filza File Manager](https://filza.net/)
 
 # Cydia Repos
 
