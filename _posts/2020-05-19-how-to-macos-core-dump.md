@@ -98,7 +98,7 @@ To verify that the core dump server is active
 This should return: `- 0 com.apple.kdumpd`
 
 On the client (panicking) machine run the following commands
-Locate the IP address of the core dump server.
+Locate the IP address of the core dump server.  
 `sudo nvram boot-args="debug=0xd44 _panicd_ip=10.0.40.2 kdp_match_name=en7”`
 
 Where `10.0.40.2` is replaced by the IP address of the server and en7 is replaced by the name of the client’s Ethernet interface. You can use this command to show all of the network interfaces on the system: `ifconfig -a`
