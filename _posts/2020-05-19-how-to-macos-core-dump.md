@@ -49,7 +49,7 @@ sudo nvram boot-args="debug=0x104c44 keepsyms=1"
 2 — Once you get a panic with the debug= boot-args set, just dd the `Apple_KernelCoreDump` volume on your APFS container to a file:
 
 ```
-dd if=“~/IntelFramebufferFun.img” of="/Volumes/Apple_KernelCoreDump" 
+dd of=“~/IntelFramebufferFun.img” if="/Volumes/Apple_KernelCoreDump" 
 ```
 
 ## Deciphering 0x104c44
