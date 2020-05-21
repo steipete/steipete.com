@@ -24,7 +24,7 @@ layout: compress
   <icon>{{ site.baseurl }}/assets/img/favicons/favicon.ico</icon>
   <logo>{{ site.baseurl }}/assets/img/favicons/favicon-96x96.png</logo>
 
-{% for post in site.posts limit: 5 %}
+{% for post in site.posts limit: 10 %}
   {% assign post_absolute_url = site.url | append: post.url %}
   <entry>
     <title>{{ post.title }}</title>
@@ -56,10 +56,6 @@ layout: compress
       {{ content | strip_html | truncate: 200 }}
     </summary>
   {% endif %}
-
-  <content type="html" xml:base={{site.url}} xml:lang="en">
- {{ post.content }}
- </content>
 
   </entry>
 {% endfor %}
