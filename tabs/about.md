@@ -12,11 +12,9 @@ I founded and bootstrapped [PSPDFKit](http://pspdfkit.com), an SDK for working w
 
 ### Speaking
 
-I speak at various conferences around the world, and most recently I was in Buenos Aires, Berlin, Paris, and New York. For speaking engagements, check out my [speaking schedule](https://github.com/steipete/speaking/blob/master/README.md).
+I speak at various conferences around the world, and most recently I was in Buenos Aires, Berlin, Paris, and New York. For speaking engagements, check out my [speaking schedule](https://github.com/steipete/speaking/blob/master/README.md). My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), and my [presentations are on Vimeo](http://steipete.tv/).
 
 <div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/5200619/embed' allowfullscreen frameborder='0' style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
-
-My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), and my [presentations are on Vimeo](http://steipete.tv/).
 
 ### Open Source
 
