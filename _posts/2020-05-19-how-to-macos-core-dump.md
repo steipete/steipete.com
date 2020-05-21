@@ -54,7 +54,7 @@ Of course my curiosity sparked when reading `debug=0x104c44`, which leads to jus
 
 ![Wisdom of the Ancients, XKCD 979](https://imgs.xkcd.com/comics/wisdom_of_the_ancients.png)
 
-Al of these flags are related to macOS Kernel Debugging, so here's a great opportunity to learn!
+Al of these flags are related to macOS Kernel Debugging, so here's a great opportunity to learn. It's easier to move to binary representation to decipher the flags. Thankfully xnu is open source, so we can just look up the source code of [`/osfmk/kern/debug.h`](http://newosxbook.com/src.jl?tree=xnu&file=/osfmk/kern/debug.h).
 
 `0x104c44 = 1 0000 0100 1100 0100 0100`
 
