@@ -31,11 +31,8 @@ Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Au
 Want to be the first to hear about more iOS hacks and tech essays? No spam; you’ll only hear from me at most once a month.
 
 <!-- Begin Mailchimp Signup Form -->
-<style type="text/css">
-  #mc_embed_signup form { text-align: left !important; }
-</style>
 <div id="mc_embed_signup">
-<form action="https://steipete.us18.list-manage.com/subscribe/post?u=1b30fcd0931c48f4c6b2e30bd&amp;id=0877936fb2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<form action="https://steipete.us18.list-manage.com/subscribe/post?u=1b30fcd0931c48f4c6b2e30bd&amp;id=0877936fb2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="text-align: left !important;">
     <div id="mc_embed_signup_scroll">
 <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
 <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
