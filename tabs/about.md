@@ -38,6 +38,9 @@ Want to be the first to hear about more iOS hacks and tech essays? No Spam, at m
 </div>
 </form>
 </div>
+<style type="text/css">
+  #mc_embed_signup form { text-align: right !important; }
+</style>
 <!--End mc_embed_signup-->
 
 ### Imprint
