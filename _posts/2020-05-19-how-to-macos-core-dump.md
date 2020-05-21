@@ -7,7 +7,7 @@ image: /assets/img/2020/appleintelframebuffer/feedback.png
 ---
 
 <style type="text/css">
-div.image img:first-child { display:none; }
+div.post-content > img:first-child { display:none; }
 </style>
 
 A few weeks in (and many comments where I kept pinging Apple and reporting on this issue, trying a Supplemental Update but still suffering from this bug), somebody recommended to me that I should disable the ["Power Nap"](https://support.apple.com/en-gb/HT204032) feature. I was skeptical, but sure enough, ever since I disabled it, it never happened again. 
