@@ -2,7 +2,7 @@
 layout: post
 title: "How to macOS Core Dump"
 date: 2020-05-21 10:30:00 +0200
-tags: bugs, development
+tags: bugs development
 image: /assets/img/2020/appleintelframebuffer/feedback.png
 ---
 
