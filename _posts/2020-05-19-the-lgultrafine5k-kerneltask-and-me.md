@@ -3,7 +3,7 @@ layout: post
 title: "The LG UltraFine 5K, kernel_task, and Me"
 date: 2020-05-19 08:00:00 +0200
 tags: hardware
-image: /assets/img/2020/appleintelframebuffer/lg-box.jpg
+image: https://pbs.twimg.com/media/C2DDJH8WIAARbv7?format=jpg&name=large
 ---
 
 A good story is nuanced and complicated, and it contains surprise twists and a happy ending. Me owning an LG UltraFine 5K delivers on all of that. So let’s dive right in:
