@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Kernel Panics and Surprise boot-args"
-date: 2020-05-21 10:00:00 +0200
+date: 2020-05-20 10:00:00 +0200
 tags: personal
 image: https://pbs.twimg.com/media/EUBGuLIXgAEAQ5n?format=jpg&name=4096x4096
 ---
