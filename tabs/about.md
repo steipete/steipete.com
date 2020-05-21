@@ -10,4 +10,6 @@ Peter has worked with iOS since the inception of the iPhone, and is regularly in
 
 Prior to PSPDFKit, he worked as a Senior iOS Engineer at a startup in San Francisco and taught iOS and Mac development at his alma mater, the Vienna University of Technology.
 
+Follow me on [Twitter](https://twitter.com/steipete), [Instagram](https://www.instagram.com/sportg33k) or [LinkedIn](https://www.linkedin.com/in/steipete/)
+
 Imprint: Peter Steinberger, Kaiserstrasse 117/17, 1070 Vienna, Austria.
