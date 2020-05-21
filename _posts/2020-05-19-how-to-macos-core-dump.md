@@ -5,7 +5,7 @@ date:   2020-05-21 10:30:00 +0200
 tags: personal
 ---
 
-If you just started reading now, check out the backstory: I've been plagued by almost daily [kernel panics since March](https://steipete.com/posts/kernel-panic-surprise-boot-args/).
+If you just started reading now, check out the backstory: [Kernel Panics and Surprise boot-args](https://steipete.com/posts/kernel-panic-surprise-boot-args/).
 
 A few weeks in (and many comments where I kept pinging Apple and reporting on this issue, trying a Supplemental Update but still suffering from this bug), somebody recommended to me that I should disable the ["Power Nap"](https://support.apple.com/en-gb/HT204032) feature. I was skeptical, but sure enough, ever since I disabled it, it never happened again. 
 
