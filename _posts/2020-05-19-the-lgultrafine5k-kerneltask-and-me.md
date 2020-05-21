@@ -9,7 +9,7 @@ A good story is nuanced and complicated, and it contains surprise twists and a h
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">This finally explains what high kernel_task is, and why it happens. I spent so much time on it; wrote radars, escalated to Apple support; replaced hardware (!) to finally see that it‘s temperature emergency code because I plugged in the LG 5k monitor left. <a href="https://t.co/BGuB4ySU9o">https://t.co/BGuB4ySU9o</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1253550223445708800?ref_src=twsrc%5Etfw">April 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Note: LG released [a second generation](https://9to5mac.com/2019/07/30/new-lg-ultrafine-5k-display/) of the 5K LG UltraFine display which adds support for 3840 x 2160 @ 60Hz over USB-C DisplayPort, so you can connect an iPad Pro. Sporadic reports also mention fewer issues with Gen2.
+Note: LG released [a second generation](https://9to5mac.com/2019/07/30/new-lg-ultrafine-5k-display/) of the LG UltraFine 5K display, and it adds support for 3840 x 2160 @ 60Hz over USB-C DisplayPort, so you can now connect an iPad Pro. Sporadic reports also mention fewer issues with the second generation.
 
 ## Background
 
