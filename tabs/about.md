@@ -24,9 +24,12 @@ Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Au
 
 ### Newsletter
 
-Join my monthly newsletter to learn more about what I'm up to. No Spam, promise!
+Want to be the first to hear about more iOS hacks and tech essays? No Spam, at most once a month.
 
 <!-- Begin Mailchimp Signup Form -->
+<style type="text/css">
+  #mc_embed_signup form { text-align: left !important; }
+</style>
 <div id="mc_embed_signup">
 <form action="https://steipete.us18.list-manage.com/subscribe/post?u=1b30fcd0931c48f4c6b2e30bd&amp;id=0877936fb2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
