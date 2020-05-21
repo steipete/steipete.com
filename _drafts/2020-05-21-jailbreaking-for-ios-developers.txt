@@ -5,6 +5,10 @@ date:   2020-05-21 10:30:00 +0200
 tags: iOS hacks
 ---
 
+# Definition
+
+>iOS jailbreaking is a privilege escalation to remove software restrictions imposed by Apple on iOS, tvOS, and watchOS. This is done through a series of kernel patches. This jailbreaking allows root access to iOS, allowing the downloading and installing of additional applications and extensions which are unavailable through the official Apple App Store. ([Source](https://www.techacrobat.com/ios-12-4-unc0ver-jailbreak/))
+
 # State of Jailbreaking
 
 It has never been a better time for jailbreaking. From iOS 10-13, almost every version can be hacked.
