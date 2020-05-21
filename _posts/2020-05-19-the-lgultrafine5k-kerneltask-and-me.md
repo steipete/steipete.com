@@ -69,6 +69,6 @@ Do I recommend this setup? Yes. I am writing this story on the LG display after 
 
 And it’s true: Once you are used to Retina, you don’t want to go back to 4K. Maybe this is all a years-long elaborate ploy to make me buy a [Pro Display XDR](https://www.apple.com/pro-display-xdr/). Maybe I am just a [bug magnet](https://twitter.com/steipete/status/1253979468164673536). Or maybe it’s [not just me](https://mjtsai.com/blog/2017/01/09/lg-ultrafine-5k-reviews/).
 
-Is this the end of the story? Find out in [Kernel Panics and Surprise boot-args](https://steipete.com/posts/kernel-panic-surprise-boot-args/)
+Is this the end of the story? Find out in [Kernel Panics and Surprise boot-args](https://steipete.com/posts/kernel-panic-surprise-boot-args/).
 
 [^1]: I managed [to get it working](https://www.reddit.com/r/hackintosh/comments/ae8d6c/is_it_possible_to_build_a_hackintosh_that/) with a Gigabyte GC-Titan Ridge card on a Hackintosh.
