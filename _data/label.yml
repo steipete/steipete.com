@@ -7,8 +7,8 @@
 
 panel:
   lastmod: "Recent Update"
-  trending_tags: 
   toc: "Contents"
+  trending_tags: 
 
 post:
   relate_posts: "Further Reading"
