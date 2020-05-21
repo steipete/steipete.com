@@ -14,6 +14,10 @@ I founded and bootstrapped [PSPDFKit](http://pspdfkit.com), an SDK for working w
 
 I speak at various conferences around the world, and most recently I was in Buenos Aires, Berlin, Paris, and New York. For speaking engagements, check out my [speaking schedule](https://github.com/steipete/speaking/blob/master/README.md).
 
+My [Slides are on Speaker Deck](https://speakerdeck.com/steipete/), my [Presentations on Vimeo](http://steipete.tv/).
+
+<div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/5200619/embed' allowfullscreen frameborder='0' style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
+
 ### Previous Work
 
 Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Austria GmbH, ROMEO BV, Scribd 
