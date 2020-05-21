@@ -18,6 +18,10 @@ I speak at various conferences around the world, and most recently I was in Buen
 
 My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), and my [presentations are on Vimeo](http://steipete.tv/).
 
+### Open Source
+
+I co-organize [Cocoaheads Austria](https://twitter.com/cocoaheads_at?lang=en) and maintain various open source projects such as [Aspects](https://github.com/steipete/Aspects). Through PSPDFKit we pay the bills for the [CocoaPods Spec](https://cocoapods.org/) site.
+
 ### Previous Work
 
 Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Austria GmbH, ROMEO BV, Scribd. 
