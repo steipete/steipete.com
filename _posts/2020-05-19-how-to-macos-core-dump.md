@@ -6,6 +6,10 @@ tags: bugs, development
 image: /assets/img/2020/appleintelframebuffer/feedback.png
 ---
 
+<style type="text/css">
+div.post-content > img:first-child { display:none; }
+</style>
+
 A few weeks after kernel panics started showing up on my MacBook Pro (and after many comments were left, in which I kept pinging Apple and reporting on this issue, and after trying a Supplemental Update but still suffering from this bug), somebody recommended to me that I should disable the “[Power Nap](https://support.apple.com/en-gb/HT204032)” feature. I was skeptical, but sure enough, ever since I disabled it, the kernel panics stopped. 
 
 If you just started reading now, check out the backstory: [Kernel Panics and Surprise boot-args](https://steipete.com/posts/kernel-panic-surprise-boot-args/).
