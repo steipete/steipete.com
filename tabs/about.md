@@ -28,7 +28,8 @@ Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Au
 
 ### Newsletter
 
-Want to be the first to hear about more iOS hacks and tech essays? No spam; you’ll only hear from me at most once a month.
+Want to be the first to hear about more iOS hacks and tech essays?  
+No spam; you’ll only hear from me at most once a month.
 
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
