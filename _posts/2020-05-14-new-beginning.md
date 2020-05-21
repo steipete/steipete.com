@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Let's Try This Again"
-date:   2020-05-14 19:03:35 +0200
+title: "Let's Try This Again"
+date: 2020-05-14 19:03:35 +0200
 tags: personal
 ---
 
