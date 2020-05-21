@@ -55,11 +55,6 @@ Al of these flags are related to macOS Kernel Debugging, so here's a great oppor
 
 `0x104c44 = 1 0000 0100 1100 0100 0100`
 
-Articles that helped:
-- [2008: Technical Note TN2118:Kernel Core Dumps](https://developer.apple.com/library/archive/technotes/tn2004/tn2118.html)
-- [2018: Scott Knight, macOS Kernel Debugging](https://knight.sc/debugging/2018/08/15/macos-kernel-debugging.html)
-- [2019: GeoSn0w, Debugging macOS Kernel For Fun](https://geosn0w.github.io/Debugging-macOS-Kernel-For-Fun/)
-
 `DB_NMI 0x4` changes the power-button to create a non-maskable interrupt? (These days, NMI is ctrl+cmd+alt+shift+power, old behaviour is via 0x8000)
 
 `DB_ARP 0x40` allows debugging across subnets via ARP (usual flag)
@@ -73,6 +68,11 @@ Articles that helped:
 `DB_REBOOT_ALWAYS 0x100000` Don't wait for debugger connection
 
 Let's check if we got everything: `0x100000 + 0x4000 + 0x800 + 0x400 + 0x40 + 0x4 = 0x104c44`
+
+## Articles that helped
+- [2008: Technical Note TN2118:Kernel Core Dumps](https://developer.apple.com/library/archive/technotes/tn2004/tn2118.html)
+- [2018: Scott Knight, macOS Kernel Debugging](https://knight.sc/debugging/2018/08/15/macos-kernel-debugging.html)
+- [2019: GeoSn0w, Debugging macOS Kernel For Fun](https://geosn0w.github.io/Debugging-macOS-Kernel-For-Fun/)
 
 # Conclusion
 
