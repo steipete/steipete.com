@@ -53,8 +53,13 @@ layout: compress
     <summary>
       {% assign content = post.content %}
       {% include no-linenos.html %}
-      {{ content | strip_html }}</summary>
+      {{ content | strip_html | truncate: 200 }}
+    </summary>
   {% endif %}
+
+  <content type="html" xml:base={{site.url}} xml:lang="en">
+ {{ post.content }}
+ </content>
 
   </entry>
 {% endfor %}
