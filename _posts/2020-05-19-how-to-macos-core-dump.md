@@ -94,7 +94,7 @@ On the server (non-panicking) machine run:
 - `sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.kdumpd.plist`
 
 To verify that the core dump server is active
-`sudo launchctl list | grep kdump`
+`sudo launchctl list | grep kdump`  
 This should return: `- 0 com.apple.kdumpd`
 
 On the client (panicking) machine run the following commands
