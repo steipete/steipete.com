@@ -5,19 +5,15 @@ date:   2020-05-21 10:00:00 +0200
 tags: personal
 ---
 
-Starting March 24, 2020, my 16-inch MacBook Pro is greeting me with a kernel panic almost every morning.
+On March 24, 2020, my 16-inch MacBook Pro greeting me with a kernel panic. I ignored it the first time, but it started to become an every-day thing.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4 - FB7642937 is someone cares.</p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1243854244115091456?ref_src=twsrc%5Etfw">March 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Was it just me? [No](https://twitter.com/jernejv/status/1243854771905273857?s=20), [seems](https://twitter.com/SergejBerisaj/status/1243857963724558337?s=20) [this](https://twitter.com/AlexManzer/status/1244606008955146240?s=20) [is](https://twitter.com/lostincode/status/1243900563902717953?s=20) [really](https://twitter.com/collinluke/status/1251668176296910849?s=20) [fairly](https://twitter.com/pagetable/status/1244599318151155712?s=20) [wide](https://twitter.com/BarrosMyles/status/1244021525562474497?s=20) [spread](https://twitter.com/slaven/status/1244532699139731456?s=20). ([Even on the MacBook Air 2018](https://twitter.com/AVMatiushkin/status/1249671960713482240?s=20))
-
-Great. Rebooting every is annoying, so I wrote a r̶a̶d̶a̶r̶ Feedback Assistant entry: FB7642937.
+Was it just me? [No](https://twitter.com/jernejv/status/1243854771905273857?s=20), [seems](https://twitter.com/SergejBerisaj/status/1243857963724558337?s=20) [this](https://twitter.com/AlexManzer/status/1244606008955146240?s=20) [is](https://twitter.com/lostincode/status/1243900563902717953?s=20) [really](https://twitter.com/collinluke/status/1251668176296910849?s=20) [fairly](https://twitter.com/pagetable/status/1244599318151155712?s=20) [wide](https://twitter.com/BarrosMyles/status/1244021525562474497?s=20) [spread](https://twitter.com/slaven/status/1244532699139731456?s=20). ([Even on the MacBook Air 2018](https://twitter.com/AVMatiushkin/status/1249671960713482240?s=20)) Great. (Honestly, just [search for AppleIntelFramebuffer on Twitter](https://twitter.com/search?q=AppleIntelFramebuffer&src=typed_query), this crash is everywhere!) Forced reboots are annoying, and I wanted to help, so I wrote a r̶a̶d̶a̶r̶ Feedback Assistant entry: FB7642937.
 
 >Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4
 
-(Some reports indicate that this happened with 10.15.3 earlier, but for me it started with 10.15.4)
-
-The backtrace surprisingly readable and indicates a timeout in Intel's graphic driver (AppleIntelFramebuffer):
+Some reports indicate that this happened with 10.15.3 earlier, but for me it started with 10.15.4. The panic backtrace surprisingly readable and indicates a timeout in Intel's graphic driver (AppleIntelFramebuffer):
 
 ```
 panic(cpu 2 caller 0xffffff8014016487): "AppleIntelFramebuffer::setPowerState(0xffffff835c3b6000 : 0xffffff7f975f5d88, 1 -> 0) timed out after 45938 ms"@/AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/xnu/xnu-6153.101.6/iokit/Kernel/IOServicePM.cpp:5296
