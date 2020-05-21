@@ -9,8 +9,6 @@ A good story is nuanced and complicated, and it contains surprise twists and a h
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">This finally explains what high kernel_task is, and why it happens. I spent so much time on it; wrote radars, escalated to Apple support; replaced hardware (!) to finally see that it‘s temperature emergency code because I plugged in the LG 5k monitor left. <a href="https://t.co/BGuB4ySU9o">https://t.co/BGuB4ySU9o</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1253550223445708800?ref_src=twsrc%5Etfw">April 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Note: LG released [a second generation](https://9to5mac.com/2019/07/30/new-lg-ultrafine-5k-display/) of the LG UltraFine 5K display, and it adds support for 3840 x 2160 @ 60Hz over USB-C DisplayPort, so you can now connect an iPad Pro. Sporadic reports also mention fewer issues with the second generation.
-
 ## Background
 
 I own one of the [cursed](https://mjtsai.com/blog/2020/02/03/macos-display-problems/) LG UltraFine 5K displays. In fact, I don’t just own one; I own about 10 of them. But I realize now that blindly trusting in Apple hardware is a mistake.
@@ -62,6 +60,8 @@ The bad news: The LG can provide 87 watts of power, but the notebook comes with 
 Though the above issue was solved, there is a new bug that started happening with the 16-inch MacBook Pro: Sometimes after wakeup, the gamma settings of the screen are way off (usually too bright, but it can also be [too dark](https://twitter.com/tkanzakic/status/1263345836538421248?s=21). This can be fixed via unplugging/replugging or via [toggling True Tone](https://twitter.com/nicholascooke/status/1263244851266510848?s=21). This bug is [independent](https://twitter.com/sdw/status/1263226044435140608?s=21) [of](https://twitter.com/alihilal94/status/1263227224217595904?s=21) [the](https://twitter.com/oleg_v_soloviev/status/1263314894918729735?s=21) [screen](https://twitter.com/nicholascooke/status/1263244851266510848?s=21) you use though. Also, don’t confuse this bug with the [eye-burning brightness bug after reboot](https://macperformanceguide.com/blog/2020/20200107_1436-2019MacPro-LG5K-maximum-brightness-after-reboot.html) (I know it’s hard to keep up with all the different bugs these days). Luckily, Apple fixed the latter bug in Catalina 10.15.4.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">That‘s a new bug. Screen is super bright after wake? <a href="https://t.co/ldDkQNioA4">pic.twitter.com/ldDkQNioA4</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1263225822485381120?ref_src=twsrc%5Etfw">May 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Note: LG released [a second generation](https://9to5mac.com/2019/07/30/new-lg-ultrafine-5k-display/) of the LG UltraFine 5K display, and it adds support for 3840 x 2160 @ 60Hz over USB-C DisplayPort, so you can now connect an iPad Pro. Sporadic reports also mention fewer issues with the second generation.
 
 ## Conclusion
 
