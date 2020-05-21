@@ -18,4 +18,6 @@ I spoke at various conferences around the world, most recently Buenos Aires, Ber
 
 Loytec, iOS Instructor at the Vienna University of Technology, Three Hutchison GmbH, Planetromeo B.V., Scribd, 
 
-Imprint: Peter Steinberger, Kaiserstrasse 117/17, 1070 Vienna, Austria.
+## Imprint
+
+Peter Steinberger, Kaiserstrasse 117/17, 1070 Vienna, Austria.
