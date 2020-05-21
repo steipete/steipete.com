@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The LG UltraFine 5K, kernel_task and me"
+title:  "The LG UltraFine 5K, kernel_task, and Me"
 date:   2020-05-19 08:00:00 +0200
 tags: hardware
 ---
