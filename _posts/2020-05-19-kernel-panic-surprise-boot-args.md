@@ -5,7 +5,9 @@ date:   2020-05-21 10:00:00 +0200
 tags: personal
 ---
 
-On March 24, 2020, my 16-inch MacBook Pro greeting me with a kernel panic. I ignored it the first time, but it started to become an every-day thing. There I was, a short moment of a bug-free setup, broken yet again. (Read the backstory: [The LG UltraFine 5K, kernel_task and me](/posts/the-lgultrafine5k-kerneltask-and-me/) if you are just starting here)
+On March 24, 2020, my 16-inch MacBook Pro greeting me with a kernel panic. I ignored it the first time, but it started to become an every-day thing. There I was, a short moment of a bug-free setup, broken yet again. 
+
+If you just came here, read the backstory: [The LG UltraFine 5K, kernel_task and me](/posts/the-lgultrafine5k-kerneltask-and-me/)
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4 - FB7642937 is someone cares.</p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1243854244115091456?ref_src=twsrc%5Etfw">March 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
