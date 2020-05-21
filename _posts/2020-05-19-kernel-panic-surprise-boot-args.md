@@ -5,13 +5,13 @@ date: 2020-05-21 10:00:00 +0200
 tags: personal
 ---
 
-On March 24, 2020, my 16-inch MacBook Pro greeted me with a kernel panic. I ignored it the first time, but it started to become an everyday thing. There I was, with a short moment of a bug-free setup, broken yet again.
+On March 24, 2020, my 16-inch MacBook Pro greeted me with a kernel panic. I ignored it the first time, but it started to become an everyday thing. There I was, having enjoyed a short moment of a bug-free setup, and it was interrupted yet again.
 
 If you just came here, read the backstory: [The LG UltraFine 5K, kernel_task, and Me](/posts/the-lgultrafine5k-kerneltask-and-me/).
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4 - FB7642937 is someone cares.</p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1243854244115091456?ref_src=twsrc%5Etfw">March 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Was it just me? [No](https://twitter.com/jernejv/status/1243854771905273857?s=20), [it](https://twitter.com/SergejBerisaj/status/1243857963724558337?s=20) [seems](https://twitter.com/AlexManzer/status/1244606008955146240?s=20) [this](https://twitter.com/lostincode/status/1243900563902717953?s=20) [is](https://twitter.com/collinluke/status/1251668176296910849?s=20) [fairly](https://twitter.com/pagetable/status/1244599318151155712?s=20) [wide](https://twitter.com/BarrosMyles/status/1244021525562474497?s=20) [spread](https://twitter.com/slaven/status/1244532699139731456?s=20). ([Even on the MacBook Air 2018](https://twitter.com/AVMatiushkin/status/1249671960713482240?s=20).) Great. (Honestly, just [search for AppleIntelFramebuffer on Twitter](https://twitter.com/search?q=AppleIntelFramebuffer&src=typed_query); this crash is everywhere!) Forced reboots are annoying, and I wanted to help, so I wrote a r̶a̶d̶a̶r̶ Feedback Assistant entry: FB7642937.
+Was it just me? [No](https://twitter.com/jernejv/status/1243854771905273857?s=20), [it](https://twitter.com/SergejBerisaj/status/1243857963724558337?s=20) [seems](https://twitter.com/AlexManzer/status/1244606008955146240?s=20) [this](https://twitter.com/lostincode/status/1243900563902717953?s=20) [issue](https://twitter.com/collinluke/status/1251668176296910849?s=20) [is](https://twitter.com/pagetable/status/1244599318151155712?s=20) [fairly](https://twitter.com/BarrosMyles/status/1244021525562474497?s=20) [widespread](https://twitter.com/slaven/status/1244532699139731456?s=20). ([Even on the MacBook Air 2018](https://twitter.com/AVMatiushkin/status/1249671960713482240?s=20).) Great. (Honestly, just [search for AppleIntelFramebuffer on Twitter](https://twitter.com/search?q=AppleIntelFramebuffer&src=typed_query); this crash is everywhere!) Forced reboots are annoying, and I wanted to help, so I wrote a r̶a̶d̶a̶r̶ Feedback Assistant entry: FB7642937.
 
 >Regression: MacBook Pro 16-inch panics almost every night in AppleIntelFramebuffer::setPowerState. This started with macOS 10.15.4
 
@@ -30,21 +30,21 @@ Boot args: rootless=0 kext-dev-mode=1 agc=2 smc=0x2 watchdog=0 nvme=0x9 legacy_h
 
 ## Fun boot-args
 
-I posted this on Twitter to learn more, but while nobody could tell me what was up, a friend noticed that I have “[fun boot-args](https://twitter.com/NSBiscuit/status/1243294676985294849?s=20).” WTH? 
+I posted about this on Twitter to learn more, but while nobody could tell me what was up, a friend noticed that I have “[fun boot-args](https://twitter.com/NSBiscuit/status/1243294676985294849?s=20).” WTH? 
 
-I didn’t set any of these, but previously, I had to send my 16-inch MacBook in for repairs, as it had corrupted memory, resulting in [extremely](https://twitter.com/steipete/status/1230925689098002433) [weird bugs](https://twitter.com/jckarter/status/1230253181495459841) and [frequent kernel panics](https://twitter.com/gparker/status/1231155681991909376). They replaced most of the machine, so it came with a fresh install of macOS... and some interesting boot-args that the engineers there forgot to clear. (If you’re curious what these args do, some are [documented here](https://superuser.com/questions/255176/is-there-a-list-of-available-boot-args-for-darwin-os-x), and there are some more if you look toward the Hackintosh scene.)
+I didn’t set any of these, but previously, I’d had to send my 16-inch MacBook in for repairs, as it had corrupted memory, resulting in [extremely](https://twitter.com/steipete/status/1230925689098002433) [weird bugs](https://twitter.com/jckarter/status/1230253181495459841) and [frequent kernel panics](https://twitter.com/gparker/status/1231155681991909376). Apple replaced most of the machine, so it came with a fresh install of macOS... and some interesting boot-args that they forgot to clear. (If you’re curious what these args do, some are [documented here](https://superuser.com/questions/255176/is-there-a-list-of-available-boot-args-for-darwin-os-x), and there are some more if you look toward the Hackintosh scene.)
 
 ## Are These Dangerous?
 
-Having my main computer run with unknown boot-args did worry me. What did they do? I went on a google spree to find out what all of these do, one by one.
+Having my main computer run with unknown boot-args did worry me. What did they do? I went on a googling spree to find out what all of these do.
 
 [`rootless=0`](https://www.cryptomonkeys.com/2015/07/osx-rootless-boot-args/) — “Rootless (a security mechanism making its debut in El Capitan 10.11) restricts access to certain files, even as an administrative user, such as is provided by ‘sudo’. ”
 
 [`kext-dev-mode=1`](https://apple.stackexchange.com/questions/311065/what-does-setting-boot-args-kext-dev-mode-do-to-set-the-serial-port) — This “is intended for development scenarios where you want to test unsigned kernel extensions. Thus allowing these to be loaded without testing if they are indeed signed.”
 
-[`agc=2`](https://gist.github.com/blackgate/17ac402e35d2f7e0f1c9708db3dc7a44) — This seems related to automatic graphic switching between Intel and AMD Radeon GPU drivers. The setting 2 seems to prevent the AMD chip from powering down. Information around this is shaky.
+[`agc=2`](https://gist.github.com/blackgate/17ac402e35d2f7e0f1c9708db3dc7a44) — This seems related to automatic graphic switching between Intel and AMD Radeon GPU drivers. The setting `2` seems to prevent the AMD chip from powering down. Information around this is shaky.
 
-`smc=0x2` — SMC is short for [system management controller](https://support.apple.com/en-us/HT201295), which is responsible for battery, fans, sensors, and thermal management. While I found some reports with this flag, I couldn’t figure out what it does.
+`smc=0x2` — SMC is short for [system management controller](https://support.apple.com/en-us/HT201295), which is what’s responsible for the battery, fans, sensors, and thermal management. While I found some reports with this flag, I couldn’t figure out what it does.
 
 [`watchdog=0`](http://www.hari.xyz/2019/01/setting-up-os-x-for-kernel-debugging.html) — This “disables macOS watchdog from firing when returning from the kernel debugger.”
 
@@ -52,17 +52,18 @@ Having my main computer run with unknown boot-args did worry me. What did they d
 
 [`legacy_hda_tools_support=1`](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp) — This unlocks “custom audio engines by disabling Apple private entitlement verification.”
 
-`sandcastle=0` — It is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). It sounds security related, but I couldn’t find details.
+`sandcastle=0` — This is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). It sounds security related, but I couldn’t find details.
 
 [`chunklist-security-epoch=0 -chunklist-no-rev2-dev`](https://gist.github.com/devzer01/e24dc78150d574ade3382eaddaf1827a) — I link these together because they sound related, and they often show up in combination in random kernel panic reports. I have no idea what they do, but they again seem to disable something related to security.
 
-Having a long list of undocumented boot-args running on my machine for weeks that seem to weaken security is definitely worrying, and not what you expect from a repair at an Apple Store.
+Having a long list of- undocumented boot-args that seem to weaken security running on my machine for weeks is definitely worrying, and it’s not what you’d expect from a repair at an Apple Store.
 
-Clearing boot args only works in Recovery Mode (⌘-R at boot time), unless SIP is disabled.
+Clearing bootargs only works in Recovery Mode (⌘-R at boot time), unless SIP is disabled:
+
 ```
 sudo nvram boot-args=""
 ```
 
 ## Conclusion
 
-Clearing the boot-args didn’t resolve the AppleIntelFramebuffer panics. So to fix this I was left wondering, will  Apple reply to my report? Read more in [How to macOS Core Dump](/posts/how-to-macos-core-dump/).
+Clearing the boot-args didn’t resolve the AppleIntelFramebuffer panics. So to fix this, I was left wondering, will Apple reply to my report? Read more in [How to macOS Core Dump](/posts/how-to-macos-core-dump/).
