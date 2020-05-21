@@ -4,7 +4,7 @@ title: About
 
 ![Image of Peter Steinberger speaking at a conference](/assets/img/steipete-about.jpg){:height="100%" width="100%"}
 
-Follow what I’m up to on [Twitter](https://twitter.com/steipete) and [Instagram](https://www.instagram.com/sportg33k).
+Follow what I’m up to on [Twitter](https://twitter.com/steipete), [GitHub](https://github.com/steipete) and [Instagram](https://www.instagram.com/sportg33k).
 
 ### PSPDFKit
 
@@ -20,7 +20,7 @@ My [slides are on Speaker Deck](https://speakerdeck.com/steipete/), my [presenta
 
 ### Previous Work
 
-Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Austria GmbH, ROMEO BV, Scribd 
+Loytec, iOS instructor at the Vienna University of Technology, Hutchison Drei Austria GmbH, ROMEO BV, Scribd. 
 
 ### Newsletter
 
