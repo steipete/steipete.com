@@ -3,6 +3,7 @@ layout: post
 title: "Kernel Panics and Surprise boot-args"
 date: 2020-05-21 10:00:00 +0200
 tags: personal
+image: https://pbs.twimg.com/media/EUBGuLIXgAEAQ5n?format=jpg&name=4096x4096
 ---
 
 On March 24, 2020, my 16-inch MacBook Pro greeted me with a kernel panic. I ignored it the first time, but it started to become an everyday thing. There I was, having enjoyed a short moment of a bug-free setup, and it was interrupted yet again.
