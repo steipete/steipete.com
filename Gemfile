@@ -7,6 +7,7 @@ group :jekyll_plugins do
   gem "jekyll-paginate"
   gem "jekyll-redirect-from"
   gem 'jekyll-twitter-plugin'
+  gem 'jekyll-feed'
   gem "jekyll-seo-tag", "~> 2.6.1"
 end
 
