@@ -8,6 +8,9 @@ group :jekyll_plugins do
   gem "jekyll-redirect-from"
   gem 'jekyll-twitter-plugin'
   gem 'jekyll-feed'
+  gem 'jekyll-gist'
+  gem 'jekyll-compose'
+  gem 'jemoji'
   gem "jekyll-seo-tag", "~> 2.6.1"
 end
 

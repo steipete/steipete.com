@@ -180,6 +180,8 @@ compress_html:
 
 plugins:
   - jekyll-feed
+  - jekyll-gist
+  - jemoji
 
 exclude:
   - vendor        # Avoid Jekyll mistakenly read the vender directory on Travis-CI's VM .
