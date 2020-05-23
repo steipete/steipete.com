@@ -26,7 +26,7 @@ Since receiving these displays, we’ve had to return most of them to get fixes 
 
 With the 2017 MacBook Pro, I had an extraordinary amount of fun, since plugging in the LG was causing graphic issues on the MacBook display. I wrote radars, called Apple Support, and even took a cab to a repair center with the screen in tow in order to prove the hardware was broken. It’s difficult when neither the screen itself nor the MacBook have issues, but the combination of the two causes problems.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Now this is happening on the second gen MacBook Pro. (Even better, during an important video call)<br>I tried to ping Apple support but I just don’t have the time/energy to go through that drama again. What’s the closest to the LG 5K Display quality-wise that doesn’t break a MBP? <a href="https://t.co/LyEC4Q8O8z">pic.twitter.com/LyEC4Q8O8z</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/956863946404827136?ref_src=twsrc%5Etfw">January 26, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% twitter https://twitter.com/steipete/status/956863946404827136 %}
 
 Nobody knew what was going on, and this all occurred before we had an Apple Store in Austria, so getting help there was out of the question. Apple eventually agreed to change my logic board for free, but only after countless hours of phone calls and emails and after this issue had been escalated multiple times. Mind you, this was all with active AppleCare and a machine that wasn’t even one year old. The replacement of my logic board took more than a week, and after it was returned, it had the exact same issue. I mostly gave up and just didn’t use my external screen. 
 
@@ -34,7 +34,7 @@ Nobody knew what was going on, and this all occurred before we had an Apple Stor
 
 The graphic issues disappeared with the 2018 MacBook Pro. However, the biggest issue was also the weirdest: Sometimes, after longer use, my MacBook Pro became unusably slow. Mere seconds after removing the external screen, kernel_task disappeared back into the CPU activity ground noise. Sometimes I had hours after disconnecting in which the MacBook worked, but other times this happened really fast. (I use [iStat Menus](https://bjango.com/mac/istatmenus/) here.) 
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Oh hey kernel_task!<br><br>(I plugged in the LG 5K monitor again.) <a href="https://t.co/E7IDHPfR9d">pic.twitter.com/E7IDHPfR9d</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1128703168697839617?ref_src=twsrc%5Etfw">May 15, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% twitter https://twitter.com/steipete/status/1128703168697839617 %}
 
 I was never able to reliably reproduce this, nor could Apple Support help. They also claimed to not know anything about this issue. I again mostly gave up and didn’t use the external screen.
 
@@ -60,7 +60,7 @@ The bad news: The LG can provide 87 watts of power, but the notebook comes with 
 
 Though the above issue was solved, there is a new bug that started happening with the 16-inch MacBook Pro: Sometimes after wakeup, the gamma settings of the screen are way off (usually too bright, but it can also be [too dark](https://twitter.com/tkanzakic/status/1263345836538421248?s=21). This can be fixed via unplugging/replugging or via [toggling True Tone](https://twitter.com/nicholascooke/status/1263244851266510848?s=21). This bug is [independent](https://twitter.com/sdw/status/1263226044435140608?s=21) [of](https://twitter.com/alihilal94/status/1263227224217595904?s=21) [the](https://twitter.com/oleg_v_soloviev/status/1263314894918729735?s=21) [screen](https://twitter.com/nicholascooke/status/1263244851266510848?s=21) you use though. Also, don’t confuse this bug with the [eye-burning brightness bug after reboot](https://macperformanceguide.com/blog/2020/20200107_1436-2019MacPro-LG5K-maximum-brightness-after-reboot.html) (I know it’s hard to keep up with all the different bugs these days). Luckily, Apple fixed the latter bug in Catalina 10.15.4.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">That‘s a new bug. Screen is super bright after wake? <a href="https://t.co/ldDkQNioA4">pic.twitter.com/ldDkQNioA4</a></p>&mdash; Peter Steinberger (@steipete) <a href="https://twitter.com/steipete/status/1263225822485381120?ref_src=twsrc%5Etfw">May 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% twitter https://twitter.com/steipete/status/1263225822485381120 %}
 
 ## Conclusion
 
