@@ -36,7 +36,6 @@ layout: compress
     <updated>{{ site.time | date_to_xmlschema }}</updated>
   {% endif %}
     <id>{{ post_absolute_url }}</id>
-    <content src="{{ post_absolute_url }}" />
     <author>
       <name>{{ site.author }}</name>
     </author>
@@ -47,6 +46,7 @@ layout: compress
     {% endfor %}
   {% endif %}
 
+  <description>{{ post.content | xml_escape }}</description>
   {% if post.summary %}
     <summary>{{ post.summary | strip }}</summary>
   {% else %}
@@ -55,7 +55,6 @@ layout: compress
       {% include no-linenos.html %}
       {{ content | strip_html | truncate: 200 }}
     </summary>
-    <description>{{ post.content | xml_escape }}</description>
   {% endif %}
 
   </entry>
