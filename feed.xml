@@ -55,6 +55,7 @@ layout: compress
       {% include no-linenos.html %}
       {{ content | strip_html | truncate: 200 }}
     </summary>
+    <description>{{ post.content | xml_escape }}</description>
   {% endif %}
 
   </entry>
