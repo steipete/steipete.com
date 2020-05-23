@@ -9,6 +9,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    base32 (0.3.2)
     colorator (1.1.0)
     concurrent-ruby (1.1.6)
     em-websocket (0.5.1)
@@ -67,6 +68,13 @@ GEM
     jekyll-twitter-plugin (2.1.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
+    jekyll_picture_tag (1.10.0)
+      addressable (~> 2.6)
+      base32 (~> 0.3)
+      jekyll (< 5)
+      mime-types (~> 3)
+      mini_magick (~> 4)
+      objective_elements (~> 1.1.2)
     jemoji (0.12.0)
       gemoji (~> 3.0)
       html-pipeline (~> 2.2)
@@ -80,6 +88,10 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.3.6)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2020.0512)
+    mini_magick (4.10.1)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     multipart-post (2.1.1)
@@ -87,6 +99,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
+    objective_elements (1.1.2)
     octokit (4.18.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -130,6 +143,7 @@ DEPENDENCIES
   jekyll-redirect-from
   jekyll-seo-tag (~> 2.6.1)
   jekyll-twitter-plugin
+  jekyll_picture_tag
   jemoji
 
 BUNDLED WITH

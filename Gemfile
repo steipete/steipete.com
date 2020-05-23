@@ -11,6 +11,7 @@ group :jekyll_plugins do
   gem 'jekyll-gist'
   gem 'jekyll-compose'
   gem 'jemoji'
+  gem 'jekyll_picture_tag'
   gem "jekyll-seo-tag", "~> 2.6.1"
 end
 
