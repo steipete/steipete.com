@@ -53,7 +53,7 @@ Having my main computer run with unknown boot-args did worry me. What did they d
 
 [`legacy_hda_tools_support=1`](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp) — This unlocks “custom audio engines by disabling Apple private entitlement verification.”
 
-`sandcastle=0` — This is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). “Sandcastle” is a codename for something Sandbox-related; was unable to find details.
+`sandcastle=0` — This is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). “Sandcastle” is a codename for something Sandbox-related; some birdies told me it could be related to [DataVaults](https://eclecticlight.co/2018/10/25/no-entry-%E2%9B%94%EF%B8%8F-access-controls-in-mojave/) - secured folders to which only Apple’s software has even read access, via specific entitlements. 
 
 [`chunklist-security-epoch=0 -chunklist-no-rev2-dev`](https://gist.github.com/devzer01/e24dc78150d574ade3382eaddaf1827a) — I link these together because they sound related, and they often show up in combination in random kernel panic reports. Apparently they have to do with EFI signatures.
 
