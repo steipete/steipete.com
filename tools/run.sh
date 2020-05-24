@@ -90,6 +90,7 @@ main() {
   fi
 
   echo "\$ $cmd"
+  cmd+=" --drafts"
   eval $cmd
 }
 
