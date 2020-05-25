@@ -42,7 +42,7 @@ Many tweaks nicely integrate into Settings or just directly into another app (e.
 
 <img src="/assets/img/2020/jailbreaking/settings.jpg" width="50%">
 
-Beware: some apps (think Banking) might include a jailbreak detection and won't work if they detect Cydia.
+Beware: some apps (like banking) might include a jailbreak detection and won't work if they detect Cydia. However this also can be circumvented with the right tweak.
 
 # State of Jailbreaking
 
@@ -52,11 +52,11 @@ Reddit maintains [a great overview wiki]((https://www.reddit.com/r/jailbreak/wik
 
 - [checkra1n](https://checkra.in/) uses the [Checkm8 exploit](https://arstechnica.com/information-technology/2019/09/developer-of-checkm8-explains-why-idevice-jailbreak-exploit-is-a-game-changer/) - an unpatchable vulnerability in the  iOS bootrom for all devices from A5-A11 (everything up to iPhone X)
 
-- [unc0ver](https://unc0ver.dev/), a semi-untethered jealbreak using various hacks, just updated for iOS 13.5.
+- [unc0ver](https://unc0ver.dev/), a semi-untethered jailbreak using various hacks, just updated for iOS 13.5.
 
 Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/types-of-jailbreaks/). You need to re-trigger the jailbreak after a reboot to patch the kernel, so it can run unsigned code. I recommend using [AltStore](https://altstore.io/) to install the Jailbreak.([guide](https://www.idownloadblog.com/2020/02/16/how-to-unc0ver-altstore/))
 
-# Cydia 101
+# Adding Repositories to Cydia
 
 Cydia is the oldest and most common alternative App Store for iOS. It used to also sell apps, but now focusses on simply being a UI for the apt-get package manager. Apps are found via repositories, the two most popular ones are however not preinstalled:
 
