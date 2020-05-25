@@ -36,7 +36,7 @@ Jailbreaking has a bad taste because it can be used to pirate apps. But there ar
 - Accessing Hardware features that are otherwise inaccessible (e.g. [NFC Writer](http://cydia.saurik.com/package/net.limneos.nfcwriterx/))
 - [Location spoofing](https://www.reddit.com/r/jailbreak/comments/dzdzgg/tutorial_nepetas_relocate_guide_on_1322/)
 - Working around tethering restrictions ([TetherMe](http://cydia.saurik.com/package/net.tetherme.tetherme8/))
-- Improving accessibility (e.g. [blind folks], [special needs](https://twitter.com/GadgetGal_/status/1264962311229333504?s=20))
+- Improving accessibility (e.g. [blind folks](https://twitter.com/devinprater/status/1264962317609046017), [special needs](https://twitter.com/GadgetGal_/status/1264962311229333504?s=20))
 
 Many tweaks nicely integrate into Settings or just directly into another app (e.g. Netflix):
 
