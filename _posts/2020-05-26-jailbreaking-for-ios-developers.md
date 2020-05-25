@@ -95,7 +95,7 @@ If you're curious how this works on a technical level, here's a [writeup for iOS
 
 # FLEX In-App Debugging
 
-[FLEX](https://github.com/Flipboard/FLEX) is an open-source in-app debugging and exploration tool for iOS. It's amazing what you can do with it. Want the weather background as home screen background? No problem.
+[FLEX](https://github.com/Flipboard/FLEX) is an open-source in-app debugging and exploration tool for iOS by [@NSExceptional](https://twitter.com/NSExceptional). It's amazing what you can do with it. Want the weather background as home screen background? No problem.
 
 {% twitter https://twitter.com/nsexceptional/status/1250353513923674114 %}
 
