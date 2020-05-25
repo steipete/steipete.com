@@ -24,7 +24,7 @@ If you don't want to risk jailbreaking, you can still install some apps with [Al
 
 Jailbreaking has a bad taste because it can be used to pirate apps. But there are many other, much more noble or interesting reasons why it's worth exploring, like enhancing accessibility:
 
-{% twitter https://twitter.com/gadgetgal_/status/1264952195402723328 %}
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">I have a special needs son for whom I jailbreak iDevices to support his disability. It is life changing for us.</p>&mdash; GadgetGal (@GadgetGal_) <a href="https://twitter.com/GadgetGal_/status/1264952195402723328?ref_src=twsrc%5Etfw">May 25, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 - Security Research (MITM via [SSLKillSwitch](https://github.com/nabla-c0d3/ssl-kill-switch2), [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted) to decrypt/disassemble apps)
 - Enhancing iOS with tweaks (e.g. [native picture-in-picture](https://repo.packix.com/package/codes.rambo.ipadify/), [tabs in Safari](https://repo.twickd.com/package/com.twickd.minazuki.safari-electro-2), a [call-bar](https://www.idownloadblog.com/2019/03/06/callbar-xs-brings-everyones-favorite-phone-call-centric-jailbreak-tweak-to-ios-12/), [better notifications](https://www.idownloadblog.com/2019/02/25/notifica/), [better shortcuts](http://cydia.saurik.com/package/com.ethanrdoesmc.truecuts/))
@@ -101,11 +101,9 @@ If you're curious how this works on a technical level, here's a [writeup for iOS
 
 To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.flexing/), reboot and then tap on the status bar to load FLEX. You can browse the classes and inspect the view hierarchy with a 3D debugger, similar to [Reveal](https://revealapp.com/). Here's Spotify:
 
-<a href="/assets/img/2020/jailbreaking/hierarchy-spotify.png"><img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png" width="50%"></a>
+<a href="/assets/img/2020/jailbreaking/hierarchy-spotify.png"><img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png"></a>
 
-Of course you can also inspect apps written in SwiftUI, like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI).
-
-<a href="/assets/img/2020/jailbreaking/hierarchy-achelper.png"><img src="/assets/img/2020/jailbreaking/hierarchy-achelper.png" width="50%"></a>
+Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbreaking/hierarchy-achelper.png), like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI).
 
 # More Useful Cydia Apps & Tweaks
 
