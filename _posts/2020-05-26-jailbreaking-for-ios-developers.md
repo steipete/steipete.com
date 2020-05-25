@@ -91,7 +91,7 @@ With that out of the way, let's explore what we can all do with our new superpow
 - Respring (Restart SpringBoard)
 - Find SSLKillSwitch 2 in iOS Settings
 
-If you're curious how this works on a technical level, here's a [writeup for iOS 12](https://nabla-c0d3.github.io/blog/2019/05/18/ssl-kill-switch-for-ios12/), or just explore the [source on GitHub]((https://github.com/nabla-c0d3/ssl-kill-switch2).
+If you're curious how this works on a technical level, here's a [writeup for iOS 12](https://nabla-c0d3.github.io/blog/2019/05/18/ssl-kill-switch-for-ios12/), or just explore the [source on GitHub](https://github.com/nabla-c0d3/ssl-kill-switch2).
 
 # FLEX In-App Debugging
 
