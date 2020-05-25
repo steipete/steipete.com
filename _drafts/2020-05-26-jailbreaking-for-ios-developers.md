@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Jailbreaking for iOS Developers"
-date:   2020-05-21 10:30:00 +0200
+date:   2020-05-26 00:00:00 +0200
 tags: iOS hacks
-image: https://twitter.com/mnzthegreat/status/1264848209735585792/photo/1
+image: /assets/img/2020/jailbreaking/header.jpg
 ---
 
 Jailbreaking is something that's rarely discussed in the iOS developer community. Which is unfortunate - because it's amazing. Let's walk through a few useful things you can do with it. (Picture by [@mnzthegreat](https://twitter.com/mnzthegreat/status/1264848209735585792))
