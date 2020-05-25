@@ -61,6 +61,9 @@ https://twitter.com/snazzyq/status/1264767792663822336?s=21
 
 https://twitter.com/nsexceptional/status/1264394490703462407?s=21
 
+Copilot
+Shortcuts: True cuts, Activator 
+
 
 # Themes
 
