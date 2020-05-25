@@ -58,13 +58,11 @@ Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/typ
 
 # Adding Repositories to Cydia
 
-Cydia is the oldest and most common alternative App Store for iOS. It used to also sell apps, but now focusses on simply being a UI for the apt-get package manager. Apps are found via repositories, the two most popular ones are however not preinstalled:
+[Cydia](https://cydia-app.com/) is the oldest and most common alternative App Store for iOS. It's automatically installed for most jailbreaks. It is a convenient UI for the apt-get packager that it comes with it. In the earlier days you could also buy apps through Cydia, nowadays most apps are sold via 3rd-party repositories. They offer free and paid apps (via PayPal or Credit Card) and can be easily added to Cydia.
 
 - [Packix](https://repo.packix.com/)
 - [Dynastic Repo](https://repo.dynastic.co/)
 - [Twickd](https://repo.twickd.com/)
-
-Both offer free and paid apps (via PayPal or Credit Card) and can be easily added to Cydia.
 
 Heads up: Cydia hosts many tweaks that are outdated and won't work on iOS 13 anymore. Better check [/r/jailbreak](https://www.reddit.com/r/jailbreak/) or [iDownloadBlog](https://www.idownloadblog.com/tag/jailbreak/) to find tweaks that work.
 
