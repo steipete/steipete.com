@@ -80,7 +80,7 @@ With that out of the way, let's explore what we can all do with our new superpow
 
 # SSL Kill Switch
 
-[SSLKillSwitch 2](https://github.com/nabla-c0d3/ssl-kill-switch2) is a tweak to disable SSL certificate validation on device. This is useful to see what data apps send via a MITM proxy. 
+[SSLKillSwitch 2](https://github.com/nabla-c0d3/ssl-kill-switch2) is a tweak to disable SSL certificate validation on device. This is useful to see what data apps send via a MITM proxy such as [Charles](https://www.charlesproxy.com/). 
 
 - Install PreferenceLoader (dependency) and the [Filza](https://filza.net/) (File Browser) on Cydia
 - Download the [latest version from GitHub](https://github.com/nabla-c0d3/ssl-kill-switch2/releases) (deb file).
