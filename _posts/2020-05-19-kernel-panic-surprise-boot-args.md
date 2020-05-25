@@ -41,7 +41,7 @@ Having my main computer run with unknown boot-args did worry me. What did they d
 
 [`rootless=0`](https://www.cryptomonkeys.com/2015/07/osx-rootless-boot-args/) — “Rootless (a security mechanism making its debut in El Capitan 10.11) restricts access to certain files, even as an administrative user, such as is provided by ‘sudo’. ”
 
-[`kext-dev-mode=1`](https://apple.stackexchange.com/questions/311065/what-does-setting-boot-args-kext-dev-mode-do-to-set-the-serial-port) — This “is intended for development scenarios where you want to test unsigned kernel extensions. Thus allowing these to be loaded without testing if they are indeed signed.”
+[`kext-dev-mode=1`](https://apple.stackexchange.com/questions/311065/what-does-setting-boot-args-kext-dev-mode-do-to-set-the-serial-port) — This “is intended for development scenarios where you want to test unsigned kernel extensions. Thus allowing these to be loaded without testing if they are indeed signed.” This has been [replaced by SIP after 10.10](https://twitter.com/pmjordan/status/1264298856495435778?s=20).
 
 [`agc=2`](https://gist.github.com/blackgate/17ac402e35d2f7e0f1c9708db3dc7a44) — This seems related to automatic graphic switching between Intel and AMD Radeon GPU drivers. The setting `2` seems to prevent the AMD chip from powering down. Information around this is shaky.
 
@@ -53,7 +53,7 @@ Having my main computer run with unknown boot-args did worry me. What did they d
 
 [`legacy_hda_tools_support=1`](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp) — This unlocks “custom audio engines by disabling Apple private entitlement verification.”
 
-`sandcastle=0` — This is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). “Sandcastle” is a codename for something Sandbox-related; some birdies told me it could be related to [DataVaults](https://eclecticlight.co/2018/10/25/no-entry-%E2%9B%94%EF%B8%8F-access-controls-in-mojave/) - secured folders to which only Apple’s software has even read access, via specific entitlements. 
+`sandcastle=0` — This is definitely not [Project Sandcastle, which enables Android to run on iPhones](https://arstechnica.com/gadgets/2020/03/project-sandcastle-brings-android-to-the-iphone/). “Sandcastle” is a codename for something Sandbox-related; some birdies told me it could be related to [DataVaults](https://eclecticlight.co/2018/10/25/no-entry-%E2%9B%94%EF%B8%8F-access-controls-in-mojave/) - secured folders to which only Apple’s software has even read access, via specific entitlements. It could also be [related to SIP](https://twitter.com/stroughtonsmith/status/1264299624585715717?s=20).
 
 [`chunklist-security-epoch=0 -chunklist-no-rev2-dev`](https://gist.github.com/devzer01/e24dc78150d574ade3382eaddaf1827a) — I link these together because they sound related, and they often show up in combination in random kernel panic reports. Apparently they have to do with EFI signatures.
 
