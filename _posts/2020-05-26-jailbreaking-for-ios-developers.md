@@ -16,7 +16,7 @@ Jailbreaking is something that's rarely discussed in the iOS developer community
 
 >iOS jailbreaking is a privilege escalation to remove software restrictions imposed by Apple on iOS, tvOS, and watchOS. This is done through a series of kernel patches. This jailbreaking allows root access to iOS, allowing the downloading and installing of additional applications and extensions which are unavailable through the official Apple App Store. ([Source](https://www.techacrobat.com/ios-12-4-unc0ver-jailbreak/))
 
-If you're wondering, [is this legal](https://en.wikipedia.org/wiki/IOS_jailbreaking#Legality)? This depends on your country, but it is legal in Austria, Germany, Canada, India, New Zealand, United Kingdom and the United States. With the exception of the latest iOS 13.5 jailbreak, all major jailbreaks since 10 were based on publicly available exploits, which were [reported to Apple before](https://twitter.com/helthydriver/status/1265024132204331011?s=21).
+If you're wondering, [is this legal](https://en.wikipedia.org/wiki/IOS_jailbreaking#Legality)? This depends on your country, but it is legal in Austria, Germany, Canada, India, New Zealand, United Kingdom and the United States. With the exception of the latest iOS 13.5 jailbreak, all major jailbreaks since 10 were based on publicly available exploits, which were [reported to Apple before](https://twitter.com/helthydriver/status/1265030817618767875?s=21).
 
 If you don't want to risk jailbreaking, you can still install some apps with [AltStore](https://altstore.io/), which signs apps on your Mac.
 
