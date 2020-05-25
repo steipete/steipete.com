@@ -48,13 +48,13 @@ Beware: some apps (like banking) might include a jailbreak detection and won't w
 
 There has [never been a better time](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) for jailbreaking. From iOS 10-13, almost every version can be hacked, including the just-released iOS 13.5. This is also somewhat worrying, as exploits require security flaws, and we're now at a stage where exploit platforms [aren't paying for any further exploits](https://9to5mac.com/2020/05/14/zerodium-has-too-many-ios-exploits/), because they already have [too many](https://twitter.com/cBekrar/status/1260543284008456192).
 
-Reddit maintains [a great overview wiki]((https://www.reddit.com/r/jailbreak/wiki/escapeplan/guides/jailbreakcharts#wiki_ios13.x)) on the current jailbreak availability situation. The two interesting ones (as of May 2020) are:
+Reddit maintains [a great overview]((https://www.reddit.com/r/jailbreak/wiki/escapeplan/guides/jailbreakcharts#wiki_ios13.x)) on the current jailbreak availability situation. The two interesting ones (as of May 2020) are:
 
 - [checkra1n](https://checkra.in/) uses the [Checkm8 exploit](https://arstechnica.com/information-technology/2019/09/developer-of-checkm8-explains-why-idevice-jailbreak-exploit-is-a-game-changer/) - an unpatchable vulnerability in the  iOS bootrom for all devices from A5-A11 (everything up to iPhone X)
 
 - [unc0ver](https://unc0ver.dev/), a semi-untethered jailbreak using various hacks, just updated for iOS 13.5.
 
-Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/types-of-jailbreaks/). You need to re-trigger the jailbreak after a reboot to patch the kernel, so it can run unsigned code. I recommend using [AltStore](https://altstore.io/) to install the Jailbreak.([guide](https://www.idownloadblog.com/2020/02/16/how-to-unc0ver-altstore/))
+Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/types-of-jailbreaks/). You need to re-trigger the jailbreak after a reboot to patch the kernel, so it can run unsigned code. I recommend using [AltStore](https://altstore.io/) to install the Jailbreak. ([guide](https://www.idownloadblog.com/2020/02/16/how-to-unc0ver-altstore/))
 
 # Adding Repositories to Cydia
 
