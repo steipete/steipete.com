@@ -101,17 +101,14 @@ If you're curious how this works on a technical level, here's a [writeup for iOS
 
 To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.flexing/), reboot and then tap on the status bar to load FLEX. You can browse the classes and inspect the view hierarchy with a 3D debugger, similar to [Reveal](https://revealapp.com/). Here's Spotify:
 
-![](/assets/img/2020/jailbreaking/hierarchy-spotify.png)
+<a href="/assets/img/2020/jailbreaking/hierarchy-spotify.png"><img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png" width="50%"></a>
 
 Of course you can also inspect apps written in SwiftUI, like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI).
 
-![](/assets/img/2020/jailbreaking/hierarchy-achelper.png)
+<a href="/assets/img/2020/jailbreaking/hierarchy-achelper.png"><img src="/assets/img/2020/jailbreaking/hierarchy-achelper.png" width="50%"></a>
 
 # More Useful Cydia Apps & Tweaks
 
-<img src="https://pbs.twimg.com/media/EYwIFiNX0AE1jL8?format=jpg&name=medium" width="50%">
-
-- [Barmoji](https://github.com/CPDigitalDarkroom/Barmoji) and [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
 - [iPadify](https://repo.packix.com/package/codes.rambo.ipadify/) — install iPad-only app such as Playgrounds, native picture-in-picture
 - [Prysm](https://repo.packix.com/package/com.laughingquoll.prysm/) — a feature-rich control center for iOS
 - [Revealloader](https://github.com/heardrwt/RevealLoader) — Load reveal to any app
@@ -123,5 +120,8 @@ Of course you can also inspect apps written in SwiftUI, like the popular [ACHNBr
 - [FrontCamUnmirror](http://cydia.saurik.com/package/com.sticktron.fcum/) — self explanatory
 - [CopyLog](https://repo.packix.com/package/me.tomt000.copylog/) — a powerful clipboard history manager 
 - [HomePlus](https://kubadownload.com/news/homeplus-tweak/) — a home screen layout manager
+- [Barmoji](https://github.com/CPDigitalDarkroom/Barmoji) and [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
+
+<img src="https://pbs.twimg.com/media/EYwIFiNX0AE1jL8?format=jpg&name=medium" width="50%">
 
 I didn't include the links in Motivation, and this is by no means a complete list - see [some](https://twitter.com/iM4CH3T3/status/1264797535316709377?s=20) [inspiration](https://twitter.com/AvimanyuRoy3/status/1264346815165431809) here.
