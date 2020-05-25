@@ -40,7 +40,7 @@ Jailbreaking has a bad taste because it can be used to pirate apps. But there ar
 
 Many tweaks either modify apps itself or integrate into Settings:
 
-<img src="/assets/img/2020/jailbreaking/settings.jpg" width="50%">
+<img src="/assets/img/2020/jailbreaking/settings.jpg" width="80%">
 
 Beware: some apps (like banking) might include a jailbreak detection and won't work if they detect Cydia. However this also can be circumvented with the right tweak.
 
@@ -99,7 +99,7 @@ If you're curious how this works on a technical level, here's a [writeup for iOS
 
 To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.flexing/), reboot and then tap on the status bar to load FLEX. You can browse the classes and inspect the view hierarchy with a 3D debugger, similar to [Reveal](https://revealapp.com/). Here's Spotify:
 
-<img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png" width="50%">
+<img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png" width="70%">
 
 Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbreaking/hierarchy-achelper.png), like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI).
 
