@@ -38,7 +38,7 @@ Jailbreaking has a bad taste because it can be used to pirate apps. But there ar
 - Working around tethering restrictions ([TetherMe](http://cydia.saurik.com/package/net.tetherme.tetherme8/))
 - Improving accessibility (e.g. [blind folks](https://twitter.com/devinprater/status/1264962317609046017), [special needs](https://twitter.com/GadgetGal_/status/1264962311229333504?s=20))
 
-Many tweaks nicely integrate into Settings or just directly into another app (e.g. Netflix):
+Many tweaks either modify apps itself or integrate into Settings:
 
 <img src="/assets/img/2020/jailbreaking/settings.jpg" width="50%">
 
@@ -46,7 +46,7 @@ Beware: some apps (like banking) might include a jailbreak detection and won't w
 
 # State of Jailbreaking
 
-There has [never been a better time](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) for jailbreaking. From iOS 10-13, almost every version can be hacked, including the just-released iOS 11.5. This is also somewhat worrying, as exploits require security flaws, and we're now at a stage where exploit platforms [aren't paying for any further exploits](https://9to5mac.com/2020/05/14/zerodium-has-too-many-ios-exploits/), because they already have [too many](https://twitter.com/cBekrar/status/1260543284008456192).
+There has [never been a better time](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) for jailbreaking. From iOS 10-13, almost every version can be hacked, including the just-released iOS 13.5. This is also somewhat worrying, as exploits require security flaws, and we're now at a stage where exploit platforms [aren't paying for any further exploits](https://9to5mac.com/2020/05/14/zerodium-has-too-many-ios-exploits/), because they already have [too many](https://twitter.com/cBekrar/status/1260543284008456192).
 
 Reddit maintains [a great overview wiki]((https://www.reddit.com/r/jailbreak/wiki/escapeplan/guides/jailbreakcharts#wiki_ios13.x)) on the current jailbreak availability situation. The two interesting ones (as of May 2020) are:
 
