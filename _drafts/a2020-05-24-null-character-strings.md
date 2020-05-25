@@ -34,7 +34,7 @@ The first step to remove iOS 11 is running a full-text search for "iOS 11" on th
 
 Back in 2017 I stumbled on the issue via Twitter:
 
-{% https://twitter.com/gabrielhauber/status/912590194099888128 %}
+{% twitter https://twitter.com/gabrielhauber/status/912590194099888128 %}
 
 In retrospect it was extremely useful to find this tweet, since we go reports about sporadic data-loss on note annotations, which ended up being this very issue.
 
@@ -107,6 +107,8 @@ string.withCString { cstr in    // prints "A"
 
 Swift has a more modern handling of Strings (e.g. it uses [grapheme clusters](https://makeapppie.com/2019/03/31/swift-strings-are-not-c-strings-or-nsstrings/) for better unicode/emoji support), but there are no difference when converting to C.
 
+There are also other reasons you don'n generally want NULL characters in your strings. They trigger bugs: [SR-11355: String.range(of...) matches an extra NUL (and returns range outside string boundaries)](https://bugs.swift.org/browse/SR-11355)
+
 ### std::string in C++
 
 The most common way to store strings in C++ is [`std::string`](http://www.cplusplus.com/reference/string/string/). Reading the implementation is [extremely hard](https://github.com/llvm-mirror/libcxx/blob/master/include/string), but there are [much more readable](https://joellaity.com/2020/01/31/string.html) explanation about its internals.
@@ -142,10 +144,17 @@ Great - we convert lossless between the two representations. Now why is `\0` sti
 
 # Strings in PDF
 
-PDF has two ways to encode strings: Name and String.
+PDF has two ways to encode strings: Name and String. 
+
+Name objects allow ASCII characters with the exception of `\0`, other characters are encoded, for example `#20` for space. This is generally used for keys and not longer-form text.
+
+String objects are encoded between `(` and `)` (or alternatively angle brackets)
+
+// TODO
+https://books.google.at/books?id=ldFXAQAAQBAJ&pg=PA3&lpg=PA3&dq=pdf+name+string+encoding&source=bl&ots=P0gaS3ya69&sig=ACfU3U0XE2X5kekSOqRC0Pv3hAHVZvF14Q&hl=en&sa=X&ved=2ahUKEwjv4ePQjs3pAhUM_qQKHaHQDbYQ6AEwBHoECAoQAQ#v=onepage&q=pdf%20name%20string%20encoding&f=false
 
 
-
+TODO: Send preview to https://twitter.com/gte/status/1264850623150927872?s=21
 
 
 
