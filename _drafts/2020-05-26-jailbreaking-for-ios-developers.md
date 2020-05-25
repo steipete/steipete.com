@@ -6,15 +6,17 @@ tags: iOS hacks
 image: /assets/img/2020/jailbreaking/header.jpg
 ---
 
+<style type="text/css">
+div.post-content > img:first-child { width:50% !important; }
+</style>
+
 Jailbreaking is something that's rarely discussed in the iOS developer community. Which is unfortunate - because it's amazing. Let's walk through a few useful things you can do with it. (Picture by [@mnzthegreat](https://twitter.com/mnzthegreat/status/1264848209735585792))
 
 # Definition & Legality
 
 >iOS jailbreaking is a privilege escalation to remove software restrictions imposed by Apple on iOS, tvOS, and watchOS. This is done through a series of kernel patches. This jailbreaking allows root access to iOS, allowing the downloading and installing of additional applications and extensions which are unavailable through the official Apple App Store. ([Source](https://www.techacrobat.com/ios-12-4-unc0ver-jailbreak/))
 
-If you're wondering, [is this legal](https://en.wikipedia.org/wiki/IOS_jailbreaking#Legality)? This depends on your country, but it is legal in Austria, Germany, Canada, India, New Zealand, United Kingdom and the United States.
-
-With the exception of the latest iOS 13.5 jailbreak, all major jailbreaks since 10 were based on publicly available exploits, which were [reported to Apple before](https://twitter.com/helthydriver/status/1265024132204331011?s=21).
+If you're wondering, [is this legal](https://en.wikipedia.org/wiki/IOS_jailbreaking#Legality)? This depends on your country, but it is legal in Austria, Germany, Canada, India, New Zealand, United Kingdom and the United States. With the exception of the latest iOS 13.5 jailbreak, all major jailbreaks since 10 were based on publicly available exploits, which were [reported to Apple before](https://twitter.com/helthydriver/status/1265024132204331011?s=21).
 
 If you don't want to risk jailbreaking, you can still install some apps with [AltStore](https://altstore.io/), which signs apps on your Mac.
 
@@ -22,7 +24,7 @@ If you don't want to risk jailbreaking, you can still install some apps with [Al
 
 Jailbreaking has a bad taste because it can be used to pirate apps. But there are many other, much more noble or interesting reasons why it's worth exploring, like enhancing accessibility:
 
-{% twitter https://twitter.com/gadgetgal_/status/1264962311229333504 %}
+{% twitter https://twitter.com/gadgetgal_/status/1264952195402723328 %}
 
 - Security Research (MITM via [SSLKillSwitch](https://github.com/nabla-c0d3/ssl-kill-switch2), [dumpdecrypted](https://github.com/stefanesser/dumpdecrypted) to decrypt/disassemble apps)
 - Enhancing iOS with tweaks (e.g. [native picture-in-picture](https://repo.packix.com/package/codes.rambo.ipadify/), [tabs in Safari](https://repo.twickd.com/package/com.twickd.minazuki.safari-electro-2), a [call-bar](https://www.idownloadblog.com/2019/03/06/callbar-xs-brings-everyones-favorite-phone-call-centric-jailbreak-tweak-to-ios-12/), [better notifications](https://www.idownloadblog.com/2019/02/25/notifica/), [better shortcuts](http://cydia.saurik.com/package/com.ethanrdoesmc.truecuts/))
@@ -38,7 +40,7 @@ Jailbreaking has a bad taste because it can be used to pirate apps. But there ar
 
 Many tweaks nicely integrate into Settings or just directly into another app (e.g. Netflix):
 
-![](/assets/img/2020/jailbreaking/settings.jpg)
+<img src="/assets/img/2020/jailbreaking/settings.jpg" width="50%">
 
 Beware: some apps (think Banking) might include a jailbreak detection and won't work if they detect Cydia.
 
@@ -97,7 +99,7 @@ If you're curious how this works on a technical level, here's a [writeup for iOS
 
 {% twitter https://twitter.com/nsexceptional/status/1250353513923674114 %}
 
-To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.flexing/), reboot and then tap on the status bar to load FLEX. You can browse the classes and inspect the view hierarchy with a 3D debugger, similar to Reveal:
+To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.flexing/), reboot and then tap on the status bar to load FLEX. You can browse the classes and inspect the view hierarchy with a 3D debugger, similar to [Reveal](https://revealapp.com/). Here's Spotify:
 
 ![](/assets/img/2020/jailbreaking/hierarchy-spotify.png)
 
@@ -107,7 +109,7 @@ Of course you can also inspect apps written in SwiftUI, like the popular [ACHNBr
 
 # More Useful Cydia Apps & Tweaks
 
-![](https://pbs.twimg.com/media/EYwIFiNX0AE1jL8?format=jpg&name=medium)
+<img src="https://pbs.twimg.com/media/EYwIFiNX0AE1jL8?format=jpg&name=medium" width="50%">
 
 - [Barmoji](https://github.com/CPDigitalDarkroom/Barmoji) and [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
 - [iPadify](https://repo.packix.com/package/codes.rambo.ipadify/) — install iPad-only app such as Playgrounds, native picture-in-picture
