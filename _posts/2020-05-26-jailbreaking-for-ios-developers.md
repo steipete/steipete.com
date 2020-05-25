@@ -122,4 +122,4 @@ Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbr
 
 <img src="https://pbs.twimg.com/media/EYwIFiNX0AE1jL8?format=jpg&name=medium" width="50%">
 
-I didn't include the links in Motivation, and this is by no means a complete list - see [some](https://twitter.com/iM4CH3T3/status/1264797535316709377?s=20) [inspiration](https://twitter.com/AvimanyuRoy3/status/1264346815165431809) here.
+This is by no means a complete list - see [some](https://twitter.com/iM4CH3T3/status/1264797535316709377?s=20) [inspiration](https://twitter.com/AvimanyuRoy3/status/1264346815165431809) here. Thanks to [everyone who responded to](https://twitter.com/steipete/status/1264893805700026373?s=21) my Tweet to help me collect these gems!
