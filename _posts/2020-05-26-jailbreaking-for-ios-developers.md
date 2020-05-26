@@ -60,7 +60,7 @@ Both variants are stable and [don't drain battery life](https://www.wired.com/st
 
 # Adding Repositories to Cydia
 
-[Cydia](https://cydia-app.com/) is the oldest and most common alternative App Store for iOS. It's automatically installed for most jailbreaks. It is a convenient UI for the apt-get packager that it comes with it. In the earlier days you could also buy apps through Cydia, nowadays most apps are sold via 3rd-party repositories. They offer free and paid apps (via PayPal or Credit Card) and can be easily added to Cydia.
+[Cydia](https://cydia-app.com/) is the oldest and most common alternative App Store for iOS. It's automatically installed for most jailbreaks. It is a convenient UI for the apt-get packager that it comes with. In the earlier days you could also buy apps through Cydia, nowadays most apps are sold via 3rd-party repositories. They offer free and paid apps (via PayPal or Credit Card) and can be easily added to Cydia.
 
 - [Packix](https://repo.packix.com/)
 - [Dynastic Repo](https://repo.dynastic.co/)
