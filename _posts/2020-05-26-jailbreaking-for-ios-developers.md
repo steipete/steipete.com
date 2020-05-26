@@ -48,7 +48,7 @@ Beware: some apps (like banking) might include a jailbreak detection and won't w
 
 There has [never been a better time](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) for jailbreaking. From iOS 10-13, almost every version can be hacked, including the just-released iOS 13.5. This is also somewhat worrying, as exploits require security flaws, and we're now at a stage where exploit platforms [aren't paying for any further exploits](https://9to5mac.com/2020/05/14/zerodium-has-too-many-ios-exploits/), because they already have [too many](https://twitter.com/cBekrar/status/1260543284008456192).
 
-Reddit maintains [a great overview]((https://www.reddit.com/r/jailbreak/wiki/escapeplan/guides/jailbreakcharts#wiki_ios13.x)) on the current jailbreak availability situation. The two interesting ones (as of May 2020) are:
+Reddit maintains [a great overview](https://www.reddit.com/r/jailbreak/wiki/escapeplan/guides/jailbreakcharts#wiki_ios13.x) on the current jailbreak availability situation. The two interesting ones (as of May 2020) are:
 
 - [checkra1n](https://checkra.in/) uses the [Checkm8 exploit](https://arstechnica.com/information-technology/2019/09/developer-of-checkm8-explains-why-idevice-jailbreak-exploit-is-a-game-changer/) - an unpatchable vulnerability in the  iOS bootrom for all devices from A5-A11 (everything up to iPhone X)
 
@@ -109,7 +109,6 @@ Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbr
 - [Prysm](https://repo.packix.com/package/com.laughingquoll.prysm/) — a feature-rich control center for iOS
 - [Revealloader](https://github.com/heardrwt/RevealLoader) — Load reveal to any app
 - [TapTapFlip](https://repo.packix.com/package/com.cpdigitaldarkroom.taptapflip/) — double tap to flip the camera in the Camera app
-- [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
 - [Supercharge](https://www.supercharge.app/) — creating simple tweaks on the device
 - [Snapper 2](https://repo.packix.com/package/com.jontelang.snapper2.packix/) — crop screenshots before taking them
 - [Frida](https://frida.re/docs/ios/) — a dynamic instrumentation / code injection toolkit
