@@ -56,6 +56,8 @@ Reddit maintains [a great overview](https://www.reddit.com/r/jailbreak/wiki/esca
 
 Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/types-of-jailbreaks/). You need to re-trigger the jailbreak after a reboot to patch the kernel, so it can run unsigned code. I recommend using [AltStore](https://altstore.io/) to install the Jailbreak. ([guide](https://www.idownloadblog.com/2020/02/16/how-to-unc0ver-altstore/))
 
+Both variants are stable and [don't drain battery life](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) or prevent use of Apple services like iCloud, Apple Pay, or iMessage, as it was the case with some earlier variants.
+
 # Adding Repositories to Cydia
 
 [Cydia](https://cydia-app.com/) is the oldest and most common alternative App Store for iOS. It's automatically installed for most jailbreaks. It is a convenient UI for the apt-get packager that it comes with it. In the earlier days you could also buy apps through Cydia, nowadays most apps are sold via 3rd-party repositories. They offer free and paid apps (via PayPal or Credit Card) and can be easily added to Cydia.
