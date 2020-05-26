@@ -56,7 +56,7 @@ Reddit maintains [a great overview](https://www.reddit.com/r/jailbreak/wiki/esca
 
 Both are [semi-tethered jailbreaks](https://www.idownloadblog.com/2019/11/21/types-of-jailbreaks/). You need to re-trigger the jailbreak after a reboot to patch the kernel, so it can run unsigned code. I recommend using [AltStore](https://altstore.io/) to install the Jailbreak. ([guide](https://www.idownloadblog.com/2020/02/16/how-to-unc0ver-altstore/))
 
-Both variants are stable and [don't drain battery life](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) or prevent use of Apple services like iCloud, Apple Pay, or iMessage, as it was the case with some earlier variants.
+Both variants are stable and [don't drain battery life](https://www.wired.com/story/apple-ios-unc0ver-jailbreak/) or prevent use of Apple services like iCloud, Apple Pay, or iMessage, as it was the case with some earlier variants. Apple's user data protections and sandbox security is preserved.
 
 # Adding Repositories to Cydia
 
