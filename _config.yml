@@ -13,8 +13,8 @@ title: steipete's blog                          # the main title
 tagline: Ramblings of Peter Steinberger  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Founder of @PSPDFKit and @pdfviewerapp. Co-organizer @cocoaheads_at.
-  Speaker. I tweet about iOS hacks & running a remote company. Also, memes!
+  I founded and bootstrapped PSPDFKit, an SDK for working with PDF files on any platform.
+  I speak at various conferences around the world. Co-organizer Cocoaheads Austria.
 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://steipete.com'
