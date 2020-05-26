@@ -68,6 +68,8 @@ Both variants are stable and [don't drain battery life](https://www.wired.com/st
 
 Heads up: Cydia hosts many tweaks that are outdated and won't work on iOS 13 anymore. Better check [/r/jailbreak](https://www.reddit.com/r/jailbreak/) or [iDownloadBlog](https://www.idownloadblog.com/tag/jailbreak/) to find tweaks that work.
 
+If you're looking for a modern replacement for Cydia, there's quite a few alternative package managers out there. I really liked [Zebra](https://getzbra.com/), and it's also [open source](https://getzbra.com/).
+
 # Preserve SHSH2 Blobs
 
 A [SHSH blob](https://en.wikipedia.org/wiki/SHSH_blob) is a small piece of data that is part of Apple's digital signature protocol for iOS restores and updates.
