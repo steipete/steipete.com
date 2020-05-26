@@ -117,6 +117,6 @@ Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbr
 - [HomePlus](https://kubadownload.com/news/homeplus-tweak/) — a home screen layout manager
 - [Barmoji](https://github.com/CPDigitalDarkroom/Barmoji) and [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
 
-Many tweaks are also open source, which is a great opportunity to learn. Check out [FLEX](https://github.com/Flipboard/FLEX), [Sleeper](https://github.com/joshuaseltzer/Sleeper) (tweaks the stock iOS alarms app), or read through the large collection at[Open-Source-Tweaks](https://github.com/LacertosusRepo/Open-Source-Tweaks).
+Many tweaks are also open source, which is a great opportunity to learn. Check out [FLEX](https://github.com/Flipboard/FLEX), [Sleeper](https://github.com/joshuaseltzer/Sleeper) (tweaks the stock iOS alarms app), [Open-Source-Tweaks](https://github.com/LacertosusRepo/Open-Source-Tweaks) or the collection at [iPhoneDevWiki](http://iphonedevwiki.net/index.php/Open_Source_Projects).
 
 This is by no means a complete list - see [some](https://twitter.com/iM4CH3T3/status/1264797535316709377?s=20) [inspiration](https://twitter.com/AvimanyuRoy3/status/1264346815165431809) here. Thanks to [everyone who responded to](https://twitter.com/steipete/status/1264893805700026373?s=21) my Tweet to help me collect these gems. Know a tweak I absolutely need to mention? [Hit me up on Twitter](https://twitter.com/steipete)!
