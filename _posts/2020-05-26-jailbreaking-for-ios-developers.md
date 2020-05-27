@@ -121,6 +121,7 @@ Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbr
 - [HomePlus](https://kubadownload.com/news/homeplus-tweak/) — a home screen layout manager
 - [FiveIconDock13](https://www.reddit.com/r/jailbreak/comments/e3d3pc/release_fiveicondock13_five_icons_on_your_dock/) — self explanatory
 - [Springtomize 5](https://repo.packix.com/package/com.springtomize.st5/) — tweak the homescreen
+- [TweakRestrictor](https://store.geometricsoftware.se/packages/se.geometric.tweakrestrictor) — disable tweaks for some apps, to not get banned (e.g. Snapchat)
 - [Barmoji](https://github.com/CPDigitalDarkroom/Barmoji) and [DockX](https://kubadownload.com/news/dockx-tweak/) — add quick actions below the keyboard
 
 Many tweaks are also open source, which is a great opportunity to learn. Check out [FLEX](https://github.com/Flipboard/FLEX), [Sleeper](https://github.com/joshuaseltzer/Sleeper) (tweaks the stock iOS alarms app), [Open-Source-Tweaks](https://github.com/LacertosusRepo/Open-Source-Tweaks) or the collection at [iPhoneDevWiki](http://iphonedevwiki.net/index.php/Open_Source_Projects).
