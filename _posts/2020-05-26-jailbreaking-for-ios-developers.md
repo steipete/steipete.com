@@ -105,7 +105,7 @@ To Install, download [FLEXing](http://cydia.saurik.com/package/com.pantsthief.fl
 
 <img src="/assets/img/2020/jailbreaking/hierarchy-spotify.png" width="80%">
 
-Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbreaking/hierarchy-achelper.png), like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI). Back in 2013 [I used Reveal for much of the same](http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/), but it's way for fun to play around on-device.
+Of course you can also [inspect apps written in SwiftUI](/assets/img/2020/jailbreaking/hierarchy-achelper.png), like the popular [ACHNBrowserUI](https://github.com/Dimillian/ACHNBrowserUI). Back in 2013 [I used Reveal for much of the same](http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/), but it's way more fun to play around on-device.
 
 # More Useful Cydia Apps & Tweaks
 
