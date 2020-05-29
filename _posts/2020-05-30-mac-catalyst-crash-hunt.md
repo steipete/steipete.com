@@ -226,7 +226,7 @@ Here's an example for the setter:
 
 Now that we understand the issue, it's fairly easy[^1] to fix. Let's add a lock to prevent the property from a raced access:
 
-[^1]: Swizzling in Swift isn't pretty, but once you know how it works, it's not much different to Objective-C, just a bit more verbose.
+[^1]: Swizzling in Swift isn't pretty, but once you know how it works, it's not much different to Objective-C, just a bit more verbose. If there's a way to make this better/more concise, please [slide into my DMs](https://twitter.com/steipete).
 
 ```swift
 private var didInstallCrashFix = false
