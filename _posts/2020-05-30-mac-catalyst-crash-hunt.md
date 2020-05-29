@@ -101,7 +101,7 @@ In the first crash we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInp
 
 ## Finding the Implementation
 
-To find out where a method or category is implemented, I'm using [`dladdr`, an old trick I learned in 2014](https://gist.github.com/steipete/28525fd7c44a9f16e206). Since this isa. Bit hard to call via lldb, we write a small helper, this can be anywhere in your app.
+To find out where a method or category is implemented, I'm using [`dladdr`, an old trick I learned in 2014](https://gist.github.com/steipete/28525fd7c44a9f16e206). Since this is a bit hard to call via lldb, we write a small helper, this can be anywhere in your app.
 
 ```objc
 @implementation NSObject (PSHAXX)
