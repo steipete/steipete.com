@@ -199,7 +199,7 @@ This is the default implementation of a `nonatomic` property, there are no locki
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-breakpoint.png)
 
-I'm using a conditional breakpoint that stops if a non-main-thread access is detected, and also prints out the thread automatically.  Since we're in AppKit, methods usually are called on the main thread (remove the condition to verify). However sometimes, this is called from an XPC thread:
+I'm using a [conditional breakpoint](https://pspdfkit.com/blog/2016/scripted-breakpoints/) that stops if a non-main-thread access is detected, and also prints out the thread automatically.  Since we're in AppKit, methods usually are called on the main thread (remove the condition to verify). However sometimes, this is called from an XPC thread:
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-callstack.png)
 
