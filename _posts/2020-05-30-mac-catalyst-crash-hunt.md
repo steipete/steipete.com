@@ -116,7 +116,7 @@ To find out where a method or category is implemented, I'm using [`dladdr`, an o
 @end
 ```
 
-Once the app runs, we call `findHaxx`: `e -l objc -O -- [NSObject findHaxx] -> /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit`
+Once the app runs, we call `findHaxx`: `e -l objc -O -- [NSObject findHaxx]` and see that it returns `/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit`.
 
 ## Analyzing NSTextInputContext
 
