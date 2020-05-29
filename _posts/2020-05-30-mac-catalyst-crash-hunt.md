@@ -285,4 +285,4 @@ _dyld_register_func_for_add_image { _, _ in
 
 I'm dispatching to the main thread just to make sure this isn't accidentally called on multiple threads, to not produce yet another race.
 
-The complete code is [in this Gist](https://gist.github.com/steipete/f955aaa0742021af15add0133d8482b9). MIT Licensed. Call `installMacCatalystAppKitTextCrashFix()` from your App Delegate, and don't forget to check if Apple might eventually fixed this issue. (Apple folks: FB7593149) 
+The complete code is [in this Gist](https://gist.github.com/steipete/f955aaa0742021af15add0133d8482b9). MIT Licensed. Call `installMacCatalystAppKitTextCrashFix()` from your App Delegate, and don't forget to check if Apple might eventually fixed this issue. (Apple folks: [FB7593149](https://twitter.com/steipete/status/1266513539012927492?s=21)) 
