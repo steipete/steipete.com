@@ -10,7 +10,7 @@ image: /assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.p
 div.post-content > img:first-child { display:none; }
 </style>
 
-As of macOS 10.15.4, text input in Mac Catalyst apps sometimes crashes. I've noticed this a lot in the Twitter for Mac app, however we also seen crash reports for [PDF Viewer for Mac](https://pdfviewer.io). My hope was that Apple would fix this in 10.15.5, but now the release is out and things are still crashing, so let's fix this ourselves:
+As of macOS 10.15.4, text input in Mac Catalyst apps sometimes crashes. I've noticed this a lot in [Twitter for Mac](https://apps.apple.com/us/app/twitter/id1482454543?mt=12), however we also seen crash reports for [PDF Viewer for Mac](https://pdfviewer.io). My hope was that Apple would fix this in 10.15.5, but now the release is out and things are still crashing, so let's fix this ourselves:
 
 # A Typical Crash
 
