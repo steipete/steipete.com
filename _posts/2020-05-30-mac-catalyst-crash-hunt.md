@@ -182,7 +182,7 @@ in NSObject:
 	isa (Class): __NSTextInputContextAuxiliaryStorage (isa, 0x1dffff8820fafd)
 ```
 
-The decompiled code calls `rdi = *([self auxiliary] + 0x58);` so we know it's a direct ivar access; let's check for that at runtime: 
+The decompiled code calls `rdi = *([self auxiliary] + 0x58);` so we know it's a direct ivar access; we can also access it at runtime via KVC: 
 
 ```
 e -l objc -O -- [[[[[[NSApplication sharedApplication] mainWindow] firstResponder] inputContext] auxiliary] valueForKey:@"_rtiCurrentInputSystemServiceSession"]
@@ -191,15 +191,15 @@ e -l objc -O -- [[[[[[NSApplication sharedApplication] mainWindow] firstResponde
 
 ## Thread Access Check
 
-The Catalyst glue calls `documentState` on `RTIInputSystemServiceSession`. `documentState` is a simple property:
+The Catalyst glue calls `documentState` on `RTIInputSystemServiceSession`. Let's look at it via Hopper:
 
 ![](/assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.png)
 
-This is the default implementation of a `nonatomic` property, there are no locking intrinsics here. From looking at the crash, I'm guessing that this is a race condition. Let's verify this via adding a breakpoint on `-[RTIInputSystemServiceSession documentState]` (and `setDocumentState`:
+This is the default implementation of a `nonatomic` property, there are no locking intrinsics here. From looking at the crash, I'm guessing that this is a race condition. Let's verify this via adding breakpoints on `-[RTIInputSystemServiceSession documentState]` and `-[RTIInputSystemServiceSession setDocumentState]`:
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-breakpoint.png)
 
-Since we're in AppKit, methods usually are called on the main thread (remove the condition to verify). However sometimes, this is called from an XPC thread:
+I'm using a conditional breakpoint that stops if a non-main-thread access is detected, and also prints out the thread automatically.  Since we're in AppKit, methods usually are called on the main thread (remove the condition to verify). However sometimes, this is called from an XPC thread:
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-callstack.png)
 
@@ -224,7 +224,9 @@ Here's an example for the setter:
 
 ## Making a nonatomic Property atomic
 
-Now that we understand the issue, it's fairly easy to fix. Let's add a lock to prevent the property from a raced access:
+Now that we understand the issue, it's fairly easy[^1] to fix. Let's add a lock to prevent the property from a raced access:
+
+[^1]: Swizzling in Swift isn't pretty, but once you know how it works, it's not much different to Objective-C, just a bit more verbose.
 
 ```swift
 private var didInstallCrashFix = false
@@ -265,7 +267,7 @@ private func fixMacCatalystInputSystemSessionRace() -> Bool {
 }
 ```
 
-Swizzling is still easier in Objective-C, but I was looking for a challenge. I'm using `os_unfair_lock` to synchronize, since the actual set is extremely fast, this is a better choice than a more heavy-weight dispatch queue to sync.
+I'm using `os_unfair_lock` to synchronize the original property call. Since the actual implementation is extremely short and thus fast, this is a better choice than a more heavy-weight dispatch queue to sync.
 
 ## Swizzling Dynamically Loaded Frameworks
 
