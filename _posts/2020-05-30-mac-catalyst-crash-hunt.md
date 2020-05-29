@@ -12,7 +12,7 @@ div.post-content > img:first-child { display:none; }
 
 As of macOS 10.15.4, text input in Mac Catalyst apps sometimes crashes. I've noticed this a lot in [Twitter for Mac](https://apps.apple.com/us/app/twitter/id1482454543?mt=12), however we also seen crash reports for [PDF Viewer for Mac](https://pdfviewer.io). My hope was that Apple would fix this in 10.15.5, but now the release is out and things are still crashing, so let's fix this ourselves:
 
-# A Typical Crash
+## A Typical Crash
 
 Here's what [a typical crash](https://gist.github.com/steipete/504e79558d861211a3a9ff794e09c817) looks like:
 
@@ -82,14 +82,14 @@ Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 10  com.apple.AppKit              	0x00007fff3428ba3a -[NSTextCheckingController annotatedSubstringForProposedRange:wrap:completionHandler:failureHandler:] + 445
 ```
 
-# Crash Hypothesis
+## Crash Hypothesis
 
 A crash pattern like that indicates that we're dealing with an over-release. In times of ARC, this is rare, but it can still happen if a property is set on multiple threads. Text Input in Mac Catalyst is a challenge. There's text and grammar correction that simply works different to iOS, and a user expects that this works just like any other AppKit app. Apple bridged these systems:
 
 `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI]
 `
 
-Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/PrivateFrameworks/RemoteTextInput.framework/RTIInputSystemServiceSession.h) at the `RemoteTextInput.framework`, it's easy to see that it uses XPC under the hood:
+Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/PrivateFrameworks/RemoteTextInput.framework/RTIInputSystemServiceSession.h) at the `RemoteTextInput.framework`, it uses XPC under the hood. XPC uses background threads to communicate.
 
 ```objc
 @interface RTIInputSystemServiceSession : RTIInputSystemSession <RTIInputSystemPayloadDelegate, RTIInputSystemSessionProtocol> {
@@ -99,7 +99,7 @@ Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/Pr
 
 In the first crash we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]` calling `-[RTIDocumentState selectedTextRange]`. Let's find the former. From [my earlier experiments with Marzipan](https://pspdfkit.com/blog/2018/porting-ios-apps-to-mac-marzipan-iosmac-uikit-appkit/), I know that a lot of UIKit-AppKit glue code is in UIKitMacHelper, in the iOSSupport system: `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitMacHelper.framework` which really is a symlink to `/System/Library/PrivateFrameworks/UIKitMacHelper.framework`. `Versions/A/UIKitMacHelper` However there's no `selectedRange_RTI` implementation. Where else could it be?
 
-# Finding the Implementation
+## Finding the Implementation
 
 To find out where a method or category is implemented, I'm using [`dladdr`, an old trick I learned in 2014](https://gist.github.com/steipete/28525fd7c44a9f16e206). Since this isa. Bit hard to call via lldb, we write a small helper, this can be anywhere in your app.
 
@@ -118,7 +118,7 @@ To find out where a method or category is implemented, I'm using [`dladdr`, an o
 
 Once the app runs, we call `findHaxx`: `e -l objc -O -- [NSObject findHaxx] -> /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit`
 
-# Analyzing NSTextInputContext
+## Analyzing NSTextInputContext
 
 Now we know that Apple bolted a lot of Catalyst code directly into AppKit. This is an interesting choice, every Mac app pays some overhead for Catalyst in Catalina. Let's look at the pseudocode of `selectedRange_RTI` with Hopper:
 
@@ -189,7 +189,7 @@ e -l objc -O -- [[[[[[NSApplication sharedApplication] mainWindow] firstResponde
 <RTIInputSystemServiceSession: 0x6000021f4280>
 ```
 
-# Thread Access Check
+## Thread Access Check
 
 The Catalyst glue calls `documentState` on `RTIInputSystemServiceSession`. `documentState` is a simple property:
 
@@ -222,7 +222,7 @@ Here's an example for the setter:
     frame #9: 0x0000000117ac349b libsystem_pthread.dylib`start_wqthread + 15
 ```
 
-# Making a nonatomic Property atomic
+## Making a nonatomic Property atomic
 
 Now that we understand the issue, it's fairly easy to fix. Let's add a lock to prevent the property from a raced access:
 
@@ -267,7 +267,7 @@ private func fixMacCatalystInputSystemSessionRace() -> Bool {
 
 Swizzling is still easier in Objective-C, but I was looking for a challenge. I'm using `os_unfair_lock` to synchronize, since the actual set is extremely fast, this is a better choice than a more heavy-weight dispatch queue to sync.
 
-# Swizzling Dynamically Loaded Frameworks
+## Swizzling Dynamically Loaded Frameworks
 
 Now - there's one last problem: When we call this in our App Delegate, the class `RTIInputSystemSession` doesn't exist. The RemoteTextInput is loaded at some later time, when you're first entering the call. Of course we could find a later spot, make sure we call this before any text input, but that's not an elegant solution. Instead, we can hook into dyld to simply be notified whenever a new framework is loaded into our process:
 
