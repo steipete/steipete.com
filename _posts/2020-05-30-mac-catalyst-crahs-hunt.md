@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Great Mac Catalyst Text Input Crash Hunt"
-date:   2020-05-21 12:00:00 +0200
+date:   2020-05-30 00:00:00 +0200
 tags: iOS development hacks
 image: /assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.png
 ---
