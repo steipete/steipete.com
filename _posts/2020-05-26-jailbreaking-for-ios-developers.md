@@ -12,6 +12,8 @@ div.post-content > img:first-child { width:50% !important; }
 
 Jailbreaking is something that's rarely discussed in the iOS developer community. Which is unfortunate - because it's amazing. Let's walk through a few useful things you can do with it. (Picture by [@mnzthegreat](https://twitter.com/mnzthegreat/status/1264848209735585792))
 
+Update May 30: [The details to the 13.5 unc0ver exploit are now online](https://twitter.com/steipete/status/1266378266497044485?s=21). Expect Apple to patch this fast.
+
 # Definition & Legality
 
 >iOS jailbreaking is a privilege escalation to remove software restrictions imposed by Apple on iOS, tvOS, and watchOS. This is done through a series of kernel patches. This jailbreaking allows root access to iOS, allowing the downloading and installing of additional applications and extensions which are unavailable through the official Apple App Store. ([Source](https://www.techacrobat.com/ios-12-4-unc0ver-jailbreak/))
