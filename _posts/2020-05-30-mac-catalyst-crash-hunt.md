@@ -263,7 +263,7 @@ private func fixMacCatalystInputSystemSessionRace() -> Bool {
     var setOrigIMP : IMP? = nil
     let newSetHandler: @convention(block) (AnyObject, AnyObject) -> Void = { blockSelf, newValue in
         typealias ClosureType = @convention(c) (AnyObject, Selector, AnyObject) -> Void
-        let callableIMP = unsafeBitCast(origIMP, to: ClosureType.self)
+        let callableIMP = unsafeBitCast(setOrigIMP, to: ClosureType.self)
         os_unfair_lock_lock(&lockStore)
         callableIMP(blockSelf, sel, newValue)
         os_unfair_lock_unlock(&lockStore)
