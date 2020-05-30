@@ -118,6 +118,15 @@ To find out where a method or category is implemented, I'm using [`dladdr`, an o
 
 Once the app runs, we call `findHaxx`: `e -l objc -O -- [NSObject findHaxx]` and see that it returns `/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit`.
 
+Update: [@JorgeWritesCode](https://twitter.com/jorgewritescode/status/1266652537412861952?s=21) points out, there's a more convenient way to do this right from lldb:
+
+```
+(lldb) image lookup -n "-[NSTextInputContext selectedRange_RTI]"
+1 match found in /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit:
+        Address: AppKit[0x00000000009f2938] (AppKit.__TEXT.__text + 10418568)
+        Summary: AppKit`-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]
+```
+
 ## Analyzing NSTextInputContext
 
 Now we know that Apple bolted a lot of Catalyst code directly into AppKit. This is an interesting choice, every Mac app pays some overhead for Catalyst in Catalina. Let's look at the pseudocode of `selectedRange_RTI` with Hopper:
