@@ -20,7 +20,7 @@ There are a few annoyances, like not being able to run Docker containers on macO
 
 ![](/assets/img/2020/interposekit/interposekit-code.png)
 
-It's extremely unfortunate that the `@convention()` modifier can't be used on existing type aliases - this would have made Interpose way more convenient. I'm honestly tempted to write a proposal to get this into Swift. Both because this would be cool, and because I'd be really interested in the learning experience.
+It's extremely unfortunate that the `@convention()` modifier can't be used on existing type aliases - this would have made Interpose way more convenient. I’m honestly tempted to write a proposal to get this into Swift because this would be cool and I’d be really interested in the learning experience.
 
 {% twitter https://twitter.com/steipete/status/1266799174563041282 %}
 
