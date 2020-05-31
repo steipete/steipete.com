@@ -265,4 +265,24 @@ I'm dispatching to the main thread just to make sure this isn't accidentally cal
 
 The complete code is [in this Gist](https://gist.github.com/steipete/f955aaa0742021af15add0133d8482b9). MIT Licensed. Call `installMacCatalystAppKitTextCrashFix()` from your App Delegate, and don't forget to check if Apple might eventually fixed[^2] this issue. (Apple folks: [FB7593149](https://twitter.com/steipete/status/1266513539012927492?s=21)) 
 
+## Update: InterposeKit
+
+Since the swizzling code here isn't easy to write or read, I build [InterposeKit](/posts/interposekit/), library that helps with that. Much nicer, eh?
+
+```swift
+try Interpose.whenAvailable(["RTIInput", "SystemSession"]) {
+    let lock = DispatchQueue(label: "com.steipete.document-state-hack")
+    try $0.hook("documentState", { store in { `self` in
+        lock.sync {
+            store((@convention(c) (AnyObject, Selector) -> AnyObject).self)(`self`, store.selector)
+        }} as @convention(block) (AnyObject) -> AnyObject})
+
+    try $0.hook("setDocumentState:", { store in { `self`, newValue in
+        lock.sync {
+            store((@convention(c) (AnyObject, Selector, AnyObject) -> Void).self)(`self`, store.selector, newValue)
+        }} as @convention(block) (AnyObject, AnyObject) -> Void})
+}
+```
+
+
 [^2]: To fix this, remove 3 characters from a property (the “non” in nonatomic)
