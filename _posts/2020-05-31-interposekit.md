@@ -42,6 +42,6 @@ Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227
 
 `imp_implementationWithBlock` has [no way to undo](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L130) or deregister the IMP; so once you submitted a block that captures state, you have a permanent memory leak? Oh well.
 
-# Closing Thoughts
+## Closing Thoughts
 
 This is my first Swift-specific open source project, apart from the usual gists. I’d like to learn so please BE harsh on me. I had a lot of fun and built this in a weekend. It helped me to forget time and space (and current world events) for a bit and just tinker. I'm also sure I got things wrong, so please do tell me what can be made better.
