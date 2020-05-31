@@ -6,7 +6,7 @@ tags: iOS development
 image: /assets/img/2020/interposekit/logo.png
 ---
 
-I built a thing! [InterposeKit](https://github.com/steipete/InterposeKit) is a modern library to elegantly swizzle in Swift. It is fully written in Swift 5.2+ and works on `@objc dynamic` Swift functions or Objective-C instance methods.
+I built a thing! [InterposeKit](https://github.com/steipete/InterposeKit) is a modern library to elegantly swizzle in Swift. It's on GitHub, fully written in Swift 5.2+ and works on `@objc dynamic` Swift functions or Objective-C instance methods.
 
 The Inspiration for InterposeKit was [a race condition in Mac Catalyst](/posts/mac-catalyst-crash-hunt/), which required some tricky swizzling to fix. With InterposeKit this is now much cleaner. Since everything's [much better declared on the project website](http://interposekit.com/), I'm just writing some random thoughts that didn't fit into the readme on building this.
 
