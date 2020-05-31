@@ -34,7 +34,7 @@ Why would I need this? There was [a particular bug in Mac Catalyst](/posts/mac-c
 
 ## Swift 5.2 callAsFunction
 
-Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227191768153829376?s=20) about Swift getting useless features, only to be extremely happy about `callAsFunction` a few months later. [It even does generics!](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L175-L178)
+Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227191768153829376?s=20) about Swift getting useless features, only to be extremely happy about `callAsFunction` a few months later. In InterposeKit I use it to have a shorthand for calling the original implementation of a function. [It even does generics!](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L175-L178)
 
 ## imp_implementationWithBlock
 
