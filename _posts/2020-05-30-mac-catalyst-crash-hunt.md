@@ -78,16 +78,15 @@ Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 6   com.apple.AppKit              	0x00007fff34a708fa -[NSTextInputContext attributedString] + 146
 7   com.apple.AppKit              	0x00007fff347c4eb2 -[NSBridgedTextCorrectionController string] + 22
 8   com.apple.AppKit              	0x00007fff347c4b65 -[NSBridgedTextCorrectionController adjustAnnotationStringLength] + 34
-9   com.apple.AppKit              	0x00007fff347c6989 -[NSBridgedTextCorrectionController annotatedSubstringForProposedRange:actualRange:] + 2129
-10  com.apple.AppKit              	0x00007fff3428ba3a -[NSTextCheckingController annotatedSubstringForProposedRange:wrap:completionHandler:failureHandler:] + 445
 ```
 
 ## Crash Hypothesis
 
 A crash pattern like that indicates that we're dealing with an over-release. In times of ARC, this is rare, but it can still happen if a property is set on multiple threads. Text Input in Mac Catalyst is a challenge. There's text and grammar correction that simply works different to iOS, and a user expects that this works just like any other AppKit app. Apple bridged these systems:
 
-`-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI]
-`
+```
+-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI]
+```
 
 Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/PrivateFrameworks/RemoteTextInput.framework/RTIInputSystemServiceSession.h) at the `RemoteTextInput.framework`, it uses XPC under the hood. XPC uses background threads to communicate.
 
