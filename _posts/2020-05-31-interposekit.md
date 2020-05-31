@@ -30,13 +30,13 @@ I finally watched [WWDC2019:410 Creating Swift Packages](https://developer.apple
 
 ## Class Load Events
 
-`objc_addLoadImageFunc ` is a [big no-no](https://twitter.com/steipete/status/1266464092082114561?s=21), and probably [shouldn't even exist in the header](https://twitter.com/jckarter/status/1266466247748677632?s=21) at all. There's `_dyld_register_func_for_add_image` however, which is great. This includes a C callback, and while Swift does a really great  job to make it just blend into the language, this callback is not a block and can't capture state. I eventually found out that I can put everything [into a struct as long as it's all static](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L259-L293), to not have this pollute my global namespace.
+`objc_addLoadImageFunc ` is a [big no-no](https://twitter.com/steipete/status/1266464092082114561?s=21), and probably [shouldn't even exist in the header](https://twitter.com/jckarter/status/1266466247748677632?s=21) at all. There's `_dyld_register_func_for_add_image` however, which is great. This includes a C callback, and while Swift does a really great  job to make it just blend into the language, this callback is not a block and can't capture state. I eventually found out that I can put everything [into a struct, as long as it’s all static](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L259-L293), to not have this pollute my global namespace.
 
 Why would I need this? There was [a particular bug in Mac Catalyst](/posts/mac-catalyst-crash-hunt/) that required such a trick.
 
 ## Swift 5.2 callAsFunction
 
-Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227191768153829376?s=20) about Swift getting useless features, only to be extremely happy about `callAsFunction` a few months later. In InterposeKit I use it to have a shorthand for calling the original implementation of a function. [It even does generics!](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L175-L178)
+Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227191768153829376?s=20) about Swift getting useless features, only to be extremely happy about `callAsFunction` a few months later. In InterposeKit, I use it to have a shorthand for calling the original implementation of a function. [It even does generics!](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L175-L178)
 
 ## imp_implementationWithBlock
 
