@@ -3,12 +3,12 @@ layout: post
 title:  "InterposeKit - Elegant swizzling in Swift"
 date:   2020-05-31 12:00:00 +0200
 tags: iOS development
-image: /assets/img/2020/interposekit/interposekit-code.png
+image: /assets/img/2020/interposekit/logo-social.png
 ---
 
-I built a thing! [InterposeKit](https://github.com/steipete/InterposeKit) is a modern library to swizzle elegantly in Swift. It is fully written in Swift 5.2+ and works on `@objc dynamic` Swift functions or Objective-C instance methods.
+I built a thing! [InterposeKit](https://github.com/steipete/InterposeKit) is a modern library to elegantly swizzle in Swift. It is fully written in Swift 5.2+ and works on `@objc dynamic` Swift functions or Objective-C instance methods.
 
-Since everything's [much better declared on the project website](http://interposekit.com/), I'm just writing some random thoughts that didn't the readme on building this.
+Since everything's [much better declared on the project website](http://interposekit.com/), I'm just writing some random thoughts that didn't fit into the readme on building this.
 
 ## GitHub Actions
 
@@ -17,6 +17,8 @@ Wow! I didn’t have the time to play with this before, but damn is it 💖 good
 There are a few annoyances, like now being able to run Docker containers on macOS (this isn't technical, that's just [a money thing](https://github.community/t/why-is-docker-not-installed-on-macos/17017/2)). The default Jazzy setup to generate documentation runs via Docker, so I had to [go through some hoops](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L305-L319) to make my project compile on Linux.
 
 ## Swift and Type Aliases
+
+![](/assets/img/2020/interposekit/interposekit-code.png)
 
 It's extremely unfortunate that the `@convention()` modifier can't be used on existing type aliases - this would have made Interpose way more convenient. I'm honestly tempted to write a proposal to get this into Swift. Both because this would be cool, and because I'd be really interested in the learning experience.
 
