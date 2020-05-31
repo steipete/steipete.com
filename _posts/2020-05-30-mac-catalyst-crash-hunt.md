@@ -48,34 +48,7 @@ Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 11  com.apple.Foundation          	0x00007fff3496f7bc NSKeyValueDidChange + 437
 ```
 
-The crashers all circle around `NSTextCheckingController`, `NSBridgedTextCorrectionController` and `NSTextInputContext`, but [vary quite a bit](https://gist.github.com/steipete/7a125b20cce461bf9a072dfacd805507):
-
-```
-Exception Type:        EXC_BAD_ACCESS (SIGSEGV)
-Exception Codes:       KERN_INVALID_ADDRESS at 0x00002df54d756a98
-Exception Note:        EXC_CORPSE_NOTIFY
-
-Termination Signal:    Segmentation fault: 11
-Termination Reason:    Namespace SIGNAL, Code 0xb
-Terminating Process:   exc handler [18613]
-
-VM Regions Near 0x2df54d756a98:
-    mapped file            000000012c90b000-000000012c941000 [  216K] r--/rw- SM=COW  
---> 
-    MALLOC_NANO            0000600000000000-0000600008000000 [128.0M] rw-/rwx SM=PRV  
-
-Application Specific Information:
-objc_msgSend() selector name: getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
-
-Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
-0   libobjc.A.dylib               	0x00007fff6fc7781d objc_msgSend + 29
-1   com.apple.CoreFoundation      	0x00007fff36dc5bf9 CFStringGetBytes + 753
-2   com.apple.CoreFoundation      	0x00007fff36e1bfa2 __CFStringCheckAndReplace + 391
-3   com.apple.CoreFoundation      	0x00007fff36e1bdf7 -[__NSCFString appendString:] + 40
-4   com.apple.AppKit              	0x00007fff34a73ee9 -[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI] + 330
-5   com.apple.AppKit              	0x00007fff34a715a5 -[NSTextInputContext(NSInputContext_WithCompletion) attributedStringWithCompletionHandler:] + 50
-6   com.apple.AppKit              	0x00007fff34a708fa -[NSTextInputContext attributedString] + 146
-```
+The crashers all circle around `NSTextCheckingController`, `NSBridgedTextCorrectionController` and `NSTextInputContext`, but [vary quite a bit](https://gist.github.com/steipete/7a125b20cce461bf9a072dfacd805507).
 
 ## Crash Hypothesis
 
