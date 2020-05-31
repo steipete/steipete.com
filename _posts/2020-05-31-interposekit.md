@@ -20,7 +20,7 @@ There are a few annoyances, like now being able to run Docker containers on macO
 
 It's extremely unfortunate that the `@convention()` modifier can't be used on existing type aliases - this would have made Interpose way more convenient. I'm honestly tempted to write a proposal to get this into Swift. Both because this would be cool, and because I'd be really interested in the learning experience.
 
-{% https://twitter.com/steipete/status/1266799174563041282 %}
+{% twitter https://twitter.com/steipete/status/1266799174563041282 %}
 
 ## Swift Package Manager
 
