@@ -12,7 +12,7 @@ Since everything's [much better declared on the project website](http://interpos
 
 ## GitHub Actions
 
-Wow! I didn't had the time to play with this before, and damn this is 💖 good. GitHub Action is fast, easy to set up, reliable and superbly well integrated, down to automatic badges for CI state.
+Wow! I didn’t have the time to play with this before, but damn is it 💖 good. GitHub Action is fast, easy to set up, reliable and superbly well integrated, down to automatic badges for CI state.
 
 There are a few annoyances, like now being able to run Docker containers on macOS (this isn't technical, that's just [a money thing](https://github.community/t/why-is-docker-not-installed-on-macos/17017/2)). The default Jazzy setup to generate documentation runs via Docker, so I had to [go through some hoops](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L305-L319) to make my project compile on Linux.
 
@@ -42,4 +42,4 @@ Well well well... here I was [bitchin'](https://twitter.com/steipete/status/1227
 
 # Closing Thoughts
 
-This is my first Swift-specific open source project, apart from the usual gists. Please BE harsh on me, I'd like to learn, I had a lot of fun and built this in a weekend, and it helped me to forget time and space (and current world events) for a bit and just thinker. I'm also sure I got things wrong, so please do tell me what can be made better.
+This is my first Swift-specific open source project, apart from the usual gists. I’d like to learn so please BE harsh on me. I had a lot of fun and built this in a weekend. It helped me to forget time and space (and current world events) for a bit and just tinker. I'm also sure I got things wrong, so please do tell me what can be made better.
