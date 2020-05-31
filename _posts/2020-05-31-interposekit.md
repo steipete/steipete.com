@@ -8,7 +8,7 @@ image: /assets/img/2020/interposekit/interposekit-code.png
 
 I built a thing! [InterposeKit](https://github.com/steipete/InterposeKit) is a modern library to swizzle elegantly in Swift. It is fully written in Swift 5.2+ and works on `@objc dynamic` Swift functions or Objective-C instance methods.
 
-Since everything's [much better declared in the project readme](https://github.com/steipete/InterposeKit), I'm just writing some random thoughts that didn't the readme on building this.
+Since everything's [much better declared on the project website](http://interposekit.com/), I'm just writing some random thoughts that didn't the readme on building this.
 
 ## GitHub Actions
 
