@@ -67,7 +67,6 @@ VM Regions Near 0x2df54d756a98:
 Application Specific Information:
 objc_msgSend() selector name: getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
 
-
 Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 0   libobjc.A.dylib               	0x00007fff6fc7781d objc_msgSend + 29
 1   com.apple.CoreFoundation      	0x00007fff36dc5bf9 CFStringGetBytes + 753
@@ -76,8 +75,6 @@ Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 4   com.apple.AppKit              	0x00007fff34a73ee9 -[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI] + 330
 5   com.apple.AppKit              	0x00007fff34a715a5 -[NSTextInputContext(NSInputContext_WithCompletion) attributedStringWithCompletionHandler:] + 50
 6   com.apple.AppKit              	0x00007fff34a708fa -[NSTextInputContext attributedString] + 146
-7   com.apple.AppKit              	0x00007fff347c4eb2 -[NSBridgedTextCorrectionController string] + 22
-8   com.apple.AppKit              	0x00007fff347c4b65 -[NSBridgedTextCorrectionController adjustAnnotationStringLength] + 34
 ```
 
 ## Crash Hypothesis
