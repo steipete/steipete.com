@@ -14,7 +14,7 @@ Since everything's [much better declared on the project website](http://interpos
 
 Wow! I didn’t have the time to play with this before, but damn is it 💖 good. GitHub Action is fast, easy to set up, reliable and superbly well integrated, down to automatic badges for CI state.
 
-There are a few annoyances, like now being able to run Docker containers on macOS (this isn't technical, that's just [a money thing](https://github.community/t/why-is-docker-not-installed-on-macos/17017/2)). The default Jazzy setup to generate documentation runs via Docker, so I had to [go through some hoops](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L305-L319) to make my project compile on Linux.
+There are a few annoyances, like not being able to run Docker containers on macOS (this isn’t technical, just [a money thing](https://github.community/t/why-is-docker-not-installed-on-macos/17017/2)). The default Jazzy setup to generate documentation runs via Docker, so I had to [go through some hoops](https://github.com/steipete/InterposeKit/blob/85f6c2dcc465811048cac0b31c4edc8bb71d4268/Sources/InterposeKit/InterposeKit.swift#L305-L319) to make my project compile on Linux.
 
 ## Swift and Type Aliases
 
