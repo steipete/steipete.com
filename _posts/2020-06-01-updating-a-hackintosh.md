@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Updating macOS on a Hackintosh"
-date:   2020-06-01 06:00:00 +0200
+date:   2020-06-01 10:00:00 +0200
 tags: hardware
 image: /assets/img/2020/hackintosh/opencore-config.png
 ---
