@@ -97,6 +97,10 @@ I was curious what `-no-serialize-debugging-options` changes in the binary, yso 
 
 That turned out to be another rabbit hole, since Xcode doesn't produce deterministic builds. Other build systems like Buck [use various workarounds](https://milen.me/writings/apple-linker-ld64-deterministic-builds-oso-prefix/) to achieve this, and there's an effort to enable [deterministic builds with clang and lld](http://blog.llvm.org/2019/11/deterministic-builds-with-clang-and-lld.html), but we're not yet there. 
 
+We can compare the sizes of the Mach-O sections in the binary: 
+
+`otool -l /bin/ls | grep -e '  cmd' -e datasize | sed 's/^ *//g'`
+
 ## SWIFT_SERIALIZE_DEBUGGING_OPTIONS
 
 There's very little on the internet that even [documents](https://github.com/apple/swift-package-manager/pull/2713)[`SWIFT_SERIALIZE_DEBUGGING_OPTIONS`](https://twitter.com/evandcoleman/status/1266414571180429312), but it seems to be the same as `OTHER_SWIFT_FLAGS = -Xfrontend -no-serialize-debugging-options`. Luckily Swift is open source, so we can look up [the very commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e).
