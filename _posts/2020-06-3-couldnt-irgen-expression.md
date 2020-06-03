@@ -23,9 +23,7 @@ Let's see what works and what doesn't:
 - ✅ Mixed Obj-C/Swift Example via `framework`, `xcframework`, CocoaPods or Carthage
 - ❌ Creating a custom example with `framework`
 - ❌ Swift-only Example via CocoaPods or Carthage
-
-To be tested:
-- ❌ Swift-only Example via CocoaPods after the switch to xcframework
+- ❌ Swift-only Example via CocoaPods using `xcframework`
 
 ⚠️ Testing here is tricky - Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but fails somewhere else. It also seems that lldb uses the shared module cache. I ended up creating a fresh virtual machine with a generic username with snapshots, to ensure correct reproducibility.
 
