@@ -9,12 +9,11 @@ A few weeks back some support tickets have been coming up with reports that peop
 
 ## Analysis
 
-![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
-
-The debugger from Xcode 11.5 (11E608c) fails to print information about variables using the `po`, `p` or `e` commands.
-
+The debugger from Xcode 11.5 (11E608c) fails to print information about variables using the `po`, `p` or `e` commands. 
 Example command: `po window`
 Result: `error: Couldn't IRGen expression, no additional error`
+
+![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
 
 Why didn't we see this before? All our examples work, as they use the new `xcframework` format - and for some reason, everything works here.
 
