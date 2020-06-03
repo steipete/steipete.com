@@ -67,6 +67,7 @@ Both variants are stable and [don't drain battery life](https://www.wired.com/st
 - [Packix](https://repo.packix.com/)
 - [Dynastic Repo](https://repo.dynastic.co/)
 - [Twickd](https://repo.twickd.com/)
+- [NSCake](http://nscake.github.io) (for FLEX)
 
 Heads up: Cydia hosts many tweaks that are outdated and won't work on iOS 13 anymore. Better check [/r/jailbreak](https://www.reddit.com/r/jailbreak/) or [iDownloadBlog](https://www.idownloadblog.com/tag/jailbreak/) to find tweaks that work.
 
