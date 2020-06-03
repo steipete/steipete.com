@@ -5,7 +5,7 @@ date:   2020-06-03 12:00:00 +0200
 tags: iOS development
 ---
 
-A few weeks back some support tickets have been coming up with reports that people can't use the `lldb` debugger anymore after integrating PSPDFKit. Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That's obviously not great, so I went down a rabbit hole to understand what's up here. 
+A few weeks back some support tickets have been coming up with reports that people can't use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That's obviously not great, so I went down a rabbit hole to understand what's up here. 
 
 ## Analysis
 
@@ -19,8 +19,7 @@ Why didn't we see this before? All our examples work, as they use the new `xcfra
 
 Let's see what works and what doesn't:
 
-- ✅ All examples in the `dmg`
-- ✅ Creating a custom example with `xcframework`
+- ✅ Creating an example with `xcframework` (this is the format we distribute)
 - ✅ Mixed Obj-C/Swift Example via `framework`, `xcframework`, CocoaPods or Carthage
 - ❌ Creating a custom example with `framework`
 - ❌ Swift-only Example via CocoaPods or Carthage
