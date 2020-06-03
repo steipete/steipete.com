@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Couldn't IRGen expression, no additional error"
-date:   2020-06-03 12:00:00 +0200
+title:  "How to fix lldb: Couldn't IRGen expression"
+date:   2020-06-03 20:00:00 +0200
 tags: iOS development
 ---
 
@@ -19,13 +19,14 @@ Why didn't we see this before? All our examples work, as they use the new `xcfra
 
 Let's see what works and what doesn't:
 
-- ✅ Creating an example with `xcframework` (this is the format we distribute)
-- ✅ Mixed Obj-C/Swift Example via `framework`, `xcframework`, CocoaPods or Carthage
+- ✅ Creating an example with `xcframework` (this is the format we distribute) where our SDK is built with `BUILD_LIBRARY_FOR_DISTRIBUTION` enabled
+- ✅ Mixed Obj-C/Swift Example via `framework`, `xcframework`, CocoaPods or Carthage. (Independent of `BUILD_LIBRARY_FOR_DISTRIBUTION`)
+- ❌ Creating an example with `xcframework` without build for distribution
 - ❌ Creating a custom example with `framework`
 - ❌ Swift-only Example via CocoaPods or Carthage
 - ❌ Swift-only Example via CocoaPods using `xcframework`
 
-⚠️ Testing here is tricky - Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but fails somewhere else. It also seems that lldb uses the shared module cache. I ended up creating a fresh virtual machine with a generic username with snapshots, to ensure correct reproducibility.
+⚠️ Testing here is tricky - Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but fails somewhere else. It also seems that lldb uses the shared module cache. I ended up creating a fresh virtual machine with a generic username with snapshots, to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
 
 In mixed-mode projects, debugging works, but lldb complains:
 
@@ -110,5 +111,11 @@ The problem: Setting the flag doesn't change anything for us. Here's the lldb lo
 - ✅ [mixed-mode debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/fb86213fbc7407d6c217277ee2be7ac1)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options, latest toolchain for app](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
+
+## SR-12932
+
+I filed [SR-12932 - Custom toolchain picks up wrong target based on iOS deployment target](https://bugs.swift.org/browse/SR-12932) and noticed that this can be worked around by raising the iOS Deployment Target to iOS 13.
+
+
 
 This will need further investigation.
