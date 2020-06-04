@@ -56,7 +56,7 @@ On the linked StackOverflow workaround, there's an interesting comment:
 
 We found [SR-12783](https://bugs.swift.org/browse/SR-12783) which exactly explains the problem, and is also marked as resolved. The OP used the binary Instabug SDK, which is partially written in Swift. A very similar situation to ours.
 
-> The binary Swift module encode a hardcoded path to a yaml file that only exists on the original developer's machine. You should let them know that they need to compile their binary framework with -no-serialize-debugging-options if they are planning to distribute them to another machine.
+> The binary Swift module encode a hardcoded path to a yaml file that only exists on the original developer's machine. You should let them know that they need to compile their binary framework with `-no-serialize-debugging-options` if they are planning to distribute them to another machine.
 
 > LLDB has an embedded Swift compiler that will attempt to load the `.swiftmodule` for each Swift module in your program. The binary `.swiftmodule` is embedded in the .dSYM bundle for LLDB to find. When -serialize-debugging-options` is enabled the Swift compiler will serialize all Clang options (such as the `-ivfsoverlay` option added by Xcode's build system to find `all-product-headers.yaml`). This works really nice on the machine that the swift module was built on, but obviously isn't portable. We are working on lifting this dependency in LLDB, but that is still in progress.
 
@@ -112,10 +112,20 @@ The problem: Setting the flag doesn't change anything for us. Here's the lldb lo
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options, latest toolchain for app](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 
-## SR-12932
+## SR-12932 and the dSYM Conspiracy
 
 I filed [SR-12932 - Custom toolchain picks up wrong target based on iOS deployment target](https://bugs.swift.org/browse/SR-12932) and noticed that this can be worked around by raising the iOS Deployment Target to iOS 13.
 
+Interestingly, it seems that the master branch of lldb can reconstruct enough context to be able to make basic debugging work, where the version of Xcode 11.5 just gives ip with the `Couldn't IRGen expression` error.
 
+After rubber-ducking this problem with a friend, he tried to reproduce the problem but it magically worked at his machine - debugging was fast and worked with Xcode 11.5. The difference? We downloaded a zip and unpacked it in `/tmp` where I use my home directory. First I tried to use a different username; created a separate user in the VM and did the same steps. 
 
-This will need further investigation.
+Then we looked where the strings "steipete/Projects/lldb-debug-test" (part of the folder I compiled the binary) actually are. The `-no-serialize-debugging-options` flag promised that these strings are not stored in the binary (?) and indeed a `PSPDFKit | strings` check didn't find anything.
+
+Then it came to me: the dSYMs! I deleted the dSYM bundles that are simply stored in the same folder as the framework, did a clean rebuild inclusive deleting DerivedData and voila - no more `Couldn't IRGen expression`! Lldb also initialized noticeable faster, and there was no trace of the build path in the log.
+
+Which led me to the obvious next question - how are these dSYMs found? I know that [Apple uses Spotlight in their crash symbolication scripts](https://stackoverflow.com/questions/10044697/where-how-does-apples-gcc-store-dwarf-inside-an-executable/12827463#12827463) to find dSYMs based on an UUID, and that `/tmp` is unlikely part of the Spotlight index, but this theory didn't work out, even when I add the whole user folder to Spotlight's excluded list, it still finds the dSYM. If I move it just one folder up, then lldb doesn't see it anymore though. (Unclear if lldb finds this or some earlier process in Xcode)
+
+## Epilogue
+
+I wrote everything up in [SR-12933: lldb: Couldn't IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), hopefully somebody smarter than me picks this up and fills in all the questions I'm having right now.
