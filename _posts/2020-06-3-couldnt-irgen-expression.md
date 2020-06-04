@@ -44,7 +44,7 @@ note: This error message is displayed only once. If the error displayed above is
 
 ![](/assets/img/2020/lldb-debugging/xcode-lldb-mixed.png)
 
-We found [a workaround on StackOverflow](https://stackoverflow.com/questions/54776459/whats-the-solution-for-error-couldnt-irgen-expression-no-additional-error/61824142#61824142) that works around this issue by adding one Objective-C class and a bridging header to your project. ([KB Article](https://pspdfkit.com/guides/ios/current/knowledge-base/debugging-issues/))
+We found [a workaround on StackOverflow](https://stackoverflow.com/questions/54776459/whats-the-solution-for-error-couldnt-irgen-expression-no-additional-error/61824142#61824142) that works around this issue by adding one Objective-C class and a bridging header to your project. ([KB Article on PSPDFKit.com](https://pspdfkit.com/guides/ios/current/knowledge-base/debugging-issues/))
 
 We reported this bug as FB7718242 to Apple.
 
@@ -64,7 +64,7 @@ We found [SR-12783](https://bugs.swift.org/browse/SR-12783) which exactly explai
 
 > The `-no-serialize-debugging-options` option will omit those clang flags. The price for this is that you may need to pass one or two missing Clang options to LLDB manually via settings set target.swift-extra-clang-flags when you are debugging the framework itself now, but you may also get lucky and LLDB can piece together the necessary Clang flags from the main program. — [Adrian Prantl, Apple Compiler Engineer](https://bugs.swift.org/browse/SR-12783?focusedCommentId=56548&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-56548)
 
-# Trying Swift Trunk Snapshot
+## Trying Swift Trunk Snapshot
 
 Adrian subsequently landed a [patch in lldb modifying `SwiftExpressionParser.cpp`](https://github.com/apple/llvm-project/pull/1220) to print the root cause of this failure. I went ahead and did try this with the [Swift Trunk Snapshot](https://swift.org/download/#snapshots). With the one from May 26, the error now looks different:
 
