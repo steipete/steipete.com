@@ -15,7 +15,7 @@ Result: `error: Couldn't IRGen expression, no additional error`
 
 ![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
 
-Why didn't we see this before? All our examples work, as they use the new `xcframework` format - and for some reason, everything works here.
+Why didn't we see this before? All our examples work, as they use the new `xcframework` format - and for some reason, everything works here. We also only recently started to use Swift in our SDK, after [Swift's ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
 
 Let's see what works and what doesn't:
 
