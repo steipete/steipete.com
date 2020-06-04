@@ -118,7 +118,9 @@ The problem: Setting the flag doesn't change anything for us. Here's the lldb lo
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options, latest toolchain for app](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 
-Luckily Swift is open source, so we can look up [the very commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e). This seems like the flag only controls what is written in a `.swiftmodule` file - which we don't even emit anymore, since we use Build Libraries for Distribution.
+Luckily Swift is open source, so we can look up [the very commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e). This seems like the flag only controls what is written in a `.swiftmodule` file - which is saved in the dSYM.
+
+(Narrative: If you read my blog then you might be screaming: Obviously! Adrian Prantl wrote that in SR-12783! Yes. Sometimes I need a bit to realize how things work. This includes the bit on how swiftmodules are stored in the dSYM...) 
 
 ## SR-12932 and the dSYM Conspiracy
 
