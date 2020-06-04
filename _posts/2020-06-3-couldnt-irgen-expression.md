@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to Fix LLDB: Couldn't IRGen Expression"
-date:   2020-06-04 10:00:00 +0200
+date:   2020-06-04 15:00:00 +0200
 tags: iOS development
 ---
 
@@ -16,20 +16,21 @@ Result: `error: Couldn't IRGen expression, no additional error`
 
 ![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
 
-Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works when using XCframeworks. We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
+Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works when using XCframeworks[^1]. We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
+
+[^1]: Unless you also copy out the dSYM files, then lldb fails.
 
 Let’s see what works and what doesn’t:
 
-- ✅ Creating an example with `xcframework` (this is the format we distribute) where our SDK is built with `BUILD_LIBRARY_FOR_DISTRIBUTION` enabled.
-- ✅ Mixed Obj-C/Swift example via `framework`, `xcframework`, CocoaPods, or Carthage (independent of `BUILD_LIBRARY_FOR_DISTRIBUTION`).
-- ❌ Creating an example with `xcframework` without build for distribution.
+- ✅ Creating an example with `xcframework`[^1] (this is the format we distribute).
+- ✅ Mixed Obj-C/Swift example via `framework`, `xcframework`, CocoaPods, or Carthage.
 - ❌ Creating a custom example with `framework`.
 - ❌ Swift-only example via CocoaPods or Carthage.
 - ❌ Swift-only example via CocoaPods using `xcframework`.
 
 ⚠️ Testing here is extremely tricky; Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but it fails somewhere else. It also seems that LLDB uses the shared module cache, so you need to delete DerivedData on every run. And (see later in this article), *where* you store the example and which *other files* you store also play into this — dare I say, this was extremely confusing and frustrating to debug.
 
-I ended up creating a fresh virtual machine with a generic username with snapshots to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
+I ended up creating a fresh virtual machine with a generic username with snapshots to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which was another variable factor, but seems not to contribute to these test results.
 
 In mixed-mode projects, debugging works, but LLDB complains:
 
