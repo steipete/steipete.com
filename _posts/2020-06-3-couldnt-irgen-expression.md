@@ -128,9 +128,9 @@ I filed [SR-12932 - Custom toolchain picks up wrong target based on iOS deployme
 
 Interestingly, it seems that the master branch of lldb can reconstruct enough context to be able to make basic debugging work, where the version of Xcode 11.5 just gives ip with the `Couldn't IRGen expression` error.
 
-After rubber-ducking this problem with a friend, he tried to reproduce the problem but it magically worked at his machine - debugging was fast and worked with Xcode 11.5. The difference? We downloaded a zip and unpacked it in `/tmp` where I use my home directory. First I tried to use a different username; created a separate user in the VM and did the same steps. 
+After rubber-ducking this problem with a friend, he tried to reproduce the problem but it magically worked at his machine - debugging was fast and worked with Xcode 11.5. The difference? We downloaded a zip and unpacked it in `/tmp` where I use my home directory. First I tried to use a different username; created a separate user in the VM and did the same steps, same  `IRGen` error.
 
-Then we looked where the strings "steipete/Projects/lldb-debug-test" (part of the folder I compiled the binary) actually are. The `-no-serialize-debugging-options` flag promised that these strings are not stored in the binary (?) and indeed a `PSPDFKit | strings` check didn't find anything.
+Then we looked where the strings containing `steipete/Projects/lldb-debug-test` (part of the folder I compiled the binary) actually are. The `-no-serialize-debugging-options` flag promised that these strings are not stored in the binary and indeed a `PSPDFKit | strings` check didn't find anything.
 
 Then it came to me: the dSYMs! I deleted the dSYM bundles that are simply stored in the same folder as the framework, did a clean rebuild inclusive deleting DerivedData and voila - no more `Couldn't IRGen expression`! Lldb also initialized noticeable faster, and there was no trace of the build path in the log.
 
@@ -139,3 +139,7 @@ Which led me to the obvious next question - how are these dSYMs found? I know th
 ## Epilogue
 
 I wrote everything up in [SR-12933: lldb: Couldn't IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), hopefully somebody smarter than me picks this up and fills in all the questions I'm having right now.
+
+The good parts: We have [a workaround](https://pspdfkit.com/guides/ios/current/knowledge-base/debugging-issues/), lldb on master seems to better deal with the reconstruction, and having something that reproduces is the first step in getting it fixed.
+
+If you like stories like this, [follow me on Twitter](https://twitter.com/steipete) and read them as they happen.
