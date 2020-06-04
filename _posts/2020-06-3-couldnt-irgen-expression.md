@@ -84,17 +84,19 @@ This is interesting, since we compile our SDK with [`BUILD_LIBRARY_FOR_DISTRIBUT
 
 ## Enabling lldb Logging 
 
-There's [another trick](https://forums.swift.org/t/swiftpm-and-lldb/26966) in lldb that enables a great deal of logging: put `log enable lldb types` into `~/.lldbinit` and you see a great deal of logging in lldb.
+There's [another trick](https://forums.swift.org/t/swiftpm-and-lldb/26966) in lldb that enables a great deal of logging: put `log enable lldb types` into `~/.lldbinit` and you see [extremely helpful logs](https://gist.github.com/steipete/515646a9840c91a61b73d1ab9f255bb3) how lldb builds the debug context.
 
 When we use this in our original failing setup, we get more information, specifically the `all-product-headers.yaml` is listed that was also mentioned in [SR-12783](https://bugs.swift.org/browse/SR-12783).
 
 ```
-SwiftASTContext("PSPDFKitUI")::GetASTContext() -- failed to initialize ClangImporter: error: virtual filesystem overlay file '/Users/steipete/Projects/lldb-debug-test/PSPDFKit/iOS/build/PSPDFKitUI/production/Build/Intermediates.noindex/ArchiveIntermediates/PSPDFKitUI.framework/IntermediateBuildFilesPath/PSPDFKitUI.build/Release-iphonesimulator/PSPDFKitUI.framework.build/all-product-headers.yaml' not found
+SwiftASTContext("PSPDFKitUI")::GetASTContext() -- failed to initialize ClangImporter:
+error: virtual filesystem overlay file '/Users/steipete/Projects/lldb-debug-test/PSPDFKit/iOS/build/PSPDFKitUI/production/Build/Intermediates.noindex/ArchiveIntermediates/PSPDFKitUI.framework/IntermediateBuildFilesPath/PSPDFKitUI.build/Release-iphonesimulator/
+PSPDFKitUI.framework.build/all-product-headers.yaml' not found
 ```
 
 ## Comparing Binary Files
 
-I was curious what `-no-serialize-debugging-options` changes in the binary, yso I tried using[Araxis Merge](https://www.araxis.com/merge/documentation-os-x/comparing-binary-files.en) to track the changes. Other useful tools are [Hex Fiend](https://ridiculousfish.com/hexfiend/) and [MachO-Explorer](https://github.com/DeVaukz/MachO-Explorer).
+I was curious what `-no-serialize-debugging-options` changes in the binary, so I tried using [Araxis Merge](https://www.araxis.com/merge/documentation-os-x/comparing-binary-files.en) to track the changes. ([Hex Fiend](https://ridiculousfish.com/hexfiend/) and [MachO-Explorer](https://github.com/DeVaukz/MachO-Explorer) are also useful)
 
 ![](/assets/img/2020/lldb-debugging/araxis-merge.png)
 
@@ -104,15 +106,19 @@ We can compare the sizes of the Mach-O sections in the binary:
 
 `otool -l /bin/ls | grep -e '  cmd' -e datasize | sed 's/^ *//g'`
 
+Surprisingly, the size of the sections is exactly the same, no matter if this flag is set or not.
+
 ## SWIFT_SERIALIZE_DEBUGGING_OPTIONS
 
-There's very little on the internet that even [documents](https://github.com/apple/swift-package-manager/pull/2713)[`SWIFT_SERIALIZE_DEBUGGING_OPTIONS`](https://twitter.com/evandcoleman/status/1266414571180429312), but it seems to be the same as `OTHER_SWIFT_FLAGS = -Xfrontend -no-serialize-debugging-options`. Luckily Swift is open source, so we can look up [the very commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e).
+I wondered - is the flag even passed on? Am I using the right key? There's very little on the internet that even [documents](https://github.com/apple/swift-package-manager/pull/2713)[`SWIFT_SERIALIZE_DEBUGGING_OPTIONS`](https://twitter.com/evandcoleman/status/1266414571180429312), but it seems to be the same as `OTHER_SWIFT_FLAGS = -Xfrontend -no-serialize-debugging-options`. Changing the flag to include a type also breaks compilation, so the xcconfig process definitely works. 
 
 The problem: Setting the flag doesn't change anything for us. Here's the lldb logs for different scenarios:
 
 - ✅ [mixed-mode debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/fb86213fbc7407d6c217277ee2be7ac1)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options, latest toolchain for app](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
+
+Luckily Swift is open source, so we can look up [the very commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e). This seems like the flag only controls what is written in a `.swiftmodule` file - which we don't even emit anymore, since we use Build Libraries for Distribution.
 
 ## SR-12932 and the dSYM Conspiracy
 
