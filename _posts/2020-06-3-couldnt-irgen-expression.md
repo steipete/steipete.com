@@ -6,6 +6,10 @@ tags: iOS development
 image: /assets/img/2020/lldb-debugging/xcode-lldb.png
 ---
 
+<style type="text/css">
+div.post-content > img:first-child { display:none; }
+</style>
+
 A few weeks ago, we started receiving support tickets with reports that people can’t use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That’s *obviously* not great, and trying to understand what’s wrong here led me down a rabbit hole worth sharing.
 
 ## Analysis
