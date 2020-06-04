@@ -5,7 +5,7 @@ date:   2020-06-03 20:00:00 +0200
 tags: iOS development
 ---
 
-A few weeks back some support tickets have been coming up with reports that people can't use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That's obviously not great, so I went down a rabbit hole to understand what's up here. 
+A few weeks ago we started receiving support tickets with reports that people can't use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That's *obviously* not great, and understanding what's wrong her led me into a rabbit hole worth sharing.
 
 ## Analysis
 
@@ -26,7 +26,9 @@ Let's see what works and what doesn't:
 - ❌ Swift-only Example via CocoaPods or Carthage
 - ❌ Swift-only Example via CocoaPods using `xcframework`
 
-⚠️ Testing here is tricky - Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but fails somewhere else. It also seems that lldb uses the shared module cache. I ended up creating a fresh virtual machine with a generic username with snapshots, to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
+⚠️ Testing here is extremely tricky - Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but fails somewhere else. It also seems that lldb uses the shared module cache, so you need to delete DerivedData on every run. And (see later in this article) *where* you store the example and what *other files* you store also play into this - dare I say, this was extremely confusing and frustrating to debug.
+
+ I ended up creating a fresh virtual machine with a generic username with snapshots, to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
 
 In mixed-mode projects, debugging works, but lldb complains:
 
@@ -58,7 +60,7 @@ We found [SR-12783](https://bugs.swift.org/browse/SR-12783) which exactly explai
 
 > The binary Swift module encode a hardcoded path to a yaml file that only exists on the original developer's machine. You should let them know that they need to compile their binary framework with `-no-serialize-debugging-options` if they are planning to distribute them to another machine.
 
-> LLDB has an embedded Swift compiler that will attempt to load the `.swiftmodule` for each Swift module in your program. The binary `.swiftmodule` is embedded in the .dSYM bundle for LLDB to find. When -serialize-debugging-options` is enabled the Swift compiler will serialize all Clang options (such as the `-ivfsoverlay` option added by Xcode's build system to find `all-product-headers.yaml`). This works really nice on the machine that the swift module was built on, but obviously isn't portable. We are working on lifting this dependency in LLDB, but that is still in progress.
+> LLDB has an embedded Swift compiler that will attempt to load the `.swiftmodule` for each Swift module in your program. The binary `.swiftmodule` is embedded in the .dSYM bundle for LLDB to find. When `-serialize-debugging-options` is enabled the Swift compiler will serialize all Clang options (such as the `-ivfsoverlay` option added by Xcode's build system to find `all-product-headers.yaml`). This works really nice on the machine that the swift module was built on, but obviously isn't portable. We are working on lifting this dependency in LLDB, but that is still in progress.
 
 > The `-no-serialize-debugging-options` option will omit those clang flags. The price for this is that you may need to pass one or two missing Clang options to LLDB manually via settings set target.swift-extra-clang-flags when you are debugging the framework itself now, but you may also get lucky and LLDB can piece together the necessary Clang flags from the main program. — [Adrian Prantl, Apple Compiler Engineer](https://bugs.swift.org/browse/SR-12783?focusedCommentId=56548&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-56548)
 
