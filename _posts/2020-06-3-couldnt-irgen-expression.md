@@ -5,7 +5,7 @@ date:   2020-06-04 10:00:00 +0200
 tags: iOS development
 ---
 
-A few weeks ago, we started receiving support tickets with reports that people can’t use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That’s *obviously* not great, and understanding what’s wrong here led me down a rabbit hole worth sharing.
+A few weeks ago, we started receiving support tickets with reports that people can’t use the `lldb` debugger anymore after integrating [PSPDFKit](http://pspdfkit.com/). Instead of printing an object, they get `Couldn't IRGen expression, no additional error`. That’s *obviously* not great, and trying to understand what’s wrong here led me down a rabbit hole worth sharing.
 
 ## Analysis
 
@@ -16,7 +16,7 @@ Result: `error: Couldn't IRGen expression, no additional error`
 
 ![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
 
-Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works here. We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
+Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works when using XCframeworks. We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
 
 Let’s see what works and what doesn’t:
 
@@ -29,7 +29,7 @@ Let’s see what works and what doesn’t:
 
 ⚠️ Testing here is extremely tricky; Apple saves absolute paths in the binary, so if you happen to have the same username on the build machine and your test machine, it might work, but it fails somewhere else. It also seems that LLDB uses the shared module cache, so you need to delete DerivedData on every run. And (see later in this article), *where* you store the example and which *other files* you store also play into this — dare I say, this was extremely confusing and frustrating to debug.
 
-I ended up creating a fresh virtual machine, with a generic username with snapshots, to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
+I ended up creating a fresh virtual machine with a generic username with snapshots to ensure correct reproducibility. We also enabled `BUILD_LIBRARY_FOR_DISTRIBUTION` between the current release (9.3.3) and the upcoming version (9.4), which again changed the example results.
 
 In mixed-mode projects, debugging works, but LLDB complains:
 
@@ -59,7 +59,7 @@ On the linked Stack Overflow workaround, there’s an interesting comment:
 
 We found [SR-12783](https://bugs.swift.org/browse/SR-12783), which explains the problem and is also marked as resolved. The OP used the binary Instabug SDK, which is partially written in Swift: a situation very similar to ours.
 
-> The binary Swift module encode a hardcoded path to a yaml file that only exists on the original developer’s machine. You should let them know that they need to compile their binary framework with `-no-serialize-debugging-options` if they are planning to distribute them to another machine.
+> The binary Swift module encode a hardcoded path to a yaml file that only exists on the original developer’s machine. You should let them know that they need to compile their binary framework with `-no-serialize-debugging-options` if they are planning to distribute them to another machine. — [Artur Grigor](https://github.com/Instabug/Instabug-iOS/issues/368)
 
 > LLDB has an embedded Swift compiler that will attempt to load the `.swiftmodule` for each Swift module in your program. The binary `.swiftmodule` is embedded in the .dSYM bundle for LLDB to find. When `-serialize-debugging-options` is enabled the Swift compiler will serialize all Clang options (such as the `-ivfsoverlay` option added by Xcode’s build system to find `all-product-headers.yaml`). This works really nice on the machine that the swift module was built on, but obviously isn’t portable. We are working on lifting this dependency in LLDB, but that is still in progress.
 
@@ -111,7 +111,7 @@ Surprisingly, the size of the sections is exactly the same, no matter if this fl
 
 ## SWIFT_SERIALIZE_DEBUGGING_OPTIONS
 
-I wondered: Is the flag even passed on? Am I using the right key? There’s very little on the internet that even [documents](https://github.com/apple/swift-package-manager/pull/2713)[`SWIFT_SERIALIZE_DEBUGGING_OPTIONS`](https://twitter.com/evandcoleman/status/1266414571180429312), but it seems to be the same as `OTHER_SWIFT_FLAGS = -Xfrontend -no-serialize-debugging-options`. Changing the flag to include a type also breaks compilation, so the .xcconfig process definitely works. 
+I wondered: Is the flag even passed on? Am I using the right key? There’s very little on the internet that even [documents](https://github.com/apple/swift-package-manager/pull/2713) [`SWIFT_SERIALIZE_DEBUGGING_OPTIONS`](https://twitter.com/evandcoleman/status/1266414571180429312), but it seems to be the same as `OTHER_SWIFT_FLAGS = -Xfrontend -no-serialize-debugging-options`. Changing the flag to include a type also breaks compilation, so the .xcconfig process definitely works. 
 
 The problem is that setting the flag doesn’t change anything for us. Here are the LLDB logs for different scenarios:
 
@@ -119,9 +119,9 @@ The problem is that setting the flag doesn’t change anything for us. Here are 
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 - ❌ [Swift-only debug with lldb and -no-serialize-debugging-options, latest toolchain for app](https://gist.github.com/steipete/9eaaa17f552aef875e139a6e2fb9503f)
 
-Luckily Swift is open source, so we can look up [the commit introducing -no-serialize-debugging-options](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e). This seems like the flag only controls what is written in a `.swiftmodule` file — which is saved in the dSYM.
+Luckily Swift is open source, so we can look up [the commit introducing `-no-serialize-debugging-options`](https://github.com/apple/swift/commit/8ee17a4d0d0bba46a0b3b6e200c95d40a548a02e). This seems like the flag only controls what is written in a `.swiftmodule` file — which is saved in the dSYM.
 
-(If you read my blog then you might be screaming: Obviously! Adrian Prantl wrote that in SR-12783! Yes. Sometimes I need some time to realize how things work. This includes the bit on how Swift modules are stored in the dSYM...) 
+(If you read my blog then you might be screaming: “Obviously! Adrian Prantl wrote that in SR-12783!” Yes. Sometimes I need some time to realize how things work. This includes the bit on how Swift modules are stored in the dSYM...) 
 
 ## SR-12932 and the dSYM Conspiracy
 
@@ -129,17 +129,17 @@ I filed [SR-12932 - Custom toolchain picks up wrong target based on iOS deployme
 
 Interestingly, it seems that the master branch of LLDB can reconstruct enough context to be able to make basic debugging work, where the version of Xcode 11.5 just gives up with the `Couldn't IRGen expression` error.
 
-After rubber ducking this problem with a friend, he tried to reproduce the problem but it magically worked on his machine — debugging was fast and worked with Xcode 11.5. The difference? We downloaded a ZIP and unpacked it in `/tmp` where I use my home directory. First I tried to use a different username; I created a separate user in the VM and tok the same steps, and I got the same `IRGen` error.
+After rubber ducking this problem with a friend, he tried to reproduce the problem but it magically worked on his machine — debugging was fast and worked with Xcode 11.5. The difference? We downloaded a ZIP and unpacked it in `/tmp` where I use my home directory. First I tried a different username; I created a separate user in the VM and took the same steps, and I got the same `IRGen` error.
 
 Then we looked where the strings containing `steipete/Projects/lldb-debug-test` (part of the folder where I compiled the binary) actually are. The `-no-serialize-debugging-options` flag promised these strings are not stored in the binary, and indeed, a `PSPDFKit | strings` check didn’t find anything.
 
-Then it came to me: the dSYMs! I deleted the dSYM bundles that are simply stored in the same folder as the framework, did a clean rebuild, including deleting DerivedData, and voila — no more `Couldn't IRGen expression`! LLDB also initialized noticeably faster, and there was no trace of the build path in the log.
+Then it came to me: the dSYMs! I deleted the dSYM bundles that are simply stored in the same folder as the framework, did a clean rebuild (including deleting DerivedData) and voila — no more `Couldn't IRGen expression`! LLDB also initialized noticeably faster, and there was no trace of the build path in the log.
 
-Which led me to the obvious next question: How are these dSYMs found? I know that [Apple uses Spotlight in its crash symbolication scripts](https://stackoverflow.com/questions/10044697/where-how-does-apples-gcc-store-dwarf-inside-an-executable/12827463#12827463) to find dSYMs based on an UUID, and that `/tmp` is unlikely part of the Spotlight index, but this theory didn’t work out; even when I add the whole user folder to Spotlight’s excluded list, it still finds the dSYM. But if I move it just one folder up, then LLDB doesn’t see it anymore. (Unclear if LLDB finds this or some earlier process in Xcode.)
+Which led me to the obvious next question: How are these dSYMs found? I know [Apple uses Spotlight in its crash symbolication scripts](https://stackoverflow.com/questions/10044697/where-how-does-apples-gcc-store-dwarf-inside-an-executable/12827463#12827463) to find dSYMs based on an UUID, and that `/tmp` is unlikely part of the Spotlight index, but this theory didn’t work out; even when I add the whole user folder to Spotlight’s excluded list, it still finds the dSYM. But if I move it just one folder up, then LLDB doesn’t see it anymore. (Unclear if LLDB finds this or some earlier process in Xcode finds it.)
 
 ## Epilogue
 
-I wrote everything up in [SR-12933: lldb: Couldn’t IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), and hopefully somebody smarter than me picks this up and fills in all the questions I have right now.
+I wrote everything up in [SR-12933: lldb: Couldn’t IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), and hopefully somebody smarter than me picks this up and answers all the questions I have right now.
 
 The good parts: We have [a workaround](https://pspdfkit.com/guides/ios/current/knowledge-base/debugging-issues/), LLDB on master seems to deal better with the reconstruction, and having something that reproduces is the first step in getting it fixed.
 
