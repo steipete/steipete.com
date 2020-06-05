@@ -3,6 +3,7 @@ layout: post
 title:  "zld - a faster version of Apple's linker"
 date:   2020-06-05 10:00:00 +0200
 tags: iOS development
+image: /assets/img/2020/zld/benchmarks.png
 ---
 
 zld is [a drop-in replacement of Apple's linker](https://github.com/michaeleisel/zld) that uses optimized data structures and parallelizing to speed things up. It comes with a great promise:  
@@ -55,7 +56,7 @@ After implementing the above, our Mac Catalyst builds started failing:
 Building for Mac Catalyst, but linking in .tbd built for , file '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks//CoreImage.framework/CoreImage.tbd' for architecture x86_64
 ```
 
-It seems there's some special code in the linker that helps with linking the correct framework for Mac Catalyst, which isn't yet part of the v510 release. Apple released [v520 and v530 of the ld64 project](https://opensource.apple.com/source/ld64/) so there's a good chance this is fixed once `zld` merges with upstream.
+It seems there's some special code in the linker that helps with linking the correct framework for Mac Catalyst, which isn't yet part of the v510 release. Apple released [v520 and v530 of the ld64 project](https://opensource.apple.com/source/ld64/) so there's a good chance this is fixed once `zld` merges with upstream ([Tracked in #43](https://github.com/michaeleisel/zld/issues/43)).
 
 Writing this conditionally in `xcconfig` is tricky, as there's no support for a separate architecture like `[sdk=maccatalyst]` (Apple folks: FB6822740)
 
