@@ -56,7 +56,7 @@ After implementing the above, our Mac Catalyst builds started failing:
 Building for Mac Catalyst, but linking in .tbd built for , file '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks//CoreImage.framework/CoreImage.tbd' for architecture x86_64
 ```
 
-It seems there's some special code in the linker that helps with linking the correct framework for Mac Catalyst, which isn't yet part of the v510 release. Apple released [v520 and v530 of the ld64 project](https://opensource.apple.com/source/ld64/) so there's a good chance this is fixed once `zld` merges with upstream ([Tracked in #43](https://github.com/michaeleisel/zld/issues/43)).
+It seems there's some special code in the linker that helps with linking the correct framework for Mac Catalyst, which isn't yet part of the v510 release. Apple released [v520 and v530 of the ld64 project](https://opensource.apple.com/source/ld64/) so there's a good chance this is fixed once `zld` merges with upstream ([Issue #43](https://github.com/michaeleisel/zld/issues/43)).
 
 Writing this conditionally in `xcconfig` is tricky, as there's no support for a separate architecture like `[sdk=maccatalyst]` (Apple folks: FB6822740)
 
