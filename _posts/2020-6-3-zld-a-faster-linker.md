@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "zld - a faster version of Apple's linker"
-date:   2020-06-03 14:00:00 +0200
+date:   2020-06-04 10:00:00 +0200
 tags: iOS development
 ---
 
@@ -9,13 +9,12 @@ zld is [a drop-in replacement of Apple's linker](https://github.com/michaeleisel
 
 > “Feel free to file an issue if you find it's not at least 40% faster for your case”
 
-# Measuring Performance
 In our setup, this indeed improves overall build time by ~25%, measured from a clean build to the running application. Building [PSPDFCatalog](https://pspdfkit.com/guides/ios/current/getting-started/example-projects/) in debug mode with [ccache](https://pspdfkit.com/blog/2015/ccache-for-fun-and-profit/) enabled and everything pre-cached takes roughly:
 
 - ld: 4:40min
 - zld: 3:30min
 
-# Installation
+## Installation
 Zld is easy to enable for your project:
 
 1. `brew install michaeleisel/zld/zld`
@@ -42,13 +41,13 @@ else
 fi
 ```
 
-We solved the second problem with different paths by defining a `REPOROOT = "$(SRCROOT)/../..";` in each project, so we can build a path from the root of the monorepo and only have one location for the `zld-detect` script:
+The second problem (different paths) was solved by defining a `REPOROOT = "$(SRCROOT)/../..";` in each project, so we can build a path from the root of the monorepo and only have one location for the `zld-detect` script:
 
 ```
 OTHER_LDFLAGS = -ObjC -Wl,-no_uuid -fuse-ld=$(REPOROOT)/iOS/Resources/zld-detect
 ```
 
-# Mac Catalyst
+## Mac Catalyst
 
 After implementing the above, our Mac Catalyst builds started failing:
 
