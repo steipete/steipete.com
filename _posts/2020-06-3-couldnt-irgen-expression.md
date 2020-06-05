@@ -145,8 +145,14 @@ Which led me to the obvious next question: How are these dSYMs found? I know [Ap
 
 ## Epilogue
 
-I wrote everything up in [SR-12933: lldb: Couldn’t IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), and hopefully somebody smarter than me picks this up and answers all the questions I have right now.
+I wrote everything up in [SR-12933: lldb: Couldn’t IRGen expression; with -no-serialize-debugging-options](https://bugs.swift.org/browse/SR-12933), ~and hopefully somebody smarter than me picks this up and answers all the questions I have right now.~
 
-The good parts: We have [a workaround](https://pspdfkit.com/guides/ios/current/knowledge-base/debugging-issues/), LLDB on master seems to deal better with the reconstruction, and having something that reproduces is the first step in getting it fixed.
+Adrian already answered the ticket and [found a bug in dsymutil](https://bugs.swift.org/browse/SR-12933?focusedCommentId=56860&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-56860) that would misdirect LLDB to the .swiftmodule files on disk (the ones on the machine the .dSYM was built with), and disregard the ones included in the .dSYM itself.
+
+He also solved the LLDB lookup mystery. LLDB looks:
+
+1. next to the executable/dylib
+2. through any [custom .dSYM location mechanism](https://lldb.llvm.org/use/symbols.html)
+3. through Spotlight, using the UUID of the executable/dylib. Note that Spotlight doesn't index `/tmp`.
 
 If you like stories like this, [follow me on Twitter](https://twitter.com/steipete) and read them as they happen.
