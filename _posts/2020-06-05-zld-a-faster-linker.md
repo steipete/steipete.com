@@ -15,6 +15,8 @@ In our setup, this indeed improves overall build time by ~25%, measured from a c
 - ld: 4:40min
 - zld: 3:30min
 
+If you ask yourself, is this safe? [Instagram uses it too](https://twitter.com/alanzeino/status/1268230184215252992?s=21).
+
 ## Installation
 Zld is easy to enable for your project:
 
