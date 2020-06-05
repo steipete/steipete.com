@@ -8,7 +8,7 @@ image: /assets/img/2020/zld/benchmarks.png
 
 zld is [a drop-in replacement of Apple's linker](https://github.com/michaeleisel/zld) that uses optimized data structures and parallelizing to speed things up. It comes with a great promise:  
 
-> “Feel free to file an issue if you find it's not at least 40% faster for your case”
+> “Feel free to file an issue if you find it's not at least 40% faster for your case” — [Michael Eisel, Maintainer](https://github.com/michaeleisel)
 
 In our setup, this indeed improves overall build time by ~25%, measured from a clean build to the running application. Building [PSPDFCatalog](https://pspdfkit.com/guides/ios/current/getting-started/example-projects/) in debug mode with [ccache](https://pspdfkit.com/blog/2015/ccache-for-fun-and-profit/) enabled and everything pre-cached takes roughly:
 
