@@ -6,7 +6,12 @@ layout: compress
 # MIT Licensed
 ---
 
-/* Registering Service Worker */
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}');
-};
+// kill old service workers
+if(window.navigator && navigator.serviceWorker) {
+  navigator.serviceWorker.getRegistrations()
+  .then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
