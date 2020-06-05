@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "zld - a faster version of Apple's linker"
-date:   2020-06-04 10:00:00 +0200
+date:   2020-06-05 10:00:00 +0200
 tags: iOS development
 ---
 
