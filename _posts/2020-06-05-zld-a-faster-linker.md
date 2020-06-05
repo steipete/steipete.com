@@ -82,4 +82,6 @@ In `Defaults-Debug.xcconfig` and `Defaults-testing.xcconfig`
 OTHER_LDFLAGS = $(inherited) $(PSPDF_NORELEASE_LDFLAGS)
 ```
 
+Update: Xcode also supports [`LD`](https://twitter.com/thi_dt/status/1268848373953474560) to make this even easier to configure!.
+
 That's it! [Let me know on Twitter](https://twitter.com/steipete) if this was helpful.
