@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "The Great Mac Catalyst Text Input Crash Hunt"
-date:   2020-05-30 00:00:00 +0200
+title: "The Great Mac Catalyst Text Input Crash Hunt"
+date: 2020-05-30 00:00:00 +0200
 tags: iOS development hacks
 image: /assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.png
 ---
@@ -10,7 +10,7 @@ image: /assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.p
 div.post-content > img:first-child { display:none; }
 </style>
 
-As of macOS 10.15.4, text input in Mac Catalyst apps sometimes crashes. I've noticed this a lot in [Twitter for Mac](https://apps.apple.com/us/app/twitter/id1482454543?mt=12), however we also seen crash reports for [PDF Viewer for Mac](https://pdfviewer.io). My hope was that Apple would fix this in 10.15.5, but now the release is out and things are still crashing, so let's fix this ourselves:
+As of macOS 10.15.4, text input in Mac Catalyst apps sometimes crashes. I've noticed this a lot in [Twitter for Mac](https://apps.apple.com/us/app/twitter/id1482454543?mt=12), however, we also saw crash reports for [PDF Viewer for Mac](https://pdfviewer.io). My hope was Apple would fix this in 10.15.5, but now the release is out and things are still crashing, so let's fix this ourselves.
 
 ## A Typical Crash
 
@@ -48,17 +48,17 @@ Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
 11  com.apple.Foundation          	0x00007fff3496f7bc NSKeyValueDidChange + 437
 ```
 
-The crashers all circle around `NSTextCheckingController`, `NSBridgedTextCorrectionController` and `NSTextInputContext`, but [vary quite a bit](https://gist.github.com/steipete/7a125b20cce461bf9a072dfacd805507).
+The crashers all circle around `NSTextCheckingController`, `NSBridgedTextCorrectionController`, and `NSTextInputContext`, but they [vary quite a bit](https://gist.github.com/steipete/7a125b20cce461bf9a072dfacd805507).
 
 ## Crash Hypothesis
 
-A crash pattern like that indicates that we're dealing with an over-release. In times of ARC, this is rare, but it can still happen if a property is set on multiple threads. Text Input in Mac Catalyst is a challenge. There's text and grammar correction that simply works different to iOS, and a user expects that this works just like any other AppKit app. Apple bridged these systems:
+A crash pattern like the one above indicates we're dealing with an over-release. In times of ARC, this is rare, but it can still happen if a property is set on multiple threads. Text input in Mac Catalyst is a challenge. There's text and grammar correction that simply works differently than in iOS, and a user expects that this works just like with any other AppKit app. Apple bridged these systems:
 
 ```
 -[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) attributedString_RTI]
 ```
 
-Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/PrivateFrameworks/RemoteTextInput.framework/RTIInputSystemServiceSession.h) at the `RemoteTextInput.framework`, it uses XPC under the hood. XPC uses background threads to communicate.
+Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/PrivateFrameworks/RemoteTextInput.framework/RTIInputSystemServiceSession.h) at the `RemoteTextInput.framework`, we can see it uses XPC under the hood. XPC uses background threads to communicate:
 
 ```objc
 @interface RTIInputSystemServiceSession : RTIInputSystemSession <RTIInputSystemPayloadDelegate, RTIInputSystemSessionProtocol> {
@@ -66,7 +66,7 @@ Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/Pr
     ...
 ```
 
-In the first crash we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]` calling `-[RTIDocumentState selectedTextRange]`. Let's find the former. From [my earlier experiments with Marzipan](https://pspdfkit.com/blog/2018/porting-ios-apps-to-mac-marzipan-iosmac-uikit-appkit/), I know that a lot of UIKit-AppKit glue code is in UIKitMacHelper, in the iOSSupport system: `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitMacHelper.framework` which really is a symlink to `/System/Library/PrivateFrameworks/UIKitMacHelper.framework`. `Versions/A/UIKitMacHelper` However there's no `selectedRange_RTI` implementation. Where else could it be?
+In the first crash we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]` calling `-[RTIDocumentState selectedTextRange]`. Let's find the former. From [my earlier experiments with Marzipan](https://pspdfkit.com/blog/2018/porting-ios-apps-to-mac-marzipan-iosmac-uikit-appkit/), I know that a lot of UIKit-AppKit glue code is in UIKitMacHelper, in the iOSSupport system `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitMacHelper.framework`, which really is a symlink to `/System/Library/PrivateFrameworks/UIKitMacHelper.framework`. `Versions/A/UIKitMacHelper` However, there's no `selectedRange_RTI` implementation. Where else could it be?
 
 ## Finding the Implementation
 
