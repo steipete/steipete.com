@@ -254,7 +254,9 @@ Also see that `object_getClass`, and not the class method, is used here. While t
 "mov x9, x0\n"
 ```
 
-Once we return, in ARM64, the return value is in `x0`. We temporarily store this in the “scratch space” register set; `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on ARM64, we can only operate on the stack in 16 bytes, so we always restore pairs of registers:
+Once we return, in ARM64, the return value is in `x0`[^6]. We temporarily store this in the “scratch space” register set; `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on ARM64, we can only operate on the stack in 16 bytes, so we always restore pairs of registers:
+
+[^6]: This is true for our simple C function - large structs might use an indirect return. (`x8`).
 
 ```
 // pop {x0-x8, lr}
@@ -285,3 +287,20 @@ Luckily, we currently only need x86_64 and arm64, and one day we might even be a
 After being almost done with this, Joe Groff [pointed out](https://twitter.com/jckarter/status/1270115008454684673?s=21) that there’s another (although less efficient) way to not need assembly for my specific case — but having a generic `super` logic has many other useful possibilities, and it was a great learning experience.
 
 Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
+
+## Further Resources
+
+Thanks for everyone helping me with this post, especially [@badlogicgames](https://twitter.com/badlogicgames) and [@DavidJGoldman](https://twitter.com/DavidJGoldman)
+
+I used these resources to learn:
+
+- [Apple ARM64 Function Calling Conventions](https://developer.apple.com/library/ios/documentation/Xcode/Conceptual/iPhoneOSABIReference/Articles/ARM64FunctionCallingConventions.html)
+- [ARM Assembly Basics by Azeria](https://azeria-labs.com/writing-arm-assembly-part-1/)
+- [InspectiveC: objc_msgSend hook for debugging/inspection purposes](https://github.com/DavidGoldman/InspectiveC)
+- [amd64 and va_arg](https://blog.nelhage.com/2010/10/amd64-and-va_arg/)
+- [Stack frame layout on x86-64](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64)
+- [Local Variables on the Stack](https://bob.cs.sonoma.edu/IntroCompOrg-RPi/sec-varstack.html)
+- [Wikipedia: Calling convention](https://en.wikipedia.org/wiki/Calling_convention#x86_(32-bit)
+- [Using the Stack in AArch64: Implementing Push and Pop](https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/using-the-stack-in-aarch64-implementing-push-and-pop)
+- [x86 Assembly Guide](https://www.cs.yale.edu/flint/cs421/papers/x86-asm/asm.html)
+- [ARM Compiler Documentation](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0801a/BABBDBAD.html) 
