@@ -62,6 +62,15 @@ class_addMethod(clazz, selector, imp_implementationWithBlock(^(__unsafe_unretain
 
 This works, and [we’ve been shipping code](https://pspdfkit.com/blog/2019/swizzling-in-swift/) like this for a while. For InterposeKit, I wanted to write the same in Swift.
 
+**Update:** Marcel points out correctly that I am mixing up `va_arg` and `va_list`, which is absolutely not the same. Compare the two definitions of printf:
+
+```
+int printf(const char * restrict format, …);
+int vprintf(const char * restrict format, va_list ap);
+```
+
+It is possible to convert the first version into the second (via `va_start`) but not vice versa. So this code as-is works by pure luck.
+
 ## Super in Swift
 
 An additional goal was to be “pure” Swift, not because I’m a purist, but because SwiftPM doesn’t yet support mixed language projects.[^4] We can’t write a C header to import `objc_msgSendSuper2`, but we sure can look it up at runtime:
@@ -116,13 +125,17 @@ OBJC_EXPORT id _Nullable objc_msgSendSuper(struct objc_super * _Nonnull super, S
 #endif
 ```
 
-Previously, it was declared as a function that took `id`, `SEL`, and variadic arguments, returning `id` — now it takes and returns `void`. Why the change? The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. If you just pass pointers, this matched reasonably enough to mostly “just work.”
+Previously, it was declared as a function that took `id`, `SEL`, and variadic arguments, returning `id` — now it takes and returns `void`. Why the change? 
 
-However, the ARM64 ABI [is more complicated](https://blog.nelhage.com/2010/10/amd64-and-va_arg/), and variadic arguments are passed on the stack. Without casting, even a trivial use of `objc_msgSend` will result in a crash. There is an interesting article about this by Mike Ash entitled [objc_msgSend’s New Prototype](https://www.mikeash.com/pyblog/objc_msgsends-new-prototype.html). Mike’s blog is brilliant, and I’m extremely happy that he still writes new posts from time to time, despite now working at Apple.
+The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. In the ARM64 ABI [variadic arguments are passed on the stack](https://blog.nelhage.com/2010/10/amd64-and-va_arg/). However, Apple changed the way message-sending works in ARM64 to not use the variadic ABI anymore, using the regular function-calling ABI instead. 
+
+Without casting, even a trivial use of `objc_msgSend` will result in a crash. There is an interesting article about this by Mike Ash entitled [objc_msgSend’s New Prototype](https://www.mikeash.com/pyblog/objc_msgsends-new-prototype.html). Mike’s blog is brilliant, and I’m extremely happy that he still writes new posts from time to time, despite now working at Apple.
 
 ## Accepting Assembly
 
-Usually the compiler takes care of casting `objc_msgSendSuper` for us — this isn’t something it can do when we try to do this at runtime. The only way to call this correctly without getting lucky is if we write the call in assembly.
+The root problem is that `objc_msgSend` cannot be implemented in C, not at any speed[^7]. We cannot build dynamic parameter lists.  Usually the compiler takes care of casting `objc_msgSendSuper` for us — this isn’t something it can do when we try to do this at runtime. The only way to call this correctly without getting lucky is if we write the call in assembly.
+
+[^7]: The old GNU runtime used `objc_lookup(receiver-class, SEL)(receiver, SEL, …)`, a different approach altogether.
 
 First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this entire thing as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article.
 
