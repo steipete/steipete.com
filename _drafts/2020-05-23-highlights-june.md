@@ -11,3 +11,5 @@ tags: highlights
 
 Mind Blown.
 {% twitter https://twitter.com/zhekakozlov/status/1135506701438857217 %}
+
+{% twitter https://twitter.com/jtparker09/status/1270671678402637824 %}
