@@ -299,7 +299,7 @@ After being almost done with this, Joe Groff [pointed out](https://twitter.com/j
 
 Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
 
-## Using your new Assembler Superpowers
+## Bonus: Using your new Assembler Superpowers
 
 Now that you understand assembly, we can look at what the compiler really generates with a super call. 
 
