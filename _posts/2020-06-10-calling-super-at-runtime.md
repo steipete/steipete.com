@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Calling Super at Runtime in Swift"
-date:   2020-06-06 10:30:00 +0200
+title: "Calling Super at Runtime in Swift"
+date: 2020-06-06 10:30:00 +0200
 tags: highlights
 image: /assets/img/2020/calling-super/arm64-registers.jpg
 ---
@@ -10,11 +10,11 @@ image: /assets/img/2020/calling-super/arm64-registers.jpg
 div.post-content > img:first-child { display:none; }
 </style>
 
-While working on [InterposeKit](https://interposekit.com/), I had a quite specific need: create an implementation that simply calls super, but at runtime, instead of compile time. Doesn't sound so hard, does it? Well, here we go again.
+While working on [InterposeKit](https://interposekit.com/), I had a rather specific need: Create an implementation that simply calls super, but at runtime instead of at compile time. Doesn’t sound so hard, does it? Well, here we go again.
 
-## How does super work?
+## How Does Super Work?
 
-Let's say, you have an empty `UIViewController` subclass and override `viewDidLoad` like this:
+Let’s say you have an empty `UIViewController` subclass and override `viewDidLoad` like this:
 
 ```swift
 override func viewDidLoad() {
@@ -22,7 +22,7 @@ override func viewDidLoad() {
 }
 ```
 
-Simple enough! What the compiler will create for you, is something along these lines:
+Simple enough! What the compiler creates for you is something along these lines:
 
 ```swift
  - (void)viewDidLoad {
@@ -34,19 +34,19 @@ Simple enough! What the compiler will create for you, is something along these l
  }
  ```
 
-In compiled code there's a lookup table so `object_getClass` doesn't need to be called, but you see the principle. A struct is created, and `objc_msgSendSuper2` is then called with it. The method is automatically dynamic, since UIKit is written in Objective-C so the Swift compiler knows that it needs to use dynamic dispatch. 
+In compiled code, there’s a lookup table so that `object_getClass` doesn’t need to be called, but you see the principle. A struct is created, and `objc_msgSendSuper2` is called with it. The method is automatically dynamic, since UIKit is written in Objective-C, so the Swift compiler knows it needs to use dynamic dispatch. 
 
-## `objc_msgSendSuper` vs `objc_msgSendSuper2`
+## objc_msgSendSuper vs. objc_msgSendSuper2
 
-There are two versions of the super call, and the difference is minor, but important: `objc_msgSendSuper` starts looking at the current class, which would cause an endless loop in above code, while `objc_msgSendSuper2` looks for the superclass.
+There are two versions of the super call, and the difference is minor but important: `objc_msgSendSuper` starts looking at the current class, which would cause an endless loop in above code, while `objc_msgSendSuper2` looks for the superclass.
 
-I've seen the compiler only emit `objc_msgSendSuper2`, but both need to be there forever, as they are both ABI.
+I’ve seen the compiler only emit `objc_msgSendSuper2`, but both need to be there forever, as they are both ABI.
 
 ## Being the Compiler
 
-Calling super seems fairly straightforward! Fill the struct, call the method, done - right? There however are a few problems with that.
+Calling super seems fairly straightforward! Fill the struct, call the method, done — right? There are however a few problems with that.
 
-For once, while `objc_msgSendSuper` is in the `objc/message.h` header, the -2 version is not included in the public headers of the runtime. It is however not private API, since Clang creates these calls. The runtime is also [open source](https://opensource.apple.com/source/objc4/objc4-493.9/runtime/objc-abi.h), so we can copy the header and call it:
+For one, while `objc_msgSendSuper` is in the `objc/message.h` header, the -2 version is not included in the public headers of the runtime. It is not private API, since Clang creates these calls. The runtime is also [open source](https://opensource.apple.com/source/objc4/objc4-493.9/runtime/objc-abi.h), so we can copy the header and call it:
 
 ```objc
 // https://opensource.apple.com/source/objc4/objc4-493.9/runtime/objc-abi.h
@@ -60,11 +60,11 @@ class_addMethod(clazz, selector, imp_implementationWithBlock(^(__unsafe_unretain
     }), types);
 ```
 
-This indeed works and [we've been shipping code](https://pspdfkit.com/blog/2019/swizzling-in-swift/) like this for a while. For InterposeKit, I wanted to write the same in Swift.
+This works, and [we’ve been shipping code](https://pspdfkit.com/blog/2019/swizzling-in-swift/) like this for a while. For InterposeKit, I wanted to write the same in Swift.
 
 ## Super in Swift
 
-An additional goal was to be "pure" Swift, not because I'm a purist but because SwiftPM doesn't yet support mixed language projects[^4]. We can't write a C header to import `objc_msgSendSuper2`, but we sure can look it up at runtime:
+An additional goal was to be “pure” Swift, not because I’m a purist, but because SwiftPM doesn’t yet support mixed language projects.[^4] We can’t write a C header to import `objc_msgSendSuper2`, but we sure can look it up at runtime:
 
 [^4]: SwiftPM supports [multiple modules](https://medium.com/@joesusnick/swift-package-manager-with-a-mixed-swift-and-objective-c-project-part-2-2-e71dad234e6), so things can be split up. There are also plans to lift this limitation eventually.
 
@@ -73,7 +73,7 @@ let handle = dlopen(nil, RTLD_LAZY);
 let sendSuper2 = dlsym(handle, "objc_msgSendSuper2");
 ```
 
-This works and is a [common trick](https://gist.github.com/neonichu/dcf49b26a2742404d8f1) to avoid C headers - it is slightly slower, but as long as you cache the result, it should be hardly measurable.
+This works, and it’s a [common trick](https://gist.github.com/neonichu/dcf49b26a2742404d8f1) to avoid C headers — it’s slightly slower, but as long as you cache the result, it should be hardly measurable:
 
 ```swift
 let block: @convention(block) (AnyObject, va_list) -> AnyObject = { obj, vaList in
@@ -88,23 +88,23 @@ let block: @convention(block) (AnyObject, va_list) -> AnyObject = { obj, vaList 
 }
 ```
 
-This however doesn't compile. The Swift compiler crashes in various flavors, which I reported with example. Since InterposeKit is small, they should be useful to reproduce.
+But this doesn’t compile. The Swift compiler crashes in various flavors, which I reported with examples. Since InterposeKit is small, they should be useful to reproduce:
 
 - [SR-12945: Abort Trap 6 when creating objc_super struct](https://bugs.swift.org/projects/SR/issues/SR-12945)
 - [SR-12944: Segmentation fault: 11 when parsing KVO](https://bugs.swift.org/projects/SR/issues/SR-12944)
 - [SR-12950: Compiler crash while merging swiftmodule in DeclSerializer, Illegal instruction: 4](https://bugs.swift.org/projects/SR/issues/SR-12950)
 
-I found a [cursed workaround](https://github.com/steipete/InterposeKit/pull/15/commits/e8a63b89247e2e09e5659e9f83b02d0bc5300605#diff-badbaddeef03b9400d4aedb5a90403d3R105-R109) and indeed the super call logic works. However, someone on the internet quickly told me that I'm wrong.
+I found a [cursed workaround](https://github.com/steipete/InterposeKit/pull/15/commits/e8a63b89247e2e09e5659e9f83b02d0bc5300605#diff-badbaddeef03b9400d4aedb5a90403d3R105-R109), and indeed the super call logic works. However, someone on the internet quickly told me that I’m wrong.
 
 {% twitter https://twitter.com/gparker/status/1269694143543955456 %}
 
-Greg worked on the Objective-C runtime for many years, so if he tells you that this is only working by "blind luck", then that's not something you should ship. He also has a [really interesting blog called "Hamster Emporium"](http://www.sealiesoftware.com/blog/), if you're into understanding low-level things.
+Greg worked on the Objective-C runtime for many years, so if he tells you something is only working by “blind luck,” it’s not something you should ship. He also has a [really interesting blog called Hamster Emporium](http://www.sealiesoftware.com/blog/), if you’re into understanding low-level things.
 
 ## Casting Objective-C Message Sends
 
-The thing I got wrong is something many folks struggled with - the function looks like it takes a `va_list`, but it really doesn't. This problem caused enough issues that Apple changed[^1] the method signature of both `objc_msgSend` and `objc_msgSendSuper` with the release of Xcode 11:
+The thing I got wrong is something many folks struggled with: The function looks like it takes a `va_list`, but it really doesn’t. This problem caused enough issues that Apple changed[^1] the method signature of both `objc_msgSend` and `objc_msgSendSuper` with the release of Xcode 11:
 
-[^1]: `OBJC_OLD_DISPATCH_PROTOTYPES` has been an option for many years, Apple just recently changed the default.
+[^1]: `OBJC_OLD_DISPATCH_PROTOTYPES` has been an option for many years, but Apple only recently changed the default.
 
 ```c
 #if !OBJC_OLD_DISPATCH_PROTOTYPES
@@ -116,39 +116,37 @@ OBJC_EXPORT id _Nullable objc_msgSendSuper(struct objc_super * _Nonnull super, S
 #endif
 ```
 
-Previously, it was declared as a function that took `id`, `SEL`, and variadic arguments, returning id - now it takes and returns void. Why the change? The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. If you just pass pointers, this did match reasonably enough to mostly "just work".
+Previously, it was declared as a function that took `id`, `SEL`, and variadic arguments, returning `id` — now it takes and returns void. Why the change? The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. If you just pass pointers, this did match reasonably enough to mostly “just work.”
 
-The ARM64 ABI however [is more complicated.](https://blog.nelhage.com/2010/10/amd64-and-va_arg/), and variadic arguments are passed on the stack. Without casting, even a trivial use of `objc_msgSend` will result in a crash. There is an interesting article by Mike Ash about [objc_msgSend's New Prototype](https://www.mikeash.com/pyblog/objc_msgsends-new-prototype.html). Mike's blog is brilliant, and I'm extremely happy that he still writes new posts from time to time, despite now working at Apple.
+However, the ARM64 ABI [is more complicated.](https://blog.nelhage.com/2010/10/amd64-and-va_arg/), and variadic arguments are passed on the stack. Without casting, even a trivial use of `objc_msgSend` will result in a crash. There is an interesting article by Mike Ash entitled [objc_msgSend’s New Prototype](https://www.mikeash.com/pyblog/objc_msgsends-new-prototype.html). Mike’s blog is brilliant, and I’m extremely happy that he still writes new posts from time to time, despite now working at Apple.
 
 ## Accepting Assembly
 
-Usually the compiler takes care of casting `objc_msgSendSuper` for us - this isn't something that it can do when we try to do this at runtime. The only way to call this in a correct without "blind luck" is if we write the call in assembly.
+Usually the compiler takes care of casting `objc_msgSendSuper` for us — this isn’t something that it can do when we try to do this at runtime. The only way to call this in a correct without getting lucky is if we write the call in assembly.
 
-First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it's a useful skill that will make you better at debugging, so I've approached this as a "fun" challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 here through this article.
+First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article.
 
 ![Me trying to make sense of this via drawing](/assets/img/2020/calling-super/arm64-registers.jpg) 
 
-**Caller-saved registers** ("clobbered") are registers you can freely work with and use as temporary variables. It's normal that a call writes temporary values into these registers. Some of the (specifically `x0-x7`) are used to transport parameters when calling other functions.
+**Caller-saved registers** (“clobbered”) are registers you can freely work with and use as temporary variables. It’s normal that a call writes temporary values into these registers. Some of them (specifically `x0-x7`) are used to transport parameters when calling other functions.
 
-**Callee-saved registers** ("call-preserved") registers are expected to stay the same after your function returns. Best idea is to simply not touch them.[^3]
+**Callee-saved registers** (“call-preserved”) are registers that are expected to stay the same after your function returns. The best idea is to simply not touch them.[^3]
 
-[^3]: There's no need to deal with this register type for our code here, but compilers sure use these. There's a good [answer on StackOverflow](https://stackoverflow.com/questions/9268586/what-are-callee-and-caller-saved-registers) that explains this in more detail.
+[^3]: There’s no need to deal with this register type for our code here, but compilers sure use these. There’s a good [answer on Stack Overflow](https://stackoverflow.com/questions/9268586/what-are-callee-and-caller-saved-registers) that explains this in more detail.
 
-There are some other special registers such as the **`fp` frame pointer** (usually an offset of the stack pointer), **`lp` link register** (holds the address to return to when a function completes) and the **`sp` stack pointer** (holds the address of the stack buffer).
+There are some other special registers, such as the **`fp` frame pointer** (usually an offset of the stack pointer), **`lp` link register** (holds the address to return to when a function completes), and the **`sp` stack pointer** (holds the address of the stack buffer).
 
 ## Assembly and Swift
 
-[Unlike Rust](https://twitter.com/josh_triplett/status/1270104436552024065?s=21), Swift has no way yet to add inline assembly. Both have the approach to be a system language, and there are [hacks to get inline assembly](https://twitter.com/aalonso128/status/1080985173515214849?s=21) working, but I haven't seen an evolution proposal so far.
+[Unlike Rust](https://twitter.com/josh_triplett/status/1270104436552024065?s=21), Swift doesn’t yet have a way to add inline assembly. Both have the approach to be a system language, and there are [hacks to get inline assembly](https://twitter.com/aalonso128/status/1080985173515214849?s=21) working, but I haven’t seen an evolution proposal so far.
 
-Adding inline assembly is a niche feature, but has valid use cases, even Chris Latter [is hoping that](https://forums.swift.org/t/a-proposal-for-inline-assembly/4643/4) a future version of Swift will include it. For now, we can use C and the Swift/Obj-C interop to write assembly.
-
-
+Adding inline assembly is a niche feature, but it has valid use cases; even Chris Latter [is hoping that](https://forums.swift.org/t/a-proposal-for-inline-assembly/4643/4) a future version of Swift will include it. For now, we can use C and the Swift/Obj-C interop to write assembly.
 
 ## Perfectly Forwarding Arguments 
 
-Back to calling super: The goal is to perfectly forward all arguments from the caller to `objc_msgSendSuper2`, while also changing the first argument from `self` to `struct objc_super` and potentially also filling this struct. Sounds easy enough!
+Back to calling super: The goal is to perfectly forward all arguments from the caller to `objc_msgSendSuper2`, while also changing the first argument from `self` to `struct objc_super`, and potentially also filling this struct. Sounds easy enough!
 
-My first inspiration was [SGVSuperMessagingProxy](https://github.com/sanekgusev/SGVSuperMessagingProxy/blob/master/Pod/Sources/Common/TrampolineMacros.h). This uses an extremely clever trick of creating a proxy at runtime which exactly one ivar, which is the already pre-filled super struct. So the trampoline boils down to this:
+My first inspiration was [SGVSuperMessagingProxy](https://github.com/sanekgusev/SGVSuperMessagingProxy/blob/master/Pod/Sources/Common/TrampolineMacros.h). This uses an extremely clever trick of creating a proxy at runtime with exactly one ivar, which is the prefilled super struct. So the trampoline boils down to this:
 
 ```c
 __attribute__((__naked__)) \
@@ -161,14 +159,13 @@ asm volatile ("add " #selfLocation ", " #selfLocation ", #" #offset "\n\t" \
 
 ## Class Variable Layout
 
-What this code here so cleverly does it that it simply adds 8 byte to the location of self. The layout of classes looks like this:
+What this code here so cleverly does is that it simply adds eight bytes to the location of self. The layout of classes looks like this:
 
 Class Memory Layout: [[ISA] \[IVARs]]
 
-Remember, in ARM64, the caller-arguments are in `x0` to `x7`.
-`X0` here is a memory pointer, pointing to the beginning of the class, which is where the isa pointer is. isa means “is a”. Every Objective-C object (including every class) has an isa pointer[^2]. If we increment by 64-bit = 8 byte, we get to the next storage location, that's where the class variables are stored.
+Remember, in ARM64, the caller arguments are in `x0` to `x7`. `X0` here is a memory pointer, pointing to the beginning of the class, which is where the isa pointer is. isa means “is a.” Every Objective-C object (including every class) has an isa pointer.[^2] If we increment by 64-bit = 8 byte, we get to the next storage location, which is where the class variables are stored.
 
-[^2]: Swift uses the same concept, but has a second variable in there, so the offset would be 16. SGVSuperMessagingProxy works with any function marked as dynamic, not just Objective-C. Pretty amazing to see how new things still map to old concepts!
+[^2]: Swift uses the same concept, but it has a second variable in there, so the offset would be 16. SGVSuperMessagingProxy works with any function marked as dynamic, not just Objective-C. Pretty amazing to see how new things still map to old concepts!
 
 This is what the assembly looks like without calling boilerplate:
 
@@ -177,13 +174,13 @@ add x0, x0, 8
 b objc_msgSendSuper2
 ```
 
-This is *beautiful*, since it's very simple, and doesn't touch any of our calling registers with the exception of the one that needs to be changed. This doesn't work in my case though - the goal was to create a super class in an existing class hierarchy, not via creating a new proxy where we have exact control of the memory layout. 
+This is *beautiful*, since it’s very simple, and it doesn’t touch any of our calling registers — with the exception of the one that needs to be changed. This doesn’t work in my case though — the goal was to create a super class in an existing class hierarchy, not via creating a new proxy where we have exact control of the memory layout. 
 
-## Trampolines, Explained
+## Trampolines Explained
 
-In other architectures, we would just generate the assembly on the fly, changing the offset as needed. Having memory pages that are both writable (`PROT_WRITE`) and executable (`PROT_EXEC`) requires a dynamic-codesigning entitlement from Apple, something only very few system processes such as JavaScriptCore get - certainly not a 3rd-party app. And while [there are ways around this](https://saagarjha.com/blog/2020/02/23/jailed-just-in-time-compilation-on-ios/), jailbreaking or attaching a debugger aren't realistic if we want to ship this.
+In other architectures, we would just generate the assembly on the fly, changing the offset as needed. Having memory pages that are both writable (`PROT_WRITE`) and executable (`PROT_EXEC`) requires a dynamic-codesigning entitlement from Apple, which is something only very few system processes such as JavaScriptCore get — certainly not a third-party app. And while [there are ways around this](https://saagarjha.com/blog/2020/02/23/jailed-just-in-time-compilation-on-ios/), jailbreaking or attaching a debugger aren’t realistic if we want to ship this.
 
-Another solution are trampolines. The basic principle is that you have two page next to each other with a fixed offset, and a large number of entry points for your implementation:
+Another solution is that of trampolines. The basic principle is that you have two pages next to each other with a fixed offset and a large number of entry points for your implementation:
 
 ```
                ┌───────────────────┐
@@ -201,17 +198,17 @@ Another solution are trampolines. The basic principle is that you have two page 
                └───────────────────┘               
 ```
 
-With a fixed offset, we can reach the corresponding data from entry, and can read variables as needed. This is how `imp_implementationWithBlock` works, and luckily it's also [open source](https://github.com/0xxd0/objc4/blob/master/objc4/runtime/objc-block-trampolines.mm) — but there be [dragons](https://twitter.com/steipete/status/1269912889097363457?s=21).  Landon Fuller [reimplemented this](https://landonf.org/code/objc/imp_implementationWithBlock.20110413.html) back when it was introduced in iOS 4.3, and explains the principles really well.
+With a fixed offset, we can reach the corresponding data from entry, and we can read variables as needed. This is how `imp_implementationWithBlock` works, and luckily it’s also [open source](https://github.com/0xxd0/objc4/blob/master/objc4/runtime/objc-block-trampolines.mm) — but there be [dragons](https://twitter.com/steipete/status/1269912889097363457?s=21). Landon Fuller [reimplemented this](https://landonf.org/code/objc/imp_implementationWithBlock.20110413.html) back when it was introduced in iOS 4.3 and explains the principles really well.
 
 ## Tail Calling
 
-There's a lot of logic required to correctly manage tables, and things need locking to make it thread safe. I decided that this is gonna be the backup plan and tried a more direct approach to just fetch everything at runtime.
+There’s a lot of logic required to correctly manage tables, and things need locking to make it thread-safe. I decided that this is gonna be the backup plan and tried a more direct approach to just fetch everything at runtime.
 
-The principle: We save the registers that we might spill, fill the struct at runtime, restore the registers and then perform the tail call. This sounds simple now that I write it up, but this caused serious headaches at first. 
+The principle: We save the registers that we might spill, fill the struct at runtime, restore the registers, and then perform the tail call. This sounds simple now that I write it up, but it caused serious headaches at first. 
 
-Specifically, I tried to use the stack to generate the struct, which however breaks stack-based parameter passing. I tried calling malloc in asm but since that requires free, I couldn't do the tail-call optimization anymore. And oh so many crashes because I didn't really understood what it means to align the stack pointer on 16 bits.
+Specifically, I tried to use the stack to generate the struct, which breaks stack-based parameter passing. I tried calling malloc in asm, but since that requires free, I couldn’t do the tail-call optimization anymore. And I encountered oh so many crashes because I didn’t really understand what it means to align the stack pointer on 16 bits.
 
-Let's start by saving registers.
+Let’s start by saving registers:
 
 ```
 // push {x0-x8, lr} (call params are: x0-x7)
@@ -222,19 +219,19 @@ Let's start by saving registers.
 "stp x0, x1, [sp, #-16]!\n" // push x1, then x0
 ```
 
-`stp` saves a pair of registers (2*8=16 byte) on the stack, and also automatically decrements the stack pointer. The stack on most architectures grows downwards from max to 0, so via decrementing, we reserve memory.
+`stp` saves a pair of registers (2*8=16 byte) on the stack, and it also automatically decrements the stack pointer. The stack on most architectures grows downward from max to 0, so via decrementing, we reserve memory:
 
 ```
 // fetch filled struct objc_super, call with self + _cmd
 "bl _ITKReturnThreadSuper \n"
 ```
 
-`bl` means "branch with link" and calls a function, in this case a C function. The same call arguments exist here, so first parameter will be `self`, second `_cmd`. `bl` and `b` are [similar](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0068b/CIHFDDAF.html), however `bl` stores the address of the next instruction into the `lr` register, so the called function can jump back via `ret`.
+`bl` means “branch with link.” and it calls a function, in this case a C function. The same call arguments exist here, so the first parameter will be `self`, the second will be `_cmd`. `bl` and `b` are [similar](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0068b/CIHFDDAF.html), however `bl` stores the address of the next instruction into the `lr` register, so the called function can jump back via `ret`.
 
 ## C Helpers
 
 ```c
-// One thread local per thread should be enough
+// One thread local per thread should be enough.
 _Thread_local struct objc_super _threadSuperStorage;
 
 struct objc_super *ITKReturnThreadSuper(__unsafe_unretained id obj) {
@@ -245,11 +242,11 @@ struct objc_super *ITKReturnThreadSuper(__unsafe_unretained id obj) {
 }
 ```
 
-The C helper `ITKReturnThreadSuper` is fairly trivial, it fills the `objc_super` struct and returns it. In early versions I simply called `malloc()` and used a `dispatch_async` to later free it - a pretty horrible first hack, but it worked. This version uses a thread-local storage. `_Thread_local` was added in C11 and only works on global variables, but for our use case this should work just fine - even if we use `objc_super` multiple times in a call stack.
+The C helper `ITKReturnThreadSuper` is fairly trivial; it fills the `objc_super` struct and returns it. In early versions, I simply called `malloc()` and used a `dispatch_async` to later free it — a pretty horrible first hack, but it worked. This version uses a thread-local storage. `_Thread_local` was added in C11 and only works on global variables, but for our use case, this should work just fine — even if we use `objc_super` multiple times in a call stack.
 
-It's important to not go wild in here - we did not save floating point registers, only the bare minimum, so don't call random functions in here.
+It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here.
 
-Also see that `object_getClass` is used here, not the class method. While the latter can be overridden so a class "lies" about its type, this always returns the correct type. This is important since Apple uses this trick for Key-Value-Coding, which creates a subclass at runtime but also overrides `class` to hide this fact.
+Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact:
 
 ```
 // first param is now struct objc_super (x0)
@@ -257,7 +254,7 @@ Also see that `object_getClass` is used here, not the class method. While the la
 "mov x9, x0\n"
 ```
 
-Once we return, in ARM64, the return value is in `x0`. We temporarily store this in the "scratch space" register set, `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on `ARM64` we can only operate on the stack in 16-bytes, so we always restore pairs of registers:
+Once we return, in ARM64, the return value is in `x0`. We temporarily store this in the “scratch space” register set; `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on `ARM64`, we can only operate on the stack in 16 bytes, so we always restore pairs of registers:
 
 ```
 // pop {x0-x8, lr}
@@ -268,7 +265,7 @@ Once we return, in ARM64, the return value is in `x0`. We temporarily store this
 "ldp x8, lr, [sp], #16\n"
 ```
 
-While there are ways around this, they are less elegant and require even more assembly. We are now back at the state of before doing anything, almost ready for the super call.
+While there are ways around this, they are less elegant and require even more assembly. We are now back at the state of before doing anything, almost ready for the super call:
 
 ```
 // get new return (adr of the objc_super class)
@@ -281,10 +278,10 @@ We copy `x9` back to `x0` and then call `objc_msgSendSuper2` with `b`, not savin
 
 ## Assembly Notes
 
-That's it. You can [see the result for both architectures](https://github.com/steipete/InterposeKit/blob/10c4aa44d6d5f44d23c057f6d7e4cbf128df5a70/Sources/ITKAddSuperMethod/ITKAddSuperMethod.m#L113-L243) and also the `objc_msgSendSuper2_stret` variant for struct returns on GitHub.
+That’s it. You can [see the result for both architectures](https://github.com/steipete/InterposeKit/blob/10c4aa44d6d5f44d23c057f6d7e4cbf128df5a70/Sources/ITKAddSuperMethod/ITKAddSuperMethod.m#L113-L243) and also the `objc_msgSendSuper2_stret` variant for struct returns on GitHub.
 
-Luckily we currently only need x86_64 and arm64, and one day we might even be able to [drop Intel altogether](https://www.bloomberg.com/news/articles/2020-06-09/apple-plans-to-announce-move-to-its-own-mac-chips-at-wwdc). Apple removed support for armv7 (32-bit arm) in iOS 11 and i386 with macOS Catalina, so I didn't wrote variants, although it wouldn't be so hard - the principles are the same.
+Luckily, we currently only need x86_64 and arm64, and one day we might even be able to [drop Intel altogether](https://www.bloomberg.com/news/articles/2020-06-09/apple-plans-to-announce-move-to-its-own-mac-chips-at-wwdc). Apple removed support for armv7 (32-bit arm) in iOS 11 and i386 with macOS Catalina, so I didn’t write variants, although it wouldn’t be so hard, as the principles are the same.
 
-After being almost done with this, Joe Groff [pointed out](https://twitter.com/jckarter/status/1270115008454684673?s=21) that there's another (although less efficient) way to not need assembly for my specific case - but having a generic super logic has many other useful possibilities, and it was a great learning experience.
+After being almost done with this, Joe Groff [pointed out](https://twitter.com/jckarter/status/1270115008454684673?s=21) that there’s another (although less efficient) way to not need assembly for my specific case — but having a generic super logic has many other useful possibilities, and it was a great learning experience.
 
-Now I'd [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
+Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
