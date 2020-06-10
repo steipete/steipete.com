@@ -3,12 +3,8 @@ layout: post
 title: "Calling Super at Runtime in Swift"
 date: 2020-06-06 10:30:00 +0200
 tags: highlights
-image: /assets/img/2020/calling-super/arm64-registers.jpg
+image: /assets/img/2020/calling-super/Xcode-debug.png
 ---
-
-<style type="text/css">
-div.post-content > img:first-child { display:none; }
-</style>
 
 While working on [InterposeKit](https://interposekit.com/), I had a rather specific need: Create an implementation that simply calls `super`, but at runtime instead of at compile time. Doesn’t sound so hard, does it? Well, here we go again.
 
