@@ -34,7 +34,7 @@ Simple enough! What the compiler creates for you is something along these lines:
  }
  ```
 
-In compiled code, there’s a lookup table so that `object_getClass` doesn’t need to be called, but you see the principle. A struct is created, and `objc_msgSendSuper2` is called with it. The method is automatically dynamic, since UIKit is written in Objective-C, so the Swift compiler knows it needs to use dynamic dispatch. 
+In compiled code, there’s a lookup table so that `object_getClass` doesn’t need to be called, but you see the principle. A struct is created, and `objc_msgSendSuper2` is called with it. The method is automatically dynamic, since UIKit is written in Objective-C, so the Swift compiler knows it needs to use dynamic dispatch.
 
 ## objc_msgSendSuper vs. objc_msgSendSuper2
 
@@ -246,7 +246,9 @@ The C helper `ITKReturnThreadSuper` is fairly trivial; it fills the `objc_super`
 
 It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here.
 
-Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact:
+Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact.
+
+This also implies that the solution here is NOT a general super call, but will only work on the outermost object level. If you subclass again, this will not work correct anymore.
 
 ```
 // first param is now struct objc_super (x0)
@@ -287,6 +289,50 @@ Luckily, we currently only need x86_64 and arm64, and one day we might even be a
 After being almost done with this, Joe Groff [pointed out](https://twitter.com/jckarter/status/1270115008454684673?s=21) that there’s another (although less efficient) way to not need assembly for my specific case — but having a generic `super` logic has many other useful possibilities, and it was a great learning experience.
 
 Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
+
+## Using your new Assembler Superpowers
+
+Now that you understand assembly, we can look at what the compiler really generates with a super call. 
+
+```
+  // Stack
+	sub	sp, sp, #48             ; =48
+	stp	x29, x30, [sp, #32]     ; 16-byte Folded Spill
+	add	x29, sp, #32            ; =32
+	// Fetch data
+	adrp	 x8, _OBJC_SELECTOR_REFERENCES_@PAGE
+	add	x8, x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF
+	adrp	 x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGE
+	add	x9, x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF
+	// build objc_super struct on the stack
+	stur 	x0, [x29, #-8]
+	str	x1, [sp, #16]
+	ldur x10, [x29, #-8]
+	str	x10, [sp]
+	ldr	x9, [x9]
+	str	x9, [sp, #8]
+	ldr	x1, [x8]
+	mov	x0, sp
+	// regular call
+	bl	 _objc_msgSendSuper2
+	ldp	x29, x30, [sp, #32]     ; 16-byte Folded Reload
+	add	sp, sp, #48             ; =48
+	ret
+```
+
+You can debug this via Debug -> Debug Workflow -> Always Show Disassembly. Step through commands via `ni` and `is`. 
+
+![Xcode Assembly Debugger](/assets/img/2020/calling-super/Xcode-debug.png) 
+
+Right before the call to `_objc_msgSendSuper2` we can inspect the objc_super struct:
+
+```
+(lldb) po *(id *)$x0
+<ViewController: 0x102607ca0>
+
+(lldb) po *(id *)($x0+8)
+ViewController
+```
 
 ## Further Resources
 
