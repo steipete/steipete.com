@@ -163,7 +163,7 @@ What this code here so cleverly does is that it simply adds eight bytes to the l
 
 Class Memory Layout: [[ISA] \[IVARs]]
 
-Remember, in ARM64, the caller arguments are in `x0` to `x7`. `X0` here is a memory pointer, pointing to the beginning of the class, which is where the isa pointer is. isa means “is a.” Every Objective-C object (including every class) has an isa pointer.[^2] If we increment by 64-bit = 8 byte, we get to the next storage location, which is where the class variables are stored.
+Remember, in ARM64, the caller arguments are in `x0` to `x7`. `x0` here is the pointer to `self`, the class object, which is where the isa pointer is. isa means “is a.” Every Objective-C object (including every class) has an isa pointer.[^2] If we increment by 64-bit = 8 byte, we get to the next storage location, which is where the class variables are stored.
 
 [^2]: Swift uses the same concept, but it has a second variable in there, so the offset would be 16. SGVSuperMessagingProxy works with any function marked as dynamic, not just Objective-C. Pretty amazing to see how new things still map to old concepts!
 
@@ -206,7 +206,7 @@ There’s a lot of logic required to correctly manage tables, and things need lo
 
 The principle: We save the registers that we might spill, fill the struct at runtime, restore the registers, and then perform the tail call. This sounds simple now that I write it up, but it caused serious headaches at first. 
 
-Specifically, I tried to use the stack to generate the struct, which breaks stack-based parameter passing. I tried calling malloc in asm, but since that requires free, I couldn’t do the tail-call optimization anymore. And I encountered oh so many crashes because I didn’t really understand what it means to align the stack pointer on 16 bits.
+Specifically, I tried to use the stack to generate the struct, which breaks stack-based parameter passing. I tried calling malloc in asm, but since that requires free, I couldn’t do the tail-call optimization anymore. And I encountered oh so many crashes because I didn’t really understand what it means to align the stack pointer on 16 bytes.
 
 Let’s start by saving registers:
 
