@@ -290,7 +290,7 @@ Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do he
 
 ## Further Resources
 
-Thanks for everyone helping me with this post, especially [@badlogicgames](https://twitter.com/badlogicgames) and [@DavidJGoldman](https://twitter.com/DavidJGoldman)
+Thanks for everyone helping me with this post, especially [@badlogicgames](https://twitter.com/badlogicgames),  [@DavidJGoldman](https://twitter.com/DavidJGoldman) and [@mpweiher](https://twitter.com/mpweiher)
 
 I used these resources to learn:
 
