@@ -299,34 +299,36 @@ After being almost done with this, Joe Groff [pointed out](https://twitter.com/j
 
 Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
 
-## Bonus: Using your new Assembler Superpowers
+## Bonus Content: Using your new Assembly Superpowers
 
 Now that you understand assembly, we can look at what the compiler really generates with a super call. 
 
 ```
-  // Stack
-	sub	sp, sp, #48             ; =48
-	stp	x29, x30, [sp, #32]     ; 16-byte Folded Spill
-	add	x29, sp, #32            ; =32
-	// Fetch data
-	adrp	 x8, _OBJC_SELECTOR_REFERENCES_@PAGE
-	add	x8, x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF
-	adrp	 x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGE
-	add	x9, x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF
-	// build objc_super struct on the stack
-	stur 	x0, [x29, #-8]
-	str	x1, [sp, #16]
-	ldur x10, [x29, #-8]
-	str	x10, [sp]
-	ldr	x9, [x9]
-	str	x9, [sp, #8]
-	ldr	x1, [x8]
-	mov	x0, sp
-	// regular call
-	bl	 _objc_msgSendSuper2
-	ldp	x29, x30, [sp, #32]     ; 16-byte Folded Reload
-	add	sp, sp, #48             ; =48
-	ret
+// Stack preservation
+sub	sp, sp, #48             ; =48
+stp	x29, x30, [sp, #32]     ; 16-byte Folded Spill
+add	x29, sp, #32            ; =32
+// Fetch data
+adrp	 x8, _OBJC_SELECTOR_REFERENCES_@PAGE
+add	x8, x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF
+adrp	 x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGE
+add	x9, x9, _OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF
+
+// build objc_super struct on the stack
+stur 	x0, [x29, #-8]
+str	x1, [sp, #16]
+ldur x10, [x29, #-8]
+str	x10, [sp]
+ldr	x9, [x9]
+str	x9, [sp, #8]
+ldr	x1, [x8]
+mov	x0, sp
+
+// regular call
+bl	 _objc_msgSendSuper2
+ldp	x29, x30, [sp, #32]     ; 16-byte Folded Reload
+add	sp, sp, #48             ; =48
+ret
 ```
 
 You can debug this via Debug -> Debug Workflow -> Always Show Disassembly. Step through commands via `ni` and `is`. 
