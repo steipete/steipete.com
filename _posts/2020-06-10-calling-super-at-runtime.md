@@ -145,6 +145,8 @@ First of all, [assembly is hard](https://twitter.com/steipete/status/12700351794
 
 There are some other special registers, such as the **`fp` frame pointer** (usually an offset of the stack pointer), **`lp` link register** (holds the address to return to when a function completes), and the **`sp` stack pointer** (holds the address of the stack buffer).
 
+There's also floating point registers (`q0`-`q7`), but we don't need them for our task here.
+
 ## Assembly and Swift
 
 [Unlike Rust](https://twitter.com/josh_triplett/status/1270104436552024065?s=21), Swift doesn’t yet have a way to add inline assembly. Both have the approach to be a system language, and there are [hacks to get inline assembly](https://twitter.com/aalonso128/status/1080985173515214849?s=21) working, but I haven’t seen an evolution proposal so far.
