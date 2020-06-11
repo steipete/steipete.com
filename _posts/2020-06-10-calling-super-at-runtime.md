@@ -257,7 +257,7 @@ struct objc_super *ITKReturnThreadSuper(__unsafe_unretained id obj) {
 
 The C helper `ITKReturnThreadSuper` is fairly trivial; it fills the `objc_super` struct and returns it. In early versions, I simply called `malloc()` and used a `dispatch_async` to later free it — a pretty horrible first hack, but it worked. This version uses a thread-local storage. `_Thread_local` was added in C11 and only works on global variables, but for our use case, this should work just fine — even if we use `objc_super` multiple times in a call stack.
 
-It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here.
+It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here. This is more dangerous than you think! Even [a simple memcpy](https://twitter.com/gparker/status/1270894792101117952?s=21) could override floating point parameters.
 
 Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact.
 
