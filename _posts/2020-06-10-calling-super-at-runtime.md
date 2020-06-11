@@ -363,7 +363,7 @@ I used these resources to learn:
 - [amd64 and va_arg](https://blog.nelhage.com/2010/10/amd64-and-va_arg/)
 - [Stack frame layout on x86-64](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64)
 - [Local Variables on the Stack](https://bob.cs.sonoma.edu/IntroCompOrg-RPi/sec-varstack.html)
-- [Wikipedia: Calling convention](https://en.wikipedia.org/wiki/Calling_convention#x86_(32-bit)
+- [Wikipedia: Calling convention](https://en.wikipedia.org/wiki/Calling_convention#x86_(32-bit))
 - [Using the Stack in AArch64: Implementing Push and Pop](https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/using-the-stack-in-aarch64-implementing-push-and-pop)
 - [x86 Assembly Guide](https://www.cs.yale.edu/flint/cs421/papers/x86-asm/asm.html)
 - [ARM Compiler Documentation](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0801a/BABBDBAD.html) 
