@@ -34,7 +34,9 @@ In compiled code, there’s a lookup table so that `object_getClass` doesn’t n
 
 ## objc_msgSendSuper vs. objc_msgSendSuper2
 
-There are two versions of the `super` call, and the difference is minor but important: `objc_msgSendSuper` starts looking at the current class, which would cause an endless loop in the above code, while `objc_msgSendSuper2` looks for the superclass.
+There are two versions of the `super` call, and the difference is minor but important: `objc_msgSendSuper` starts looking for an implementation of the selector at the current class, which would cause an endless loop in the above code, while `objc_msgSendSuper2` looks for the superclass.
+
+With `objc_msgSendSuper` it is possible to skip multiple overridden implementations and directly target what you want to call. `objc_msgSendSuper2` is better tailored for a dynamic lookup, as it always fetches the superclass at runtime, so this even calls the correct super implementation if the class hierarchy is changed at runtime.
 
 I’ve seen the compiler only emit `objc_msgSendSuper2`, but both need to be there forever, as they are both ABI.
 
@@ -174,7 +176,7 @@ What this code here so cleverly does is that it simply adds eight bytes to the l
 
 Class Memory Layout: [[ISA] \[IVARs]]
 
-Remember, in ARM64, the caller arguments are in `x0` to `x7`. `x0` here is the pointer to `self`, the class object, which is where the isa pointer is. isa means “is a.” Every Objective-C object (including every class) has an isa pointer.[^2] If we increment by 64-bits = 8 bytes, we get to the next storage location, which is where the class variables are stored.
+Remember, in ARM64, the caller arguments are in `x0` to `x7`. `x0` here is the pointer to `self`, the class object, which is where the isa pointer is located. isa means “is a.” Every Objective-C object (including every class) has an isa pointer as first variable.[^2] If we increment by 64-bits = 8 bytes, we get to the next storage location, which is where the object variables (ivars) are stored.
 
 [^2]: Swift uses the same concept, but it has a second variable in there, so the offset would be 16. SGVSuperMessagingProxy works with any function marked as dynamic, not just Objective-C. Pretty amazing to see how new things still map to old concepts!
 
@@ -185,7 +187,7 @@ add x0, x0, 8
 b objc_msgSendSuper2
 ```
 
-This is *beautiful*, since it’s very simple, and it doesn’t touch any of our calling registers — with the exception of the one that needs to be changed. This doesn’t work in my case though — the goal was to create a `super` class in an existing class hierarchy, not via creating a new proxy where we have exact control of the memory layout. 
+This is *beautiful*, since it’s very simple, and it doesn’t touch any of our calling registers — with the exception of the one that needs to be changed. This doesn’t work in my case though — the goal was to create a `super` call in an existing class hierarchy, not via creating a new proxy where we have exact control of the memory layout. 
 
 ## Trampolines Explained
 
