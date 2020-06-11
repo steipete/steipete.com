@@ -135,7 +135,9 @@ The root problem is that `objc_msgSend` cannot be implemented in C, not at any s
 
 [^7]: The old GNU runtime used `objc_lookup(receiver-class, SEL)(receiver, SEL, …)`, a different approach altogether.
 
-First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this entire thing as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article.
+First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this entire thing as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article and we're using the AT&T[^8] syntax.
+
+[^8]: Yes, there are [two concurring syntax branches](https://en.wikipedia.org/wiki/X86_assembly_language#Syntax): Intel syntax, popular in the DOS and Windows world, and AT&T syntax for Unix. AT&T is source before destination, while Intel is destination before source.
 
 ![Me trying to make sense of this via drawing](/assets/img/2020/calling-super/arm64-registers.jpg) 
 
