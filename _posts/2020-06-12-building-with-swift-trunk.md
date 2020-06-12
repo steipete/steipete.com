@@ -5,13 +5,13 @@ date:   2020-06-12 16:00:00 +0200
 tags: iOS development
 ---
 
-I recently started the adventure to build PSPDFKit with then Swift Trunk toolchain, in order to verify a fix for [SR-12933](https://bugs.swift.org/browse/SR-12933) and to be better prepared for WWDC.
+I recently started the adventure to build PSPDFKit with then [Swift Trunk toolchain](https://swift.org/download/) , in order to verify a fix for [SR-12933](https://steipete.com/posts/couldnt-irgen-expression/) and to be better prepared for the Xcode 12 release at WWDC.
 
 I'm documenting my adventure with the June 10 Swift Trunk Toolchain.
 
 ## libclang_rt.profile_iossim.a not found
 
-If you see 
+If you see:
 
 ```
 File not found: /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2020-06-09-a.xctoolchain/usr/lib/clang/10.0.0/lib/darwin/libclang_rt.profile_iossim.a
