@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Building with Swift Trunk"
+title: "Building with Swift Trunk Development Snapshots"
 date: 2020-06-12 16:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/swift-trunk/swift-trunk.png
 ---
 
-I recently started the adventure to build PSPDFKit with then [Swift Trunk toolchain](https://swift.org/download/) , in order to verify a fix for [SR-12933](https://steipete.com/posts/couldnt-irgen-expression/) and to be better prepared for the Xcode 12 release at WWDC.
+I recently started the adventure to build PSPDFKit with the [Swift trunk development snapshot](https://swift.org/download/), in order to verify a fix for the [SR-12933 lldb debugging issue](https://steipete.com/posts/couldnt-irgen-expression/), and to be better prepared for the Xcode 12 release at WWDC.
 
 I'm documenting my adventure with the June 10 Swift Trunk Toolchain, may it help Google warriors - some of the errors didn't yield any useful results.
 
