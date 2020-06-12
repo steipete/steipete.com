@@ -7,11 +7,11 @@ tags: iOS development
 
 I recently started the adventure to build PSPDFKit with then [Swift Trunk toolchain](https://swift.org/download/) , in order to verify a fix for [SR-12933](https://steipete.com/posts/couldnt-irgen-expression/) and to be better prepared for the Xcode 12 release at WWDC.
 
-I'm documenting my adventure with the June 10 Swift Trunk Toolchain.
+I'm documenting my adventure with the June 10 Swift Trunk Toolchain, may it help Google warriors - some of the errors didn't yield any useful results.
 
 ## libclang_rt.profile_iossim.a not found
 
-If you see:
+If you see following error early on:
 
 ```
 File not found: /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2020-06-09-a.xctoolchain/usr/lib/clang/10.0.0/lib/darwin/libclang_rt.profile_iossim.a
@@ -25,13 +25,15 @@ sudo cp `xcode-select -p`/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/*/li
 
 ## __isOSVersionAtLeast
 
-Initially I missed a few files (I only copied `libclang_rt.profile_iossim.a`) and then got a yet different error: `Undefined symbols for architecture arm64: "___isOSVersionAtLeast"`. Run the above `cp` command to fix.
-
 ![](/assets/img/2020/swift-trunk/isOSVersion.png)
+
+Initially I missed a few files (I only copied `libclang_rt.profile_iossim.a`) and then got a yet different error: `Undefined symbols for architecture arm64: "___isOSVersionAtLeast"`.
+
+Run the above `cp` command to fix.
 
 ## uncaught exception of type tbb::captured_exception
 
-Next up, the linker crashed.
+Next up, the linker crashed:
 
 ```
 BB Warning: Exact exception propagation is requested by application but the linked library is built without support for it
@@ -55,7 +57,14 @@ Apple uses [APINotes](https://pspdfkit.com/blog/2018/first-class-swift-api-for-o
 
 ![](/assets/img/2020/swift-trunk/gesture.png)
 
-I simply disabled the parts that caused issues, as this is a non-critical feature - the goal right now is to make this work at all.
+To conditionally disable Swift code, I used an `#ifdef` and set the following in our xcconfig file:
+
+```
+OTHER_SWIFT_FLAGS = -D SWIFT_TRUNK_TOOLCHAIN_WORKAROUND
+```
+
+This still disable the code and isn't a real fix, but I assume Apple will eventually update trunk to include these APINotes.
+
 
 ## libLTO.dylib could not be loaded
 
