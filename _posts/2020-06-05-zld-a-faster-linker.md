@@ -17,6 +17,8 @@ In our setup, this indeed improves overall build time by ~25%, measured from a c
 
 If you ask yourself, is this safe? [Instagram uses it too](https://twitter.com/alanzeino/status/1268230184215252992?s=21).
 
+Heads up: `zld` seems to [cause issues when using the Swift trunk toolchain](/posts/building-with-swift-trunk/).
+
 ## Installation
 Zld is easy to enable for your project:
 

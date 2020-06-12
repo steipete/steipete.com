@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building with Swift Trunk Development Snapshots"
-date: 2020-06-12 16:00:00 +0200
+date: 2020-06-12 17:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/swift-trunk/swift-trunk.png
 ---
