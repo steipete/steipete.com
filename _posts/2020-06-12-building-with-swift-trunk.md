@@ -24,7 +24,7 @@ Then you run into a variant of [SR-12001](https://bugs.swift.org/browse/SR-12001
 sudo cp `xcode-select -p`/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/*/lib/darwin/libclang_rt.*.a /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2020-06-09-a.xctoolchain/usr/lib/clang/10.0.0/lib/darwin
 ```
 
-## __isOSVersionAtLeast
+## _Undefined Symbol: _isOSVersionAtLeast
 
 ![](/assets/img/2020/swift-trunk/isOSVersion.png)
 
@@ -32,7 +32,7 @@ Initially I missed a few files (I only copied `libclang_rt.profile_iossim.a`) an
 
 Run the above `cp` command to fix.
 
-## uncaught exception of type tbb::captured_exception
+## Uncaught Exception of Type tbb::captured_exception
 
 Next up, the linker crashed:
 
@@ -44,7 +44,7 @@ libc++abi.dylib: terminating with uncaught exception of type tbb::captured_excep
 
 This turned out to be [zld](/posts/zld-a-faster-linker/) - removing the `xcconfig` setting fixed this. This will be fixed eventually as Apple's ld is open source and zld is just a faster fork. I [documented this in the Swift Forum](https://forums.swift.org/t/swift-toolchain-fails-to-compile-with-tbb-unidentified-exception/37434) for others to find.
 
-## archive member with length is not mach-o or llvm bitcode
+## Archive member with length is not mach-o or llvm bitcode
 
 This one took me a while! We are using different configurations in PSPDFKit, so some lower level parts compile with our release configuration and some with debug (you still want a fast PDF render experience when working on the UI).
 
@@ -85,7 +85,7 @@ Build system crashes are especially fun because Xcode doesn't crash, but you sti
 
 ![](/assets/img/2020/swift-trunk/buildsystem.png)
 
-## Swift Compiler Crash: impossible SILDeclRef
+## Swift Compiler Crash: Impossible SILDeclRef
 
 Compiling for iOS now worked, but Catalyst crashed with the following error: `impossible SILDeclRef loc UNREACHABLE executed at /Users/buildnode/jenkins/workspace/oss-swift-package-osx/swift/lib/SIL/IR/SILDeclRef.cpp:155!`
 
