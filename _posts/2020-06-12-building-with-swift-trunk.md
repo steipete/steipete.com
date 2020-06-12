@@ -41,7 +41,7 @@ BB Warning: Exact exception propagation is requested by application but the link
 libc++abi.dylib: terminating with uncaught exception of type tbb::captured_exception: Unidentified exception
 ```
 
-This turned out to be [zld](/posts/zld-a-faster-linker/) - removing the xcconfig setting fixed this. This will be fixed eventually as Apple's ld is open source and zld is just a faster fork. I [documented this in the Swift Forum](https://forums.swift.org/t/swift-toolchain-fails-to-compile-with-tbb-unidentified-exception/37434) for others to find.
+This turned out to be [zld](/posts/zld-a-faster-linker/) - removing the `xcconfig` setting fixed this. This will be fixed eventually as Apple's ld is open source and zld is just a faster fork. I [documented this in the Swift Forum](https://forums.swift.org/t/swift-toolchain-fails-to-compile-with-tbb-unidentified-exception/37434) for others to find.
 
 ## archive member with length is not mach-o or llvm bitcode
 
@@ -57,7 +57,7 @@ Apple uses [APINotes](https://pspdfkit.com/blog/2018/first-class-swift-api-for-o
 
 ![](/assets/img/2020/swift-trunk/gesture.png)
 
-To conditionally disable Swift code, I used an `#ifdef` and set the following in our xcconfig file:
+To conditionally disable Swift code, I used an `#ifdef` and set the following in our `xcconfig` file:
 
 ```
 OTHER_SWIFT_FLAGS = -D SWIFT_TRUNK_TOOLCHAIN_WORKAROUND
@@ -68,7 +68,7 @@ This still disable the code and isn't a real fix, but I assume Apple will eventu
 
 ## libLTO.dylib could not be loaded
 
-If you get an `libLTO.dylib could not be loaded` error, you might have a setup where LTO is enabled in some library. I fixed this with making sure LTO is off everywhere.
+If you get an `libLTO.dylib could not be loaded` error, you might have a setup where Link Time Optimization is enabled in at least one of your project. I fixed this with making sure LTO is off everywhere.
 
 ```
 LLVM_LTO = NO
@@ -79,6 +79,8 @@ LLVM_LTO = NO
 To be honest, I'm just adding that for completeness sake. This happens at random times and isn't really related to Swift Trunk. A restart fixes it.
 
 ![](/assets/img/2020/swift-trunk/xcodecrash.png)
+
+Build system crashes are especially fun because Xcode doesn't crash, but you still have to quit and restart it manually. One could make the argument that it would be more convenient if it would simply crash Xcode as well.
 
 ![](/assets/img/2020/swift-trunk/buildsystem.png)
 
