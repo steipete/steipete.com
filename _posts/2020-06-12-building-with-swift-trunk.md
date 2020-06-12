@@ -8,7 +8,7 @@ image: /assets/img/2020/swift-trunk/swift-trunk.png
 
 I recently started the adventure to build PSPDFKit with the [Swift trunk development snapshot](https://swift.org/download/), in order to verify a fix for the [SR-12933 lldb debugging issue](https://steipete.com/posts/couldnt-irgen-expression/), and to be better prepared for the Xcode 12 release at WWDC.
 
-I'm documenting my adventure with the June 10 Swift Trunk Toolchain, may it help Google warriors - some of the errors didn't yield any useful results.
+I'm documenting my adventure with the June 10 Swift Trunk Toolchain, may it help Google warriors - some of the errors didn't yield any useful results. Let's skip the download, install, select in Xcode part and go straight to the issues.
 
 ## libclang_rt.profile_iossim.a not found
 
@@ -103,6 +103,4 @@ The only way to get rid of this error seems to remove the define, but since this
 
 ## Conclusion
 
-Using the [Swift Trunk Toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix.
-
-
+Using the [Swift Trunk Toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix. I however appreciate it that Apple provides pre-build packages, and I'm sure the issues above will be ironed out eventually.
