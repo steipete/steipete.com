@@ -36,7 +36,7 @@ In compiled code, there’s a lookup table so that `object_getClass` doesn’t n
 
 There are two versions of the `super` call, and the difference is minor but important: `objc_msgSendSuper` starts looking for an implementation of the selector at the current class, which would cause an endless loop in the above code, while `objc_msgSendSuper2` looks for the superclass.
 
-With `objc_msgSendSuper` it is possible to skip multiple overridden implementations and directly target what you want to call. `objc_msgSendSuper2` is better tailored for a dynamic lookup, as it always fetches the superclass at runtime, so this even calls the correct super implementation if the class hierarchy is changed at runtime.
+With `objc_msgSendSuper` it is possible to skip multiple overridden implementations and directly target what you want to call. `objc_msgSendSuper2` is better tailored for a dynamic lookup, as it always fetches the superclass at runtime, so this even calls the correct `super` implementation if the class hierarchy is changed at runtime.
 
 I’ve seen the compiler only emit `objc_msgSendSuper2`, but both need to be there forever, as they are both ABI.
 
@@ -60,14 +60,16 @@ class_addMethod(clazz, selector, imp_implementationWithBlock(^(__unsafe_unretain
 
 This works, and [we’ve been shipping code](https://pspdfkit.com/blog/2019/swizzling-in-swift/) like this for a while. For InterposeKit, I wanted to write the same in Swift.
 
-**Update:** Marcel points out correctly that I am mixing up `va_arg` and `va_list`, which is absolutely not the same. Compare the two definitions of printf:
+**Update:** Marcel correctly pointed out that I am mixing up `va_arg` and `va_list`, which are absolutely not the same. 
+
+Compare the two definitions of `printf`:
 
 ```
 int printf(const char * restrict format, …);
 int vprintf(const char * restrict format, va_list ap);
 ```
 
-It is possible to convert the first version into the second (via `va_start`) but not vice versa. So this code as-is works by pure luck.
+It is possible to convert the first version into the second (via `va_start`), but not vice versa. So this code as-is works by pure luck.
 
 ## Super in Swift
 
@@ -125,19 +127,19 @@ OBJC_EXPORT id _Nullable objc_msgSendSuper(struct objc_super * _Nonnull super, S
 
 Previously, it was declared as a function that took `id`, `SEL`, and variadic arguments, returning `id` — now it takes and returns `void`. Why the change? 
 
-The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. In the ARM64 ABI [variadic arguments are passed on the stack](https://blog.nelhage.com/2010/10/amd64-and-va_arg/). However, Apple changed the way message-sending works in ARM64 to not use the variadic ABI anymore, using the regular function-calling ABI instead. 
+The short version is that there is no guarantee that the ABI for variadic function matches the ABI for a function with a mixed number of arguments. In the ARM64 ABI, [variadic arguments are passed on the stack](https://blog.nelhage.com/2010/10/amd64-and-va_arg/). However, Apple changed the way message sending works in ARM64 to not use the variadic ABI anymore, instead using the regular function-calling ABI. 
 
 Without casting, even a trivial use of `objc_msgSend` will result in a crash. There is an interesting article about this by Mike Ash entitled [objc_msgSend’s New Prototype](https://www.mikeash.com/pyblog/objc_msgsends-new-prototype.html). Mike’s blog is brilliant, and I’m extremely happy that he still writes new posts from time to time, despite now working at Apple.
 
 ## Accepting Assembly
 
-The root problem is that `objc_msgSend` cannot be implemented in C, not at any speed[^7]. We cannot build dynamic parameter lists.  Usually the compiler takes care of casting `objc_msgSendSuper` for us — this isn’t something it can do when we try to do this at runtime. The only way to call this correctly without getting lucky is if we write the call in assembly.
+The root problem is that `objc_msgSend` cannot be implemented in C, not at any speed.[^7] We cannot build dynamic parameter lists. Usually the compiler takes care of casting `objc_msgSendSuper` for us, but this isn’t something it can do when we try to do this at runtime. The only way to call this correctly without getting lucky is if we write the call in assembly.
 
 [^7]: The old GNU runtime used `objc_lookup(receiver-class, SEL)(receiver, SEL, …)`, a different approach altogether.
 
-First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this entire thing as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article and we're using the AT&T[^8] syntax.
+First of all, [assembly is hard](https://twitter.com/steipete/status/1270035179424399360?s=21), but it’s a useful skill that will make you better at debugging, so I’ve approached this entire thing as a “fun“ challenge. The most important part to know is what each register does. To keep things simple, we focus on ARM64 in this article, and we’re using the AT&T[^8] syntax.
 
-[^8]: Yes, there are [two concurring syntax branches](https://en.wikipedia.org/wiki/X86_assembly_language#Syntax): Intel syntax, popular in the DOS and Windows world, and AT&T syntax for Unix. AT&T is source before destination, while Intel is destination before source.
+[^8]: Yes, there are [two concurring syntax branches](https://en.wikipedia.org/wiki/X86_assembly_language#Syntax). Intel syntax is popular in the DOS and Windows world, and AT&T syntax is for Unix. AT&T is source before destination, while Intel is destination before source.
 
 ![Me trying to make sense of this via drawing](/assets/img/2020/calling-super/arm64-registers.jpg) 
 
@@ -147,15 +149,15 @@ First of all, [assembly is hard](https://twitter.com/steipete/status/12700351794
 
 [^3]: There’s no need to deal with this register type for our code here, but compilers sure use these. There’s a good [answer on Stack Overflow](https://stackoverflow.com/questions/9268586/what-are-callee-and-caller-saved-registers) that explains this in more detail.
 
-There are some other special registers, such as the **`fp` frame pointer** (usually an offset of the stack pointer), **`lp` link register** (holds the address to return to when a function completes), and the **`sp` stack pointer** (holds the address of the stack buffer).
+There are some other special registers, such as the **`fp` frame pointer** (usually an offset of the stack pointer), the **`lp` link register** (holds the address to return to when a function completes), and the **`sp` stack pointer** (holds the address of the stack buffer).
 
-There's also floating point registers (`q0`-`q7`), but we don't need them for our task here.
+There are also floating-point registers (`q0`–`q7`), but we don’t need them for our task here.
 
 ## Assembly and Swift
 
 [Unlike Rust](https://twitter.com/josh_triplett/status/1270104436552024065?s=21), Swift doesn’t yet have a way to add inline assembly. Both have the approach to be a system language, and there are [hacks to get inline assembly](https://twitter.com/aalonso128/status/1080985173515214849?s=21) working, but I haven’t seen an evolution proposal so far.
 
-Adding inline assembly is a niche feature, but it has valid use cases; even Chris Latter [is hoping that](https://forums.swift.org/t/a-proposal-for-inline-assembly/4643/4) a future version of Swift will include it. For now, we can use C and the Swift/Obj-C interop to write assembly.
+Adding inline assembly is a niche feature, but it has valid use cases; even Chris Lattner [is hoping that](https://forums.swift.org/t/a-proposal-for-inline-assembly/4643/4) a future version of Swift will include it. For now, we can use C and the Swift/Obj-C interop to write assembly.
 
 ## Perfectly Forwarding Arguments 
 
@@ -221,7 +223,7 @@ There’s a lot of logic required to correctly manage tables, and things need lo
 
 The principle: We save the registers that we might spill, fill the struct at runtime, restore the registers, and then perform the tail call. This sounds simple now that I write it up, but it caused serious headaches at first. 
 
-Specifically, I tried to use the stack to generate the struct, which breaks stack-based parameter passing. I tried calling `malloc` in `asm`, but since that requires calling `free`, I couldn’t do the tail-call optimization anymore. And I encountered oh so many crashes because I didn’t really understand what it means to align the stack pointer on 16 bytes.
+Specifically, I tried to use the stack to generate the struct, which breaks stack-based parameter passing. I tried calling `malloc` in `asm`, but since that requires calling `free`, I couldn’t do the tail call optimization anymore. And I encountered oh so many crashes because I didn’t really understand what it means to align the stack pointer on 16 bytes.
 
 Let’s start by saving registers:
 
@@ -259,11 +261,11 @@ struct objc_super *ITKReturnThreadSuper(__unsafe_unretained id obj) {
 
 The C helper `ITKReturnThreadSuper` is fairly trivial; it fills the `objc_super` struct and returns it. In early versions, I simply called `malloc()` and used a `dispatch_async` to later free it — a pretty horrible first hack, but it worked. This version uses a thread-local storage. `_Thread_local` was added in C11 and only works on global variables, but for our use case, this should work just fine — even if we use `objc_super` multiple times in a call stack.
 
-It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here. This is more dangerous than you think! Even [a simple memcpy](https://twitter.com/gparker/status/1270894792101117952?s=21) could override floating point parameters.
+It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here. This is more dangerous than you think! Even [a simple memcpy](https://twitter.com/gparker/status/1270894792101117952?s=21) could override floating-point parameters.
 
 Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact.
 
-This also implies that the solution here is NOT a general super call, but will only work on the outermost object level. If you subclass again, this will not work correct anymore.
+This also implies that the solution here is NOT a general `super` call, but will only work on the outermost object level. If you subclass again, this will no longer work correctly:
 
 ```
 // first param is now struct objc_super (x0)
@@ -271,9 +273,9 @@ This also implies that the solution here is NOT a general super call, but will o
 "mov x9, x0\n"
 ```
 
-Once we return, in ARM64, the return value is in `x0`[^6]. We temporarily store this in the “scratch space” register set; `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on ARM64, we can only operate on the stack in 16 bytes, so we always restore pairs of registers:
+Once we return, in ARM64, the return value is in `x0`.[^6] We temporarily store this in the “scratch space” register set; `x9`-`x15` are free to use. Another word for this is caller-saved or clobbered. Why do we do that when `x0` is already exactly what we want? Because on ARM64, we can only operate on the stack in 16 bytes, so we always restore pairs of registers:
 
-[^6]: This is true for our simple C function - large structs might use an indirect return. (`x8`).
+[^6]: This is true for our simple C function — large structs might use an indirect return (`x8`).
 
 ```
 // pop {x0-x8, lr}
@@ -305,9 +307,9 @@ After being almost done with this, Joe Groff [pointed out](https://twitter.com/j
 
 Now I’d [love to hear from you](https://twitter.com/steipete). Is what I do here correct? Does this make sense? Is there a better way?
 
-## Bonus Content: Using your new Assembly Superpowers
+## Bonus Content: Using Your New Assembly Superpowers
 
-Now that you understand assembly, we can look at what the compiler really generates with a super call. 
+Now that you understand assembly, we can look at what the compiler really generates with a `super` call:
 
 ```
 // Stack preservation
@@ -337,11 +339,11 @@ add	sp, sp, #48             ; =48
 ret
 ```
 
-You can debug this via Debug -> Debug Workflow -> Always Show Disassembly. Step through commands via `ni` and `is`. 
+You can debug this via Debug > Debug Workflow > Always Show Disassembly. Step through commands via `ni` and `is`. 
 
 ![Xcode Assembly Debugger](/assets/img/2020/calling-super/Xcode-debug.png) 
 
-Right before the call to `_objc_msgSendSuper2` we can inspect the objc_super struct:
+Right before the call to `_objc_msgSendSuper2`, we can inspect the `objc_super` struct:
 
 ```
 (lldb) po *(id *)$x0
@@ -353,7 +355,7 @@ ViewController
 
 ## Further Resources
 
-Thanks for everyone helping me with this post, especially [@badlogicgames](https://twitter.com/badlogicgames),  [@DavidJGoldman](https://twitter.com/DavidJGoldman) and [@mpweiher](https://twitter.com/mpweiher)
+Thanks to everyone helping me with this post, especially [@badlogicgames](https://twitter.com/badlogicgames),  [@DavidJGoldman](https://twitter.com/DavidJGoldman), and [@mpweiher](https://twitter.com/mpweiher).
 
 I used these resources to learn:
 
