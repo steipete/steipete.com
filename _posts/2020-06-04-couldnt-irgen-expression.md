@@ -27,7 +27,7 @@ Why didn’t we see this before? All our examples work, as they use the new `xcf
 
 Let’s see what works and what doesn’t:
 
-- ✅ Creating an example with `xcframework`[^1] (this is the format we distribute).
+- ✅ Creating an example with `xcframework` (this is the format we distribute).
 - ✅ Mixed Obj-C/Swift example via `framework`, `xcframework`, CocoaPods, or Carthage.
 - ❌ Creating a custom example with `framework`.
 - ❌ Swift-only example via CocoaPods or Carthage.
