@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "How to Fix LLDB: Couldn't IRGen Expression"
-date:   2020-06-04 15:00:00 +0200
+title: "How to Fix LLDB: Couldn't IRGen Expression"
+date: 2020-06-04 15:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/lldb-debugging/xcode-lldb.png
 ---
