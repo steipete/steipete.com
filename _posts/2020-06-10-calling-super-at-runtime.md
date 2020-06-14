@@ -263,7 +263,7 @@ The C helper `ITKReturnThreadSuper` is fairly trivial; it fills the `objc_super`
 
 It’s important to not go wild here: We did not save floating-point registers — only the bare minimum — so don’t call random functions in here. This is more dangerous than you think! Even [a simple memcpy](https://twitter.com/gparker/status/1270894792101117952?s=21) could override floating-point parameters.
 
-Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value coding, which creates a subclass at runtime but also overrides `class` to hide this fact.
+Also see that `object_getClass`, and not the class method, is used here. While the latter can be overridden so a class “lies” about its type, this always returns the correct type. This is important since Apple uses this trick for key-value observing, which creates a subclass at runtime but also overrides `class` to hide this fact.
 
 This also implies that the solution here is NOT a general `super` call, but will only work on the outermost object level. If you subclass again, this will no longer work correctly:
 
