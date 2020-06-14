@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "How to Fix LLDB: Couldn't IRGen Expression"
-date:   2020-06-04 15:00:00 +0200
+title: "How to Fix LLDB: Couldn't IRGen Expression"
+date: 2020-06-04 15:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/lldb-debugging/xcode-lldb.png
 ---
@@ -21,13 +21,13 @@ Result: `error: Couldn't IRGen expression, no additional error`
 
 ![](/assets/img/2020/lldb-debugging/xcode-lldb.png)
 
-Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works when using XCframeworks[^1]. We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
+Why didn’t we see this before? All our examples work, as they use the new `xcframework` format — and for some reason, everything works when using XCframeworks.[^1] We also only recently started to use Swift in our SDK, after [Swift’s ABI became stable](https://pspdfkit.com/blog/2018/binary-frameworks-swift/).
 
-[^1]: Unless you also copy out the dSYM files, then lldb fails.
+[^1]: Unless you also copy out the dSYM files, in which case LLDB fails.
 
 Let’s see what works and what doesn’t:
 
-- ✅ Creating an example with `xcframework`[^1] (this is the format we distribute).
+- ✅ Creating an example with `xcframework` (this is the format we distribute).
 - ✅ Mixed Obj-C/Swift example via `framework`, `xcframework`, CocoaPods, or Carthage.
 - ❌ Creating a custom example with `framework`.
 - ❌ Swift-only example via CocoaPods or Carthage.
