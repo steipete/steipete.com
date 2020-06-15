@@ -370,3 +370,4 @@ I used these resources to learn:
 - [x86 Assembly Guide](https://www.cs.yale.edu/flint/cs421/papers/x86-asm/asm.html)
 - [ARM Compiler Documentation](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0801a/BABBDBAD.html) 
 - [Notes on x86-64 programming](https://www.lri.fr/~filliatr/ens/compil/x86-64.pdf)
+- [How x86_64 addresses memory](https://blog.yossarian.net/2020/06/13/How-x86_64-addresses-memory)
