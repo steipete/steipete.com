@@ -13,3 +13,5 @@ Mind Blown.
 {% twitter https://twitter.com/zhekakozlov/status/1135506701438857217 %}
 
 {% twitter https://twitter.com/jtparker09/status/1270671678402637824 %}
+
+{% twitter https://twitter.com/0xced/status/900692839557992449?s=21 %}
