@@ -70,6 +70,8 @@ And it’s true: Once you are used to Retina, you don’t want to go back to 4K.
 
 Is this the end of the story? Find out in [Kernel Panics and Surprise boot-args](https://steipete.com/posts/kernel-panic-surprise-boot-args/).
 
+Update: LG released [an update to the 5K Display](http://www.lgnewsroom.com/2019/07/lg-introduces-new-ultrafine-5k-display-2/) that increases power output to 94 watts.
+
 [^1]: LG released [a second generation](https://9to5mac.com/2019/07/30/new-lg-ultrafine-5k-display/) of the LG UltraFine 5K display, and it adds support for 3840 x 2160 @ 60Hz over USB-C DisplayPort, so you can now connect an iPad Pro. Sporadic reports also mention fewer issues with the second generation.
 
 [^2]: I managed [to get it working](https://www.reddit.com/r/hackintosh/comments/ae8d6c/is_it_possible_to_build_a_hackintosh_that/) with a Gigabyte GC-Titan Ridge card on a Hackintosh.
