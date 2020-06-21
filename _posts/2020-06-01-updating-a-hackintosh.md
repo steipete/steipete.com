@@ -12,7 +12,7 @@ With macOS 10.15.5 out, it was time to update my Hackintosh again. This does tak
 
 Earlier this year, I built myself a Hackintosh, [similar to this setup](https://github.com/cmer/gigabyte-z390-aorus-master-hackintosh) ([picture porn here](https://infinitediaries.net/my-2020-hackintosh-hardware-spec/)). I still work 95 percent of my time on my 16-inch MacBook Pro, but it’s convenient to have a really powerful machine to compile large projects (like Swift). I’m impressed with the overall stability — I had considerably fewer [kernel panics](/posts/how-to-macos-core-dump/) here than with my MacBook Pro, and I’m using the LG 5K in full resolution on the Hackintosh, thanks to the [Gigabyte GC-Titan Ridge](https://www.amazon.com/GIGABYTE-GC-Titan-Ridge-Thunderbolt-Component/dp/B07GBZL93X).
 
-To run macOS on non-Apple hardware, you need a bootloader. I chose [OpenCore](https://github.com/acidanthera/OpenCorePkg), as it’s fast, modern. and open source. Legacy setups might still use [Clover](https://github.com/CloverHackyColor/CloverBootloader), but OpenCore is much better on a long-term basis, and you don’t have to disable security features such as SIP. If you’re curious about building a Hackintosh, check out the [OpenCore Vanilla Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/).
+To run macOS on non-Apple hardware, you need a bootloader. I chose [OpenCore](https://github.com/acidanthera/OpenCorePkg), as it’s fast, modern, and open source. Legacy setups might still use [Clover](https://github.com/CloverHackyColor/CloverBootloader), but OpenCore is much better on a long-term basis, and you don’t have to disable security features such as SIP. If you’re curious about building a Hackintosh, check out the [OpenCore Vanilla Guide](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/).
 
 ## Bootable USB Drive
 
@@ -39,7 +39,7 @@ Now the fun part starts! OpenCore is configured with one giant `config.plist` an
 
 Use [OCConfigCompare](https://github.com/corpnewt/OCConfigCompare) to compare between the `sample.plist` and your `config.plist` The script has an auto-download feature, but since I used a nightly here, I set a manual folder.
 
-Use Xcode to edit the plist files, and be meticulous. Don’t forget that your configuration contains different settings, so be on the lookout if a key has to simply be renamed and migrate your values. 
+Use Xcode to edit the plist files, and be meticulous. Don’t forget that your configuration contains different settings, so be on the lookout for if a key has to simply be renamed and migrate your values. 
 
 ![OpenCore Config](/assets/img/2020/hackintosh/opencore-config.png)
 
