@@ -6,11 +6,11 @@ tags: iOS development
 image: /assets/img/2020/swift-trunk/swift-trunk.png
 ---
 
-I recently started the adventure of building PSPDFKit with the [Swift trunk development snapshot](https://swift.org/download/). I did this both in order to verify a fix for the [SR-12933 lldb debugging issue](https://steipete.com/posts/couldnt-irgen-expression/), and to be better prepared for the Xcode 12 release at WWDC.
+I recently started the adventure of building PSPDFKit with the [Swift trunk development snapshot](https://swift.org/download/). I did this both in order to verify a fix for the [SR-12933 LLDB debugging issue](https://steipete.com/posts/couldnt-irgen-expression/) and to be better prepared for the Xcode 12 release at WWDC.
 
-I’m documenting my adventure with the June 10 Swift Trunk Toolchain — may it help Google warriors, as some of the errors didn’t yield any useful results. Let’s skip the download-install-select-in-Xcode part and go straight to the issues.
+I’m documenting my adventure with the June 10 Swift trunk toolchain — may it help Google warriors, as some of the errors didn’t yield any useful results. Let’s skip the download-install-select-in-Xcode part and go straight to the issues.
 
-## libclang_rt.profile_iossim.a not found
+## libclang_rt.profile_iossim.a Not Found
 
 You might see the following error early on:
 
@@ -24,7 +24,7 @@ Then you might run into a variant of [SR-12001](https://bugs.swift.org/browse/SR
 sudo cp `xcode-select -p`/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/*/lib/darwin/libclang_rt.*.a /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2020-06-09-a.xctoolchain/usr/lib/clang/10.0.0/lib/darwin
 ```
 
-## _Undefined Symbol: _isOSVersionAtLeast
+## Undefined Symbol: _isOSVersionAtLeast
 
 ![](/assets/img/2020/swift-trunk/isOSVersion.png)
 
@@ -54,7 +54,7 @@ This seems to be a bug; there’s no reason this should fail, as it’s perfectl
 
 ## Missing APINotes
 
-Apple uses [APINotes](https://pspdfkit.com/blog/2018/first-class-swift-api-for-objective-c-frameworks/) to make the mapping from Objective-C to Swift easier. They are currently to a degree tightly coupled with Clang itself, and as the [`UIPointerInteraction`](https://pspdfkit.com/blog/2020/supporting-pointer-interactions/) API is very new, these notes haven’t been upstreamed yet — so we get a different, non-optimized API in Swift when compiling with trunk.
+Apple uses [API notes](https://pspdfkit.com/blog/2018/first-class-swift-api-for-objective-c-frameworks/) to make the mapping from Objective-C to Swift easier. They are currently to a degree tightly coupled with Clang itself, and as the [`UIPointerInteraction`](https://pspdfkit.com/blog/2020/supporting-pointer-interactions/) API is very new, these notes haven’t been upstreamed yet — so we get a different, non-optimized API in Swift when compiling with trunk.
 
 ![](/assets/img/2020/swift-trunk/gesture.png)
 
@@ -64,9 +64,9 @@ To conditionally disable Swift code, I used an `#ifdef` and set the following in
 OTHER_SWIFT_FLAGS = -D SWIFT_TRUNK_TOOLCHAIN_WORKAROUND
 ```
 
-This still disables the code and isn’t a real fix, but I assume Apple will eventually update trunk to include these APINotes.
+This still disables the code and isn’t a real fix, but I assume Apple will eventually update trunk to include these API notes.
 
-## libLTO.dylib could not be loaded
+## libLTO.dylib Could Not Be Loaded
 
 If you get an `libLTO.dylib could not be loaded` error, you might have a setup where Link Time Optimization is enabled in at least one of your projects. I fixed this by making sure LTO is off everywhere:
 
@@ -76,11 +76,11 @@ LLVM_LTO = NO
 
 ## Xcode and Xcode Build System Crash
 
-To be honest, I’m just adding this for completeness sake. This happens at random times and isn’t really related to Swift trunk. A restart fixes it.
+To be honest, I’m just adding this for the sake of completeness. This happens at random times and isn’t really related to Swift trunk. A restart fixes it.
 
 ![](/assets/img/2020/swift-trunk/xcodecrash.png)
 
-Build system crashes are especially fun because Xcode doesn’t crash, but you still have to quit and restart it manually. One could make the argument that it would be more convenient if it would simply crash Xcode as well.
+Build system crashes are especially fun because Xcode doesn’t crash, but you still have to quit and restart it manually. One could make the argument that it would be more convenient if Xcode would simply crash as well.
 
 ![](/assets/img/2020/swift-trunk/buildsystem.png)
 
@@ -102,4 +102,4 @@ The only way to get rid of this error seems to be to remove the define, but sinc
 
 ## Conclusion
 
-Using the [Swift Trunk Toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix. However, I appreciate that Apple provides pre-build packages, and I’m sure the issues above will be ironed out eventually.
+Using the [Swift trunk toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix. However, I appreciate that Apple provides prebuild packages, and I’m sure the issues above will be ironed out eventually.
