@@ -98,11 +98,6 @@ const include = [
 
   /*--- Others ---*/
 
-  {% if site.google_analytics.pv.enabled %}
-    '{{ "/assets/lib/countUp.min.js" | relative_url }}',
-    '{{ "/assets/js/dist/pageviews.min.js" | relative_url }}',
-  {% endif %}
-
   '{{ "/assets/data/search.json" | relative_url }}',
   '{{ "/404.html" | relative_url }}',
 
