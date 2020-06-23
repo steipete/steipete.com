@@ -102,4 +102,4 @@ The only way to get rid of this error seems to be to remove the define, but sinc
 
 ## Conclusion
 
-Using the [Swift trunk toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix. However, I appreciate that Apple provides prebuild packages, and I’m sure the issues above will be ironed out eventually.
+Using the [Swift trunk toolchain](https://swift.org/download/) is a rocky road, and I can only recommend this if you feel adventurous or really want to help Apple verify a bug fix. However, I appreciate that Apple provides prebuilt packages, and I’m sure the issues above will be ironed out eventually.
