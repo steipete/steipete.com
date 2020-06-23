@@ -30,6 +30,42 @@ Want to be the first to hear about more iOS hacks and tech essays?
 No spam; you’ll only hear from me at most once a month.
 
 <!-- Begin Mailchimp Signup Form -->
+ <!-- mailchimp -->
+ <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+
+  @media (min-width:641px) {
+    #mc_embed_signup .button { margin: 0px 5px; }
+    #mc_embed_signup form { text-align: right !important; }
+    #mc_embed_signup input.email { width: 240px !important; }
+  }
+
+  @media (max-width: 768px) {
+    #mc_embed_signup input.email {
+    width: 65%;
+  }
+  #mc_embed_signup .button {
+    width: 33%;
+    margin-left: 5px;
+  }
+  #mc_embed_signup .clear {
+    display: inline;
+  }
+  footer .footer-right {
+    margin-top: 10px;
+  }
+ }
+}
+
+  @media (max-width:1200px) {
+    .jekyll-twitter-plugin {
+    display: none;
+    }
+  }
+
+</style>
+
 <div id="mc_embed_signup">
 <form action="https://steipete.us18.list-manage.com/subscribe/post?u=1b30fcd0931c48f4c6b2e30bd&amp;id=0877936fb2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="text-align: left !important;">
     <div id="mc_embed_signup_scroll">
