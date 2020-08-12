@@ -3,8 +3,12 @@ layout: post
 title: "Comparing Update Times of Windows and macOS"
 date: 2020-08-12 10:00:00 +0200
 tags: development
-image: /assets/img/2020/zld/benchmarks.png
+image: /assets/img/2020/os-updates/windows-stats.png
 ---
+
+<style type="text/css">
+div.post-content > img:first-child { display:none; }
+</style>
 
 At [PSPDFKit](https://pspdfkit.com/) we ship PDF SDKs for all major operating systems, including macOS and Windows. We regularly look at update rates to see when it's time to drop older versions. Today I noticed something interesting: Windows now updates much faster than macOS.
 
