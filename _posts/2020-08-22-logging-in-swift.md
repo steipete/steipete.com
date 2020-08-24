@@ -3,8 +3,12 @@ layout: post
 title: "Logging in Swift"
 date: 2020-08-24 18:00:00 +0200
 tags: iOS development
-image: 
+image: /assets/img/2020/swift-logging/logd.jpeg
 ---
+
+<style type="text/css">
+div.post-content > img:first-child { display:none; }
+</style>
 
 With iOS 14, Apple greatly improved the built-in logging framework and added many missing pieces. Is OSLog now something that finally can be used?
 
