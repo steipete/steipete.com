@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Logging in Swift"
-date: 2020-08-24 18:00:00 +0200
+date: 2020-08-24 19:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/swift-logging/logd.jpeg
 ---
