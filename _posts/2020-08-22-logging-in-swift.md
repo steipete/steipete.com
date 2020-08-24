@@ -205,6 +205,8 @@ Given these functions, we can write a Swift[^3] class that accesses the streamin
 
 <script src="https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e.js"></script>
 
+The [complete sample project is on GitHub](https://github.com/steipete/OSLogTest).
+
 [^3]: There's currently no way to correctly define C structs in Swift, so importing the C file `ActivityStreamSPI.h` is a requirement. This is a shame, as it makes releasing that as SwiftPM module nearly impossible. We could rewrite everything in Objective-C to make it work, or hope that mixed-mode projects will be supported eventually.
 
 ## Conclusion
