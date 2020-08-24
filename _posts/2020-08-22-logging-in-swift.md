@@ -128,7 +128,7 @@ Apple forgot to add the Swift overlay shims on iOS, so we need to use some trick
 #endif
 ```
 
-Since the non-sugared version also works on iOS, it's not necessary to do an if/else dance at all, but it's a good pattern to document how it should work, in the hopes that the bug gets fixed before the GM.
+Since the non-sugared version also works on macOS, it's not necessary to do an if/else dance at all, but it's a good pattern to document how it should work, in the hopes that the bug gets fixed before the GM.
 
 ### Predicate Issues
 
