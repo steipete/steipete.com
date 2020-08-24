@@ -187,6 +187,8 @@ typedef char *(*os_log_copy_formatted_message_t)(os_log_message_t log_message);
 
 Given these functions we can write a Swift[^3] class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e). While this works, SPI is still private API and you shouldn't ship this in the App Store (FB8519418).
 
+<script src="https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e.js"></script>
+
 [^3]: There's currently no way to correctly define C structs in Swift, so importing the C file `ActivityStreamSPI.h` is a requirement. This is a shame, as it makes releasing that as SwiftPM module nearly impossible. We could rewrite everything in Objective-C to make it work, or hope that mixed-mode projects will be supported eventually.
 
 ## Conclusion
