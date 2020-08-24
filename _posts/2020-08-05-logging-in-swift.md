@@ -6,52 +6,13 @@ tags: iOS development
 image: 
 ---
 
-With iOS 14, Apple greatly improved the built-in logging framework and seemingly added many missing pieces[^6]. Is OSLog now something that finally can be used?
-
-[^6]: Apple claimed in the [WWDC 2016 video about Unified Logging](https://developer.apple.com/videos/play/wwdc2016/721/) that support for Swift is coming "real soon". It took them 4 years, but they finally delivered on a worthy wrapper.
-
-What do you mean, not usable? We use `os_log` for years now!
-
-## Calling os_log in Swift
-
-If you would naively try to use `os_log` in Swift like this:
-```
-os_log("foo: \(x) \(y.description)", log: OSLog.default, type: .debug)
-```
-
-The compiler complains right away:
-
-> Cannot convert value of type 'String' to expected argument type 'StaticString'
-
-`os_log` requires the use of a Obj-C style format strings for performance and security reasons.[^4] At the same time Apple also strongly recommends to avoid wrapping os_log.
-
-[^4]: It's fairly easy to cause undefined behavior with NSLog, where Swift string interpolation and Swift format specifiers are mixed. There's a [great example on StackOverflow](https://stackoverflow.com/a/53025803/83160).
-
-### Why Is Wrapping OSLog Bad?
-
-The main issue with Apple's `os_log` is that its design only makes sense when you use it to directly construct a string. Strings are placed in a separate section of the binary, which makes os_log extremely fast and privacy preserving. Dynamic elements in the string construction are automatically masked.
-
-This however implies that `os_log` should not be wrapped in another logging abstraction. [Apple warns for this in their swift-log project](https://github.com/apple/swift-log), which links to a 3rd-party [swift-log-oslog plugin](https://github.com/chrisaljoudi/swift-log-oslog), with the following warning:
-
->Note: we recommend using os_log directly as decribed here. Using os_log through swift-log using this backend will be less efficient and will also prevent specifying the privacy of the message. The backend always uses %{public}@ as the format string and eagerly converts all string interpolations to strings. This has two drawbacks: 1. the static components of the string interpolation would be eagerly copied by the unified logging system, which will result in loss of performance. 2. It makes all messages public, which changes the default privacy policy of os_log, and doesn't allow specifying fine-grained privacy of sections of the message. In a separate on-going work, Swift APIs for os_log are being improved and made to align closely with swift-log APIs. References: Unifying Logging Levels, Making os_log accept string interpolations using compile-time interpretation.
-
-The wrapper uses `os_log("%{public}@"...` which makes all strings dynamic and public, removing most of the benefits of OSLog.
-
-The other issue is that apps often include logs with a bug or crash report. Most logging frameworks include a rolling file logger which makes it easy to access logs on-demand. [Apple's recommended way to access logs](https://developer.apple.com/forums/thread/650843?answerId=616460022) of a user or tester is to ask them to call  `log collect --device` on a terminal, possibly filter the output via `--start` or `--last` limits and thens ending the output manually. 
-
->a tester with access to a Mac can use log collect --device as seen in the talk to get a logarchive, even if they do not have Xcode. Using --start or --last limits the time range of the logs, which can limit the size of the resulting logarchive.
-
-- [Apple System Engineer](https://developer.apple.com/forums/thread/650843?answerId=616460022)
-
-How many of your users are willing and able to do this? Furthermore, It will also only work if the user's iPhone or iPad is synced to macOS, and they have the latest stable version.
-
-In all practicality, this resulted in basically no app using `os_log` directly, which completely defeats the point.
+With iOS 14, Apple greatly improved the built-in logging framework and added many missing pieces. Is OSLog now something that finally can be used?
 
 ## Why OSLog is Awesome
 
 Every developer uses some form of logging, be it `NSLog` in Objective-C and `print` in Swift. These helpers are convenient, but do not scale - there's no concept to classify messages.
 
-Apple [introduced os_log](https://developer.apple.com/documentation/os/os_log) with iOS 10 and macOS 10.12, in an attempt to provide a better, universal logging system. It supersedes the aging ASL (Apple System Logger) and comes with features expected from a modern logging system:
+Apple [introduced os_log](https://developer.apple.com/documentation/os/os_log) with iOS 10 and macOS 10.12, in an attempt to provide a better, universal logging system[^7]. It supersedes the aging ASL (Apple System Logger) and comes with features expected from a modern logging system:
 
 - **Categorization and filtering:** Log levels, grouping via subsystem and category
 - **Privacy:** Dynamic strings, collections and arrays are replaced to preserve personally identifiable information. This can be overridden on a per-parameter basis.
@@ -60,7 +21,65 @@ Apple [introduced os_log](https://developer.apple.com/documentation/os/os_log) w
 
 Most developers probably noticed (And that you now need a breakpoint to `_os_log_impl` next to `NSLog` and `CFLog` to find which component is responsible for a log message in the console)
 
-This post does not address `os_signpost`, `os_trace` and `os_activity` - all amazing features that fit into the logging concept.
+[^7]: This post does not address `os_signpost`, `os_trace` and `os_activity` - all amazing features that fit into the logging concept and that you should be using.
+
+## The New Swift Logging Framework
+
+Instead of calling `os_log`, you can now use the new `Logger` struct in Swift — at least if you have the luxury of only supporting iOS 14 already.
+
+```
+let logger = Logger(subsystem: "com.steipete.LoggingTest", category: "main")
+logger.info("Logging \(obj.description, privacy: .public)")
+```
+
+This innocent looking code uses a bunch of new tricks! First of, the new [String Interpolation feature of Swift 5](https://talk.objc.io/episodes/S01E143-string-interpolation-in-swift-5) is used to make it easy to customize the privacy of data.
+
+Secondly, Apple modified the Swift compiler to allow [Compile Time Constant Expressions](https://gist.github.com/marcrasi/b0da27a45bb9925b3387b916e2797789) to evaluate the string at compile time - this ensure that logging is extremely fast. The technology behind is fascinating, and it seems that it was worth the wait[^6].
+
+[^6]: Apple claimed in the [WWDC 2016 video about Unified Logging](https://developer.apple.com/videos/play/wwdc2016/721/) that support for Swift is coming "real soon". It took them 4 years, but they finally delivered on a worthy wrapper.
+
+## Calling `os_log` in Swift
+
+If you still need to use iOS 13 or are curious how things worked back in the days, here's how calling `os_log` works. 
+
+Naively, you might try following approach:
+```
+os_log("foo: \(x) \(obj.description)", log: OSLog.default, type: .debug)
+```
+
+The compiler complains right away:
+
+> Cannot convert value of type 'String' to expected argument type 'StaticString'
+
+`os_log` requires the use of a Obj-C style format strings for performance and security reasons.[^4] At the same time Apple also strongly recommends to avoid wrapping os_log - so there's really no way around using following syntax:
+
+```
+os_log("foo: %@ %@", log: .default, type: .debug, x, obj.description)
+```
+
+[^4]: It's fairly easy to cause undefined behavior with NSLog, where Swift string interpolation and Swift format specifiers are mixed. There's a [great example on StackOverflow](https://stackoverflow.com/a/53025803/83160). `os_log` also supports a few special identifiers that are not part of NSString, so it's not exactly the same.
+
+### What's the Problem with Wrapping OSLog?
+
+OSLog is designed to accept static strings, in order to be fast and correctly separate between dynamic data (private) and static data (public).
+
+Most wrappers simply forward messages via `os_log("%{public}@"...` which makes all strings dynamic and public, removing most of the benefits of OSLog.
+
+[Apple warns for this in their swift-log project](https://github.com/apple/swift-log), which links to a 3rd-party [swift-log-oslog plugin](https://github.com/chrisaljoudi/swift-log-oslog), with the following warning:
+
+>Note: we recommend using os_log directly as decribed here. Using os_log through swift-log using this backend will be less efficient and will also prevent specifying the privacy of the message. The backend always uses %{public}@ as the format string and eagerly converts all string interpolations to strings. This has two drawbacks: 1. the static components of the string interpolation would be eagerly copied by the unified logging system, which will result in loss of performance. 2. It makes all messages public, which changes the default privacy policy of os_log, and doesn't allow specifying fine-grained privacy of sections of the message. In a separate on-going work, Swift APIs for os_log are being improved and made to align closely with swift-log APIs. References: Unifying Logging Levels, Making os_log accept string interpolations using compile-time interpretation.
+
+There are also surprising bugs like [doubles that are not logged correctly](https://stackoverflow.com/questions/50937765/why-does-wrapping-os-log-cause-doubles-to-not-be-logged-correctly), which can be very hard to debug.
+
+## Accessing Logs Files
+
+Log files are useful whenever users report a bug or a crash is being sent.  Most logging frameworks therefore include a rolling file logger which makes it easy to access logs on-demand.
+
+Apple's [solution](https://developer.apple.com/forums/thread/650843?answerId=616460022) to accessing logs is either `sysdiagnose` or calling `log collect --device` on a terminal, possibly filter the output via `--start` or `--last` limits and thens ending the output manually. 
+
+This might work if your audience is macOS developers, but if you're targeting regular users, it's much harder to make them follow a tutorial and then explain how to send a multiple-hundred-megabyte sysdiagnose. Furthermore, this will only work if your user runs a recent version of macOS.
+
+In all practicality, this resulted in basically no app using `os_log` directly, which completely defeats the point. The most used logging frameworks to date seem to be [`SwiftyBeaver`](https://github.com/SwiftyBeaver/SwiftyBeaver) and [`CocoaLumberjack`](https://github.com/CocoaLumberjack/CocoaLumberjack).
 
 ## New in iOS 14: OSLogStore
 
@@ -82,6 +101,7 @@ func getLogEntries() throws -> [OSLogEntryLog] {
 `OSLogEntryLog` is a class that contains all log info your heart desires, from log level to message to thread to process.
 
 ### Swift Overlay Issues
+
 However, above code has a few problems. It works on macOS but doesn't work on iOS. Apple forgot to add the Swift overlay shims there, so we need to use some tricks to access the ObjC enumerator (FB8518476).
 
 ```swift
@@ -96,6 +116,7 @@ However, above code has a few problems. It works on macOS but doesn't work on iO
 Since the non-sugared version also works on iOS, it's not necessary to do an if/else dance at all, but it's a good pattern to document how it should work, in the hopes that the bug gets fixed before the GM.
 
 ### Predicate Issues
+
 The next issue is that the entries enumerator has a built-in way to filter via the `predicate:`, however none of my attempts were successful (FB8518539).
 
 ```swift
@@ -148,9 +169,21 @@ The SPI[^2]: we need is in [ActivityStreamSPI.h](https://github.com/apple/llvm-p
 
 [^2]: System Programming Interface. This is private API that's used within Apple's frameworks, thus it's extremely rare that SPI is changed, unlike completely internal private API.
 
-Given that, we can write a Swift class that accesses the streaming log:
+The main functions that are important to us are:
 
-<script src="https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e.js"></script>
+```c
+typedef os_activity_stream_t (*os_activity_stream_for_pid_t)(
+    pid_t pid, os_activity_stream_flag_t flags,
+    os_activity_stream_block_t stream_block);
+
+typedef void (*os_activity_stream_resume_t)(os_activity_stream_t stream);
+
+typedef void (*os_activity_stream_cancel_t)(os_activity_stream_t stream);
+
+typedef char *(*os_log_copy_formatted_message_t)(os_log_message_t log_message);
+```
+
+Given that, we can write a Swift class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e).
 
 Note: There's currently no way to correctly define C structs in Swift, so importing the C file `ActivityStreamSPI.h` is a requirement.[^3] 
 
