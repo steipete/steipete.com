@@ -91,7 +91,7 @@ With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore),
 
 ```swift
 func getLogEntries() throws -> [OSLogEntryLog] {
-	  // Open the log store
+    // Open the log store
     let logStore = try OSLogStore(scope: .currentProcessIdentifier)
     
     // Get all logs from the last hour
