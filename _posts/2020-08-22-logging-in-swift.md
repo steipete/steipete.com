@@ -85,6 +85,8 @@ In all practicality, this resulted in basically no app using `os_log` directly, 
 
 This has been a point of personal frustration for me, there are [multiple](https://developer.apple.com/forums/thread/66984) forum entires where people are just baffled that this doesn't exist. I've brought this up every year except 2020 in the WWDC labs. The usual answer was "Apple cares about privacy so accessing logs is a no-go" — but the alternative is that people use other logging frameworks that have no privacy-preserving features built-in.
 
+At [PSPDFKit](https://pspdfkit.com/) we tried switching to `os_log` but hit the same issues — our customers depend on [a custom log handler](https://pspdfkit.com/guides/ios/current/features/logging/#custom-log-handler) that integrates our log messages with their infrastructure. To date, this can be done with OSLog only using SPI.
+
 ## New in iOS 14: OSLogStore
 
 With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. It allows accessing `OSLogEntryLog` which contains all log info you possibly ever need. 
@@ -114,7 +116,7 @@ The code is fairly straightforward, however above version has various issues. It
 
 ### Swift Overlay Issues
 
-Apple forgot to add the Swift overlay shims on iOS, so we need to use some tricks to access the ObjC enumerator (FB8518476).
+Apple forgot to add the Swift overlay shims on iOS, so we need to use some tricks to access the ObjC enumerator ([FB8518476](https://openradar.appspot.com/FB8518476)).
 
 ```swift
 #if os(macOS)
@@ -129,7 +131,7 @@ Since the non-sugared version also works on iOS, it's not necessary to do an if/
 
 ### Predicate Issues
 
-The next issue is that the entries enumerator has a built-in way to filter via the predicate, however this doesn't seem to work (FB8518539).
+The next issue is that the entries enumerator has a built-in way to filter via the predicate, however this doesn't seem to work ([FB8518539](https://openradar.appspot.com/FB8518539)).
 
 ```swift
 // TODO: How to format the predicate? See "PREDICATE-BASED FILTERING" in `man log`.
@@ -198,7 +200,7 @@ typedef void (*os_activity_stream_cancel_t)(os_activity_stream_t stream);
 typedef char *(*os_log_copy_formatted_message_t)(os_log_message_t log_message);
 ```
 
-Given these functions, we can write a Swift[^3] class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e). While this works, SPI is still private API and you shouldn't ship this in the App Store (FB8519418).
+Given these functions, we can write a Swift[^3] class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e). While this works, SPI is still private API and you shouldn't ship this in the App Store ([FB8519418](https://openradar.appspot.com/FB8519418)).
 
 <script src="https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e.js"></script>
 
