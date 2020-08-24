@@ -138,15 +138,13 @@ Error Domain=OSLogErrorDomain Code=9 "Client lacks entitlement to perform operat
 
 It is not documented why this wouldn't work nor what entitlement is required. There's [anecdotical](https://twitter.com/bjtitus/status/1276211162506424323) [evidence](https://twitter.com/justkwin/status/1276271590360199172) on Twitter that Apple's intent is to allow this on iOS, however we're slowly nearing the end of Apple's beta cycle and there hasn't been an official announcement nor a fix.
 
-If you feel strongly about this, please also report a radar and engage in the [discu](https://developer.apple.com/forums/thread/650843?answerId=616460022)s[sions](https://developer.apple.com/forums/thread/658229) on Apple's Developer Forum.
+If you feel strongly about this, please also report a radar and engage in the [discussion](https://developer.apple.com/forums/thread/658229) on Apple's Developer Forum.
 
-#### Digging Deeper
+### Digging Deeper
 
 How does `OSLogStore` access logs in the first place? The store is part of the OSLog framework, which includes a small XPC service. At initialization time, the store opens a synchronous XPC request to `com.apple.OSLogService`, the service included in the framework.
 
-OSLogService ensures logs are filtered for the current process and then accesses the `OSLogEventStore`.
-
-OSLogEventStore is implemented in the private `LoggingSuppport.framework`. Here, you can see that it connects to `logd` and also captures the failure condition which ultimately produces the entitlement error.
+`OSLogService` ensures logs are filtered for the current process and then accesses the `OSLogEventStore`. `OSLogEventStore` is implemented in the private `LoggingSuppport.framework`. Here, you can see that it connects to `logd` and also captures the failure condition which ultimately produces the entitlement error.
 
 If we keep digging and also take a look at `logd`, we find references to various private entitlements:
 
@@ -161,17 +159,15 @@ Full credit goes to [Khaos Tian](https://twitter.com/khaost) who took the time t
 
 ## Streaming OSLog
 
-It is often desirable to stream log messages as they come in. This is a feature of many popular analytics and logging frameworks, from Google Firebase to SwiftyBeaver.
+It is often desirable to stream log messages as they come in. This is a feature of many popular analytics and logging frameworks — of course OSLog also needs to this feature.
 
-If we look at Xcode, lldb is doing exactly the same - streaming log messages as our app is running. Thankfully lldb is open source, so we can look at [DarwinLogCollector.cpp](https://github.com/llvm-mirror/lldb/blob/master/tools/debugserver/source/MacOSX/DarwinLog/DarwinLogCollector.cpp) which does exactly that[^1]. 
+Lldb is doing exactly that, it listens to OSLog messages and prints the streams as they are created. Thankfully lldb is open source, so we can look at [DarwinLogCollector.cpp](https://github.com/llvm-mirror/lldb/blob/master/tools/debugserver/source/MacOSX/DarwinLog/DarwinLogCollector.cpp) which does exactly that[^1]. 
 
 [^1]: A more convenient implementation is in [FLEX](https://github.com/Flipboard/FLEX/blob/master/Classes/GlobalStateExplorers/SystemLog/FLEXOSLogController.m).
 
-The SPI[^2]: we need is in [ActivityStreamSPI.h](https://github.com/apple/llvm-project/blob/apple/master/lldb/tools/debugserver/source/MacOSX/DarwinLog/ActivityStreamSPI.h) which is part of lldb. (It contains various structs which cannot be redefined in Swift, this file needs to be plain C)
+The SPI[^2]: we need is in [ActivityStreamSPI.h](https://github.com/apple/llvm-project/blob/apple/master/lldb/tools/debugserver/source/MacOSX/DarwinLog/ActivityStreamSPI.h) which is part of lldb. (It contains various structs which cannot be redefined in Swift, this file needs to be plain C) The main functions that are important to us are:
 
 [^2]: System Programming Interface. This is private API that's used within Apple's frameworks, thus it's extremely rare that SPI is changed, unlike completely internal private API.
-
-The main functions that are important to us are:
 
 ```c
 typedef os_activity_stream_t (*os_activity_stream_for_pid_t)(
