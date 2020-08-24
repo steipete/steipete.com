@@ -41,7 +41,7 @@ Secondly, Apple modified the Swift compiler to allow [Compile Time Constant Expr
 ## Calling `os_log` in Swift
 
 If you still need to use iOS 13 or are curious how things worked back in the days, here's how calling `os_log` works. Naively, you might try following approach:
-```
+```swift
 os_log("foo: \(x) \(obj.description)", log: OSLog.default, type: .debug)
 ```
 
@@ -51,7 +51,7 @@ The compiler complains right away:
 
 `os_log` requires the use of a Obj-C style format strings for performance and security reasons.[^4] At the same time Apple also strongly recommends to avoid wrapping os_log - so there's really no way around using following syntax:
 
-```
+```swift
 os_log("foo: %@ %@", log: .default, type: .debug, x, obj.description)
 ```
 
