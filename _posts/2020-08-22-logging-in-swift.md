@@ -100,7 +100,8 @@ func getLogEntries() throws -> [OSLogEntryLog] {
     // Fetch log objects.
     let allEntries = try logStore.getEntries(at: oneHourAgo)
     
-    // Filter log to be relevant for our specific subsystem and remove other elements (signposts etc)
+    // Filter log to be relevant for our specific subsystem
+    // and remove other elements (signposts etc)
     return allEntries
         .compactMap { $0 as? OSLogEntryLog }
         .filter { $0.subsystem == subsystem }
