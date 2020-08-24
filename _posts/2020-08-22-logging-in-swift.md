@@ -155,7 +155,7 @@ If we keep digging and also take a look at `logd`, we find references to various
 
 The admin one is required for accessing the log store. If we attach to both our app and logd, we can modify the flow at runtime to trick it into believing the entitlement is there, and voila, logging works on iOS!
 
-<% twitter https://twitter.com/khaost/status/1297647313804857345 %>
+{% twitter https://twitter.com/khaost/status/1297647313804857345 %}
 
 Full credit goes to [Khaos Tian](https://twitter.com/khaost) who took the time to figure out the details. Attaching lldb to logd requires SIP disabled, since logd is hardened and doesn't include the `get-task-allow` debug entitlement.
 
