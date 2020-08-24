@@ -170,28 +170,30 @@ The SPI[^2]: we need is in [ActivityStreamSPI.h](https://github.com/apple/llvm-p
 [^2]: System Programming Interface. This is private API that's used within Apple's frameworks, thus it's extremely rare that SPI is changed, unlike completely internal private API.
 
 ```c
+// Get an activity stream for a process.
 typedef os_activity_stream_t (*os_activity_stream_for_pid_t)(
     pid_t pid, os_activity_stream_flag_t flags,
     os_activity_stream_block_t stream_block);
 
+// Start the activity stream.
 typedef void (*os_activity_stream_resume_t)(os_activity_stream_t stream);
 
+// Stop the activity stream.
 typedef void (*os_activity_stream_cancel_t)(os_activity_stream_t stream);
 
+// Get a formatted message out of an activity.
 typedef char *(*os_log_copy_formatted_message_t)(os_log_message_t log_message);
 ```
 
-Given that, we can write a Swift class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e).
+Given these functions we can write a Swift[^3] class that accesses the streaming log. You can see a reference implementation in [my gist of `OSLogStream.swift`](https://gist.github.com/steipete/459a065f905a41f8f577fb02ef34206e). While this works, SPI is still private API and you shouldn't ship this in the App Store (FB8519418).
 
-Note: There's currently no way to correctly define C structs in Swift, so importing the C file `ActivityStreamSPI.h` is a requirement.[^3] 
-
-[^3]: This is a shame, as it makes releasing that as SwiftPM module nearly impossible. We could rewrite everything in Objective-C to make it work, or hope that mixed-mode projects will be supported eventually.
-
-While this works, SPI is still private API and you shouldn't ship this in the App Store (FB8519418).
+[^3]: There's currently no way to correctly define C structs in Swift, so importing the C file `ActivityStreamSPI.h` is a requirement. This is a shame, as it makes releasing that as SwiftPM module nearly impossible. We could rewrite everything in Objective-C to make it work, or hope that mixed-mode projects will be supported eventually.
 
 ## Conclusion
 
-It remains exciting if Apple will fix the various issues in OSLogStore before the GM. OSLog is an extremely awesome API and all the pieces are there - just currently locked away behind private API, entitlements and some bugs.
+OSLog is an extremely awesome API and all the pieces are there - just currently locked away behind private API, entitlements and some bugs. It remains exciting if Apple will fix the various issues in `OSLogStore` before the GM. Or does it work as intended?
+
+Did I miss something? [Hit me up on Twitter](https://twitter.com/steipete) or [open a Pull Request](https://github.com/steipete/steipete.com) to help with typos. Thanks! 🙏
 
 ## Further Reading
 
