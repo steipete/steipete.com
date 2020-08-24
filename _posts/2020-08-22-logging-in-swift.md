@@ -83,19 +83,24 @@ This might work if your audience is macOS developers, but if you're targeting re
 
 In all practicality, this resulted in basically no app using `os_log` directly, which completely defeats the point. The most used logging frameworks to date seem to be [`SwiftyBeaver`](https://github.com/SwiftyBeaver/SwiftyBeaver) and [`CocoaLumberjack`](https://github.com/CocoaLumberjack/CocoaLumberjack).
 
-This has been a point of personal frustration for me, there's [multiple](https://developer.apple.com/forums/thread/66984) forum entires where people are just baffled that this doesn't exist. I've brought this up every year except 2020 in the WWDC labs. The usual answer was "Apple cares about privacy so accessing logs is a no-go" - but the alternative is that people use other logging frameworks that have no privacy-preserving features built-in.
+This has been a point of personal frustration for me, there's [multiple](https://developer.apple.com/forums/thread/66984) forum entires where people are just baffled that this doesn't exist. I've brought this up every year except 2020 in the WWDC labs. The usual answer was "Apple cares about privacy so accessing logs is a no-go" — but the alternative is that people use other logging frameworks that have no privacy-preserving features built-in.
 
 ## New in iOS 14: OSLogStore
 
-With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. The new store access is available for all platform versions of 2020.
-
-It's the missing piece in the `os_log` story that finally will get us the best of both worlds. Let's look at how this works:
+With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. The new store access is available for all platform versions of 2020. It's the missing piece in the `os_log` story that finally will get us the best of both worlds. Let's look at how this works:
 
 ```swift
 func getLogEntries() throws -> [OSLogEntryLog] {
+	  // Open the log store
     let logStore = try OSLogStore(scope: .currentProcessIdentifier)
+    
+    // Get all logs from the last hour
     let oneHourAgo = logStore.position(date: Date().addingTimeInterval(-3600))
+    
+    // Fetch log objects.
     let allEntries = try logStore.getEntries(at: oneHourAgo)
+    
+    // Filter log to be relevant for our specific subsystem and remove other elements (signposts etc)
     return allEntries
         .compactMap { $0 as? OSLogEntryLog }
         .filter { $0.subsystem == subsystem }
