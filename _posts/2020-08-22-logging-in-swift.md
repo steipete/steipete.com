@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Logging in Swift"
-date: 2020-08-05 12:00:00 +0200
+date: 2020-08-24 18:00:00 +0200
 tags: iOS development
 image: 
 ---
@@ -142,6 +142,8 @@ Error Domain=OSLogErrorDomain Code=9 "Client lacks entitlement to perform operat
 
 It is not documented why this wouldn't work nor what entitlement is required. There's [anecdotical](https://twitter.com/bjtitus/status/1276211162506424323) [evidence](https://twitter.com/justkwin/status/1276271590360199172) on Twitter that Apple's intent is to allow this on iOS, however we're slowly nearing the end of Apple's beta cycle and there hasn't been an official announcement nor a fix.
 
+If you feel strongly about this, please also report a radar and engage in the [discu](https://developer.apple.com/forums/thread/650843?answerId=616460022)s[sions](https://developer.apple.com/forums/thread/658229) on Apple's Developer Forum.
+
 #### Digging Deeper
 
 How does `OSLogStore` access logs in the first place? The store is part of the OSLog framework, which includes a small XPC service. At initialization time, the store opens a synchronous XPC request to `com.apple.OSLogService`, the service included in the framework.
@@ -152,8 +154,8 @@ OSLogEventStore is implemented in the private `LoggingSuppport.framework`. Here,
 
 If we keep digging and also take a look at `logd`, we find references to various private entitlements:
 
-- com.apple.private.logging.admin
-- com.apple.private.logging.diagnostic
+- `com.apple.private.logging.admin`
+- `com.apple.private.logging.diagnostic`
 
 The admin one is required for accessing the log store. If we attach to both our app and logd, we can modify the flow at runtime to trick it into believing the entitlement is there, and voila, logging works on iOS!
 
