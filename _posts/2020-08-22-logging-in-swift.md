@@ -129,7 +129,7 @@ Since the non-sugared version also works on iOS, it's not necessary to do an if/
 
 ### Predicate Issues
 
-The next issue is that the entries enumerator has a built-in way to filter via the `predicate:`, however none of my attempts were successful (FB8518539).
+The next issue is that the entries enumerator has a built-in way to filter via the `predicate:`, however this doesn't seem to work (FB8518539).
 
 ```swift
 // TODO: How to format the predicate? See "PREDICATE-BASED FILTERING" in `man log`.
@@ -138,14 +138,15 @@ The next issue is that the entries enumerator has a built-in way to filter via t
 // - NSPredicate(format: "subsystem == \"com.steipete.LoggingTest\"")
 ```
 
-Credit for the syntax go to Ole Begemann, wo's been investigating OSLogStore early on and maintains a [OSLogStoreTest](https://github.com/ole/OSLogStoreTest) sample project. 
+Credit for the syntax goes to Ole Begemann, wo has been investigating `OSLogStore` early on and maintains a [OSLogStoreTest](https://github.com/ole/OSLogStoreTest) sample project. 
 
 ### iOS Entitlement Issues
 
 While it's fairly easy to work around the first two bugs, the third one is a real show-stopper. While accessing the log store works great on macOS (AppKit) and macOS (Catalyst), it fails with an entitlement error on iOS:
 
 ```
-Error Domain=OSLogErrorDomain Code=9 "Client lacks entitlement to perform operation" UserInfo={NSLocalizedDescription=Client lacks entitlement to perform operation, _OSLogErrorInternalCode=14}
+Error Domain=OSLogErrorDomain Code=9 "Client lacks entitlement to perform operation"
+UserInfo={NSLocalizedDescription=Client lacks entitlement to perform operation, _OSLogErrorInternalCode=14}
 ```
 
 It is not documented why this wouldn't work nor what entitlement is required. There's [anecdotical](https://twitter.com/bjtitus/status/1276211162506424323) [evidence](https://twitter.com/justkwin/status/1276271590360199172) on Twitter that Apple's intent is to allow this on iOS, however we're slowly nearing the end of Apple's beta cycle and there hasn't been an official announcement nor a fix.
