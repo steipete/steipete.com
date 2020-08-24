@@ -14,20 +14,20 @@ Every developer uses some form of logging, be it `NSLog` in Objective-C and `pri
 
 Apple [introduced os_log](https://developer.apple.com/documentation/os/os_log) with iOS 10 and macOS 10.12, in an attempt to provide a better, universal logging system[^7]. It supersedes the aging ASL (Apple System Logger) and comes with features expected from a modern logging system:
 
-- **Categorization and filtering:** Log levels, grouping via subsystem and category
+- **Categorization and filtering:** Log levels, grouping via subsystem and category.
 - **Privacy:** Dynamic strings, collections and arrays are replaced to preserve personally identifiable information. This can be overridden on a per-parameter basis.
-- **Usability:** The logging information collects calling info for you. Integrated into the system via Console.app and the log command line tool. If activity tracing is used, logs are automatically correlated
+- **Usability:** The logging information collects calling info for you. Integrated into the system via Console.app and the log command line tool. If activity tracing is used, logs are automatically correlated.
 - **Performance:** Logs are stored extremely efficient and all system log is in once place.
 
-Most developers probably noticed (And that you now need a breakpoint to `_os_log_impl` next to `NSLog` and `CFLog` to find which component is responsible for a log message in the console)
+You might already stumbled over the log log, as you now need a 3rd breakpoint when investigating where a log messages is coming from: Next to `NSLog` and `CFLog` you now need a breakpoint to `_os_log_impl` as well.
 
 [^7]: This post does not address `os_signpost`, `os_trace` and `os_activity` - all amazing features that fit into the logging concept and that you should be using.
 
 ## The New Swift Logging Framework
 
-Instead of calling `os_log`, you can now use the new `Logger` struct in Swift — at least if you have the luxury of only supporting iOS 14 already.
+Instead of calling `os_log`, you can now use the new [`Logger`](https://developer.apple.com/documentation/os/logger) struct in Swift — at least if you have the luxury of only supporting iOS 14 already.
 
-```
+```swift
 let logger = Logger(subsystem: "com.steipete.LoggingTest", category: "main")
 logger.info("Logging \(obj.description, privacy: .public)")
 ```
