@@ -29,7 +29,7 @@ You might already stumbled over the log log, as you now need a 3rd breakpoint wh
 
 ## The New Swift Logging Framework
 
-Instead of calling `os_log`, you can now use the new [`Logger`](https://developer.apple.com/documentation/os/logger) struct in Swift — at least if you have the luxury of only supporting iOS 14 already.
+Instead of calling `os_log`, you can now use the new [`Logger`](https://developer.apple.com/documentation/os/logger) struct in Swift — at least if you have the luxury of exclusively supporting iOS 14 already.
 
 ```swift
 let logger = Logger(subsystem: "com.steipete.LoggingTest", category: "main")
@@ -73,7 +73,7 @@ Apple maintains a separate [swift-log](https://github.com/apple/swift-log) loggi
 
 There are also surprising bugs like [doubles that are not logged correctly](https://stackoverflow.com/questions/50937765/why-does-wrapping-os-log-cause-doubles-to-not-be-logged-correctly), which can be very hard to debug.
 
-## Accessing Logs Files
+## Accessing Log Files
 
 Log files are useful whenever users report a bug or a crash is being sent.  Most logging frameworks therefore include a rolling file logger which makes it easy to access logs on-demand.
 
