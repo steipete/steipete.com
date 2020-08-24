@@ -10,14 +10,14 @@ With iOS 14, Apple greatly improved the built-in logging framework and seemingly
 
 [^6]: Apple claimed in the [WWDC 2016 video about Unified Logging](https://developer.apple.com/videos/play/wwdc2016/721/) that support for Swift is coming "real soon". It took them 4 years, but they finally delivered on a worthy wrapper.
 
-## Why OSLog Was Impractical So Far
-
 What do you mean, not usable? We use `os_log` for years now!
 
-### Calling os_log in Swift
+## Calling os_log in Swift
 
 If you would naively try to use `os_log` in Swift like this:
-`os_log("foo: \(x) \(y.description)", log: OSLog.default, type: .debug)`
+```
+os_log("foo: \(x) \(y.description)", log: OSLog.default, type: .debug)
+```
 
 The compiler complains right away:
 
@@ -168,3 +168,4 @@ It remains exciting if Apple will fix the various issues in OSLogStore before th
 
 - [Unified Logging and Activity Tracing, WWDC 2016](https://developer.apple.com/videos/play/wwdc2016/721/)
 - [Explore logging in Swift, WWDC 2020](https://developer.apple.com/videos/play/wwdc2020/10168/)
+- [Making `os_log` public on macOS Catalina](https://saagarjha.com/blog/2019/09/29/making-os-log-public-on-macos-catalina/)
