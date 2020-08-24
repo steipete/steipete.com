@@ -157,7 +157,7 @@ The admin one is required for accessing the log store. If we attach to both our 
 
 {% twitter https://twitter.com/khaost/status/1297647313804857345 %}
 
-Full credit goes to [Khaos Tian](https://twitter.com/khaost) who took the time to figure out the details. Attaching lldb to logd requires SIP disabled, since logd is hardened and doesn't include the `get-task-allow` debug entitlement.
+Full credit goes to [Khaos Tian](https://twitter.com/khaost) who took the time to figure out the details. Attaching lldb to logd requires [SIP to be disabled](https://www.imore.com/how-turn-system-integrity-protection-macos), since logd is hardened and doesn't include the `get-task-allow` debug entitlement.
 
 ## Streaming OSLog
 
