@@ -87,7 +87,9 @@ This has been a point of personal frustration for me, there's [multiple](https:/
 
 ## New in iOS 14: OSLogStore
 
-With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. The new store access is available for all platform versions of 2020. It's the missing piece in the `os_log` story that finally will get us the best of both worlds. Let's look at how this works:
+With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. It allows accessing `OSLogEntryLog` which contains all log info you possibly ever need. 
+
+The new store access is available for all platform versions of 2020. It's the missing piece in the `os_log` story that finally will get us the best of both worlds. Let's look at how this works:
 
 ```swift
 func getLogEntries() throws -> [OSLogEntryLog] {
@@ -108,11 +110,11 @@ func getLogEntries() throws -> [OSLogEntryLog] {
 }
 ```
 
-`OSLogEntryLog` is a class that contains all log info your heart desires, from log level to message to thread to process.
+The code is fairly straightforward, however above version has various issues. It works on macOS but doesn't work on iOS.
 
 ### Swift Overlay Issues
 
-However, above code has a few problems. It works on macOS but doesn't work on iOS. Apple forgot to add the Swift overlay shims there, so we need to use some tricks to access the ObjC enumerator (FB8518476).
+Apple forgot to add the Swift overlay shims on iOS, so we need to use some tricks to access the ObjC enumerator (FB8518476).
 
 ```swift
 #if os(macOS)
