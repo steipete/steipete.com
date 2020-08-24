@@ -53,12 +53,10 @@ Every developer uses some form of logging, be it `NSLog` in Objective-C and `pri
 
 Apple [introduced os_log](https://developer.apple.com/documentation/os/os_log) with iOS 10 and macOS 10.12, in an attempt to provide a better, universal logging system. It supersedes the aging ASL (Apple System Logger) and comes with features expected from a modern logging system:
 
-- Log Levels (error, debug, info)
-- Group messages inside subsystems and categories
-- Extremely high performance - no need to use conditionals for logging.
-- Privacy built-in. 
-- Integrated into the system via Console.app and the log command line tool
-- If activity tracing is used, logs are automatically correlated (TODO: how does that look?)
+- **Categorization and filtering:** Log levels, grouping via subsystem and category
+- **Privacy:** Dynamic strings, collections and arrays are replaced to preserve personally identifiable information. This can be overridden on a per-parameter basis.
+- **Usability:** The logging information collects calling info for you. Integrated into the system via Console.app and the log command line tool. If activity tracing is used, logs are automatically correlated
+- **Performance:** Logs are stored extremely efficient and all system log is in once place.
 
 Most developers probably noticed (And that you now need a breakpoint to `_os_log_impl` next to `NSLog` and `CFLog` to find which component is responsible for a log message in the console)
 
