@@ -36,6 +36,8 @@ This innocent looking code uses a bunch of new tricks! First of, the new [String
 
 Secondly, Apple modified the Swift compiler to allow [Compile Time Constant Expressions](https://gist.github.com/marcrasi/b0da27a45bb9925b3387b916e2797789) to evaluate the string at compile time - this ensure that logging is extremely fast. The technology behind is fascinating, and it seems that it was worth the wait[^6].
 
+For more example code, see the excellent [Generating Log Messages from Your Code](https://developer.apple.com/documentation/os/logging/generating_log_messages_from_your_code) Apple documentation article.
+
 [^6]: Apple claimed in the [WWDC 2016 video about Unified Logging](https://developer.apple.com/videos/play/wwdc2016/721/) that support for Swift is coming "real soon". It took them 4 years, but they finally delivered on a worthy wrapper.
 
 ## Calling `os_log` in Swift
@@ -202,3 +204,5 @@ It remains exciting if Apple will fix the various issues in OSLogStore before th
 - [Unified Logging and Activity Tracing, WWDC 2016](https://developer.apple.com/videos/play/wwdc2016/721/)
 - [Explore logging in Swift, WWDC 2020](https://developer.apple.com/videos/play/wwdc2020/10168/)
 - [Making `os_log` public on macOS Catalina](https://saagarjha.com/blog/2019/09/29/making-os-log-public-on-macos-catalina/)
+- [Generating Log Messages from Your Code](https://developer.apple.com/documentation/os/logging/generating_log_messages_from_your_code)
+- [Meet the new Logger API](https://wwdcbysundell.com/2020/meet-the-new-logger-api/)
