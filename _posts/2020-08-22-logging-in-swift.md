@@ -222,4 +222,4 @@ Did I miss something? [Hit me up on Twitter](https://twitter.com/steipete) or [o
 - [Generating Log Messages from Your Code](https://developer.apple.com/documentation/os/logging/generating_log_messages_from_your_code)
 - [Meet the new Logger API](https://wwdcbysundell.com/2020/meet-the-new-logger-api/)
 - [Making `os_log` public on macOS Catalina](https://saagarjha.com/blog/2019/09/29/making-os-log-public-on-macos-catalina/)
-- [Unredacting <private> os_log() messages on iOS](https://github.com/EthanArbuckle/unredact-private-os_logs)
+- [Unredacting \<private> os_log() messages on iOS](https://github.com/EthanArbuckle/unredact-private-os_logs)
