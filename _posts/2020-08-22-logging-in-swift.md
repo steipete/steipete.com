@@ -85,13 +85,15 @@ This might work if your audience is macOS developers, but if you’re targeting 
 
 In all practicality, this resulted in basically no app using `os_log` directly, which completely defeats the point. The most used logging frameworks to date seem to be [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver) and [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack).
 
-This has been a point of personal frustration for me; there are [multiple](https://developer.apple.com/forums/thread/66984) forum entries where people are just baffled that this doesn’t exist. I’ve brought this up every year in the WWDC labs except for in 2020. The usual answer is “Apple cares about privacy, so accessing logs is a no-go,” but the alternative is that people use other logging frameworks that have no privacy-preserving features built in.
+The inability to access logs has been a point of personal frustration; there are [multiple](https://developer.apple.com/forums/thread/66984) forum entries where people are just baffled that this doesn’t exist. I’ve brought it up every year in the WWDC labs except for in 2020. The usual answer is “Apple cares about privacy, so accessing logs is a no-go,” but the alternative is that people use other logging frameworks that have no privacy-preserving features built in.
 
-At [PSPDFKit](https://pspdfkit.com/), we tried switching to `os_log` but hit the same issues: Our customers depend on [a custom log handler](https://pspdfkit.com/guides/ios/current/features/logging/#custom-log-handler) that integrates our log messages with their infrastructure. To date, this can be done with OSLog only using SPI.
+At [PSPDFKit](https://pspdfkit.com/), we tried switching to `os_log` but hit the same issues: Our customers depend on [a custom log handler](https://pspdfkit.com/guides/ios/current/features/logging/#custom-log-handler) that integrates our log messages with their infrastructure. To date, this can only be done with OSLog using SPI.[^2]
+
+[^2]: System Programming Interface. This is a private API that’s used within Apple’s frameworks. As such, it’s extremely rare that SPI is changed, unlike completely internal private APIs.
 
 ## New in iOS 14: OSLogStore
 
-With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added API to access the log archive programmatically. It allows accessing `OSLogEntryLog`, which contains all the log information you’ll possibly ever need. 
+With [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore), Apple added an API to access the log archive programmatically. It allows accessing `OSLogEntryLog`, which contains all the log information you’ll possibly ever need. 
 
 The new store access is available for all platform versions of 2020. It’s the missing piece in the `os_log` story that finally will get us the best of both worlds. Let’s look at how this works:
 
@@ -114,7 +116,7 @@ func getLogEntries() throws -> [OSLogEntryLog] {
 }
 ```
 
-The code is fairly straightforward; however, the above version has various issues. It works on macOS but doesn’t work on iOS.
+The code is fairly straightforward; however, the above version has various issues, e.g. it works on macOS but doesn’t work on iOS.
 
 ### Swift Overlay Issues
 
@@ -129,7 +131,7 @@ Apple forgot to add the Swift overlay shims on iOS, so we need to use some trick
 #endif
 ```
 
-Since the non-sugared version also works on macOS, it’s not necessary to do an if/else dance at all, but it’s a good pattern to document how it should work, in the hopes that the bug gets fixed before the GM.
+Since the non-sugared version also works on macOS, it’s not necessary to do an if/else dance at all. However, this is a good pattern to document how it should work, assuming the bug gets fixed before the GM.
 
 ### Predicate Issues
 
@@ -182,9 +184,7 @@ LLDB is doing exactly that; it listens to OSLog messages and prints the streams 
 
 [^1]: A more convenient implementation is in [FLEX](https://github.com/Flipboard/FLEX/blob/master/Classes/GlobalStateExplorers/SystemLog/FLEXOSLogController.m).
 
-The SPI[^2] we need is in [`ActivityStreamSPI.h`](https://github.com/apple/llvm-project/blob/apple/master/lldb/tools/debugserver/source/MacOSX/DarwinLog/ActivityStreamSPI.h), which is part of LLDB. (It contains various structs which cannot be redefined in Swift; this file needs to be plain C.) The main functions that are important to us are:
-
-[^2]: System Programming Interface. This is a private API that’s used within Apple’s frameworks. As such, it’s extremely rare that SPI is changed, unlike completely internal private APIs.
+The SPI we need is in [`ActivityStreamSPI.h`](https://github.com/apple/llvm-project/blob/apple/master/lldb/tools/debugserver/source/MacOSX/DarwinLog/ActivityStreamSPI.h), which is part of LLDB. (It contains various structs which cannot be redefined in Swift; this file needs to be plain C.) The main functions that are important to us are:
 
 ```c
 // Get an activity stream for a process.
