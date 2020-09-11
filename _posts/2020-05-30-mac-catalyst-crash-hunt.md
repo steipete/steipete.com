@@ -66,11 +66,11 @@ Taking [a closer look](https://github.com/nst/iOS-Runtime-Headers/blob/master/Pr
     ...
 ```
 
-In the first crash, we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]` calling `-[RTIDocumentState selectedTextRange]`. Let’s find the former. From [my earlier experiments with Marzipan](https://pspdfkit.com/blog/2018/porting-ios-apps-to-mac-marzipan-iosmac-uikit-appkit/), I know that a lot of UIKit-AppKit glue code is in UIKitMacHelper, in the iOSSupport system `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitMacHelper.framework`, which is really a symlink to `/System/Library/PrivateFrameworks/UIKitMacHelper.framework`. `Versions/A/UIKitMacHelper` However, there’s no `selectedRange_RTI` implementation. Where else could it be?
+In the first crash, we see `-[NSTextInputContext(NSTextInputContext_RemoteTextInput_UIKitOnMac) selectedRange_RTI]` calling `-[RTIDocumentState selectedTextRange]`. Let’s find the former. From [my earlier experiments with Marzipan](https://pspdfkit.com/blog/2018/porting-ios-apps-to-mac-marzipan-iosmac-uikit-appkit/), I know that a lot of UIKit-AppKit glue code is in UIKitMacHelper, in the iOSSupport system `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitMacHelper.framework`, which is really a symlink to `/System/Library/PrivateFrameworks/UIKitMacHelper.framework`.`Versions/A/UIKitMacHelper`. However, there’s no `selectedRange_RTI` implementation. Where else could it be?
 
 ## Finding the Implementation
 
-To find out where a method or category is implemented, I’m using [`dladdr`, an old trick I learned in 2014](https://gist.github.com/steipete/28525fd7c44a9f16e206). Since this is a bit hard to call via LLDB, we write a small helper, which can be anywhere in your app:
+To find out where a method or category is implemented, I’m using [`dladdr`, an old trick I learned in 2014](https://gist.github.com/steipete/28525fd7c44a9f16e206). Since this is a bit difficult to call via LLDB, we write a small helper, which can be anywhere in your app:
 
 ```objc
 @implementation NSObject (PSHAXX)
@@ -160,7 +160,7 @@ in NSObject:
 	isa (Class): __NSTextInputContextAuxiliaryStorage (isa, 0x1dffff8820fafd)
 ```
 
-The decompiled code calls `rdi = *([self auxiliary] + 0x58);` so we know it’s a direct ivar access; we can also access it at runtime via KVC: 
+The decompiled code calls `rdi = *([self auxiliary] + 0x58);` so we know it’s a direct ivar access; we can also access this code at runtime via KVC: 
 
 ```
 e -l objc -O -- [[[[[[NSApplication sharedApplication] mainWindow] firstResponder] inputContext] auxiliary] valueForKey:@"_rtiCurrentInputSystemServiceSession"]
@@ -173,11 +173,11 @@ The Catalyst glue calls `documentState` on `RTIInputSystemServiceSession`. Let�
 
 ![](/assets/img/2020/catalyst-crash-fix/RTIInputSystemSession-documentState.png)
 
-This is the default implementation of a `nonatomic` property; there are no locking intrinsics here. From looking at the crash, I’m guessing that this is a race condition. Let’s verify this via adding breakpoints on `-[RTIInputSystemServiceSession documentState]` and `-[RTIInputSystemServiceSession setDocumentState]`:
+This is the default implementation of a `nonatomic` property; there are no locking intrinsics here. From looking at the crash, I’m guessing this is a race condition. Let’s verify this via adding breakpoints on `-[RTIInputSystemServiceSession documentState]` and `-[RTIInputSystemServiceSession setDocumentState]`:
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-breakpoint.png)
 
-I’m using a [conditional breakpoint](https://pspdfkit.com/blog/2016/scripted-breakpoints/) that stops if non-main-thread access is detected. It also prints out the thread automatically.  Since we’re in AppKit, methods usually are called on the main thread (remove the condition to verify). However sometimes, this is called from an XPC thread:
+I’m using a [conditional breakpoint](https://pspdfkit.com/blog/2016/scripted-breakpoints/) that stops if non-main-thread access is detected. It also prints out the thread automatically.  Since we’re in AppKit, methods are usually called on the main thread (remove the condition to verify). However, sometimes this is called from an XPC thread:
 
 ![](/assets/img/2020/catalyst-crash-fix/documentstate-callstack.png)
 
@@ -202,7 +202,7 @@ Here’s an example for the setter:
 
 ## Making a Non-Atomic Property Atomic
 
-Now that we understand the issue, it’s fairly easy[^1] to fix. Let’s add a lock to prevent the property from a raced access:
+Now that we understand the issue, it’s fairly easy to fix.[^1] Let’s add a lock to prevent the property from a raced access:
 
 [^1]: Swizzling in Swift isn’t pretty, but once you know how it works, it’s not much different than Objective-C — just a bit more verbose. If there’s a way to make this better/more concise, please [slide into my DMs](https://twitter.com/steipete).
 
@@ -249,7 +249,7 @@ I’m using `os_unfair_lock` to synchronize the original property call. Since th
 
 ## Swizzling Dynamically Loaded Frameworks
 
-Now there’s one last problem: When we call this in our App Delegate, the `RTIInputSystemSession` class doesn’t exist. The RemoteTextInput is loaded at some later time, when you’re first entering the call. Of course, we could find a later spot and make sure we call this before any text input, but that’s not an elegant solution. Instead, we can hook into dyld to simply be notified whenever a new framework is loaded into our process:
+Now there’s one last problem: When we call this in our app delegate, the `RTIInputSystemSession` class doesn’t exist. The RemoteTextInput is loaded at some later time, when we’re first entering the call. Of course, we could find a later spot and make sure we call this before any text input, but that’s not an elegant solution. Instead, we can hook into dyld to simply be notified whenever a new framework is loaded into our process:
 
 ```swift
 _dyld_register_func_for_add_image { _, _ in
@@ -263,7 +263,7 @@ _dyld_register_func_for_add_image { _, _ in
 
 I’m dispatching to the main thread just to make sure this isn’t accidentally called on multiple threads, in order to not produce yet another race.
 
-The complete code is [in this Gist](https://gist.github.com/steipete/f955aaa0742021af15add0133d8482b9). MIT Licensed. Call `installMacCatalystAppKitTextCrashFix()` from your App Delegate, and don’t forget to check if Apple might eventually fix[^2] this issue. (Apple folks: [FB7593149](https://twitter.com/steipete/status/1266513539012927492?s=21).) 
+The complete code is [in this Gist](https://gist.github.com/steipete/f955aaa0742021af15add0133d8482b9). MIT Licensed. Call `installMacCatalystAppKitTextCrashFix()` from your App Delegate, and don’t forget to check if Apple might have eventually fixed[^2] this issue. (Apple folks: [FB7593149](https://twitter.com/steipete/status/1266513539012927492?s=21).) 
 
 ## Update: InterposeKit
 
@@ -285,4 +285,4 @@ try Interpose.whenAvailable(["RTIInput", "SystemSession"]) {
 ```
 
 
-[^2]: To fix this, remove three characters from a property (the “non” in nonatomic).
+[^2]: To fix this, remove three characters from a property (the “non” in non-atomic).
