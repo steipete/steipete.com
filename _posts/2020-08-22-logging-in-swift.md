@@ -284,10 +284,10 @@ Accessing the log store still works on Catalyst, however I only did a quick run 
 - [Making `os_log` Public on macOS Catalina](https://saagarjha.com/blog/2019/09/29/making-os-log-public-on-macos-catalina/)
 - [Unredacting \<private> os_log() messages on iOS](https://github.com/EthanArbuckle/unredact-private-os_logs)
 
-## [Does OSLogStore work yet ?](http://doesoslogstoreworkyet.com)
+## [Does OSLogStore work yet?](http://doesoslogstoreworkyet.com)
 
 <h1>No*</h1> 
-* unless you just care about Mac Catalyst.
+*Unless you just care about Mac Catalyst.
 <br>
 [Read the full article](/posts/logging-in-swift).<br><br><br>
 <br><br><br><br>
