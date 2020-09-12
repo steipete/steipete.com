@@ -15,7 +15,7 @@ With iOS 14, Apple improved the built-in logging framework and added many missin
 
 ## [Does OSLogStore work yet?](http://doesoslogstoreworkyet.com)
 
-<h1>No*</h1> 
+<p style="font-size: 300%;">No*</p> 
 *Unless you just care about Mac Catalyst.
 
 ## Why OSLog Is Awesome
