@@ -13,6 +13,11 @@ div.post-content > img:first-child { display:none; }
 
 With iOS 14, Apple improved the built-in logging framework and added many missing pieces. Is OSLog now something that can finally be used?
 
+## [Does OSLogStore work yet?](http://doesoslogstoreworkyet.com)
+
+<h1>No*</h1> 
+*Unless you just care about Mac Catalyst.
+
 ## Why OSLog Is Awesome
 
 Every developer uses some form of logging, be it `NSLog` in Objective-C or `print` in Swift. These helpers are convenient, but they don’t scale — there’s no concept to classify messages.
@@ -283,12 +288,3 @@ Accessing the log store still works on Catalyst, however I only did a quick run 
 - [Meet the new Logger API](https://wwdcbysundell.com/2020/meet-the-new-logger-api/)
 - [Making `os_log` Public on macOS Catalina](https://saagarjha.com/blog/2019/09/29/making-os-log-public-on-macos-catalina/)
 - [Unredacting \<private> os_log() messages on iOS](https://github.com/EthanArbuckle/unredact-private-os_logs)
-
-## [Does OSLogStore work yet?](http://doesoslogstoreworkyet.com)
-
-<h1>No*</h1> 
-*Unless you just care about Mac Catalyst.
-<br>
-[Read the full article](/posts/logging-in-swift).<br><br><br>
-<br><br><br><br>
-<br><br><br><br>
