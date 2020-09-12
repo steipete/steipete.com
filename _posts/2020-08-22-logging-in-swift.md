@@ -286,5 +286,8 @@ Accessing the log store still works on Catalyst, however I only did a quick run 
 
 ## [Does OSLogStore work yet ?](doesoslogstoreworkyet.com)
 
-No, unless you just care about Mac Catalyst.
+<h1>No*</h1> 
+* unless you just care about Mac Catalyst.
+<br><br><br><br>
+<br><br><br><br>
 <br><br><br><br>
