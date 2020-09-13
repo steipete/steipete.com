@@ -17,11 +17,11 @@ Apple released SwiftUI last year, and it's been a really exciting and wild ride.
 
 Let's look at Apple's Fruta example, a cross-platform feature-rich app that's completely built in SwiftUI. It's great that Apple finally releases a more complex application for this year's cycle. I took a look when Big Sur beta 1 came out, and it's been pretty rough:
 
-<% twitter https://twitter.com/steipete/status/1277623561604214784?s=21 %>
+{% twitter https://twitter.com/steipete/status/1277623561604214784?s=21 %}
 
 Since then there's been many betas and we're nearing the end of the cycle, with the GM expected in October. It's time to look at it again. And indeed the SwiftUI team did a great job at fixing the various issues - toolbar works pretty reliable, the sidebar no longer jumps out, multiple windows works, however it's still fairly easy to make it crash:
 
-<% twitter https://twitter.com/steipete/status/1305051342596177921?s=21 %>
+{% twitter https://twitter.com/steipete/status/1305051342596177921?s=21 %}
 
 ### SwiftUI AttributeGraph Errors
 
