@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "The State of SwiftUI"
-date: 2020-08-24 19:00:00 +0200
-tags: iOS development
+date: 2020-09-13 11:00:00 +0200
+tags: iOS development SwiftUI
 image: /assets/img/2020/fruta-swiftui/fruta-crash.png
 description: "Let's look at SwiftUI via evaluating Apple's Fruta app."
 ---
