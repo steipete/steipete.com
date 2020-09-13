@@ -80,15 +80,13 @@ On my 2,4 GHz 8-Core Intel Core i9 MacBook Pro, changing the selection takes ove
 * Sorting for "Top Functions" we see that AppKit's auto layout logic is taking up a lot of time, combined with SwiftUI's graph.
 * There seems to be a lot of unnecessary invalidation. For example, the `AppKitToolbarCoordinator` adds a toolbar item, which triggers `NSHostingView.preferencesDidChange()` causing everything to re-layout once again, even though the toolbar size doesn't change.
 
-The good news is, there seem to be a lot of potential future optimizations possible to make this fast. Alternative, there's always the possibility to [drop out of SwiftUI for performance critical parts](https://twitter.com/noahsark769/status/1304938866999046144?s=21). He [stopped development](https://twitter.com/Dimillian/status/1301802048824979456) because it's so slow that it's not shippable.
+The good news is, there seem to be a lot of potential future optimizations possible to make this fast. Alternative, there's always the possibility to [drop out of SwiftUI for performance critical parts](https://twitter.com/noahsark769/status/1304938866999046144?s=21).
 
-This is not unique to Fruta, I've been taking a look at [@Dimillian's](https://twitter.com/Dimillian) RedditOS app which is built with SwiftUI on macOS. I did some debugging with an earlier version of Big Sur where the app still somewhat worked:
+This is not unique to Fruta, I've been taking a look at [@Dimillian's](https://twitter.com/Dimillian) RedditOS app which is built with SwiftUI on macOS. He [stopped development](https://twitter.com/Dimillian/status/1301802048824979456) because it's so slow that it's not shippable. I did some debugging with an earlier version of Big Sur where the app still somewhat worked:
 
 {% twitter https://twitter.com/steipete/status/1282655123244752897?s=20 %}
 
-The general pattern here seems to be AppKit. The interaction between SwiftUI views and AppKit views [seems to](https://twitter.com/fcbunn/status/1259078251340800000) be [poor](https://twitter.com/stuartcarnie/status/1301895206875181056).
-
-It's important to understand that SwiftUI in itself is fast - for many use cases it's faster than even using `CALayer`, [as 
+The general pattern here seems to be AppKit. The interaction between SwiftUI views and AppKit views [seems to](https://twitter.com/fcbunn/status/1259078251340800000) be [poor](https://twitter.com/stuartcarnie/status/1301895206875181056). It's important to understand that SwiftUI in itself is fast - for many use cases it's faster than even using `CALayer`, [as 
 @cocoawithlove did prove](https://twitter.com/cocoawithlove/status/1143859576661393408) - and the UIKit port is by far faster and better than the AppKit port.
 
 ## Conclusion
