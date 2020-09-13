@@ -33,7 +33,7 @@ Googling for this error reveals that there's [a](https://github.com/fermoya/Swif
 
 ## Platform Binding Crashes
 
-Removing a favorited item while it is selected crashes in the AppKit binding that syncs the SwiftUI state with an `NSTableView`.
+Removing a favorited item while it is selected crashes in the AppKit binding that syncs the SwiftUI state with `NSTableView`:
 
 {% twitter https://twitter.com/steipete/status/1305075451711369216?s=21 %}
 
