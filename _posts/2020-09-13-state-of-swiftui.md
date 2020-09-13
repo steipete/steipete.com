@@ -3,7 +3,7 @@ layout: post
 title: "The State of SwiftUI"
 date: 2020-08-24 19:00:00 +0200
 tags: iOS development
-image: /assets/img/2020/swift-logging/logd.jpeg
+image: /assets/img/2020/fruta-swiftui/fruta-crash.png
 description: "Let's look at SwiftUI via evaluating Apple's Fruta app."
 ---
 
@@ -11,11 +11,11 @@ description: "Let's look at SwiftUI via evaluating Apple's Fruta app."
 div.post-content > img:first-child { display:none; }
 </style>
 
-Apple released SwiftUI last year, and it's been a really exciting and wild ride. With iOS 14, a lot of the rough edges have been fixed — is SwiftUI getting ready for production?
+Apple released SwiftUI last year, and it's been a really exciting and wild ride. With iOS 14, a lot of the rough edges have been fixed — is SwiftUI finally ready for production?
 
 ## Fruta
 
-Let's look at Apple's Fruta example, a cross-platform feature-rich app that's completely built in SwiftUI. It's great that Apple finally releases a more complex application for this year's cycle. I took a look when Big Sur beta 1 came out, and it's been pretty rough:
+Let's look at [Apple's Fruta example](https://developer.apple.com/documentation/app_clips/fruta_building_a_feature-rich_app_with_swiftui), a cross-platform feature-rich app that's completely built in SwiftUI. It's great that Apple finally releases a more complex application for this year's cycle. I took a look when Big Sur beta 1 came out, and it's been pretty rough:
 
 {% twitter https://twitter.com/steipete/status/1277623561604214784?s=21 %}
 
@@ -23,21 +23,23 @@ Since then there's been many betas and we're nearing the end of the cycle, with 
 
 {% twitter https://twitter.com/steipete/status/1305051342596177921?s=21 %}
 
-While the crash seems to happen faster on macOS, it's also [pretty easy to crash it on iOS 14b8](https://twitter.com/steipete/status/1305052083989684224?s=21). There's also [various view bugs](https://twitter.com/steipete/status/1305054121523916806?s=21) when someone navigates "too fast".
+While the crash seems to happen faster on macOS, it's also [pretty easy to crash it on iOS 14b8](https://twitter.com/steipete/status/1305052083989684224?s=21). There's also [various view bugs](https://twitter.com/steipete/status/1305054121523916806?s=21) when someone navigates quickly, and there's quite a few log warnings as well.
 
 ### SwiftUI AttributeGraph Errors
 
-Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, which takes over representing the view hierarchy and diffing. Bugs there usually are in this form:
+Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, which takes over representing the view hierarchy and diffing. Crashes there usually are in this form:
 
 ```
  Fruta[3607:1466511] [error] precondition failure: invalid size for indirect attribute: 25 vs 24
 ```
 
-Googling for this error reveals that there's [a](https://github.com/fermoya/SwiftUIPager/issues/60) [lot](https://developer.apple.com/forums/thread/129171) [of](https://stackoverflow.com/questions/58304009/how-to-debug-precondition-failure-in-xcode) [similar](https://www.reddit.com/r/SwiftUI/comments/fosrbf/precondition_failure_invalid_input_index/) [problems](https://twitter.com/steipete/status/1258762457805455361), people sometimes do find workaround via wrapping views into other views or changing the hierarchy. Mostly though you are powerless, this is something Apple needs to fix in their framework.
+Googling for this error reveals that there's [a](https://github.com/fermoya/SwiftUIPager/issues/60) [lot](https://developer.apple.com/forums/thread/129171) [of](https://stackoverflow.com/questions/58304009/how-to-debug-precondition-failure-in-xcode) [similar](https://www.reddit.com/r/SwiftUI/comments/fosrbf/precondition_failure_invalid_input_index/) [problems](https://twitter.com/steipete/status/1258762457805455361), people sometimes do find workaround via wrapping views into other views or changing the hierarchy. Mostly though you are powerless, this is something Apple needs to fix in their framework. Since SwiftUI ships as part of the OS, end user need to update their devices to get these fixes.
 
 ## Other Crashes
 
-Removing a Favorited item while it is selected crashes:
+Removing a favorited item while it is selected crashes in the AppKit glue that syncs the SwiftUI state with an `NSTableView`.
+
+{% twitter https://twitter.com/steipete/status/1305075451711369216?s=21 %}
 
 ```
 2020-09-13 10:31:25.483965+0200 Fruta[79371:2051792] [General] Row 0 out of row range [0--1] for rowViewAtRow:createIfNeeded:
@@ -66,6 +68,8 @@ Removing a Favorited item while it is selected crashes:
 	21  SwiftUI                             0x00007fff4956b2ff $s7SwiftUI19ListCoreCoordinatorC29updateTableViewAndVisibleRows_4from2toySo07NSTableH0C_xxtF + 79
 ```
 
+There's likely more, but I only spent an hour with Fruta.
+
 ## Performance
 
 On my 2,4 GHz 8-Core Intel Core i9 MacBook Pro, changing the selection takes over a second to update the main view. This feels sluggish and it significantly longer than even most websites - that load data via the network - need. Fruta has everything local. What's so slow here?
@@ -77,6 +81,8 @@ On my 2,4 GHz 8-Core Intel Core i9 MacBook Pro, changing the selection takes ove
 * When checking "Hide System Libraries" there's basically no work done in Fruta's business logic. 
 * Sorting for "Top Functions" we see that AppKit's auto layout logic is taking up a lot of time, combined with SwiftUI's graph.
 * There seems to be a lot of unnecessary invalidation. For example, the `AppKitToolbarCoordinator` adds a toolbar item, which triggers `NSHostingView.preferencesDidChange()` causing everything to re-layout once again, even though the toolbar size doesn't change.
+
+![](/assets/img/2020/fruta-swiftui/instruments.png)
 
 The good news is, there seem to be a lot of potential future optimizations possible to make this fast. Alternative, there's always the possibility to [drop out of SwiftUI for performance critical parts](https://twitter.com/noahsark769/status/1304938866999046144?s=21). He [stopped development](https://twitter.com/Dimillian/status/1301802048824979456) because it's so slow that it's not shippable.
 
