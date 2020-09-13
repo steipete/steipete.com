@@ -21,7 +21,7 @@ Let's look at [Apple's Fruta example](https://developer.apple.com/documentation/
 
 Since then there's been many betas and we're nearing the end of the cycle, with the GM expected in October. It's time to look at it again. And indeed the SwiftUI team did a great job at fixing the various issues - toolbar works pretty reliable, the sidebar no longer jumps out, multiple windows works, however [views still sometimes are misaligned](https://twitter.com/steipete/status/1305054121523916806?s=21) and it's still fairly easy to make it crash on both [macOS (FB8682269)](https://twitter.com/steipete/status/1305051342596177921?s=21) and [iOS 14b8 (FB8682290)](https://twitter.com/steipete/status/1305052083989684224?s=21).
 
-### SwiftUI AttributeGraph Crashes
+## SwiftUI AttributeGraph Crashes
 
 Most SwiftUI crashers are either a diffing issue in the AttributeGraph, or a bug with one of the bindings to the platform controls (AppKit or UIKit). Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, which takes over representing the view hierarchy and diffing. Crashes there usually are in this form:
 
