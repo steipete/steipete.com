@@ -92,7 +92,7 @@ The general pattern here is AppKit.
 
 It's important to understand that SwiftUI in itself is fast - for many use cases it's faster than even using `CALayer`. 
 
-{% https://twitter.com/cocoawithlove/status/1143859576661393408 %}
+{% twitter https://twitter.com/cocoawithlove/status/1143859576661393408 %}
 
 ## Conclusion
 
