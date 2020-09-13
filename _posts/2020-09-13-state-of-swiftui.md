@@ -13,19 +13,17 @@ div.post-content > img:first-child { display:none; }
 
 Apple released SwiftUI last year, and it's been a really exciting and wild ride. With iOS 14, a lot of the rough edges have been fixed — is SwiftUI finally ready for production?
 
-## Fruta
+## Fruta Sample App
 
 Let's look at [Apple's Fruta example](https://developer.apple.com/documentation/app_clips/fruta_building_a_feature-rich_app_with_swiftui), a cross-platform feature-rich app that's completely built in SwiftUI. It's great that Apple finally releases a more complex application for this year's cycle. I took a look when Big Sur beta 1 came out, and it's been pretty rough:
 
 {% twitter https://twitter.com/steipete/status/1277623561604214784?s=21 %}
 
-Since then there's been many betas and we're nearing the end of the cycle, with the GM expected in October. It's time to look at it again. And indeed the SwiftUI team did a great job at fixing the various issues - toolbar works pretty reliable, the sidebar no longer jumps out, multiple windows works, however it's still [fairly easy to make it crash](https://twitter.com/steipete/status/1305051342596177921?s=21).
+Since then there's been many betas and we're nearing the end of the cycle, with the GM expected in October. It's time to look at it again. And indeed the SwiftUI team did a great job at fixing the various issues - toolbar works pretty reliable, the sidebar no longer jumps out, multiple windows works, however [views still sometimes are misaligned](https://twitter.com/steipete/status/1305054121523916806?s=21) and it's still fairly easy to make it crash on both [macOS (FB8682269)](https://twitter.com/steipete/status/1305051342596177921?s=21) and [iOS 14b8 (FB8682290)](https://twitter.com/steipete/status/1305052083989684224?s=21).
 
-While the crash seems to happen faster on macOS, it's also [pretty easy to crash it on iOS 14b8](https://twitter.com/steipete/status/1305052083989684224?s=21). There's also [various view bugs](https://twitter.com/steipete/status/1305054121523916806?s=21) when someone navigates quickly, and there's quite a few log warnings as well.
+### SwiftUI AttributeGraph Crashes
 
-### SwiftUI AttributeGraph Errors
-
-Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, which takes over representing the view hierarchy and diffing. Crashes there usually are in this form:
+Most SwiftUI crashers are either a diffing issue in the AttributeGraph, or a bug with one of the bindings to the platform controls (AppKit or UIKit). Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, which takes over representing the view hierarchy and diffing. Crashes there usually are in this form:
 
 ```
  Fruta[3607:1466511] [error] precondition failure: invalid size for indirect attribute: 25 vs 24
@@ -33,9 +31,9 @@ Whenever you see `AG::Graph` in the stack trace that's Swift's AttributeGraph, w
 
 Googling for this error reveals that there's [a](https://github.com/fermoya/SwiftUIPager/issues/60) [lot](https://developer.apple.com/forums/thread/129171) [of](https://stackoverflow.com/questions/58304009/how-to-debug-precondition-failure-in-xcode) [similar](https://www.reddit.com/r/SwiftUI/comments/fosrbf/precondition_failure_invalid_input_index/) [problems](https://twitter.com/steipete/status/1258762457805455361), people sometimes do find workaround via wrapping views into other views or changing the hierarchy. Mostly though you are powerless, this is something Apple needs to fix in their framework. Since SwiftUI ships as part of the OS, end user need to update their devices to get these fixes.
 
-## Other Crashes
+## Platform Binding Crashes
 
-Removing a favorited item while it is selected crashes in the AppKit glue that syncs the SwiftUI state with an `NSTableView`.
+Removing a favorited item while it is selected crashes in the AppKit binding that syncs the SwiftUI state with an `NSTableView`.
 
 {% twitter https://twitter.com/steipete/status/1305075451711369216?s=21 %}
 
@@ -66,7 +64,7 @@ Removing a favorited item while it is selected crashes in the AppKit glue that s
 	21  SwiftUI                             0x00007fff4956b2ff $s7SwiftUI19ListCoreCoordinatorC29updateTableViewAndVisibleRows_4from2toySo07NSTableH0C_xxtF + 79
 ```
 
-There's likely more, but I only spent an hour with Fruta.
+There's likely more bugs waiting to be discovered, but I only spent a few hours with Fruta and writing up this article.
 
 ## Performance
 
@@ -91,7 +89,7 @@ This is not unique to Fruta, I've been taking a look at [@Dimillian's](https://t
 The general pattern here seems to be AppKit. The interaction between SwiftUI views and AppKit views [seems to](https://twitter.com/fcbunn/status/1259078251340800000) be [poor](https://twitter.com/stuartcarnie/status/1301895206875181056).
 
 It's important to understand that SwiftUI in itself is fast - for many use cases it's faster than even using `CALayer`, [as 
-@cocoawithlove did prove](https://twitter.com/cocoawithlove/status/1143859576661393408).
+@cocoawithlove did prove](https://twitter.com/cocoawithlove/status/1143859576661393408) - and the UIKit port is by far faster and better than the AppKit port.
 
 ## Conclusion
 
