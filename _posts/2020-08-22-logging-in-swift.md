@@ -13,9 +13,9 @@ div.post-content > img:first-child { display:none; }
 
 With iOS 14, Apple improved the built-in logging framework and added many missing pieces. Is OSLog now something that can finally be used?
 
-## [Does OSLogStore work yet?](http://doesoslogstoreworkyet.com)
+## [Does OSLogStore Work Yet?](http://doesoslogstoreworkyet.com)
 
-<p style="font-size: 300%;">No*</p> 
+<p style="font-size: 300%;">No.*</p> 
 *Unless you just care about Mac Catalyst.
 
 ## Why OSLog Is Awesome
@@ -221,7 +221,7 @@ OSLog is an extremely awesome API and all the pieces are there — they’re jus
 
 Did I miss something? [Hit me up on Twitter](https://twitter.com/steipete) or [open a pull request](https://github.com/steipete/steipete.com) to help with typos. Thanks! 🙏
 
-## Update: Testing with iOS 14 beta 8
+## Update: Testing with iOS 14 Beta 8
 
 Apple changed the header documentation for `OSLogStore` to explain which certificate is needed (`com.apple.logging.local-store`):
 
@@ -243,7 +243,7 @@ However, running my example on iOS now fails completely, the `storeWithScope:err
 +[OSLogStore storeWithScope:error:]: unrecognized selector sent to class 0x1fae85728
 ```
 
-If we use the runtime to look at what's there instead, we can verify that it's gone. Interestingly enough, the "unavailable" `localStore` initializer does exist on iOS.
+If we use the runtime to look at what’s there instead, we can verify that it’s gone. Interestingly enough, the “unavailable” `localStore` initializer exists on iOS:
 
 ```
 (lldb) expression -l objc -O -- [[OSLogStore class] _methodDescription]
@@ -263,22 +263,22 @@ When we use some header trickery to call this initializer, we get the following 
 Domain=OSLogErrorDomain Code=10 "Connection to logd failed" UserInfo={NSLocalizedDescription=Connection to logd failed, _OSLogErrorInternalCode=15}
 ```
 
-The Simulator prints a slightly different error:
+Simulator prints a slightly different error:
 
 ```
 Error Domain=OSLogErrorDomain Code=-1 "No access to local store" UserInfo={NSLocalizedDescription=No access to local store}
 ```
 
-Using `OSLogStore(scope: .currentProcessIdentifier)` works on the Simulator, but still prints the familiar "Client lacks entitlement to perform operation" error. Declaring `com.apple.logging.local-store` in the entitlements did not change anything.
+Using `OSLogStore(scope: .currentProcessIdentifier)` works on Simulator, but it still prints the familiar “Client lacks entitlement to perform operation” error. Declaring `com.apple.logging.local-store` in the entitlements didn’t change anything:
 
 ```
 Error Domain=OSLogErrorDomain Code=9 "Client lacks entitlement to perform operation" UserInfo={NSLocalizedDescription=Client lacks entitlement to perform operation, _OSLogErrorInternalCode=14}
 failure(Foundation._GenericObjCError.nilError)
 ```
 
-The Swift shims for enumeration are still missing. Given that this is likely the last beta before the GM, it doesn't look like `OSLogStore` will be functional.
+The Swift shims for enumeration are still missing. Given that this is likely the last beta before the GM, it doesn’t look like `OSLogStore` will be functional.
 
-Accessing the log store still works on Catalyst, however I only did a quick run as [running Catalyst apps is broken](https://twitter.com/steipete/status/1302972915193962497) in the current beta.
+Accessing the log store still works on Catalyst, however I only did a quick run, as [running Catalyst apps is broken](https://twitter.com/steipete/status/1302972915193962497) in the current beta.
 
 ## Further Reading
 
