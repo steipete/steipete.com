@@ -237,7 +237,7 @@ API_AVAILABLE(macos(10.15)) API_UNAVAILABLE(ios, tvos, watchos)
 NS_SWIFT_NAME(local());
 ```
 
-However, running my example on iOS now fails completely, the `storeWithScope:error:` initializer is completely missing: 
+However, running my example on iOS now fails completely because the `storeWithScope:error:` initializer is completely missing: 
 
 ```
 +[OSLogStore storeWithScope:error:]: unrecognized selector sent to class 0x1fae85728
