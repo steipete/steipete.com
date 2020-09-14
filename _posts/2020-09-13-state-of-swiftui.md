@@ -95,8 +95,8 @@ The general pattern here points to AppKit: The interaction between SwiftUI views
 
 ## Conclusion
 
-If your target platform is iOS 14, you’re now good to go with hobby projects. I personally wouldn’t yet use SwiftUI for production apps, although the crash rate is likely manageable and Apple is actively improving things with every release. Remember that SwiftUI ships with the OS, not with your app, so any bug fixes will only help if your users update the OS.
+If your target platform is iOS 14, you’re now good to go with hobby projects or individual screens in SwiftUI. I personally wouldn’t yet use SwiftUI for production apps, although the crash rate is likely manageable and Apple is actively improving things with every release. Remember that SwiftUI ships with the OS, not with your app, so any bug fixes will only help if your users update the OS.
 
 Other ports are not so great. AppKit seems particularly troublesome, but I’ve also heard of big issues with tvOS. If you need to deploy your app to the Mac, use Catalyst, which is a much more stable binding and feels really good with Big Sur’s native mode, where content is no longer scaled.
 
-If you’re curious about SwiftUI, please don’t let this stop your enthusiasm. It’s clearly the future at Apple, and all these issues will surely be resolved within a few years.
+If you’re curious about SwiftUI, **please don’t let this stop your enthusiasm**. It’s extremely fun to write, clearly the future at Apple, and all these issues will surely be resolved within a few years.
