@@ -168,7 +168,7 @@ If you feel strongly about this, please also report a radar and engage in the [d
 
 How does `OSLogStore` access logs in the first place? The store is part of the OSLog framework, which includes a small XPC service. At initialization time, the store opens a synchronous XPC request to `com.apple.OSLogService`, the service included in the framework.
 
-`OSLogService` ensures logs are filtered for the current process and then accesses `OSLogEventStore`. `OSLogEventStore` is implemented in the private `LoggingSuppport.framework`. Here, you can see it connects to `logd` and also captures the failure condition, which ultimately produces the entitlement error.
+`OSLogService` ensures logs are filtered for the current process and then accesses `OSLogEventStore`. `OSLogEventStore` is implemented in the private `LoggingSupport.framework`. Here, you can see it connects to `logd` and also captures the failure condition, which ultimately produces the entitlement error.
 
 If we keep digging and also take a look at `logd`, we find references to various private entitlements:
 
