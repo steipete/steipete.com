@@ -25,7 +25,7 @@ Since then, there have been many betas, and we’re nearing the end of the cycle
 
 ## SwiftUI AttributeGraph Crashes
 
-Most SwiftUI crashes are a result of either a diffing issue in AttributeGraph, or a bug with one of the bindings to the platform controls (AppKit or UIKit). Whenever you see `AG::Graph` in the stack trace, that’s Swift’s AttributeGraph, which takes over representing the view hierarchy and diffing. Crashes there are usually in this form:
+Most SwiftUI crashes are a result of either a diffing issue in AttributeGraph, or a bug with one of the bindings to the platform controls (AppKit or UIKit). Whenever you see `AG::Graph` in the stack trace, that’s SwiftUI's AttributeGraph (written in C++), which takes over representing the view hierarchy and diffing. Crashes there are usually in this form:
 
 ```
  Fruta[3607:1466511] [error] precondition failure: invalid size for indirect attribute: 25 vs 24
