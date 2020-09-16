@@ -290,7 +290,9 @@ OS_EXPORT
 @interface OSLogStore : NSObject
 ```
 
-This is a surprising move and really sad. If you think Apple is not understanding developer's requirements here and the removal of this API will make logging slower and less secure for everyone, please make yourself heard and [submit Feedback](https://feedbackassistant.apple.com/).
+This is a surprising move and really sad. There's still hope that this API might come back with iOS 14.1 and it was simply removed due to it not working and time restrictions, but as there's no official communication around it, it's impossible to say.
+
+If you think that this API is important, and that he absence of it results in slower and less secure for everyone, please make yourself heard and [submit Feedback](https://feedbackassistant.apple.com/).
 
 ## Further Reading
 
