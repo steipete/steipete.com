@@ -282,7 +282,7 @@ Accessing the log store still works on Catalyst, however I only did a quick run,
 
 ## Update: Tested with iOS 14 GM
 
-Apple removed `OSLogStore` from iOS completely with the GM.
+Apple removed `OSLogStore` from iOS completely with the iOS 14 GM release.
 
 ```objc
 API_AVAILABLE(macos(10.15)) API_UNAVAILABLE(ios, tvos, watchos)
