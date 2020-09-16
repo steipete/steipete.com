@@ -16,7 +16,7 @@ With iOS 14, Apple improved the built-in logging framework and added many missin
 ## [Does OSLogStore Work Yet?](http://doesoslogstoreworkyet.com)
 
 <p style="font-size: 300%;">No.*</p> 
-*Unless you just care about Mac Catalyst. [Jump to the changes made in iOS 14 beta 8](#update-testing-with-ios-14-beta-8).
+*Apple removed `OSLogStore` surprisingly from iOS with the GM release. [Jump to the changes made in iOS 14 beta 8](#update-testing-with-ios-14-beta-8).
 
 ## Why OSLog Is Awesome
 
@@ -279,6 +279,18 @@ failure(Foundation._GenericObjCError.nilError)
 The Swift shims for enumeration are still missing. Given that this is likely the last beta before the GM, it doesn’t look like `OSLogStore` will be functional.
 
 Accessing the log store still works on Catalyst, however I only did a quick run, as [running Catalyst apps is broken](https://twitter.com/steipete/status/1302972915193962497) in the current beta.
+
+## Update: Tested with iOS 14 GM
+
+Apple removed `OSLogStore` from iOS completely with the GM.
+
+```objc
+API_AVAILABLE(macos(10.15)) API_UNAVAILABLE(ios, tvos, watchos)
+OS_EXPORT
+@interface OSLogStore : NSObject
+```
+
+This is a surprising move and really sad. If you think Apple is not understanding developer's requirements here and the removal of this API will make logging slower and less secure for everyone, please make yourself heard and [submit Feedback](https://feedbackassistant.apple.com/).
 
 ## Further Reading
 
