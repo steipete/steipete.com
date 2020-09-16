@@ -95,7 +95,7 @@ The general pattern here points to AppKit: The interaction between SwiftUI views
 
 ## Update for iOS 14 GM
 
-It's still [trivial](https://twitter.com/steipete/status/1306129037719269376?s=21) to crash the SwiftUI C++ AttributeGraph in Apple's Fruta Example on iOS 14 GM.
+It’s still [trivial](https://twitter.com/steipete/status/1306129037719269376?s=21) to crash the SwiftUI C++ AttributeGraph in Apple’s Fruta example on iOS 14 GM.
 
 ## Conclusion
 
