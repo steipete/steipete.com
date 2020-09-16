@@ -93,6 +93,10 @@ This isn’t unique to Fruta. I’ve been taking a look at [@Dimillian’s](http
 The general pattern here points to AppKit: The interaction between SwiftUI views and AppKit views [seems to](https://twitter.com/fcbunn/status/1259078251340800000) be [poor](https://twitter.com/stuartcarnie/status/1301895206875181056). It’s important to understand that SwiftUI itself is fast — for many use cases it’s even faster than using `CALayer`, [as 
 @cocoawithlove proved](https://twitter.com/cocoawithlove/status/1143859576661393408) — and the UIKit port is by far faster and better than the AppKit port.
 
+## Update for iOS 14 GM
+
+It's still [trivial](https://twitter.com/steipete/status/1306129037719269376?s=21) to crash the SwiftUI C++ AttributeGraph in Apple's Fruta Example on iOS 14 GM.
+
 ## Conclusion
 
 If your target platform is iOS 14, you’re now good to go with hobby projects or individual screens in SwiftUI. I’m currently working on making our [PDF SDK for iOS](http://pspdfkit.com) easier to use with SwiftUI, and we’ll replace the settings/about screen of [PDF Viewer](https://pdfviewer.io/) with a SwiftUI version.
