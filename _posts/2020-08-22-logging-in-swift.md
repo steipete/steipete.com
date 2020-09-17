@@ -294,6 +294,8 @@ This is a surprising move and really sad. There’s still hope that this API mig
 
 If you think this API is important, and that the absence of it results in things being slower and less secure for everyone, please make yourself heard and [submit feedback](https://feedbackassistant.apple.com/).
 
+Apple peeps: I reported this feature request via FB8704637.
+
 ## Further Reading
 
 - [Unified Logging and Activity Tracing, WWDC 2016](https://developer.apple.com/videos/play/wwdc2016/721/)
