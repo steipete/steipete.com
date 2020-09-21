@@ -25,9 +25,9 @@ While it seems that there are some [weird workarounds if you use iOS 14.2](https
 
 While I've not been directly affected by this issue, I've been curious and tried to fix this a while back already. My first attempt was adding `.ignoresSafeArea(.keyboard)` to the SwiftUI view, however this doesn't seem to change anything.
 
-Looks like we need the heavy weapons! My usual strategy is to [inspect the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and look for something to poke at. This however became much harder with Swift. With a few tricks we can still inspect `UIHostingController` via the Objective-C runtime, however we only see methods that are subclassed from `UIViewController` or exposed with `@objc`. 
+When the official ways don't work, there's always the runtime. I've been [inspecting the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and looking for something to poke at. As the class is written in Swift, there's very little that's exposed to the Objective-C runtime — only methods that are overridden from `UIViewController` or exposed with `@objc` will show up here. I could potentially use a Swift mirror to see the remaining functions, but changing them is really difficult. There was nothing interesting so I've reported a r̶a̶d̶a̶r̶ Feedback and that was it.
 
-There's really nothing interesting in there that we could poke at. A few days later I've been reading [Samuel Défago's brilliant blog post how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In  Part 3 he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`, by [modifying the view class](https://defagos.github.io/swiftui_collection_part3/). This motivated me to take a closer look at the view - maybe Apple was hiding the keyboard avoidance logic there?
+A few days later I've been reading [Samuel Défago's brilliant blog post how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In Part 3 he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`, by [modifying the *view* class](https://defagos.github.io/swiftui_collection_part3/). This motivated me to take a closer look at the view - maybe Apple was hiding the keyboard avoidance logic there?
 
 ```
 po SwiftUI._UIHostingView<KeyboardSwiftUIBug.ContentView>.self.perform("_shortMethodDescription")
@@ -68,11 +68,13 @@ in _TtGC7SwiftUI14_UIHostingViewV18KeyboardSwiftUIBug11ContentView_:
 (UIView ...)
 ```
 
-This looks interesting[^3]. There's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We're lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work.
+`UIHostingView` indeed looks very interesting[^3]. From the design it seems Apple at some point considered giving us both the hosting controller and the hosting view, but then opted for just the controller - it wouldn't make sense otherwise to pack all of that logic into the view, if the controller was always planned.
+
+Looking at the output, there's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We're really lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work, and opens the door for our shenanigans.
 
 ## Subclassing at Runtime
 
-We want to replace the implementation of `keyboardWillShowWithNotification:` with an empty one. The classic solution here would be swizzling, however that would modify *all* instances of `UIHostingController`, and we don't know if the view class isn't used somewhere else. This might work but seems risky.
+We want to replace the implementation of `keyboardWillShowWithNotification:` with an empty one. The classic solution here would be [swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/), however that would modify *all* instances of `UIHostingController`, and we don't know if the view class isn't used somewhere else. This might work but seems risky.
 
 A better strategy is to modify only instances we control. We can do that via dynamic subclassing. It's my favorite way to modify behavior on a per-object basis, in fact I wrote a whole Swift library called [InterposeKit](https://interposekit.com/) to make this easy:
 
