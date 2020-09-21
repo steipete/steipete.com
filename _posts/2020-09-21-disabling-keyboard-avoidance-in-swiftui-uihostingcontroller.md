@@ -15,7 +15,7 @@ While SwiftUI is still being [cooked hot](/posts/state-of-swiftui/), it's alread
 
 ## When Keyboard Avoidance Is Unwanted
 
-When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard.[^2] This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells[^4].
+When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard. This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells[^4].
 
 {% twitter https://twitter.com/thesamcoe/status/1306350596715282434?s=20 %}
 
@@ -25,7 +25,7 @@ While it seems that there are some [weird workarounds if you use iOS 14.2](https
 
 While I've not been directly affected by this issue, I've been curious and tried to fix this a while back already. My first attempt was adding `.ignoresSafeArea(.keyboard)` to the SwiftUI view, however this doesn't seem to change anything.
 
-When the official ways don't work, there's always the runtime. I've been [inspecting the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and looking for something to poke at. As the class is written in Swift, there's very little that's exposed to the Objective-C runtime — only methods that are overridden from `UIViewController` or exposed with `@objc` will show up here. I could potentially use a Swift mirror to see the remaining functions, but changing them is really difficult. There was nothing interesting so I've reported a r̶a̶d̶a̶r̶ Feedback and that was it.
+When the official ways don't work, there's always the runtime. I've been [inspecting the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and looking for something to poke at. As the class is written in Swift, there's very little that's exposed to the Objective-C runtime — only methods that are overridden from `UIViewController` or exposed with `@objc` will show up here. I could potentially use a Swift mirror to see the remaining functions, but changing them is really difficult. There was nothing interesting so I've reported a r̶a̶d̶a̶r̶ Feedback[^2] and that was it.
 
 A few days later I've been reading [Samuel Défago's brilliant blog post how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In Part 3 he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`, by [modifying the *view* class](https://defagos.github.io/swiftui_collection_part3/). This motivated me to take a closer look at the view - maybe Apple was hiding the keyboard avoidance logic there?
 
