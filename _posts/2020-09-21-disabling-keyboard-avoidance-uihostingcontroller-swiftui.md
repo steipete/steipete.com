@@ -68,9 +68,7 @@ in _TtGC7SwiftUI14_UIHostingViewV18KeyboardSwiftUIBug11ContentView_:
 (UIView ...)
 ```
 
-This looks interesting[^3]. There's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak.
-
-We're lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work.
+This looks interesting[^3]. There's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We're lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work.
 
 ## Subclassing at Runtime
 
@@ -96,9 +94,9 @@ convenience public init(rootView: Content, ignoresKeyboard: Bool) {
 }
 ```
 
-Dynamic subclassing is quite simple - InterposeKit just adds a lot of error checking and convenience API to help you make fewer mistakes. It will throw an error if the selection no longer exists or has a different type than the one you expect.
+Dynamic subclassing isn't very tricky, but the challenge is to write it in a way where it fails gracefully if the private API we modify here is changed. InterposeKit adds a lot of error handling, next to a convenient API so you make fewer mistakes and have a more stable app. It will throw an error if the selection no longer exists or has a different type than the one you expect.
 
-We can achieve the same using built-in methods:
+We can achieve something similar using built-in methods:
 
 ```swift
 extension UIHostingController {
@@ -129,7 +127,9 @@ convenience public init(rootView: Content, ignoresKeyboard: Bool) {
 }
 ```
 
-See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes the `safeAreaInsets`. Who would have thought that runtime trickery is still useful in SwiftUI times? 
+See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes the `safeAreaInsets`. Who would have thought that runtime trickery is still useful in SwiftUI times?
+
+If this is useful to you, ping [@steipete on Twitter](https://twitter.com/steipete)!
 
 [^1]: The block-based notification API nowadays is inconvenient as it doesn't automatically deregister observers - using the target/action one is simpler, as these observers automatically deregister since iOS 9.
 
