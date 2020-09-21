@@ -68,7 +68,7 @@ in _TtGC7SwiftUI14_UIHostingViewV18KeyboardSwiftUIBug11ContentView_:
 (UIView ...)
 ```
 
-`UIHostingView` indeed looks very interesting[^3]. From the design it seems Apple at some point considered giving us both the hosting controller and the hosting view, but then opted for just the controller - it wouldn't make sense otherwise to pack all of that logic into the view, if the controller was always planned.
+`UIHostingView` looks very interesting indeed[^3]. From the design it seems Apple at some point considered giving us both the hosting controller and the hosting view, but then opted for just the controller — it wouldn't make sense otherwise to pack all of that logic into the view, if the controller was always planned.
 
 Looking at the output, there's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We're really lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work, and opens the door for our shenanigans.
 
