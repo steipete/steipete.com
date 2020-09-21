@@ -3,7 +3,7 @@ layout: post
 title: "Disabling Keyboard Avoidance in SwiftUI UIHostingController"
 date: 2020-09-21 21:00:00 +0200
 tags: iOS development
-image: /assets/img/2020/swift-logging/logd.jpeg
+image: /assets/img/2020/uihostingcontroller-keyboard/header.png
 description: "UIHostingController has logic to avoid the keyboard, which often is unwanted. We explore a hack to disable this feature."
 ---
 
@@ -15,11 +15,9 @@ While SwiftUI is still being [cooked hot](/posts/state-of-swiftui/), it's alread
 
 ## When Keyboard Avoidance Is Unwanted
 
-When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard:[^2]
+When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard.[^2] This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells.
 
 {% twitter https://twitter.com/thesamcoe/status/1306350596715282434?s=20 %}
-
-This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells.
 
 While it seems that there are some [weird workarounds if you use iOS 14.2](https://twitter.com/zntfdr/status/1306913858263552001?s=21), this seems unreliable, and folks still need a solution for iOS 14.0.
 
@@ -27,9 +25,7 @@ While it seems that there are some [weird workarounds if you use iOS 14.2](https
 
 While I've not been directly affected by this issue, I've been curious and tried to fix this a while back already. My first attempt was adding `.ignoresSafeArea(.keyboard)` to the SwiftUI view, however this doesn't seem to change anything.
 
-Looks like we need the heavy weapons! My usual strategy is to inspect the view controller's methods and look for something to poke at. This however became much harder with Swift. With a few tricks we can still inspect `UIHostingController` via the Objective-C runtime, however we only see methods that are subclassed from `UIViewController` or exposed with `@objc`. 
-
-{% twitter https://twitter.com/steipete/status/1306153060700426240?s=21 %}
+Looks like we need the heavy weapons! My usual strategy is to [inspect the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and look for something to poke at. This however became much harder with Swift. With a few tricks we can still inspect `UIHostingController` via the Objective-C runtime, however we only see methods that are subclassed from `UIViewController` or exposed with `@objc`. 
 
 There's really nothing interesting in there that we could poke at. A few days later I've been reading [Samuel Défago's brilliant blog post how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In  Part 3 he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`, by [modifying the view class](https://defagos.github.io/swiftui_collection_part3/). This motivated me to take a closer look at the view - maybe Apple was hiding the keyboard avoidance logic there?
 
