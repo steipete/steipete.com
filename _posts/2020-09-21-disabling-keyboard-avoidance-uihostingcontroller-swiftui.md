@@ -100,7 +100,9 @@ extension UIHostingController {
 }
 ```
 
-Dynamic subclassing is quite simple - InterposeKit just adds a lot of error checking and convenience API to help you make fewer mistakes. We can achieve the same using built-in methods too:
+Dynamic subclassing is quite simple - InterposeKit just adds a lot of error checking and convenience API to help you make fewer mistakes. It will throw an error if the selection no longer exists or has a different type than the one you expect.
+
+We can achieve the same using built-in methods:
 
 <script src="https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c.js"></script>
 
