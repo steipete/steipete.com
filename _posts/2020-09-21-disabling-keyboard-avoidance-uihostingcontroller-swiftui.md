@@ -15,7 +15,7 @@ While SwiftUI is still being [cooked hot](/posts/state-of-swiftui/), it's alread
 
 ## When Keyboard Avoidance Is Unwanted
 
-When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard.[^2] This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells.
+When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard.[^2] This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells[^4].
 
 {% twitter https://twitter.com/thesamcoe/status/1306350596715282434?s=20 %}
 
@@ -129,12 +129,12 @@ convenience public init(rootView: Content, ignoresKeyboard: Bool) {
 }
 ```
 
-See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes the safeAreaInsets. Who would have thought that runtime trickery is still useful in SwiftUI times? 
-
-Apple Folks: FB8698723 - Provide API in UIHostingController to disable keyboard avoidance for SwiftUI views.
+See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes the `safeAreaInsets`. Who would have thought that runtime trickery is still useful in SwiftUI times? 
 
 [^1]: The block-based notification API nowadays is inconvenient as it doesn't automatically deregister observers - using the target/action one is simpler, as these observers automatically deregister since iOS 9.
 
 [^2]: If you wanna try this for yourself, [I've prepared an example here](https://twitter.com/steipete/status/1306925835010609152?s=21).
 
 [^3]: The method `makeViewDebugData` also looks pretty interesting...
+
+[^4]: Apple Folks: FB8698723 - Provide API in UIHostingController to disable keyboard avoidance for SwiftUI views.
