@@ -107,6 +107,6 @@ The problem: The file is heavily obfuscated, Hopper can't read the selector name
 
 ## Conclusion
 
-However, that's the end of the story for now. The data is there, but the tools can't yet get a useful format out. We know that there's at least 5 controls that throw an exception on *some* usage at runtime, however which exactly is currently hard to know. Shipping a Catalyst app in the new Mac idiom is definitely an adventure.
+However, that's the end of the story for now. The data is there, but the tools can't [yet (!)](https://twitter.com/bsr43/status/1308462962680659971?s=21) get a useful format out. We know that there's at least 5 controls that throw an exception on *some* usage at runtime, however which exactly is currently hard to know. Shipping a Catalyst app in the new Mac idiom is definitely an adventure.
 
 [^1]: In the early days, it was just UIKit. A few years ago Apple created an internal framework called UIKitCore, which exports more API and can be used for internal apps. UIKit is the smaller API for external developers (us).
