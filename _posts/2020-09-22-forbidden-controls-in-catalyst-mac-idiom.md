@@ -135,6 +135,22 @@ The problem: The file is heavily obfuscated, Hopper can't read the selector name
 
 However, that's the end of the story for now. The data is there, but the tools can't [yet (!)](https://twitter.com/bsr43/status/1308462962680659971?s=21) get a useful format out. We know that there's at least 5 controls that throw an exception on *some* usage at runtime, however which exactly is currently hard to know. Shipping a Catalyst app in the new Mac idiom is definitely an adventure.
 
-Update: Jeff Johnson points out that one can [abuse lldb to piecemeal decompile methods](https://lapcatsoftware.com/articles/bigsur3.html). That approach would take far too long to find all calls that throw here, but it's a start.
+## Decompile via lldb
+
+Jeff Johnson points out that one can [abuse lldb to piecemeal decompile methods](https://lapcatsoftware.com/articles/bigsur3.html). That approach would take far too long to find all calls that throw here, but it's a start.
+
+## Decompile via dyld-shared-cache-big-sur
+
+The [dyld-shared-cache-big-sur project](https://github.com/antons/dyld-shared-cache-big-sur) uses modifications to Apple's dyld project to fix Objective-C information when extracting dyld_shared_cache from macOS Big Sur to help Hopper generate readable pseudocode. (Thanks [@lclhrst](https://twitter.com/lclhrst/status/1308468526840152064?s=21) for the hint!)
+
+Using this project we can extract the dyld cache into a folder:
+```
+./dyld_shared_cache_util -extract ~/Developer/macOS\ Big\ Sur /System/Library/dyld/dyld_shared_cache_x86_64
+```
+
+And then decompile UIKitCore with selector names. This doesn't resolve the individual selector calls, but it's a step forward.
+
+
+
 
 [^1]: In the early days, it was just UIKit. A few years ago Apple created an internal framework called UIKitCore, which exports more API and can be used for internal apps. UIKit is the smaller API for external developers (us).
