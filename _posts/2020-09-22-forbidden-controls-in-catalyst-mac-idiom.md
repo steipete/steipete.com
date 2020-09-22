@@ -58,11 +58,11 @@ if !UIDevice.current.isCatalystMacIdiom {
 
 ## AppKit In UIKit
 
-Internally Apple uses a private `_UINSView` class to host an actual `NSView`. It's too bad we didn't get this class public, which would allow us to freely mix AppKit with UIKit, but it's a great start.
+Internally Apple uses a private `_UINSView` class to host an actual `NSView`. It's too bad we didn't get this class public, which would allow us to freely mix AppKit with UIKit, but it's a start.
 
 ![UIButton Mac Idiom](/assets/img/2020/mac-idiom-forbidden-controls/uinsview.png)
 
-If we look into the runtime, the class does pretty much what you'd expect (I omitted some less useful methods):
+If we look into the runtime, the class does pretty much what you'd expect (I omitted some less useful methods for brevity):
 
 ```
 lldb) po [NSClassFromString(@"_UINSView") _shortMethodDescription]
