@@ -103,8 +103,10 @@ However, when you open the framework on macOS, there's no binary. WTH? Then I re
 
 Wait until everything is loaded and then select File -> Produce Pseudo-Code File for All Procedures. This might take a few hours. Once the file is generated, pick a *fast* text editor (my weapon of choice is Sublime for these) and load the file. There, we search for `_throwForUnsupportedNonMacIdiomBehaviorWithReason:` again.
 
+The problem: The file is heavily obfuscated, Hopper can't read the selector names. We can search for the string "Unsupported iOS or Mac Catalyst iPad Idiom" to find the selector matching to `_throwForUnsupportedNonMacIdiomBehaviorWithReason:`. In my case that's `sub_7fff465801e5`.
 
+## Conclusion
 
-
+However, that's the end of the story for now. The data is there, but the tools can't yet get a useful format out. We know that there's at least 5 controls that throw an exception on *some* usage at runtime, however which exactly is currently hard to know. Shipping a Catalyst app in the new Mac idiom is definitely an adventure.
 
 [^1]: In the early days, it was just UIKit. A few years ago Apple created an internal framework called UIKitCore, which exports more API and can be used for internal apps. UIKit is the smaller API for external developers (us).
