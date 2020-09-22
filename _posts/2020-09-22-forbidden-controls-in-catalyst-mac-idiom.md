@@ -88,14 +88,14 @@ The problem: It's not documented which controls are disallowed, and even more pr
 
 ```
 setMinimumTrackImage:forState: is not supported on PSPDFBrightnessSlider when running Catalyst apps in the Mac idiom.
-2020-09-22 18:39:16.940150+0200 Catalog[50217:6040393] [General] (
+ (
 	0   CoreFoundation                      0x00007fff2067fbdf __exceptionPreprocess + 242
 	1   libobjc.A.dylib                     0x00007fff2029f469 objc_exception_throw + 48
 	2   UIKitCore                           0x00007fff464af1e5 -[UIView(UICatalystMacIdiomUnsupported_Internal) _throwForUnsupportedNonMacIdiomBehaviorWithReason:] + 0
 	3   UIKitCore                           0x00007fff4582af70 -[UISlider setMinimumTrackImage:forState:] + 197
 ```
 
-This is problematic as that's yet another restriction that isn't documented. A better choice would have been to keep the UIKit variant in case customization exceeds what AppKit can do.
+This is problematic as that's yet another restriction that isn't documented. A better choice would have been to keep the UIKit variant in case customization exceeds what AppKit can do. It's a surprising late change, and folks working on Catalyst apps are frustrated:
 
 {% twitter https://twitter.com/_imaginethis/status/1308412481375801344?s=21 %}
 
