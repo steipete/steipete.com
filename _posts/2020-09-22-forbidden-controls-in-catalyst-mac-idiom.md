@@ -115,7 +115,7 @@ The main method throwing is `_throwForUnsupportedNonMacIdiomBehaviorWithReason`,
 
 ![UIStepper on macOS via a hack](/assets/img/2020/mac-idiom-forbidden-controls/hacked-uistepper.png)
 
-There's a stepper, however clicking it doesn't work. This is obviously not something you should ever use for shipping, but it's fun to play with the internals!
+There's a stepper (next to the "Current Page: 2" label), however clicking it doesn't work. This is obviously not something you should ever use for shipping, but it's fun to play with the internals!
 
 ## Digging Deeper
 
