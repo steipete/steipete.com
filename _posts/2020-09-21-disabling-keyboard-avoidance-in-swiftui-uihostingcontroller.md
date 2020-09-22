@@ -4,18 +4,18 @@ title: "Disabling Keyboard Avoidance in SwiftUI's UIHostingController"
 date: 2020-09-21 22:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/uihostingcontroller-keyboard/header.png
-description: "UIHostingController has logic to avoid the keyboard, which often is unwanted. We explore a hack to disable this feature."
+description: "UIHostingController has logic to avoid the keyboard, which is often unwanted. We explore a hack to disable this feature."
 ---
 
 <style type="text/css">
 div.post-content > img:first-child { display:none; }
 </style>
 
-While SwiftUI is still being [cooked hot](/posts/state-of-swiftui/), it's already really useful and can replace many parts of your app. With `UIHostingController` it can be easily mixed with existing UIKit code. With iOS 14, the SwiftUI-team at Apple added keyboard avoidance logic to the hosting controller, which can result in pretty ugly scrolling behavior.
+While SwiftUI is still being [cooked hot](/posts/state-of-swiftui/), it’s already really useful and can replace many parts of your app. And with `UIHostingController`, it can easily be mixed with existing UIKit code. With iOS 14, the SwiftUI team at Apple added keyboard avoidance logic to the hosting controller, which can result in pretty ugly scrolling behavior.
 
 ## When Keyboard Avoidance Is Unwanted
 
-When they keyboard is visible and `UIHostingController` doesn't own the full screen, views try to move away from the keyboard. This has been [quite a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and is especially bad if you [embed `UIHostingController` as table](https://noahgilmore.com/blog/swiftui-self-sizing-cells/)- or collection view cells[^4].
+When the keyboard is visible and `UIHostingController` doesn’t own the full screen, views try to move away from the keyboard. This has been [a frustrating bug for many](https://developer.apple.com/forums/thread/658432), and it’s especially bad if you [embed `UIHostingController` as table view cells](https://noahgilmore.com/blog/swiftui-self-sizing-cells/) or collection view cells.[^4]
 
 {% twitter https://twitter.com/thesamcoe/status/1306350596715282434?s=20 %}
 
@@ -23,11 +23,11 @@ While it seems that there are some [weird workarounds if you use iOS 14.2](https
 
 ## Fixing Strategies
 
-While I've not been directly affected by this issue, I've been curious and tried to fix this a while back already. My first attempt was adding `.ignoresSafeArea(.keyboard)` to the SwiftUI view, however this doesn't seem to change anything.
+While I’ve not been directly affected by this issue, I was curious and tried to fix it a while back. My first attempt was adding `.ignoresSafeArea(.keyboard)` to the SwiftUI view, but this doesn’t seem to change anything.
 
-When the official ways don't work, there's always the runtime. I've been [inspecting the view controller's methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and looking for something to poke at. As the class is written in Swift, there's very little that's exposed to the Objective-C runtime — only methods that are overridden from `UIViewController` or exposed with `@objc` will show up here. I could potentially use a Swift mirror to see the remaining functions, but changing them is really difficult. There was nothing interesting so I've reported a r̶a̶d̶a̶r̶ Feedback[^2] and that was it.
+When the official ways don’t work, there’s always the runtime, so I’ve been [inspecting the view controller’s methods](https://twitter.com/steipete/status/1306153060700426240?s=21) and looking for something to poke at. As the class is written in Swift, there’s very little that’s exposed to the Objective-C runtime — only methods that are overridden from `UIViewController` or exposed with `@objc` will show up here. I could potentially use a Swift mirror to see the remaining functions, but changing them is difficult. There was nothing interesting, so I reported a r̶a̶d̶a̶r̶ Feedback[^2] and that was it.
 
-A few days later I've been reading [Samuel Défago's brilliant blog post how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In Part 3 he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`, by [modifying the *view* class](https://defagos.github.io/swiftui_collection_part3/). This motivated me to take a closer look at the view - maybe Apple was hiding the keyboard avoidance logic there?
+A few days later, I was reading [Samuel Défago’s brilliant blog post about how he wrapped `UICollectionView` for Swift](https://defagos.github.io/swiftui_collection_intro/). In part 3, he presents a fix to an issue with `safeAreaInsets` in `UIHostingController`. This is done by [modifying the *view* class](https://defagos.github.io/swiftui_collection_part3/). It motivated me to take a closer look at the view — maybe Apple was hiding the keyboard avoidance logic there?
 
 ```
 po SwiftUI._UIHostingView<KeyboardSwiftUIBug.ContentView>.self.perform("_shortMethodDescription")
@@ -68,15 +68,15 @@ in _TtGC7SwiftUI14_UIHostingViewV18KeyboardSwiftUIBug11ContentView_:
 (UIView ...)
 ```
 
-`UIHostingView` looks very interesting indeed[^3]. From the design it seems Apple at some point considered giving us both the hosting controller and the hosting view, but then opted for just the controller — it wouldn't make sense otherwise to pack all of that logic into the view, if the controller was always planned.
+`UIHostingView` looks very interesting indeed.[^3] Based on the design, it seems that at some point, Apple considered giving us both the hosting controller and the hosting view, but then opted for just the controller — it wouldn’t make sense to pack all that logic into the view if the controller was always planned.
 
-Looking at the output, there's quite a few Swift methods that have been exposed to the ObjC runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We're really lucky here that the SwiftUI engineers didn't use the block-based NSNotification-API[^1] but used the target/selector approach - which does need `@objc` annotations to work, and opens the door for our shenanigans.
+Looking at the output, I see there are quite a few Swift methods that have been exposed to the Objective-C runtime. `keyboardWillShowWithNotification:` and `keyboardWillHideWithNotification:` look exactly like candidates to tweak. We’re really lucky here that the SwiftUI engineers didn’t use the block-based `NSNotification` API[^1], but instead used the target/selector approach — which not only needs `@objc` annotations to work, but also opens the door for our shenanigans.
 
 ## Subclassing at Runtime
 
-We want to replace the implementation of `keyboardWillShowWithNotification:` with an empty one. The classic solution here would be [swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/), however that would modify *all* instances of `UIHostingController`, and we don't know if the view class isn't used somewhere else. This might work but seems risky.
+We want to replace the implementation of `keyboardWillShowWithNotification:` with an empty one. The classic solution here would be [swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/), but that would modify *all* instances of `UIHostingController`, and we don’t know if the view class is used somewhere else. It might work, but it seems risky.
 
-A better strategy is to modify only instances we control. We can do that via dynamic subclassing. It's my favorite way to modify behavior on a per-object basis, in fact I wrote a whole Swift library called [InterposeKit](https://interposekit.com/) to make this easy:
+A better strategy is to modify only instances we control, and we can do that via dynamic subclassing. It’s my favorite way to modify behavior on a per-object basis. In fact, I wrote an entire Swift library called [InterposeKit](https://interposekit.com/) to make this easy:
 
 ```swift
 import SwiftUI
@@ -96,7 +96,7 @@ convenience public init(rootView: Content, ignoresKeyboard: Bool) {
 }
 ```
 
-Dynamic subclassing isn't very tricky, but the challenge is to write it in a way where it fails gracefully if the private API we modify here is changed. InterposeKit adds a lot of error handling, next to a convenient API so you make fewer mistakes and have a more stable app. It will throw an error if the selection no longer exists or has a different type than the one you expect.
+Dynamic subclassing isn’t very tricky, but the challenge is to write it in a way where it fails gracefully if the private API we modify is changed. InterposeKit adds a lot of error handling next to a convenient API so that you make fewer mistakes and have a more stable app. It’ll throw an error if the selection no longer exists or has a different type than the one you expect.
 
 We can achieve something similar using built-in methods:
 
@@ -129,14 +129,14 @@ convenience public init(rootView: Content, ignoresKeyboard: Bool) {
 }
 ```
 
-See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes the `safeAreaInsets`. Who would have thought that runtime trickery is still useful in SwiftUI times?
+See [my gist](https://gist.github.com/steipete/da72299613dcc91e8d729e48b4bb582c#file-uihostingcontroller-keyboard-swift) for a version that also removes `safeAreaInsets`. Who would’ve thought that runtime trickery is still useful in SwiftUI times?
 
 If this is useful to you, ping [@steipete on Twitter](https://twitter.com/steipete)!
 
-[^1]: The block-based notification API nowadays is inconvenient as it doesn't automatically deregister observers - using the target/action one is simpler, as these observers automatically deregister since iOS 9.
+[^1]: The block-based notification API nowadays is inconvenient, as it doesn’t automatically deregister observers — using the target/action one is simpler, as these observers have automatically deregistered since iOS 9.
 
-[^2]: If you wanna try this for yourself, [I've prepared an example here](https://twitter.com/steipete/status/1306925835010609152?s=21).
+[^2]: If you want to try this for yourself, [I’ve prepared an example here](https://twitter.com/steipete/status/1306925835010609152?s=21).
 
-[^3]: The method `makeViewDebugData` also looks pretty interesting...
+[^3]: The `makeViewDebugData` method also looks pretty interesting...
 
-[^4]: Apple Folks: FB8698723 - Provide API in UIHostingController to disable keyboard avoidance for SwiftUI views.
+[^4]: Apple Folks: FB8698723 — Provide API in UIHostingController to disable keyboard avoidance for SwiftUI views.
