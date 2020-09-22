@@ -4,7 +4,7 @@ title: "Forbidden Controls in Catalyst: Optimize Interface for Mac"
 date: 2020-09-22 20:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/mac-idiom-forbidden-controls/mac-idiom-selector.png
-description: "The new Optimized for Mac idiom in Catalyst uses various AppKit controls under-the-hood to make apps look more at home on macOS. It also disallows various controls, resulting in exceptions at runtime."
+description: "The new Optimized for Mac Idiom in Catalyst uses various AppKit controls under-the-hood to make apps look more at home on macOS. It also disallows various controls, resulting in exceptions at runtime."
 ---
 
 <style type="text/css">
