@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Forbidden Controls in Mac Catalyst Optimized for Mac"
+title: "Forbidden Controls in Catalyst: Optimize Interface for Mac"
 date: 2020-09-21 22:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/mac-idiom-forbidden-controls/mac-idiom-selector.png
@@ -11,11 +11,11 @@ description: "The new Optimized for Mac idiom in Catalyst uses various AppKit co
 div.post-content > img:first-child { display:none; }
 </style>
 
-While working on our PDF Viewer update for Big Sur, I was greeted to day with a new exception, coming from UIKit:
+While working on our [PDF Viewer](https://pdfviewer.io) update for Big Sur and switching to the new Catalyst Mac Interface Idiom, I've been greeted with a new exception, coming directly from UIKit:
 
 ```
-2020-09-22 18:25:57.350738+0200 Catalog[48814:6027539] [General] UIStepper is not supported when running Catalyst apps in the Mac idiom.
-2020-09-22 18:25:57.359462+0200 Catalog[48814:6027539] [General] (
+[General] UIStepper is not supported when running Catalyst apps in the Mac idiom.
+[General] (
 	0   CoreFoundation                      0x00007fff2067fbdf __exceptionPreprocess + 242
 	1   libobjc.A.dylib                     0x00007fff2029f469 objc_exception_throw + 48
 	2   UIKitCore                           0x00007fff464af1e5 -[UIView(UICatalystMacIdiomUnsupported_Internal) _throwForUnsupportedNonMacIdiomBehaviorWithReason:] + 0
@@ -29,6 +29,32 @@ Let's take a step back - what's the Catalyst Mac Idiom? With macOS 11 Big Sur, C
 ![Xcode Selector for Catalyst Idiom](/assets/img/2020/mac-idiom-forbidden-controls/mac-idiom-selector.png)
 
 The new mode is available with Big Sur, and apps can be built so that they use scaling on Catalyst and the new Mac-mode on Big Sur. We'll be releasing a new release of [PDF Viewer for Mac](https://pdfviewer.io) using the new optimized mode, as soon as Apple finalizes Big Sur.
+
+If you write code that works on both Catalina and Big Sur, a category like this will be useful:
+
+```swift
+extension UIDevice {
+    /// Checks if we run in Mac Catalyst Optimized For Mac Idiom
+    var isCatalystMacIdiom: Bool {
+        if #available(iOS 14, *) {
+            return UIDevice.current.userInterfaceIdiom == .mac
+        } else {
+            return false
+        }
+    }
+}
+```
+
+This can be later used, for example in SwiftUI: (SwiftUI's `Stepper` maps to `UIStepper` which is disallowed)
+
+```swift
+// UIStepper is not allowed for Catalyst Mac Idiom.
+if !UIDevice.current.isCatalystMacIdiom {
+    Stepper("Current Page: \(pageIndex + 1)", value: $pageIndex, in: 0...document.pageCount - 1)
+    .padding()
+}
+```
+
 
 ## AppKit In UIKit
 
