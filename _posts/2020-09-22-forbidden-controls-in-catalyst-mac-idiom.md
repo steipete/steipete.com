@@ -127,7 +127,7 @@ macOS Path: `/System/iOSSupport/System/Library/PrivateFrameworks/UIKitCore.frame
 
 However, when you open the framework on macOS, there's no binary. WTH? Then I remembered reading that Big Sur ships with [a built-in dynamic linker cache of all system-provided libraries](https://mjtsai.com/blog/2020/06/26/reverse-engineering-macos-11-0/). Luckily, [Hopper](https://www.hopperapp.com/) has already been updated to know about that shared cache, so you can load it via `/System/Library/dyld/` and then select `UIKitCore` as target.
 
-Wait until everything is loaded and then select File -> Produce Pseudo-Code File for All Procedures. This might take a few hours. Once the file is generated, pick a *fast* text editor (my weapon of choice is Sublime for these) and load the file. There, we search for `_throwForUnsupportedNonMacIdiomBehaviorWithReason:` again.
+Wait until everything is loaded and then select File -> Produce Pseudo-Code File for All Procedures. This might take a few hours. Once the file is generated, pick a *fast* text editor (my weapon of choice is Sublime Text for these) and load the file. There, we search for `_throwForUnsupportedNonMacIdiomBehaviorWithReason:` again.
 
 The problem: The file is heavily obfuscated, Hopper can't read the selector names. We can search for the string "Unsupported iOS or Mac Catalyst iPad Idiom" to find the selector matching to `_throwForUnsupportedNonMacIdiomBehaviorWithReason:`. In my case that's `sub_7fff465801e5`.
 
