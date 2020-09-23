@@ -28,7 +28,7 @@ Let's take a step back - what's the Catalyst Mac Idiom? With macOS 11 Big Sur, C
 
 ![Xcode Selector for Catalyst Idiom](/assets/img/2020/mac-idiom-forbidden-controls/mac-idiom-selector.png)
 
-The new mode is available with Big Sur, and apps can be built so that they use scaling on Catalyst and the new Mac-mode on Big Sur. We'll be releasing a new release of [PDF Viewer for Mac](https://pdfviewer.io) using the new optimized mode, as soon as Apple finalizes Big Sur.
+The new mode is available with Big Sur, and apps can be built so that they use scaling on Catalina and the new Mac-mode on Big Sur. We'll be releasing a new release of [PDF Viewer for Mac](https://pdfviewer.io) using the new optimized mode, as soon as Apple finalizes Big Sur.
 
 If you write code that works on both Catalina and Big Sur, a category like this will be useful:
 
