@@ -104,7 +104,7 @@ Since there’s no documentation and there are no release notes about any of the
 
 We find references to following controls:
 
-- `UIStepper`
+- `UIStepper` (styling properties such as `setMinimumTrackImage:forState:`)
 - `UIPickerView`
 - `UIRefreshControl`
 - `UISwitch` (inside `setTitle:`)
