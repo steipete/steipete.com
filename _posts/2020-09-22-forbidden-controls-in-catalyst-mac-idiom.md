@@ -110,7 +110,7 @@ We find references to following controls:
 - `UISwitch` (inside `setTitle:`)
 - `UIButton`
 
-This includes any *subclasses* like `AVScrubber`, so [this can become a real problem](https://twitter.com/dezinezync/status/1309053206597697536?s=21).
+This includes any *subclasses* like `AVScrubber` (part of `AVPlayerView`), so [this can become a real problem](https://twitter.com/dezinezync/status/1309053206597697536?s=21).
 
 The main method throwing is `_throwForUnsupportedNonMacIdiomBehaviorWithReason`, so it makes sense to search for it. It checks if the bundle identifier starts with "com.apple", and if it does, it just logs an error, while all other apps get an exception. There’s yet another check for `_allowsUnsupportedMacIdiomBehavior`, which is interesting. It seems the above controls at least have partial support in Big Sur. This can be enabled via calling `_setAllowsUnsupportedMacIdiomBehavior:]` on them. And indeed, calling `[UIStepper _setAllowsUnsupportedMacIdiomBehavior:1];` (I’m using Objective-C here since it’s easier to just redeclare the method in the header) does result in a working app.
 
