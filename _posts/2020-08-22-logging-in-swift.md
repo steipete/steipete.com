@@ -298,6 +298,8 @@ Even worse: **Apple forgot a definition in the late-removal, so importing OSLog 
 
 {% twitter https://twitter.com/steipete/status/1310285038349684738?s=21 %}
 
+Update thanks to [Kay Butter](https://twitter.com/kaybutter/status/1310310136473419777?s=21): This can be fixed via importing `os.log` instead of `OSLog`.
+
 Apple peeps: I reported this feature request via FB8704637.
 
 ## Further Reading
