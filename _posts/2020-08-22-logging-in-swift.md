@@ -294,6 +294,10 @@ This is a surprising move and really sad. There’s still hope that this API mig
 
 If you think this API is important, and that the absence of it results in things being slower and less secure for everyone, please make yourself heard and [submit feedback](https://feedbackassistant.apple.com/).
 
+Even worse: Apple forgot a definition in the late-removal, so importing OSLog now fails completely and just produces an error with Xcode 12 GM. This has been fixed in Xcode 12.2b1.
+
+{% twitter https://twitter.com/steipete/status/1310285038349684738?s=21 %}
+
 Apple peeps: I reported this feature request via FB8704637.
 
 ## Further Reading
