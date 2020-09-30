@@ -97,6 +97,10 @@ The general pattern here points to AppKit: The interaction between SwiftUI views
 
 It’s still [trivial](https://twitter.com/steipete/status/1306129037719269376?s=21) to crash the SwiftUI C++ AttributeGraph in Apple’s Fruta example on iOS 14 GM.
 
+## Update for Big Sur b9
+
+Apple seems to have fixed an issue and [specifically mentioned the Fruta Sample app in the Big Sur Beta Release Notes](https://twitter.com/steipete/status/1311028524812308481?s=20). However, after testing, it's still [trivially to crash](https://twitter.com/steipete/status/1311244841066561537?s=20).
+
 ## Conclusion
 
 If your target platform is iOS 14, you’re now good to go with hobby projects or individual screens in SwiftUI. I’m currently working on making our [PDF SDK for iOS](http://pspdfkit.com) easier to use with SwiftUI, and we’ll replace the settings/about screen of [PDF Viewer](https://pdfviewer.io/) with a SwiftUI version.
