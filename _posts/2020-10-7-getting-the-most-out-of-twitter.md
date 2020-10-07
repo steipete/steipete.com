@@ -39,6 +39,10 @@ I'm openly gay on Twitter, but only in the last few years also started talking a
 
 Whatever you go with, be authentic. I don't share everything on Twitter, but what I share is honest and usually done with passion, interesting or funny. I do not share content for money or for favors - only if I find it interesting.
 
+### Your Avatar
+
+Pick an Avatar that you like and stick with it. I do recommend a real face and not a sketch or something more abstract, as it'll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, Email, ...) so you have one universal online identity. People will scan the picture much faster than your name - changing it will result in a temporary loss of engagement and is usually something folks dislike. You can change it, but I recommend not doing that or at least only every few years.
+
 ## Tweets that Work
 
 There's roughly a few different categories of Tweets:
@@ -68,13 +72,13 @@ Muting accounts is beautiful - people can still see your content, but you just d
 
 I very very rarely block. There's been a case where someone replies to a RT of mine with mean comments, and since that does show me as connection to hateful or insulting comments, I quickly blocked that person. If it's just a challenging reply, I  usually don't block - it's fun to be challenged! (And there's always mute)
 
-## Disabling RTs
+### Disabling RTs
 
 Some people retweet a lot of content that I don't find particularly interesting, so I disable retweets on their account. I do this probably for 5-10% of the accounts I follow and I know some people who have that on for 100%.
 
 This also implies changes in Twitter behavior: If you want to be sure someone sees content, use a quote tweet. But don't use that too often, as [it can be annoying it itself](https://twitter.com/NeoNacho/status/1313595333159469056).
 
-## Hashtags
+### Hashtags
 
 Please don't use hashtags. If I could write a filter that automatically blocks all tweets with more than one hashtag, I would use it. It's usually people that don't know how Twitter work or ads that #use a #hashtag for #almost #every #word, and it's really unnecessary and annoying to read. Don't be a noob, don't use hashtags. Exception are for fun hashtags or conferences. #butwhatdoiknow
 
@@ -104,7 +108,7 @@ You can mute 100 keywords. It doesn't need to be a hashtag. Here's a selection o
 
 Unlike keywords, there's no limit in muting accounts. I pretty much mute all brands, accounts that serve ads and accounts that talk about topics I'm not interested in. Remember, you are in control of what you consume, so be selective and remove the noise.
 
-## Multiple Profiles
+### Multiple Profiles
 
 Quite a few of my friends have "alt" accounts for the hot takes or for talking with friends. If you work at a Big Corp, you might are required to filter what you say and having an alt can be a solution. In general I don't recommend making an alt-account, as it's simply too much work to maintain multiple accounts. Just tweet out your hot takes and attract the right followers on your main.
 
@@ -122,9 +126,17 @@ Bonus: Convert your conference talk to a blog post - very few people will actual
 
 If you plan on starting to speak, create a website where you talk about what topics you can talk about and your bio. I'm using [a simple GitHub repo](https://github.com/steipete/speaking) that has been proven extremely useful, both for me to track past events, to attract new speaking gigs and to help conference organizers with getting the information they need to announce me.
 
-## Engage with your Audience
+### Engage with your Audience
 
 I try to reply to almost all folks that interact with me on Twitter. This doesn't take much time, and sometimes I just reply with an emoji, but it does show your audience that you care, and they're much more likely to interact with your content again, if they know that it's not a one-way street. Same goes to your feed - don't just read, reply. This can range from helping others with questions/problems, or just a "me too", a retweet - you name it. Sometimes I get content in my feed via a retweet and through me interacting I get a new follower.
+
+### Consistency
+
+Be consistent. You won't grow an audience over night. Make Twitter a daily thing. Share content. Be present - and you'll grow your audience every day.
+
+I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from time to time. It's been one of the oldest apps on my phone, so I have data since 2014. Interestingly my follower count has been growing pretty much linear:
+
+![Birdbrain Follower Count of @steipete](/assets/img/2020/make-twitter-work/follower.png)
 
 ## Addendum: Building Personal Brands for Introverts
 
