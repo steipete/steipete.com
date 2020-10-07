@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Getting the most out of Twitter"
-date: 2020-09-13 11:00:00 +0200
-tags: iOS development SwiftUI
-image: /assets/img/2020/fruta-swiftui/fruta-crash.png
+date: 2020-10-07 12:00:00 +0200
+tags: social
+image: /assets/img/twitter-work/settings.png
 description: "Make Twitter work for you."
 ---
 
@@ -48,8 +48,9 @@ There's roughly a few different categories of Tweets:
 - Comments about your field of work
 - Conversations
 
-https://twitter.com/steipete/status/1313864628967964672?s=21
+Example of a Tweet that really worked well:
 
+{% twitter  https://twitter.com/steipete/status/1313864628967964672?s=21 %}
 
 ## Managing the Timeline
 
@@ -107,5 +108,8 @@ Unlike keywords, there's no limit in muting accounts. I pretty much mute all bra
 
 Quite a few of my friends have "alt" accounts for the hot takes or for talking with friends. If you work at a Big Corp, you might are required to filter what you say and having an alt can be a solution. In general I don't recommend making an alt-account, as it's simply too much work to maintain multiple accounts. Just tweet out your hot takes and attract the right followers on your main.
 
+## Building Personal Brands for Introverts
+
+I've given a talk at UIKonf in Berlin in 2018 about Building Personal Brands for Introverts, which is still highly relevant and goes even deeper into this topic:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0c6izSzP-KQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
