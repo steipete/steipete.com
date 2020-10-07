@@ -108,7 +108,25 @@ Unlike keywords, there's no limit in muting accounts. I pretty much mute all bra
 
 Quite a few of my friends have "alt" accounts for the hot takes or for talking with friends. If you work at a Big Corp, you might are required to filter what you say and having an alt can be a solution. In general I don't recommend making an alt-account, as it's simply too much work to maintain multiple accounts. Just tweet out your hot takes and attract the right followers on your main.
 
-## Building Personal Brands for Introverts
+## Extending Reach
+
+### Blog Posts
+
+Twitter is a great indicator for topics that people find interesting - I often get my best ideas for blog posts out of Twitter conversations, and also already have half the content there. Twitter is great for inspiration and to learn, but it's hard to read conversations - go the extra mile and convert some of these interactions to blog posts. This will greatly extend your reach, and in turn attract new followers that find you content interesting.
+
+### Conference Talks
+
+Speaking at conferences is a great way to meet new people and extend your social circle. I often meet folks at conferences, and either we connect on Twitter or we find out that we already know each other! Either way - this will increase the bond and will make it more likely that people reach out to you. Conferences are work, but they are so worth it. 
+
+Bonus: Convert your conference talk to a blog post - very few people will actually watch a recording, so via recycling and reshaping content you already have, you can extend your reach again.
+
+If you plan on starting to speak, create a website where you talk about what topics you can talk about and your bio. I'm using [a simple GitHub repo](https://github.com/steipete/speaking) that has been proven extremely useful, both for me to track past events, to attract new speaking gigs and to help conference organizers with getting the information they need to announce me.
+
+## Engage with your Audience
+
+I try to reply to almost all folks that interact with me on Twitter. This doesn't take much time, and sometimes I just reply with an emoji, but it does show your audience that you care, and they're much more likely to interact with your content again, if they know that it's not a one-way street. Same goes to your feed - don't just read, reply. This can range from helping others with questions/problems, or just a "me too", a retweet - you name it. Sometimes I get content in my feed via a retweet and through me interacting I get a new follower.
+
+## Addendum: Building Personal Brands for Introverts
 
 I've given a talk at UIKonf in Berlin in 2018 about Building Personal Brands for Introverts, which is still highly relevant and goes even deeper into this topic:
 
