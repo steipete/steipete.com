@@ -123,9 +123,10 @@ Be consistent. You won't grow an audience over night. Make Twitter a daily thing
 
 I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from time to time. It's been one of the oldest apps on my phone, so I have data since 2014. Interestingly my follower count has been growing pretty much linear:
 
-![Birdbrain Follower Count of @steipete](/assets/img/2020/make-twitter-work/follower.png)
+<img src="/assets/img/2020/make-twitter-work/follower.png" alt="Birdbrain Follower Count of @steipete" width="50%">
 
 [Twitter Analytics](https://analytics.twitter.com/) is also great to understand which tweets work.
+
 
 ## Tweets that Work
 
