@@ -43,22 +43,6 @@ Whatever you go with, be authentic. I don't share everything on Twitter, but wha
 
 Pick an Avatar that you like and stick with it. I do recommend a real face and not a sketch or something more abstract, as it'll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, Email, ...) so you have one universal online identity. People will scan the picture much faster than your name - changing it will result in a temporary loss of engagement and is usually something folks dislike. You can change it, but I recommend not doing that or at least only every few years.
 
-## Tweets that Work
-
-I do share a lot of news articles. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
-
-The tweets that are the most engaging however usually are original content. Example of a Tweet that really worked well:
-
-{% twitter  https://twitter.com/steipete/status/1313864628967964672?s=21 %}
-
-Sometimes it's the stupid tweets that explode:
-
-{% twitter https://twitter.com/steipete/status/1310331623729229827 %}
-
-Sometimes you don't need words:
-
-{% twitter https://twitter.com/steipete/status/1306884214252613632?s=20 %}
-
 ## Managing the Timeline
 
 Be picky who you follow. My goal is to stay below 1500 people. I try to read most in my timeline but gave up being a completionist. Twitter needs time and commitment but shouldn't feel like work, and there's time it definitely is work to read though everything.
@@ -142,6 +126,34 @@ I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from
 ![Birdbrain Follower Count of @steipete](/assets/img/2020/make-twitter-work/follower.png)
 
 [Twitter Analytics](https://analytics.twitter.com/) is also great to understand which tweets work.
+
+## Tweets that Work
+
+I do share a lot of news articles. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
+
+The tweets that are the most engaging however usually are original content. Here's a list of my top performing tweets of the last few months, with about 80k-450k impressions.
+
+{% twitter  https://twitter.com/steipete/status/1313864628967964672?s=21 %}
+
+Lately I've been using more and more threads to connect tweets over time - this has been proven to be really great, as it immediately gives people context, they can read more and the official Twitter client also does show usually 2-3 tweets in a thread, giving you more "space" in the timeline. An example is this:
+
+{% twitter https://twitter.com/steipete/status/1277623561604214784 %}
+
+Sometimes it's the stupid tweets that explode:
+
+{% twitter https://twitter.com/steipete/status/1310331623729229827 %}
+
+Sometimes you don't need words:
+
+{% twitter https://twitter.com/steipete/status/1306884214252613632?s=20 %}
+
+Sometimes it is news commentary, if the comment is controversial enough.
+
+{% twitter https://twitter.com/steipete/status/1288151223028322304 %}
+
+Sometimes you can use context to be really pointy:
+
+{% twitter https://twitter.com/steipete/status/1281547449660825601 %}
 
 ## Addendum: Building Personal Brands for Introverts
 
