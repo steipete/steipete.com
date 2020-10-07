@@ -15,7 +15,7 @@ Twitter has been the most important social network for my career, my source of n
 
 ## Client
 
-I've been using Tweetbot for quite a while but eventually settled to using Twitter for iOS and Mac. Twitter started with the concept of an open API, but eventually added more and more features that haven't been added to the API, so while 3rd-party apps really try, they can't replicate the Twitter experience you get with the native client.
+I've used Tweetbot for quite a while but eventually settled to using Twitter for iOS and Mac. Twitter started with the concept of an open API, but eventually added more and more features that haven't been added to the API, so while 3rd-party apps really try, they can't replicate the Twitter experience you get with the native client.
 
 **Examples:**
 - The Activity screen is not doable with the Twitter API, so you can't really see which tweets resonate and which don't.
