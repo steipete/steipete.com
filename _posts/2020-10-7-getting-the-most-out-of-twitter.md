@@ -3,7 +3,7 @@ layout: post
 title: "Getting the most out of Twitter"
 date: 2020-10-07 12:00:00 +0200
 tags: social
-image: /assets/img/twitter-work/settings.png
+image: /assets/img/make-twitter-work/settings.png
 description: "Make Twitter work for you."
 ---
 
@@ -84,7 +84,7 @@ Please don't use hashtags. If I could write a filter that automatically blocks a
 
 I highly recommend going into setting and enabling "Receive messages from anyone". There's a lot of great commentary from people I received via DM since they're not comfortable replying publicly. There's the occasional odd messages (and inappropriate offers) but if you're a cis white male you likely are good. Minority groups might want to reconsider this setting or at least enable the Quality Filter.
 
-![Twitter Settings](/assets/img/twitter-work/settings.png)
+![Twitter Settings](/assets/img/make-twitter-work/settings.png)
 
 I suggest you experiment with that - this is easy to undo.
 
