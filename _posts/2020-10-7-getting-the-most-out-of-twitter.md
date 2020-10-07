@@ -45,16 +45,19 @@ Pick an Avatar that you like and stick with it. I do recommend a real face and n
 
 ## Tweets that Work
 
-There's roughly a few different categories of Tweets:
+I do share a lot of news articles. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
 
-- Share News + Commentary. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
-- Questions
-- Comments about your field of work
-- Conversations
-
-Example of a Tweet that really worked well:
+The tweets that are the most engaging however usually are original content. Example of a Tweet that really worked well:
 
 {% twitter  https://twitter.com/steipete/status/1313864628967964672?s=21 %}
+
+Sometimes it's the stupid tweets that explode:
+
+{% twitter https://twitter.com/steipete/status/1310331623729229827 %}
+
+Sometimes you don't need words:
+
+{% twitter https://twitter.com/steipete/status/1306884214252613632?s=20 %}
 
 ## Managing the Timeline
 
@@ -116,7 +119,7 @@ Quite a few of my friends have "alt" accounts for the hot takes or for talking w
 
 ### Blog Posts
 
-Twitter is a great indicator for topics that people find interesting - I often get my best ideas for blog posts out of Twitter conversations, and also already have half the content there. Twitter is great for inspiration and to learn, but it's hard to read conversations - go the extra mile and convert some of these interactions to blog posts. This will greatly extend your reach, and in turn attract new followers that find you content interesting.
+Twitter is a great indicator for topics that people find interesting - [I often get my best ideas for blog posts out of Twitter conversations](https://twitter.com/steipete/status/1297956386836566016), and also already have half the content there. Twitter is great for inspiration and to learn, but it's hard to read conversations - go the extra mile and convert some of these interactions to blog posts. This will greatly extend your reach, and in turn attract new followers that find you content interesting.
 
 ### Conference Talks
 
@@ -130,13 +133,15 @@ If you plan on starting to speak, create a website where you talk about what top
 
 I try to reply to almost all folks that interact with me on Twitter. This doesn't take much time, and sometimes I just reply with an emoji, but it does show your audience that you care, and they're much more likely to interact with your content again, if they know that it's not a one-way street. Same goes to your feed - don't just read, reply. This can range from helping others with questions/problems, or just a "me too", a retweet - you name it. Sometimes I get content in my feed via a retweet and through me interacting I get a new follower.
 
-### Consistency
+### Tracking Statistics
 
 Be consistent. You won't grow an audience over night. Make Twitter a daily thing. Share content. Be present - and you'll grow your audience every day.
 
 I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from time to time. It's been one of the oldest apps on my phone, so I have data since 2014. Interestingly my follower count has been growing pretty much linear:
 
 ![Birdbrain Follower Count of @steipete](/assets/img/2020/make-twitter-work/follower.png)
+
+[Twitter Analytics](https://analytics.twitter.com/) is also great to understand which tweets work.
 
 ## Addendum: Building Personal Brands for Introverts
 
