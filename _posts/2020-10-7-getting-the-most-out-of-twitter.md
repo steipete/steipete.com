@@ -39,7 +39,7 @@ I'm openly gay on Twitter, but only in the last few years also started talking a
 
 Whatever you go with, be authentic. I don't share everything on Twitter, but what I share is honest and usually done with passion, interesting or funny. I do not share content for money or for favors - only if I find it interesting.
 
-### Your 1
+### Your Avatar
 
 Pick an Avatar that you like and stick with it. I do recommend a real face and not a sketch or something more abstract, as it'll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, Email, ...) so you have one universal online identity. People will scan the picture much faster than your name - changing it will result in a temporary loss of engagement and is usually something folks dislike. You can change it, but I recommend not doing that or at least only every few years.
 
