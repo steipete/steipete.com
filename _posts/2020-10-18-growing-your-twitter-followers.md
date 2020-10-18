@@ -65,11 +65,9 @@ I try to reply to almost all folks that interact with me on Twitter. This doesn'
 
 Be consistent. You won't grow an audience over night. Make Twitter a daily thing. Share content. Be present - and you'll grow your audience every day.
 
-I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from time to time. It's been one of the oldest apps on my phone, so I have data since 2014. Interestingly my follower count has been growing pretty much linear:
+[Twitter Analytics](https://analytics.twitter.com/) is great to understand which tweets work. To track long-term performance, I'm using [Birdbrain](http://birdbrainapp.com/). It's been one of the oldest apps on my phone, so I have data since 2014. Interestingly my follower count has been growing pretty much linear:
 
 <img src="/assets/img/2020/make-twitter-work/follower.png" alt="Birdbrain Follower Count of @steipete" width="50%">
-
-[Twitter Analytics](https://analytics.twitter.com/) is also great to understand which tweets work.
 
 ## Tweets that Work
 
@@ -93,6 +91,6 @@ Who you follow defines your Twitter experience. Learn how you can garden your Tw
 
 ## Addendum: Building Personal Brands for Introverts
 
-I've given a talk at UIKonf in Berlin in 2018 about Building Personal Brands for Introverts, which is still highly relevant and goes even deeper into this topic:
+I've given a talk at UIKonf in Berlin in 2018 about Building Personal Brands for Introverts, which is still highly relevant and goes even deeper into defining your online identity.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0c6izSzP-KQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
