@@ -11,7 +11,7 @@ description: "Make Twitter work for you."
 div.post-content > img:first-child { display:none; }
 </style>
 
-Twitter has been the most important social network for my career, my source of news and helped me forge friendships. It can be tricky to navigate this social network. I developed a few strategies over the year to keep it fun
+Twitter has been the most important social network for my career, my source of news and helped me forge friendships. It can be tricky to navigate this social network. I developed a few strategies over the year to keep it fun.
 
 ## Client
 
@@ -112,6 +112,10 @@ Sometimes it is news commentary, if the comment is controversial enough.
 Sometimes you can use context to be really pointy:
 
 {% twitter https://twitter.com/steipete/status/1281547449660825601 %}
+
+## Gardening your Timeline
+
+Who you follow defines your Twitter experience. Learn how you can garden your Twitter Timeline to keep it fun and interesting, [in the second part of this series](/posts/gardening-your-timeline/).
 
 ## Addendum: Building Personal Brands for Introverts
 
