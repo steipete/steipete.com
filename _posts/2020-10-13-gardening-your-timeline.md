@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gardening your Twitter Timeline"
-date: 2020-10-18 12:00:00 +0200
+date: 2020-10-18 09:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/settings.png
 description: "Make Twitter work for you."

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Getting the Most out of Twitter"
-date: 2020-10-18 13:00:00 +0200
+date: 2020-10-18 08:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/settings.png
 description: "Make Twitter work for you."
