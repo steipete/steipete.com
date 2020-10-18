@@ -13,21 +13,21 @@ If you haven't read part one yet, you can learn how to best [curate your timelin
 
 ## Your Online Persona
 
-There's many strategies for online personas, I can only share what works really well for me. I follow people to cover specific areas/topics and also for their commentary/personality. In a way Twitter is a newsfeed where the comments become before the content, and you pick people for content.
+There are many strategies for online personas, I can only share what works really well for me. I follow people to cover specific areas/topics and also for their commentary/personality. In a way Twitter is a newsfeed where the comments are presented before the content, and you pick people for both content and comments.
 
-I'm known for talking about iOS, sometimes company building and have a pretty sharp tongue on tech news. I used to keep politics out of my feed but after 2016 I do sprinkle in topics that are important to me, from US politics to climate change and LGBTQ rights. 
+I'm known for talking about iOS, bootstrapping a company, and have a pretty sharp tongue on tech news. I used to keep politics out of my feed but after 2016 I do sprinkle in topics that are important to me, from US politics to climate change and LGBTQIA rights.
 
-There will always be people that complain that XY topic shouldn't be on Twitter, but in the end that's your choice and it's their choice to follow you, not yours.
+There will always be people that complain that XY topic shouldn't be on Twitter, but in the end that's *your choice* and it's their choice to follow you.
 
-I'm openly gay on Twitter, but only in the last few years also started talking about that. Being open does allow me to put unique perspective on some content, and it does add more complexity to my persona. I don't share pictures or private content though, that part is for Instagram.
+I'm openly gay on Twitter, but only in the last few years also started talking about that. Being open does allow me to put unique perspective on some content, and it does add more complexity to my persona. I almost never share pictures or private content though, [that part is for Instagram](https://www.instagram.com/sportg33k/).
 
-Whatever you go with, be authentic. I don't share everything on Twitter, but what I share is honest and usually done with passion, interesting or funny. I do not share content for money or for favors - only if I find it interesting.
+Whatever you go with, be authentic. I don't share everything on Twitter, but what I share is honest and usually done with passion, interesting or funny. I do not share content for money or for favors - only if I really find it interesting.
 
 ### Your Avatar
 
 Pick an Avatar that you like and stick with it. I do recommend a real face and not a sketch or something more abstract, as it'll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, Email, ...) so you have one universal online identity. People will scan the picture much faster than your name - changing it will result in a temporary loss of engagement and is usually something folks dislike. You can change it, but I recommend not doing that or at least only every few years.
 
-Or, you can be [really sneaky and just re-make your picture so it slightly changes every year](https://krausefx.com/blog/continuous-delivery-for-your-profile-picture).
+Or, you can be really sneaky and just [re-make your picture so it slightly changes every year](https://krausefx.com/blog/continuous-delivery-for-your-profile-picture).
 
 ### Direct Messages
 
@@ -39,9 +39,11 @@ I suggest you experiment with that - this is easy to undo.
 
 ### Multiple Profiles
 
-Quite a few of my friends have "alt" accounts for the hot takes or for talking with friends. If you work at a Big Corp, you might are required to filter what you say and having an alt can be a solution. In general I don't recommend making an alt-account, as it's simply too much work to maintain multiple accounts. Just tweet out your hot takes and attract the right followers on your main.
+Quite a few of my friends have "alt" accounts for the hot takes or for talking with friends. If you work at a Big Corp, you might are required to filter what you say and having an alt can be a solution. In general I don't recommend making an alt-account, as it's simply too much work to maintain multiple accounts. Just tweet out your hot takes and attract the right followers on your main account.
 
 ## Extending Reach
+
+The more active followers you have on Twitter, the more fun it becomes. There's no hack or shortcut for gaining followers, but there's various ways that can help you to steadily grow your audience.
 
 ### Blog Posts
 
@@ -49,7 +51,7 @@ Twitter is a great indicator for topics that people find interesting - [I often 
 
 ### Conference Talks
 
-Speaking at conferences is a great way to meet new people and extend your social circle. I often meet folks at conferences, and either we connect on Twitter or we find out that we already know each other! Either way - this will increase the bond and will make it more likely that people reach out to you. Conferences are work, but they are so worth it. 
+[Speaking at conferences](https://github.com/steipete/speaking) is a great way to meet new people and extend your social circle. I often meet folks at conferences, and either we connect on Twitter or we find out that we already know each other! Either way - this will increase the bond and will make it more likely that people reach out to you. Conferences are work, but they are so worth it. 
 
 Bonus: Convert your conference talk to a blog post - very few people will actually watch a recording, so via recycling and reshaping content you already have, you can extend your reach again.
 
