@@ -4,10 +4,10 @@ title: "Gardening your Twitter: Growing your Followers"
 date: 2020-10-18 10:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-growing.jpg
-description: "Learn how to define your online persona and the different ways to increase your reach. This is the second part of my Twitter series about Gardening your Twitter."
+description: "Learn how to define your online persona, and different ways to increase your reach. This is the second part of my Twitter series about Gardening your Twitter."
 ---
 
-Learn how to define your online persona and the different ways to increase your reach. This is the second part of my Twitter series about Gardening your Twitter. 
+Learn how to define your online persona, and different ways to increase your reach. This is the second part of my Twitter series about Gardening your Twitter. 
 
 If you haven't read part one yet, you can learn how to best [curate your timeline](/posts/curating-your-twitter-timeline/) and manage who to follow and unfollow.
 
