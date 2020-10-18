@@ -51,7 +51,7 @@ Twitter is a great indicator for topics that people find interesting - [I often 
 
 ### Conference Talks
 
-[Speaking at conferences](https://github.com/steipete/speaking) is a great way to meet new people and extend your social circle. I often meet folks at conferences, and either we connect on Twitter or we find out that we already know each other! Either way - this will increase the bond and will make it more likely that people reach out to you. **Conferences are work, but they are so worth it.** 
+[Speaking at conferences](https://steipete.tv/) is a great way to meet new people and extend your social circle. I often meet folks at conferences, and either we connect on Twitter or we find out that we already know each other! Either way - this will increase the bond and will make it more likely that people reach out to you. **Conferences are work, but they are so worth it.** 
 
 Bonus: [Convert your conference talk to a blog post](https://pspdfkit.com/blog/2018/binary-frameworks-swift/) - very few people will actually watch a recording, so via recycling and reshaping content you already have, you can extend your reach again.
 
