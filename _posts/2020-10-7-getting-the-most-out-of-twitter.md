@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Getting the most out of Twitter"
-date: 2020-10-07 12:00:00 +0200
+title: "Getting the Most out of Twitter"
+date: 2020-10-18 13:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/settings.png
 description: "Make Twitter work for you."
@@ -45,34 +45,6 @@ Pick an Avatar that you like and stick with it. I do recommend a real face and n
 
 Or, you can be [really sneaky and just re-make your picture so it slightly changes every year](https://krausefx.com/blog/continuous-delivery-for-your-profile-picture).
 
-## Managing the Timeline
-
-Be picky who you follow. My goal is to stay below 1500 people. I try to read most in my timeline but gave up being a completionist. Twitter needs time and commitment but shouldn't feel like work, and there's time it definitely is work to read though everything.
-
-I know that some people can take it personal if you unfollow, but I've been past caring about that. You need to filter what you consume, so unfollow when you don't enjoy someone's content.
-
-Don't worry about missing out - Twitter is a stream and you can never read everything.
-
-### Muting
-
-Muting accounts is beautiful - people can still see your content, but you just don't see their replies anymore. In the early days it took a lot to make me mute someone, now I do it ruthlessly, including for accounts that I just don't find interesting but are RTed into my timeline (e.g. sports).
-
-### Blocking
-
-I very very rarely block. There's been a case where someone replies to a RT of mine with mean comments, and since that does show me as connection to hateful or insulting comments, I quickly blocked that person. If it's just a challenging reply, I  usually don't block - it's fun to be challenged! (And there's always mute)
-
-### Disabling RTs
-
-Some people retweet a lot of content that I don't find particularly interesting, so I disable retweets on their account. I do this probably for 5-10% of the accounts I follow and I know some people who have that on for 100%.
-
-This also implies changes in Twitter behavior: If you want to be sure someone sees content, use a quote tweet. But don't use that too often, as [it can be annoying it itself](https://twitter.com/NeoNacho/status/1313595333159469056).
-
-### Hashtags
-
-Please don't use hashtags. If I could write a filter that automatically blocks all tweets with more than one hashtag, I would use it. It's usually people that don't know how Twitter work or ads that #use a #hashtag for #almost #every #word, and it's really unnecessary and annoying to read. Don't be a noob, don't use hashtags. Exception are for fun hashtags or conferences. #butwhatdoiknow
-
-## Filter
-
 ### Direct Messages
 
 I highly recommend going into setting and enabling "Receive messages from anyone". There's a lot of great commentary from people I received via DM since they're not comfortable replying publicly. There's the occasional odd messages (and inappropriate offers) but if you're a cis white male you likely are good. Minority groups might want to reconsider this setting or at least enable the Quality Filter.
@@ -80,22 +52,6 @@ I highly recommend going into setting and enabling "Receive messages from anyone
 ![Twitter Settings](/assets/img/2020/make-twitter-work/settings.png)
 
 I suggest you experiment with that - this is easy to undo.
-
-### Muting Keywords
-
-You can mute 100 keywords. It doesn't need to be a hashtag. Here's a selection of the things I mute:
-
-- #MyTwitterAnniversary (I really don't care about these)
-- shooting (Protects my sanity)
-- constitution, police, assault, shooting, killing, #VOTE (Probably something American that will just make me upset)
-- #digital, #offer, #BusinessTransformation, #sponsored, #blockchain, #bigdata (If you use this as keyword, the content will be crap)
-- NASCAR, Lakers, #F1, Strava, #CloseYourRings (not interested in sports or where you run or bike)
-- #Covid_19 (I read news about the pandemic when I feel like it. I don't need that every 5 minutes)
-- [food] (I already like food too much)
-
-### Muting Accounts
-
-Unlike keywords, there's no limit in muting accounts. I pretty much mute all brands, accounts that serve ads and accounts that talk about topics I'm not interested in. Remember, you are in control of what you consume, so be selective and remove the noise.
 
 ### Multiple Profiles
 
@@ -128,7 +84,6 @@ I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from
 <img src="/assets/img/2020/make-twitter-work/follower.png" alt="Birdbrain Follower Count of @steipete" width="50%">
 
 [Twitter Analytics](https://analytics.twitter.com/) is also great to understand which tweets work.
-
 
 ## Tweets that Work
 
