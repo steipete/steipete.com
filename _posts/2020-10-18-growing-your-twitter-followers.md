@@ -1,31 +1,15 @@
 ---
 layout: post
-title: "Getting the Most out of Twitter"
-date: 2020-10-18 08:00:00 +0200
+title: "Gardening your Twitter Part 2: Growing your Followers"
+date: 2020-10-18 10:00:00 +0200
 tags: social
-image: /assets/img/2020/make-twitter-work/settings.png
-description: "Make Twitter work for you."
+image: /assets/img/2020/make-twitter-work/gardening-growing.jpg
+description: "In part two we talk about you, your online persona and how you can extend your reach."
 ---
 
-<style type="text/css">
-div.post-content > img:first-child { display:none; }
-</style>
+This is the second part of my Twitter series about Gardening your Twitter. If you haven't read part one yet, you can learn how to best [curate your timeline](/posts/curating-your-twitter-timeline/) and manage who to follow and unfollow.
 
-Twitter has been the most important social network for my career, my source of news and helped me forge friendships. It can be tricky to navigate this social network. I developed a few strategies over the year to keep it fun.
-
-## Client
-
-I've used Tweetbot for quite a while but eventually settled to using Twitter for iOS and Mac. Twitter started with the concept of an open API, but eventually added more and more features that haven't been added to the API, so while 3rd-party apps really try, they can't replicate the Twitter experience you get with the native client.
-
-**Examples:**
-- The Activity screen is not doable with the Twitter API, so you can't really see which tweets resonate and which don't.
-- Twitter Polls are not visible in 3rd-party clients.
-- Threads can be somewhat reconstructed via searches, but that's a slower process and fails if the client runs out of API quota or the thread is too large.
-- Tweets where replying is limited are displayed as regular tweets and just return an error when you try to reply. This is frustrating. The official Twitter client does show if you can reply.
-- Typing indicator via DMs. In fact, Twitter disabled their Streaming API so DMs are pretty much unusable unless you use the official client.
-- Much more that isn't relevant but noteworthy: Bookmarks, Data Saver mode, 4k Images, ...
-
-If you're looking for good 3rd-party clients, check [Tweetbot](https://tapbots.com/tweetbot/) and [Aviary](https://apps.apple.com/us/app/id1522043420).
+In part two we talk about you, your online persona and how you can extend your reach.
 
 ## Your Online Persona
 
@@ -115,9 +99,9 @@ Sometimes you can use context to be really pointy:
 
 {% twitter https://twitter.com/steipete/status/1281547449660825601 %}
 
-## Gardening your Timeline
+## Curating your Timeline
 
-Who you follow defines your Twitter experience. Learn how you can garden your Twitter Timeline to keep it fun and interesting, [in the second part of this series](/posts/gardening-your-timeline/).
+Who you follow defines your Twitter experience. Learn how you can garden your Twitter Timeline to keep it fun and interesting, [in the second part of this series](/posts/curating-your-twitter-timeline/).
 
 ## Addendum: Building Personal Brands for Introverts
 
