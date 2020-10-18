@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gardening your Twitter Part 2: Growing your Followers"
+title: "Gardening your Twitter: Growing your Followers"
 date: 2020-10-18 10:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-growing.jpg

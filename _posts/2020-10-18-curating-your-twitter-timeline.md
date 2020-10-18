@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gardening your Twitter Part 1: Curating your Timeline"
+title: "Gardening your Twitter: Curating your Timeline"
 date: 2020-10-18 09:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-curating.jpg
