@@ -73,31 +73,19 @@ I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from
 
 I do share a lot of news articles. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
 
-The tweets that are the most engaging however usually are original content. Here's a list of my top performing tweets of the last few months, with about 80k-450k impressions.
+The tweets that are the most engaging however usually are original content, usually in context with your audience and topics of interest. Here's a list of my top performing tweets of the last few months, with about 80k-450k impressions.
 
 {% twitter https://twitter.com/steipete/status/1313864628967964672?s=21 %}
 
 {% twitter https://twitter.com/steipete/status/1317061856901570560?s=20 %}
 
+Sometimes it's the [stupid tweets that explode](https://twitter.com/steipete/status/1310331623729229827), sometimes you [don't need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary, if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304), or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
+
+### Using Threads
+
 Lately I've been using more and more threads to connect tweets over time - this has been proven to be really great, as it immediately gives people context, they can read more and the official Twitter client also does show usually 2-3 tweets in a thread, giving you more "space" in the timeline. An example is this:
 
 {% twitter https://twitter.com/steipete/status/1277623561604214784 %}
-
-Sometimes it's the stupid tweets that explode:
-
-{% twitter https://twitter.com/steipete/status/1310331623729229827 %}
-
-Sometimes you don't need words:
-
-{% twitter https://twitter.com/steipete/status/1306884214252613632?s=20 %}
-
-Sometimes it is news commentary, if the comment is controversial enough.
-
-{% twitter https://twitter.com/steipete/status/1288151223028322304 %}
-
-Sometimes you can use context to be really pointy:
-
-{% twitter https://twitter.com/steipete/status/1281547449660825601 %}
 
 ## Curating your Timeline
 
