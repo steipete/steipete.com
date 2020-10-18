@@ -4,10 +4,10 @@ title: "Gardening your Twitter Part 1: Curating your Timeline"
 date: 2020-10-18 09:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-curating.jpg
-description: "It sometimes can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun."
+description: "It can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun."
 ---
 
-I've been using Twitter for almost 12 years now, and I still love talking to people, learning and making jokes there. It sometimes can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun.
+I've been using Twitter for almost 12 years now. It can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun.
 
 This is the first part of my Twitter series about Gardening your Twitter. Don't miss out on the second part, where I explain [how you can grow your followers](/posts/growing-your-twitter-followers).
 
