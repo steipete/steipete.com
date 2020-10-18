@@ -78,3 +78,5 @@ Don't be a noob, don't use hashtags. Exception are for fun hashtags or conferenc
 ## Conclusion
 
 What are your tricks to make Twitter better for you? [Reply and let me know](https://twitter.com/steipete) (if you haven't muted me, that is 😜)
+
+If you haven't read the first part of this series, continue at [Getting the Most out of Twitter](/posts/getting-the-most-out-of-twitter/).
