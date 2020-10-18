@@ -3,13 +3,9 @@ layout: post
 title: "Gardening your Twitter Timeline"
 date: 2020-10-18 09:00:00 +0200
 tags: social
-image: /assets/img/2020/make-twitter-work/settings.png
+image: /assets/img/2020/make-twitter-work/gardening.jpg
 description: "It sometimes can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun."
 ---
-
-<style type="text/css">
-div.post-content > img:first-child { display:none; }
-</style>
 
 I've been using Twitter for almost 12 years now, and I still love talking to people, learning and making jokes there. It sometimes can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun.
 

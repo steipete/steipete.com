@@ -91,7 +91,9 @@ I do share a lot of news articles. I often just quote something interesting from
 
 The tweets that are the most engaging however usually are original content. Here's a list of my top performing tweets of the last few months, with about 80k-450k impressions.
 
-{% twitter  https://twitter.com/steipete/status/1313864628967964672?s=21 %}
+{% twitter https://twitter.com/steipete/status/1313864628967964672?s=21 %}
+
+{% twitter https://twitter.com/steipete/status/1317061856901570560?s=20 %}
 
 Lately I've been using more and more threads to connect tweets over time - this has been proven to be really great, as it immediately gives people context, they can read more and the official Twitter client also does show usually 2-3 tweets in a thread, giving you more "space" in the timeline. An example is this:
 
