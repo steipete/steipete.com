@@ -73,13 +73,11 @@ I'm using [Birdbrain](http://birdbrainapp.com/) to track my Twitter numbers from
 
 I do share a lot of news articles. I often just quote something interesting from the news if it's not something that needs a strong commentary, but something that does show that it's worth your time.
 
-The tweets that are the most engaging however usually are original content, usually in context with your audience and topics of interest. Here's a list of my top performing tweets of the last few months, with about 80k-450k impressions.
+The tweets that are the most engaging however usually are original content, usually in context with your audience and topics of interest. Here's some of my top performing tweets of the last few months, with about 80k-450k impressions. Sometimes it's the [stupid tweets that explode](https://twitter.com/steipete/status/1310331623729229827), sometimes you [don't need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary, if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304), or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
 
 {% twitter https://twitter.com/steipete/status/1313864628967964672?s=21 %}
 
 {% twitter https://twitter.com/steipete/status/1317061856901570560?s=20 %}
-
-Sometimes it's the [stupid tweets that explode](https://twitter.com/steipete/status/1310331623729229827), sometimes you [don't need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary, if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304), or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
 
 ### Using Threads
 
