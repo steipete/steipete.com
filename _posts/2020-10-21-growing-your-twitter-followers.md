@@ -9,7 +9,7 @@ description: "Learn how to define your online persona, and find out different wa
 
 I’ve been using Twitter for almost 12 years now. It can be challenging to navigate your timeline, so today I’m sharing some tips to keep it fun.
 
-This is the first part of my Twitter series about Gardening Your Twitter. Don’t miss out on the second part, where I explain [how you can grow your followers](/posts/growing-your-twitter-followers).
+This is the first part of my Twitter series about Gardening Your Twitter. Don’t miss out on the second part, where you can learn how to best [curate your timeline](/posts/curating-your-twitter-timeline/) and manage who to follow and unfollow.
 
 ## Your Online Persona
 
