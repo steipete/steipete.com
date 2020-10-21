@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gardening Your Twitter: Curating Your Timeline"
-date: 2020-10-21 12:00:00 +0200
+date: 2020-10-21 15:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-curating.jpg
 description: "It can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun."
