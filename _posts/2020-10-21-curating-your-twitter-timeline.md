@@ -39,7 +39,7 @@ Mute early, mute often. It’s your experience after all. If you miss a reply an
 
 ## Muting Keywords
 
-You can **mute up to 100 keywords** or even partial sentences; it doesn’t need to be a hashtag. Here’s a selection of the things I mute:
+You can **mute up to 200 keywords** or even partial sentences; it doesn’t need to be a hashtag. Here’s a selection of the things I mute:
 
 - #MyTwitterAnniversary (I really don’t care about these)
 - constitution, police, assault, shooting, killing, #VOTE (probably something American that will just make me upset)
