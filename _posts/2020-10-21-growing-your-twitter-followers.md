@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gardening Your Twitter: Growing Your Followers"
-date: 2020-10-21 16:00:00 +0200
+date: 2020-10-21 15:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-growing.jpg
 description: "Learn how to define your online persona, and find out different ways to increase your reach. This is the second part of my Twitter series about Gardening Your Twitter."
