@@ -47,7 +47,7 @@ The more active followers you have on Twitter, the more fun it becomes. There’
 
 ### Blog Posts
 
-Twitter is a great indicator for topics that people find interesting — [I often get my best ideas for blog posts out of Twitter conversations](https://twitter.com/steipete/status/1297956386836566016), and I also already have half the content there. Twitter is great for inspiration and to learn, but it’s hard to read conversations. Go the extra mile and convert some of these interactions to blog posts. This will greatly extend your reach, and in turn, it’ll attract new followers who find your content interesting.
+Twitter is a great indicator for topics that people find interesting — [I often get my best ideas for blog posts out of Twitter conversations](https://twitter.com/steipete/status/1297956386836566016), and I also already have half the content there. Twitter is great for inspiration and to learn, but it’s often hard to read and follow conversations. Go the extra mile and convert some of these interactions to blog posts. This will greatly extend your reach, and in turn, it’ll attract new followers who find your content interesting.
 
 ### Conference Talks
 

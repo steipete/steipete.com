@@ -60,7 +60,7 @@ There have been cases where someone replies to a RT of mine with mean comments, 
 
 Some people retweet a lot of content that I don’t find particularly interesting, so I disable retweets on their account from showing up on my timeline. I do this probably for 5–10 percent of the accounts I follow, and I know some people who have that on for 100 percent of the accounts they follow.
 
-This also implies changes in Twitter behavior: If you want to be sure someone sees content, use a quote tweet. But don’t use that too often, as [it can be annoying](https://twitter.com/NeoNacho/status/1313595333159469056).
+In turn, people disabling retweets has changed Twitter’s behavior. So if you want to be sure someone sees content, use a quote tweet. But don’t use that too often, as [it can also be annoying](https://twitter.com/NeoNacho/status/1313595333159469056).
 
 Before disabling retweets completely, consider using mute to just filter out content that’s not interesting to you.
 
