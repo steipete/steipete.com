@@ -21,7 +21,7 @@ There will always be people who complain that XY topic shouldn’t be on Twitter
 
 I’m openly gay on Twitter, but only in the last few years have I also started talking about that. Being open does allow me to add a unique perspective to some content, and it does add more complexity to my persona. I almost never share pictures or private content though; [that part is for Instagram](https://www.instagram.com/sportg33k/).
 
-Whatever you go with, be authentic. I don’t share everything on Twitter, but what I share is honest and is usually done with passion. Additionally, it can be interesting or funny. I do not share content for money or for favors — only if I really find it interesting.
+Whatever you go with, be authentic. I don’t share everything on Twitter, but what I share is honest and is usually done with passion. Additionally, it can be interesting or funny. I do not share content for money or for favors, rather I only share things if I find them interesting.
 
 ### Your Avatar
 
@@ -71,9 +71,9 @@ Be consistent. You won’t grow an audience overnight. Make Twitter a daily thin
 
 ## Tweets that Work
 
-I do share a lot of news articles. I often just quote something interesting from the news if it doesn’t need strong commentary, but something that does show that it’s worth your time.
+I do share a lot of news articles. I often just quote something interesting from the news if it doesn’t need strong commentary, but the inclusion of a pull quote helps show that it’s worth your time.
 
-The tweets that are the most engaging, however, usually are original content, particularly in context with your audience and topics of interest. Here are some of my top performing tweets of the last few months, with about 80K–450K impressions. Sometimes it’s the [ridiculous tweets that explode](https://twitter.com/steipete/status/1310331623729229827), and sometimes you [don’t need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304) or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
+The tweets that are the most engaging, however, usually are original content, particularly in context with your audience and topics of interest. Here are some of my top performing tweets of the last few months, with about 80K–450K impressions each. Sometimes it’s the [ridiculous tweets that explode](https://twitter.com/steipete/status/1310331623729229827), and sometimes you [don’t need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304) or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
 
 {% twitter https://twitter.com/steipete/status/1313864628967964672?s=21 %}
 
