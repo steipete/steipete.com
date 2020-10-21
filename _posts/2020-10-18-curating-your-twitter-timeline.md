@@ -1,15 +1,15 @@
 ---
 layout: post
 title: "Gardening Your Twitter: Curating Your Timeline"
-date: 2020-10-18 09:00:00 +0200
+date: 2020-10-19 12:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-curating.jpg
 description: "It can be challenging to navigate your timeline, so today I'm sharing some tips to keep it fun."
 ---
 
-I’ve been using Twitter for almost 12 years now. It can be challenging to navigate your timeline, so today I’m sharing some tips to keep it fun.
+Your timeline defines your Twitter experience. Learn strategies how to curate whom to follow, how to hide what's not interesting and how to mute negative people and keep Twitter fun for you. This is the second part of my Twitter series about Gardening Your Twitter. 
 
-This is the first part of my Twitter series about Gardening Your Twitter. Don’t miss out on the second part, where I explain [how you can grow your followers](/posts/growing-your-twitter-followers).
+If you haven’t read part one yet, you can learn how to best [curate your timeline](/posts/curating-your-twitter-timeline/) and manage who to follow and unfollow.
 
 ## Who to Follow
 
@@ -94,8 +94,8 @@ If you use the official Twitter app, it comes with a non-linear timeline by defa
 
 Twitter also has this habit of showing tweets that your followers liked. This can be fun, but usually it’s irritating, as it doesn’t fit into my content selection. You can disable this by using the top right arrow icon and selecting “Not interested in this Tweet.” If you do that a few times, Twitter will slowly stop presenting liked tweets.
 
-## Part 2: Growing Your Followers
+## Part 1: Growing Your Followers
 
-In the second part of this series, you’ll learn how you can increase your reach and [grow your followers](/posts/growing-your-twitter-followers).
+In the first part of this series, you’ll learn how you define your online persona and increase your reach to [grow your followers](/posts/growing-your-twitter-followers).
 
 [^1]: You can set up a regular expression in Tweetbot, however, the official Twitter client doesn’t support such filters.

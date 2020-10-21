@@ -1,15 +1,15 @@
 ---
 layout: post
 title: "Gardening Your Twitter: Growing Your Followers"
-date: 2020-10-18 10:00:00 +0200
+date: 2020-10-19 14:00:00 +0200
 tags: social
 image: /assets/img/2020/make-twitter-work/gardening-growing.jpg
 description: "Learn how to define your online persona, and find out different ways to increase your reach. This is the second part of my Twitter series about Gardening Your Twitter."
 ---
 
-Learn how to define your online persona, and find out different ways to increase your reach. This is the second part of my Twitter series about Gardening Your Twitter. 
+I’ve been using Twitter for almost 12 years now. It can be challenging to navigate your timeline, so today I’m sharing some tips to keep it fun.
 
-If you haven’t read part one yet, you can learn how to best [curate your timeline](/posts/curating-your-twitter-timeline/) and manage who to follow and unfollow.
+This is the first part of my Twitter series about Gardening Your Twitter. Don’t miss out on the second part, where I explain [how you can grow your followers](/posts/growing-your-twitter-followers).
 
 ## Your Online Persona
 
@@ -87,7 +87,7 @@ Lately I’ve been using more and more threads to connect tweets over time — t
 
 ## Curating Your Timeline
 
-Who you follow defines your Twitter experience. Learn how you can curate your Twitter timeline to keep it fun and interesting by reading [the first part of this series](/posts/curating-your-twitter-timeline/).
+Who you follow defines your Twitter experience. Learn how you can curate your Twitter timeline to keep it fun and interesting by reading [the second part of this series](/posts/curating-your-twitter-timeline/).
 
 ## Addendum: Building Personal Brands for Introverts
 
