@@ -13,19 +13,19 @@ If you haven’t read part one yet, you can learn how to best [curate your timel
 
 ## Your Online Persona
 
-There are many strategies for online personas, and I can only share what works really well for me. I follow people to cover specific areas/topics and also for their commentary/personality. In a way, Twitter is a newsfeed where the comments are presented before the content, and you pick people for both content and comments.
+There are many strategies for online personas, but I can only share what works well for me. I follow people to cover specific areas/topics and also for their commentary/personality. In a way, Twitter is a newsfeed where the comments are presented before the content, and you pick people for both content and comments.
 
 I’m known for talking about iOS and bootstrapping a company, and I have a pretty sharp tongue on tech news. I used to keep politics out of my feed, but since 2016, I do sprinkle in topics that are important to me — from US politics to climate change and LGBTQIA rights.
 
 There will always be people who complain that XY topic shouldn’t be on Twitter, but in the end, it’s *your choice* what you talk about and it’s their choice to follow you.
 
-I’m openly gay on Twitter, but only in the last few years have I also started talking about that. Being open does allow me to add a unique perspective to some content, and it does add more complexity to my persona. I almost never share pictures or private content though; [that part is for Instagram](https://www.instagram.com/sportg33k/).
+I’m openly gay on Twitter, but only in the last few years have I also started talking about that. Being open does allow me to add a unique perspective to some content, and it adds more complexity to my persona. I almost never share pictures or private content though; [that stuff is for Instagram](https://www.instagram.com/sportg33k/).
 
-Whatever you go with, be authentic. I don’t share everything on Twitter, but what I share is honest and is usually done with passion. Additionally, it can be interesting or funny. I do not share content for money or for favors, rather I only share things if I find them interesting.
+Whatever you go with, be authentic. I don’t share everything on Twitter, but what I do share is honest and is usually done with passion. Additionally, it can be interesting or funny. I do not share content for money or for favors, rather I only share things if I find them interesting.
 
 ### Your Avatar
 
-Pick an avatar that you like and stick with it. I do recommend a real face and not a sketch or something more abstract, as it’ll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, email, ...) so you have one universal online identity. People will scan the picture much faster than your name — changing it will result in a temporary loss of engagement and this is usually something folks dislike. You can change it, but I recommend not doing that or at least doing so only every few years.
+Pick an avatar you like and stick with it. I recommend a real face and not a sketch or something more abstract, as it’ll help folks identify you at conferences or events. Make sure you use the same picture and use it everywhere (GitHub, Gravatar, email, etc.) so that you have one universal online identity. People will scan the picture much faster than your name — changing it is usually something folks dislike, and it’ll result in a temporary loss of engagement. You can change it, but I recommend not doing that, or at least doing so only every few years.
 
 Or, you can be really sneaky and just [remake your picture so it changes slightly every year](https://krausefx.com/blog/continuous-delivery-for-your-profile-picture).
 
@@ -43,7 +43,7 @@ Quite a few of my friends have “alt” accounts for the hot takes or for talki
 
 ## Extending Reach
 
-The more active followers you have on Twitter, the more fun it becomes. There’s no hack or shortcut for gaining followers, but there are various ways that can help you to steadily grow your audience.
+The more active followers you have on Twitter, the more fun it becomes. There’s no hack or shortcut for gaining followers, but there are various things you can do that can help you steadily grow your audience.
 
 ### Blog Posts
 
@@ -55,11 +55,11 @@ Twitter is a great indicator for topics that people find interesting — [I ofte
 
 Bonus: [Convert your conference talk to a blog post](https://pspdfkit.com/blog/2018/binary-frameworks-swift/). Very few people will actually watch a recording, so via recycling and reshaping content you already have, you can extend your reach again.
 
-If you plan on starting to speak, create a website where you talk about what topics you can talk about and your bio. I’m using [a simple GitHub repo](https://github.com/steipete/speaking) that has been proven extremely useful for me to track past events, attract new speaking gigs, and help conference organizers with getting the information they need to announce me.
+If you plan on starting to speak, create a website where you list what topics you can talk about and your bio. I’m using [a simple GitHub repo](https://github.com/steipete/speaking) that has been proven extremely useful for me to track past events, attract new speaking gigs, and help conference organizers with getting the information they need to announce me.
 
 ### Engage with Your Audience
 
-I try to reply to almost all folks that interact with me on Twitter. This doesn’t take much time, and sometimes I just reply with an emoji, but it does show your audience that you care, and they’re much more likely to interact with your content again if they know that it’s not a one-way street. Same goes for your feed — don’t just read, reply. This can range from helping others with questions/problems to just posting a “me too” retweet. Sometimes I get content in my feed via a retweet, and by interacting with that, I get a new follower.
+I try to reply to almost everyone who interacts with me on Twitter. This doesn’t take much time, and sometimes I just reply with an emoji, but taking time to engage shows your audience you care, and they’re much more likely to interact with your content again if they know that it’s not a one-way street. Same goes for your feed — don’t just read, reply. This can range from helping others with questions/problems to just posting a “me too” retweet. Sometimes I get content in my feed via a retweet, and by interacting with that, I get a new follower.
 
 ### Tracking Statistics
 
@@ -71,9 +71,9 @@ Be consistent. You won’t grow an audience overnight. Make Twitter a daily thin
 
 ## Tweets that Work
 
-I do share a lot of news articles. I often just quote something interesting from the news if it doesn’t need strong commentary, but the inclusion of a pull quote helps show that it’s worth your time.
+I do share a lot of news articles. I often just quote something interesting from the news if it doesn’t need strong commentary, but the inclusion of a pull quote helps show that it’s worth reading.
 
-The tweets that are the most engaging, however, usually are original content, particularly in context with your audience and topics of interest. Here are some of my top performing tweets of the last few months, with about 80K–450K impressions each. Sometimes it’s the [ridiculous tweets that explode](https://twitter.com/steipete/status/1310331623729229827), and sometimes you [don’t need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304) or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
+The tweets that are the most engaging, however, usually are original content, particularly in context with your audience and topics of interest. Here are some of my top performing tweets from the last few months, with about 80K–450K impressions each. Sometimes it’s the [ridiculous tweets that explode](https://twitter.com/steipete/status/1310331623729229827), and sometimes you [don’t need words](https://twitter.com/steipete/status/1306884214252613632?s=20). It also can be news commentary if the comment [really nails it](https://twitter.com/steipete/status/1288151223028322304) or just [really fits](https://twitter.com/steipete/status/1281547449660825601).
 
 {% twitter https://twitter.com/steipete/status/1313864628967964672?s=21 %}
 
