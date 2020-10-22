@@ -4,11 +4,11 @@ title: About
 
 [![Image of Peter Steinberger speaking at a conference](/assets/img/steipete-about.jpg){:height="100%" width="100%"}](https://github.com/steipete/speaking/blob/master/README.md)
 
-Follow what I’m up to on [Twitter](https://twitter.com/steipete), [GitHub](https://github.com/steipete), and [Instagram](https://www.instagram.com/sportg33k).
+Follow what I’m up to on [Twitter](https://twitter.com/steipete), [GitHub](https://github.com/steipete), and [Instagram](https://www.instagram.com/sportg33k). A word of warning: I seem to [complain a lot](https://twitter.com/maccatalan/status/1319179176042287104?s=21). 😅
 
 ### PSPDFKit
 
-I founded and bootstrapped [PSPDFKit](http://pspdfkit.com), an SDK for working with PDF files on any platform. I was CEO 2011-2019 and now focus on researching new products and technologies. My latest fun project was shipping [PDF Viewer via Mac Catalyst](https://pdfviewer.io/).
+I founded and bootstrapped [PSPDFKit](http://pspdfkit.com), an SDK for working with PDF files on any platform. I was CEO 2011-2019 and now focus on researching new products and technologies. My latest fun project was shipping [PDF Viewer via Mac Catalyst](https://pdfviewer.io/). 
 
 ### Speaking
 
