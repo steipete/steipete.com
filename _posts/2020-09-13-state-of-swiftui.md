@@ -101,6 +101,16 @@ It’s still [trivial](https://twitter.com/steipete/status/1306129037719269376?s
 
 Apple seems to have fixed an issue and [specifically mentioned the Fruta Sample app in the Big Sur Beta Release Notes](https://twitter.com/steipete/status/1311028524812308481?s=20). However, after testing, it's still [trivially to crash](https://twitter.com/steipete/status/1311244841066561537?s=20).
 
+## Update for Big Sur b10 and iOS 14.2b4
+
+Apple got back to me, explaining that I should test this again:
+
+{% twitter https://twitter.com/steipete/status/1320375101771206662?s=21 %}
+
+They indeed fixed the easy-to-trigger bug (good job!) and [it took me a minute to get it to crash again](https://twitter.com/steipete/status/1320375853243617280?s=21). To be fair, this is a different issue and seems related to Apple Pay. I also found [another Attributed Graph crash](https://twitter.com/steipete/status/1320379341507842048?s=21).
+
+iOS stabilized as well, however I found [a race condition in the List Coordinator](https://twitter.com/steipete/status/1320381666850910209?s=21). Overall things are really improving fast, the team here is working hard.
+
 ## Conclusion
 
 If your target platform is iOS 14, you’re now good to go with hobby projects or individual screens in SwiftUI. I’m currently working on making our [PDF SDK for iOS](http://pspdfkit.com) easier to use with SwiftUI, and we’ll replace the settings/about screen of [PDF Viewer](https://pdfviewer.io/) with a SwiftUI version.
