@@ -68,3 +68,12 @@ I used `VBoxHfs-64.efi` and replaced it with `HFSPlus.efi`. The former is the HF
 Now it’s time to update! I don’t use my Hackintosh as my primary system, and I do not recommend doing so, but if you do, please make a backup (I recommend [SuperDuper!](https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html) and [Arq](https://www.arqbackup.com/)).
 
 There’s no guarantee your system will come back up again, however, it did in my case, and the whole update procedure — including writing this post — took me about 1.5 hours. Not too bad, eh?
+
+## Update: Big Sur Beta 10
+
+Big Sur required a few OpenCore updates over the beta period, and at some point it wouldn't download the updater anymore. I worked around this by downloading the full Big Sur updater on Catalina and running it manually.
+
+You need to disable Apple Secure Boot to make it work:
+`Misc -> Security -> SecureBootModel -> Disabled`
+
+Currently running OpenCore 0.6.3pre from Oct 27, 2020 and everything is running great.
