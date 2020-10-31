@@ -152,4 +152,10 @@ Using this project, we can extract the dyld cache into a folder:
 
 And then we can decompile UIKitCore with selector names. This doesn’t resolve the individual selector calls, but it’s a step forward.
 
+## Update: Apple added the list of disallowed controls in the macOS Big Sur 11.0.1 Release Notes
+
+This answers which controls are affected. Curiously this currently is the only place, and there's no mention in the headers or compile-time support to warn when these methods are used - but it's better than no docs.
+
+![](/assets/img/2020/mac-idiom-forbidden-controls/apple-docs.png)
+
 [^1]: In the early days, it was just UIKit. A few years ago, Apple created an internal framework called UIKitCore, which exports more APIs and can be used for internal apps. UIKit is the smaller API for external developers (us).
