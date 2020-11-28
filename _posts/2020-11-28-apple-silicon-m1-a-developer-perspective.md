@@ -70,3 +70,5 @@ Google just shipped [Chrome that runs on ARM](https://www.macworld.com/article/3
 The new M1 MacBooks are fast, beautiful and silent and the hype is absolutely justified. There's still a lot to do on the software-front to catch up, and the bugs around older iOS Simulators are especially problematic.
 
 All of that can be fixed in software and the whole industry is currently working on making the experience better, so by next year, when Apple updates the 16-inch MacBook Pro and releases the next generation of their M chip line, it should be absolutely possible to use a M1 Mac as main dev machine.
+
+For the time being, the M1 will be my <del>travel</del> secondary laptop, and I'll keep working on the 2,4 GHz 16-inch MacBook Pro with 32 GB RAM, which just is the faster machine. I'll be much harder to accept the loud, always-on fans though, now that I know what soon will be possible.
