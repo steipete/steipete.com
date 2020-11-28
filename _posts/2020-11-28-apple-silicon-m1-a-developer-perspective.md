@@ -39,6 +39,10 @@ ARM-Windows can emulate x86 applications, and Microsoft is working on [x64 emula
 
 Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our AppKit SDK and macOS 10.15 with Catalyst, both OS releases that require testing. It remains to be seen if VMWare or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn't  count on it.
 
+![](/assets/img/2020/m1/memory.png)
+
+Lastly, 16 GB RAM just isn't a lot. When running parallel tests, the machine starts to heavily swap and performance really goes down the drain. This will be even more problematic with virtual machines running.
+
 ## Android Studio
 
 IntelliJ is working on porting the [JetBrains Runtime](https://youtrack.jetbrains.com/issue/JBR-2526) to Apple Silicon. The apps currently work through Rosetta 2, however building via Gradle is [extremely slow](https://www.reddit.com/r/androiddev/comments/jx4ntt/apple_macbook_air_m1_is_very_slow_in_gradle_builds/). Gradle creates code at runtime, which seems a particular bad combination with the Rosetta 2 ahead-of-time translation logic. 
