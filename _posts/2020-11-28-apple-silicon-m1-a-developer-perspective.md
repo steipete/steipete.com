@@ -25,13 +25,13 @@ There is a chance that Apple fixes these issues, however it's not something to c
 
 ## Docker
 
-We use Docker to automate our Website and load environments for our Windows and Server SDKs. Docker posted a [status update blog post](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/) about the current state of things, admitting that it currently won't work but that they're [working on it](https://github.com/docker/roadmap/issues/142). There are more [hacky ways to use Apple's Hypervisor to run Docker container manually](https://finestructure.co/blog/2020/11/27/running-docker-on-apple-silicon-m1-follow-up), however this needs arm-based containers.
+We use Docker to automate our Website and load environments for our [Web and Server PDF SDKs](https://pspdfkit.com/pdf-sdk/web/). Docker posted a [status update blog post](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/) about the current state of things, admitting that it currently won't work but that they're [working on it](https://github.com/docker/roadmap/issues/142). There are more [hacky ways to use Apple's Hypervisor to run Docker container manually](https://finestructure.co/blog/2020/11/27/running-docker-on-apple-silicon-m1-follow-up), however this needs arm-based containers.
 
 I expect a solution in Q1 2021 that runs arm-based containers. We'll have to do some work to add arm-support (something already on the roadmap) so this is only a transitional issue.
 
 ## Virtualization
 
-To test our Windows SDK, most folks are using a VMware virtual machine with Windows 10 and Visual Studio. Currently none of the Mac virtualisation solutions support Apple Silicon, however both [VMware and Parallels](https://appleinsider.com/articles/20/11/11/parallels-confirms-apple-m1-support-amid-silence-from-other-virtualization-companies) are working on it. I do not expect Virtualbox to be updated [anytime soon](https://forums.virtualbox.org/viewtopic.php?f=8&t=98742).
+To test our [Windows PDF SDK](https://pspdfkit.com/pdf-sdk/windows/), most folks are using a VMware virtual machine with Windows 10 and Visual Studio. Currently none of the Mac virtualisation solutions support Apple Silicon, however both [VMware and Parallels](https://appleinsider.com/articles/20/11/11/parallels-confirms-apple-m1-support-amid-silence-from-other-virtualization-companies) are working on it. I do not expect Virtualbox to be updated [anytime soon](https://forums.virtualbox.org/viewtopic.php?f=8&t=98742).
 
 I expect that eventually we'll be able to run ARM-based Windows with commercial tooling. Various [proof-of-concepts](https://9to5mac.com/2020/11/27/arm-windows-virtualization-m1-mac/) already exist. Microsoft currently doesn't sell ARM-based Windows, so getting a license will be interesting.
 
