@@ -53,11 +53,11 @@ I expect that most issues will be solved by Q1 2021, however it will likely be s
 
 [Homebrew](https://brew.sh/) currently works via Rosetta 2. Just prefix everything with `arch -x86_64` and it'll just work. It is possible to install an additional (arm-based) version of Homebrew [under `/opt/homebrew`](https://soffes.blog/homebrew-on-apple-silicon) and mix setup, as [more and more software](https://github.com/Homebrew/brew/issues/7857) is adding support for arm.
 
-This is not a problem currently and will eventually just work natively.
+This is not a problem currently (performance is good) and will eventually just work natively.
 
 ## Applications
 
-Most applications just work, Rosetta is barely noticeable. Larger apps to take a longer initial performance hit (e.g. Microsoft Word takes around 30 seconds until everything is translated), but then these binaries are cached and subsequent runs are fast.
+Most applications just work, Rosetta is barely noticeable. Larger apps to take a longer initial performance hit (e.g. Microsoft Word takes [around 20 seconds](https://www.zdnet.com/article/microsoft-office-will-be-about-20-second-slower-initially-on-apple-silicon-rosetta-2/) until everything is translated), but then these binaries are cached and subsequent runs are fast.
 
 There's the occasional app that can't be translated and fails on startup (e.g. [Beamer](https://beamer-app.com/download) or [Google's Google Drive "Backup and Sync" client](https://www.google.com/intl/en_gh/drive/download/)) but this seems rare. Some apps are confused about their place on disk and ask to be moved to the Applications directory, when really it's just the translated binary that runs somewhere else. Most of these dialogs can be ignored. Some apps (e.g. Visual Studio Code) block auto-updating as the translated app location is readonly. However, in case of VS Code, the Insider build is already updated to ARM and just works.
 
