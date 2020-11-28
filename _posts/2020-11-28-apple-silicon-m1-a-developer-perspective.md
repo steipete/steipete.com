@@ -51,7 +51,7 @@ I expect that most issues will be solved by Q1 2021, however it will likely be s
 
 ## Homebrew
 
-Homebrew currently works via Rosetta 2. Just prefix everything with `arch -x86_64` and it'll just work. It is possible to install an additional (arm-based) version of Homebrew [under `/opt/homebrew`](https://soffes.blog/homebrew-on-apple-silicon) and mix setup, as [more and more software](https://github.com/Homebrew/brew/issues/7857) is adding support for arm.
+[Homebrew](https://brew.sh/) currently works via Rosetta 2. Just prefix everything with `arch -x86_64` and it'll just work. It is possible to install an additional (arm-based) version of Homebrew [under `/opt/homebrew`](https://soffes.blog/homebrew-on-apple-silicon) and mix setup, as [more and more software](https://github.com/Homebrew/brew/issues/7857) is adding support for arm.
 
 This is not a problem currently and will eventually just work natively.
 
