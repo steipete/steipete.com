@@ -37,7 +37,7 @@ I expect that eventually we'll be able to run ARM-based Windows with commercial 
 
 ARM-Windows can emulate x86 applications, and Microsoft is working on [x64 emulation](https://www.neowin.net/news/it039s-official-x64-emulation-is-coming-to-windows-on-arm), which is already rolling out in Insider builds. In a few months, it should be possible to develop and test our Windows SDK with Visual Studio on M1 in reasonable performance.
 
-Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our AppKit SDK and macOS 10.15 with Catalyst, both OS releases that require testing. It remains to be seen if VMWare or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn't  count on it.
+Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our [AppKit PDF SDK](https://pspdfkit.com/blog/2017/pspdfkit-for-macos/) and macOS 10.15 with  the [Catalyst PDF SDK](https://pspdfkit.com/blog/2019/pspdfkit-for-mac-catalyst/), both OS releases that require testing. It remains to be seen if VMWare or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn't  count on it.
 
 ![](/assets/img/2020/m1/memory.png)
 
