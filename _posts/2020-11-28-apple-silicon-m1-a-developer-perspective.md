@@ -15,9 +15,9 @@ Xcode runs FAST on the M1. Compiling the PSPDFKit SDK (debug, arm64) can almost 
 
 One can't overstate how impressive this is for a fan-less machine. Apple's last experiment with fan-less MacBooks was the 12-inch version from 2017, which builds the same project in 41 minutes.
 
-Our tests mostly ran just fine, although I found [a bug specific to arm64](https://github.com/Aloshi/dukglue/pull/27) that we missed before, as we don't run our tests on actual hardware on CI. Moving the Simulator to the same architecture as shipping devices will be beneficial and find more bugs.
+Our tests mostly ran just fine, although I found [a bug specific to arm64](https://github.com/Aloshi/dukglue/pull/27) that we missed before, as we don't run our tests on actual hardware on CI. Moving the Simulator to the same architecture as shipping devices will be beneficial and will help find more bugs.
 
-Testing iOS below 14 is a major problem. It seems WebKit is crashing in a memory allocator, throwing EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) (Apple folks: FB8920323). Performance also seems really bad, with Xcode periodically [freezing](https://twitter.com/steipete/status/1332348616145563653?s=21) and the whole system becoming so [slow](https://twitter.com/steipete/status/1332648748158246922?s=21) that the mouse cursor gets choppy.
+Testing iOS below 14 is a major problem. It seems [WebKit is crashing in a memory allocator](https://twitter.com/steipete/status/1332654247809257473?s=21), throwing EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) (Apple folks: FB8920323). Performance also seems really bad, with Xcode periodically [freezing](https://twitter.com/steipete/status/1332348616145563653?s=21) and the whole system becoming so [slow](https://twitter.com/steipete/status/1332648748158246922?s=21) that the mouse cursor gets choppy.
 
 We were extremely excited to be moving our CI to Mac Mini's with M1 chip and are waiting on MacStadium to release devices, however it seems we will have to restrict tests to iOS 14 for that to work. With our current schedule, we plan to drop iOS 12 in Q3 2021 and iOS 13 in Q3 2022, so it will be a while until we can fully move to Apple Silicon.
 
