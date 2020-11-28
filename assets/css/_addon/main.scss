@@ -22,6 +22,10 @@
   }
 }
 
+i.mode-toggle.fas {
+  cursor: pointer;
+}
+
 @mixin mode-toggle($dark-mode: false) {
   @if $dark-mode {
     @include set-visible(inline-block, none);
