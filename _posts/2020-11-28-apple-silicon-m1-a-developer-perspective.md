@@ -41,7 +41,7 @@ Running older versions of macOS might be more problematic. We currently support 
 
 ![](/assets/img/2020/m1/memory.png)
 
-Lastly, 16 GB RAM just isn't a lot. When running parallel tests, the machine starts to heavily swap and performance really goes down the drain. This will be even more problematic with virtual machines running.
+Lastly, 16 GB RAM just isn't a lot. When running parallel tests, the machine starts to heavily swap and performance really goes down the drain. This will be even more problematic with virtual machines running. Future machines will offer 32 GB options to alleviate this issue.
 
 ## Android Studio
 
