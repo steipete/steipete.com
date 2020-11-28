@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Apple Silicon M1: A Developer Perspective"
+title: "Apple Silicon M1: A Developer's Perspective"
 date: 2020-11-28 15:00:00 +0200
 tags: iOS development
 image: /assets/img/2020/m1/m1.jpg
