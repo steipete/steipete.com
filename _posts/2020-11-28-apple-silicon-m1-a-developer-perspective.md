@@ -11,7 +11,7 @@ The excitement around Apple's new M1 chip is [everywhere](https://www.singhkays.
 
 ## Xcode
 
-Xcode runs FAST on the M1. Compiling the PSPDFKit SDK (debug, arm64) can almost compete with the fastest Intel-based MacBook Pro Apple offers to date, with [8:49 min vs 7:31 min](https://twitter.com/steipete/status/1332052251712614405?s=21). For comparison, my Hackintosh builds the same in less than 5 minutes. 
+Xcode runs FAST on the M1. Compiling the [PSPDFKit PDF SDK](https://pspdfkit.com/) (debug, arm64) can almost compete with the fastest Intel-based MacBook Pro Apple offers to date, with [8:49 min vs 7:31 min](https://twitter.com/steipete/status/1332052251712614405?s=21). For comparison, my Hackintosh builds the same in less than 5 minutes. 
 
 One can't overstate how impressive this is for a fan-less machine. Apple's last experiment with fan-less MacBooks was the 12-inch version from 2017, which builds the same project in 41 minutes.
 
