@@ -17,11 +17,13 @@ One can't overstate how impressive this is for a fan-less machine. Apple's last 
 
 Our tests mostly ran just fine, although I found [a bug specific to arm64](https://github.com/Aloshi/dukglue/pull/27) that we missed before, as we don't run our tests on actual hardware on CI. Moving the Simulator to the same architecture as shipping devices will be beneficial and will help find more bugs.
 
-Testing iOS below 14 is a major problem. It seems [WebKit is crashing in a memory allocator](https://twitter.com/steipete/status/1332654247809257473?s=21), throwing EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) (Apple folks: FB8920323). Performance also seems really bad, with Xcode periodically [freezing](https://twitter.com/steipete/status/1332348616145563653?s=21) and the whole system becoming so [slow](https://twitter.com/steipete/status/1332648748158246922?s=21) that the mouse cursor gets choppy. Some Simulators even make problems on iOS 14, [such as the iPad Air (4th gen) which still emulates Intel](https://twitter.com/steipete/status/1331628274783543297?s=21), so try to avoid that one.
+Testing iOS below 14 is problematic. It seems [WebKit is crashing in a memory allocator](https://twitter.com/steipete/status/1332654247809257473?s=21), throwing EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0) (Apple folks: FB8920323). Performance also seems really bad, with Xcode periodically [freezing](https://twitter.com/steipete/status/1332348616145563653?s=21) and the whole system becoming so [slow](https://twitter.com/steipete/status/1332648748158246922?s=21) that the mouse cursor gets choppy. Some Simulators even make problems on iOS 14, [such as the iPad Air (4th gen) which still emulates Intel](https://twitter.com/steipete/status/1331628274783543297?s=21), so try to avoid that one.
 
 We were extremely excited to be moving our CI to Mac Mini's with M1 chip and are [waiting on MacStadium to release devices](https://www.macstadium.com/m1-mini), however it seems we will have to restrict tests to iOS 14 for that to work. With our current schedule, we plan to drop iOS 12 in Q3 2021 and iOS 13 in Q3 2022, so it will be a while until we can fully move to Apple Silicon.
 
 There is a chance that Apple fixes these issues, however it's not something to count on - given that this only affects older versions of iOS, the problem will at some point just "go away".
+
+Update: We're working around the WebKit crashes for now via detecting Rosetta2 translation at runtime and simply skipping the tests where WebKit is used. This isn't great, but luckily we're not using WebKit a lot in our current project. [See my Gist for details](https://gist.github.com/steipete/e15b1fabffc7da7d49c92e3fbd06971a).
 
 ## Docker
 
