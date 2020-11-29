@@ -29,11 +29,11 @@ We use Docker to automate our Website and load environments for our [Web and Ser
 
 I expect a solution in Q1 2021 that runs arm-based containers. We'll have to do some work to add arm-support (something already on the roadmap) so this is only a transitional issue.
 
-## Virtualization
+## Virtualization and Windows
 
 To test our [Windows PDF SDK](https://pspdfkit.com/pdf-sdk/windows/), most folks are using a VMware virtual machine with Windows 10 and Visual Studio. Currently none of the Mac virtualisation solutions support Apple Silicon, however both [VMware and Parallels](https://appleinsider.com/articles/20/11/11/parallels-confirms-apple-m1-support-amid-silence-from-other-virtualization-companies) are working on it. I do not expect Virtualbox to be updated [anytime soon](https://forums.virtualbox.org/viewtopic.php?f=8&t=98742).
 
-I expect that eventually we'll be able to run ARM-based Windows with commercial tooling. Various [proof-of-concepts](https://9to5mac.com/2020/11/27/arm-windows-virtualization-m1-mac/) already exist. Microsoft currently doesn't sell ARM-based Windows, so getting a license will be interesting.
+I expect that eventually we'll be able to run ARM-based Windows with commercial tooling. Various [proof-of-concepts](https://9to5mac.com/2020/11/27/arm-windows-virtualization-m1-mac/) already exist, and performance seems [extremely promising](https://twitter.com/imbushuo/status/1332772957609922561?s=21). Microsoft currently doesn't sell ARM-based Windows, so getting a license will be interesting.
 
 ARM-Windows can emulate x86 applications, and Microsoft is working on [x64 emulation](https://www.neowin.net/news/it039s-official-x64-emulation-is-coming-to-windows-on-arm), which is already rolling out in Insider builds. In a few months, it should be possible to develop and test our Windows SDK with Visual Studio on M1 in reasonable performance.
 
@@ -48,6 +48,8 @@ Lastly, 16 GB RAM just isn't a lot. When running parallel tests, the machine sta
 IntelliJ is working on porting the [JetBrains Runtime](https://youtrack.jetbrains.com/issue/JBR-2526) to Apple Silicon. The apps currently work through Rosetta 2, however building via Gradle is [extremely slow](https://www.reddit.com/r/androiddev/comments/jx4ntt/apple_macbook_air_m1_is_very_slow_in_gradle_builds/). Gradle creates code at runtime, which seems a particular bad combination with the Rosetta 2 ahead-of-time translation logic. 
 
 I expect that most issues will be solved by Q1 2021, however it will likely be some more time until all Java versions run great on ARM. A lot of effort has been put into [loop unrolling and vectorisation](https://bell-sw.com/java/arm/performance/2019/01/15/the-status-of-java-on-arm/), not everything there is available on ARM just yet.
+
+Update: [Azul offers macOS JDKs for arm64](https://www.azul.com/press_release/azul-announces-support-of-java-builds-of-openjdk-for-apple-silicon/), including for [Java 8](https://www.azul.com/downloads/zulu-community/?os=macos&architecture=arm-64-bit&package=jdk).
 
 ## Homebrew
 
