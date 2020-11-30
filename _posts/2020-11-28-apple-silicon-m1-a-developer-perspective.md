@@ -23,7 +23,7 @@ We were extremely excited to be moving our CI to Mac Mini's with M1 chip and are
 
 There is a chance that Apple fixes these issues, however it's not something to count on - given that this only affects older versions of iOS, the problem will at some point just "go away".
 
-Update: We're working around the WebKit crashes for now via detecting Rosetta2 translation at runtime and simply skipping the tests where WebKit is used. This isn't great, but luckily we're not using WebKit a lot in our current project. [See my Gist for details](https://gist.github.com/steipete/e15b1fabffc7da7d49c92e3fbd06971a). Performance seems acceptable if you restrict parallel testing to at most two instances - else the system simply runs out of RAM and swapping is just really slow.
+**Update:** We're working around the WebKit crashes for now via detecting Rosetta2 translation at runtime and simply skipping the tests where WebKit is used. This isn't great, but luckily we're not using WebKit a lot in our current project. [See my Gist for details](https://gist.github.com/steipete/e15b1fabffc7da7d49c92e3fbd06971a). Performance seems acceptable if you restrict parallel testing to at most two instances - else the system simply runs out of RAM and swapping is just really slow.
 
 ## Docker
 
@@ -45,13 +45,15 @@ Running older versions of macOS might be more problematic. We currently support 
 
 Lastly, 16 GB RAM just isn't a lot. When running parallel tests, the machine starts to heavily swap and performance really goes down the drain. This will be even more problematic with virtual machines running. Future machines will offer 32 GB options to alleviate this issue.
 
+**Update:** [How to run Windows 10 on ARM in Qemu with Hypervisor.framework patches on Apple Silicon Mac](https://gist.github.com/niw/e4313b9c14e968764a52375da41b4278#file-readme-md)
+
 ## Android Studio
 
 IntelliJ is working on porting the [JetBrains Runtime](https://youtrack.jetbrains.com/issue/JBR-2526) to Apple Silicon. The apps currently work through Rosetta 2, however building via Gradle is [extremely slow](https://www.reddit.com/r/androiddev/comments/jx4ntt/apple_macbook_air_m1_is_very_slow_in_gradle_builds/). Gradle creates code at runtime, which seems a particular bad combination with the Rosetta 2 ahead-of-time translation logic. 
 
 I expect that most issues will be solved by Q1 2021, however it will likely be some more time until all Java versions run great on ARM. A lot of effort has been put into [loop unrolling and vectorisation](https://bell-sw.com/java/arm/performance/2019/01/15/the-status-of-java-on-arm/), not everything there is available on ARM just yet.
 
-Update: [Azul offers macOS JDKs for arm64](https://www.azul.com/press_release/azul-announces-support-of-java-builds-of-openjdk-for-apple-silicon/), including for [Java 8](https://www.azul.com/downloads/zulu-community/?os=macos&architecture=arm-64-bit&package=jdk).
+**Update:** [Azul offers macOS JDKs for arm64](https://www.azul.com/press_release/azul-announces-support-of-java-builds-of-openjdk-for-apple-silicon/), including for [Java 8](https://www.azul.com/downloads/zulu-community/?os=macos&architecture=arm-64-bit&package=jdk).
 
 ## Homebrew
 
