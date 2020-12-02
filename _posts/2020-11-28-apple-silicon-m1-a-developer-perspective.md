@@ -25,6 +25,8 @@ There is a chance that Apple fixes these issues, however it's not something to c
 
 **Update:** We're working around the WebKit crashes for now via detecting Rosetta2 translation at runtime and simply skipping the tests where WebKit is used. This isn't great, but luckily we're not using WebKit a lot in our current project. [See my Gist for details](https://gist.github.com/steipete/e15b1fabffc7da7d49c92e3fbd06971a). Performance seems acceptable if you restrict parallel testing to at most two instances - else the system simply runs out of RAM and swapping is just really slow.
 
+**Update 2**: I've heard that the choppy mouse cursor is an Xcode/Simulator bug, and is currently being worked on. Workaround: Ensure at least one Simulator window is on-screen and visible.
+
 ## Docker
 
 We use Docker to automate our Website and load environments for our [Web and Server PDF SDKs](https://pspdfkit.com/pdf-sdk/web/). Docker posted a [status update blog post](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/) about the current state of things, admitting that it currently won't work but that they're [working on it](https://github.com/docker/roadmap/issues/142). There are more [hacky ways to use Apple's Hypervisor to run Docker container manually](https://finestructure.co/blog/2020/11/27/running-docker-on-apple-silicon-m1-follow-up), however this needs arm-based containers.
@@ -39,7 +41,7 @@ I expect that eventually we'll be able to run ARM-based Windows with commercial 
 
 ARM-Windows can emulate x86 applications, and Microsoft is working on [x64 emulation](https://www.neowin.net/news/it039s-official-x64-emulation-is-coming-to-windows-on-arm), which is already rolling out in Insider builds. In a few months, it should be possible to develop and test our Windows SDK with Visual Studio on M1 in reasonable performance.
 
-Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our [AppKit PDF SDK](https://pspdfkit.com/blog/2017/pspdfkit-for-macos/) and macOS 10.15 with  the [Catalyst PDF SDK](https://pspdfkit.com/blog/2019/pspdfkit-for-mac-catalyst/), both OS releases that require testing. It remains to be seen if VMWare or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn't  count on it.
+Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our [AppKit PDF SDK](https://pspdfkit.com/blog/2017/pspdfkit-for-macos/) and macOS 10.15 with  the [Catalyst PDF SDK](https://pspdfkit.com/blog/2019/pspdfkit-for-mac-catalyst/), both OS releases that require testing. It remains to be seen if VMware or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn't  count on it.
 
 ![](/assets/img/2020/m1/memory.png)
 
