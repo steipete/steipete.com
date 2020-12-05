@@ -25,7 +25,9 @@ There is a chance that Apple fixes these issues, however it's not something to c
 
 **Update:** We're working around the WebKit crashes for now via detecting Rosetta2 translation at runtime and simply skipping the tests where WebKit is used. This isn't great, but luckily we're not using WebKit a lot in our current project. [See my Gist for details](https://gist.github.com/steipete/e15b1fabffc7da7d49c92e3fbd06971a). Performance seems acceptable if you restrict parallel testing to at most two instances - else the system simply runs out of RAM and swapping is just really slow.
 
-**Update 2**: I've heard that the choppy mouse cursor is an Xcode/Simulator bug, and is currently being worked on. Workaround: Ensure at least one Simulator window is on-screen and visible.
+**Update 2:** I've heard that the choppy mouse cursor is an Xcode/Simulator bug, and is currently being worked on. Workaround: Ensure at least one Simulator window is on-screen and visible.
+
+**Update 3:** Great News! The WebKit crash when Running on Rosetta 2 will be resolved with a future update in Big Sur.
 
 ## Docker
 
