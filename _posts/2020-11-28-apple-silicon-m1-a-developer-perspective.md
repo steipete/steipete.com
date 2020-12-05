@@ -27,7 +27,7 @@ There is a chance that Apple fixes these issues, however it's not something to c
 
 **Update 2:** I've heard that the choppy mouse cursor is an Xcode/Simulator bug, and is currently being worked on. Workaround: Ensure at least one Simulator window is on-screen and visible.
 
-**Update 3:** Great News! The WebKit crash when Running on Rosetta 2 will be resolved with a future update in Big Sur.
+**Update 3:** Great News! The WebKit crash when running on Rosetta 2 will be resolved with a future update in Big Sur.
 
 ## Docker
 
