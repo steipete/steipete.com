@@ -41,7 +41,7 @@ To test our [Windows PDF SDK](https://pspdfkit.com/pdf-sdk/windows/), most folks
 
 I expect that, eventually, we’ll be able to run ARM-based Windows with commercial tooling. Various [proofs of concept](https://9to5mac.com/2020/11/27/arm-windows-virtualization-m1-mac/) already exist, and performance seems [extremely promising](https://twitter.com/imbushuo/status/1332772957609922561?s=21). Microsoft currently doesn’t sell ARM-based Windows, so getting a license will be interesting.
 
-Windows 10 on ARM can emulate x86 applications, and Microsoft is working on [x64 emulation](https://www.neowin.net/news/it039s-official-x64-emulation-is-coming-to-windows-on-arm), which is already rolling out in Insider builds. In a few months, it should be possible to develop and test our Windows SDK with Visual Studio on M1 in reasonable performance.
+Windows 10 on ARM can emulate x86 applications, and Microsoft is working on [x64 emulation](https://www.neowin.net/news/it039s-official-x64-emulation-is-coming-to-windows-on-arm), which is already rolling out in Insider builds. In a few months, it should be possible to develop and test our Windows SDK with Visual Studio on M1 with reasonable performance results.
 
 Running older versions of macOS might be more problematic. We currently support macOS 10.14 with our [AppKit PDF SDK](https://pspdfkit.com/blog/2017/pspdfkit-for-macos/), and macOS 10.15 with the [Catalyst PDF SDK](https://pspdfkit.com/blog/2019/pspdfkit-for-mac-catalyst/), both of which are OS releases that require testing. It remains to be seen if VMware or Parallels include a complete x64 emulation layer. This would likely be really slow, so I wouldn’t count on it.
 
@@ -53,7 +53,7 @@ Lastly, 16&nbsp;GB RAM just isn’t a lot. When running parallel tests, the mach
 
 ## Android Studio
 
-IntelliJ is working on porting the [JetBrains Runtime](https://youtrack.jetbrains.com/issue/JBR-2526) to Apple Silicon. The apps currently work through Rosetta 2; however, building via Gradle is [extremely slow](https://www.reddit.com/r/androiddev/comments/jx4ntt/apple_macbook_air_m1_is_very_slow_in_gradle_builds/). Gradle creates code at runtime, which seems like a particularly bad combination with the Rosetta 2 ahead-of-time translation logic. 
+IntelliJ is working on porting the [JetBrains Runtime](https://youtrack.jetbrains.com/issue/JBR-2526) to Apple Silicon. JetBrains apps currently work through Rosetta 2; however, building via Gradle is [extremely slow](https://www.reddit.com/r/androiddev/comments/jx4ntt/apple_macbook_air_m1_is_very_slow_in_gradle_builds/). Gradle creates code at runtime, which seems like a particularly bad combination with the Rosetta 2 ahead-of-time translation logic. 
 
 I expect that most issues will be solved by Q1 2021, but it’ll likely be some more time until all Java versions run great on ARM. A lot of effort has been put into [loop unrolling and vectorization](https://bell-sw.com/java/arm/performance/2019/01/15/the-status-of-java-on-arm/); not everything there is available on ARM just yet.
 
@@ -71,7 +71,7 @@ Most applications just work; Rosetta is barely noticeable. Larger apps take a lo
 
 There’s the occasional app that can’t be translated and fails on startup (e.g. [Beamer](https://beamer-app.com/download) and the [Google Drive Backup and Sync client](https://www.google.com/intl/en_gh/drive/download/)), but this is rare. Some apps are confused about their place on disk and ask to be moved to the Applications directory, when really it’s just the translated binary that runs somewhere else. Most of these dialogs can be ignored. Some apps (e.g. Visual Studio Code) [block auto updating](https://twitter.com/steipete/status/1331884524934995968?s=21), as the translated app location is read-only. However, in the case of VS Code, the Insider build is already updated to ARM and just works.
 
-Electron-based apps are slow if they run on Rosetta. It seems the highly optimized V8 JavaScript compiler blocks ahead-of-time translation. The latest stable version of Electron (Version 11) already [fully supports Apple Silicon](https://www.electronjs.org/blog/apple-silicon), and companies like Slack already updated their beta version to run natively.
+Electron-based apps are slow if they run on Rosetta. It seems the highly optimized V8 JavaScript compiler blocks ahead-of-time translation. The latest stable version of Electron (Version 11) already [fully supports Apple Silicon](https://www.electronjs.org/blog/apple-silicon), and some companies — including Slack and 1Password — have already updated their beta versions to run natively.
 
 Google just shipped [Chrome that runs on ARM](https://www.macworld.com/article/3597749/google-releases-chrome-87-with-support-for-apple-silicon-macs.html), but there’s still quite a big performance gap between it and Apple Safari, which just *flies* on Apple Silicon.
 
