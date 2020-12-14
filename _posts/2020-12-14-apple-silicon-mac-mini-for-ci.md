@@ -7,11 +7,11 @@ image: /assets/img/2020/apple-silicon-ci/trippin.png
 description: "Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. Does it work? Is it worth it? Read and find out."
 ---
 
-Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system.
+Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. A few days ago we finally got access to two M1 Mac mini's hosted on MacStadium (8-core M1, 16 GB unified memory, 1TB SSD, 1Gbs).
+
+The Geekbench Score is 1705/7379 vs 1100/5465 so the promise is over 30% more performance, even more so for single-threaded operations Linking, code-signing are all tasks that Apple didn't parallelize yet, so single-core performance is a significant factor for CI performance.
 
 A recap: We run a raw Mac mini setup (6-core 3.2 GHz, 64 GB RAM, 1TB SSD, 10Gbs). I've explored [the tradeoffs between virtualization or bare metal in this article](https://pspdfkit.com/blog/2020/managing-macos-hardware-virtualization-or-bare-metal/). 
-
-A few days ago we got access to two M1 Mac mini's hosted on MacStadium (8-core M1, 16 GB unified memory, 1TB SSD, 1Gbs). The Geekbench Score is 1705/7379 vs 1100/5465 so the promise is over 30% more performance, even more so for single-threaded operations Linking, code-signing are all tasks that Apple didn't parallelize yet, so single-core performance is a significant factor for CI performance.
 
 ## Automization Voes
 
@@ -70,11 +70,11 @@ The best part: This will still work, even if we later switch to Cinc binaries th
 
 ## Xcode Troubles
 
-I've experimented with using the "Release Candidate" of Xcode 12.3 as main Xcode version, however there's currently [a bug that prevents installing any non-bundled Simulators](https://twitter.com/steipete/status/1337738685282988032?s=21) (we still support iOS 12 in our iOS PDF SDK), which caused Cinc to stop with an error. For now we stay at Xcode 12.2, hoping that Apple fixes this soon. I assume this is a server-side error so it shouldn't be hard to fix.
+I've experimented with using the "Release Candidate" of Xcode 12.3 as main Xcode version, however there's currently [a bug that prevents installing any non-bundled Simulators](https://twitter.com/steipete/status/1337738685282988032?s=21) (we still support iOS 12 in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/)), which caused Cinc to stop with an error. For now we stay at Xcode 12.2, hoping that Apple fixes this soon. I assume this is a server-side error so it shouldn't be hard to fix.
 
 ## Test Troubles
 
-Some features in our iOS PDF SDK use WKWebView, like Reader Mode that reflows PDFs so they are easier to read on mobile devices. These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
+Some features in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/) use WKWebView, like Reader Mode that reflows PDFs so they are easier to read on mobile devices. These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
 
 If you see [`bmalloc::HeapConstants::HeapConstants`](https://gist.github.com/steipete/7181cf321d979d734c5acd2326f6c33f) in a crash stack trace, that's likely this bug. While my radar has no reply yet, I've heard that this is a bug in Big Sur and requires an OS update to be fixed, so this potentially will be resolved in 10.2 some time in Q1 2021.
 
