@@ -11,11 +11,11 @@ Ever since the M1 was announced, we were curious how well Apple's new Mac mini w
 
 The Geekbench Score is 1705/7379 vs 1100/5465 so the promise is over 30% more performance, even more so for single-threaded operations Linking, code-signing are all tasks that Apple didn't parallelize yet, so single-core performance is a significant factor for CI performance.
 
-A recap: We run a raw Mac mini setup (6-core 3.2 GHz, 64 GB RAM, 1TB SSD, 10Gbs). I've explored [the tradeoffs between virtualization or bare metal in this article](https://pspdfkit.com/blog/2020/managing-macos-hardware-virtualization-or-bare-metal/). 
+A recap: We run a raw Mac mini setup (6-core 3.2 GHz, 64 GB RAM, 1TB SSD, 10Gbs). I've explored [the tradeoffs between virtualization or bare metal in the PSPDFKit blog](https://pspdfkit.com/blog/2020/managing-macos-hardware-virtualization-or-bare-metal/). 
 
 ## Automization Voes
 
-We're using [Cinc](https://cinc.sh/) (the open source binary package of [Chef](https://www.chef.io/products/chef-automate)) + [knife zero](https://knife-zero.github.io/) to automate the setup process for new nodes. It does everything from creating a ci user with an apfs-encrypted drive, configuring firewall rules, installing dependencies like ccache for faster compiling and Ruby for scripting, to installing Xcode and all Simulators. After a few hours, setup is complete and the machine automatically registers itself on Buildkite as new agent.
+We're using [Cinc](https://cinc.sh/) (the open source binary package of [Chef](https://www.chef.io/products/chef-automate)) + [knife zero](https://knife-zero.github.io/) to automate the setup process for new nodes. It does everything from creating a ci user with an apfs-encrypted drive, configuring firewall rules, installing dependencies like [ccache for faster compiling](https://pspdfkit.com/blog/2020/faster-compilation-with-ccache/) and Ruby for scripting, to installing Xcode and all Simulators. After a few hours, setup is complete and the machine automatically registers itself on Buildkite as new agent.
 
 There's a detailed article coming next in our [series about Continuous Integration for Small iOS/macOS Teams](https://pspdfkit.com/blog/2020/continuous-integration-for-small-ios-macos-teams/) that goes into more detail on this setup.
 
