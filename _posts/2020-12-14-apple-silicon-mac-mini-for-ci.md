@@ -3,7 +3,7 @@ layout: post
 title: "On Using Apple Silicon Mac mini for Continuous Integration"
 date: 2020-12-14 10:00:00 +0200
 tags: iOS development
-image: /assets/img/2020/m1/m1.jpg
+image: /assets/img/2020/apple-silicon-ci/trippin.png
 description: "Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. Does it work? Is it worth it? Read and find out."
 ---
 
@@ -126,3 +126,5 @@ I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur 
 The M1 runs our tests around 10% faster on iOS 14. Tests on older versions of iOS are [around 30% slower](https://twitter.com/steipete/status/1338219014338850816?s=21), since the Simulator runs via Rosetta's emulation mode. I've also seen [Rosetta bugs in the logs, which caused tests to fail](https://twitter.com/steipete/status/1338152854662549509?s=21). Twitter birds tell me that the Big Sur 11.1 comes with many fixes to Rosetta, so this seems like a transitionary issue.
 
 The machines are marginally cheaper to host (129$/month vs 159$/month on MacStadium) but are still only on limited availability ([we only got 2 even though we ordered 5](https://twitter.com/steipete/status/1337170464460988417?s=21)) and software is still experimental. There's currently more problems than benefits in updating your fleet to M1, especially if you need to support versions below iOS 14.
+
+[My Twitter research](https://twitter.com/steipete/status/1333809139190034433?s=21) thread contains a few more details, and various stages of frustration and delight. Follow me if you enjoy such stories.
