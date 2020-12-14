@@ -74,7 +74,7 @@ There's [a promising fix in Xcode 12.3](https://twitter.com/steipete/status/1336
 
 ## Test Troubles
 
-Some features in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/) use WKWebView, like Reader Mode that reflows PDFs so they are easier to read on mobile devices. These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
+Some features in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/) use `WKWebView`, like [Reader View that reflows PDFs so they are easier to read on mobile devices](https://pspdfkit.com/pdf-sdk/reader-view/#ios). These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
 
 If you see [`bmalloc::HeapConstants::HeapConstants`](https://gist.github.com/steipete/7181cf321d979d734c5acd2326f6c33f) in a crash stack trace, that's likely this bug. While my radar has no reply yet, I've heard that this is a bug in Big Sur and requires an OS update to be fixed, so this potentially will be resolved in 10.2 some time in Q1 2021.
 
