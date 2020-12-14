@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "On Using Apple Silicon Mac mini for Continuous Integration"
-date: 2020-12-14 10:00:00 +0200
+date: 2020-12-14 11:30:00 +0200
 tags: iOS development
 image: /assets/img/2020/apple-silicon-ci/trippin.png
 description: "Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. Does it work? Is it worth it? Read and find out."
