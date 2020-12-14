@@ -125,7 +125,9 @@ I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur 
 
 ![Buildkite Test Results](/assets/img/2020/apple-silicon-ci/buildkite.png)
 
-The M1 runs our tests around 10% faster on iOS 14. Tests on older versions of iOS are [around 30% slower](https://twitter.com/steipete/status/1338219014338850816?s=21), since the Simulator runs via Rosetta's emulation mode. I've also seen [Rosetta bugs in the logs, which caused tests to fail](https://twitter.com/steipete/status/1338152854662549509?s=21). Twitter birds tell me that the Big Sur 11.1 comes with many fixes to Rosetta, so this seems like a transitionary issue.
+The M1 runs our tests around 10% faster on iOS 14. Tests on older versions of iOS are [around 30-70% slower](https://twitter.com/steipete/status/1338219014338850816?s=21), since the Simulator runs via Rosetta's emulation mode. Results range from 7-9 minutes vs 5 minutes on Intel.
+
+I've also seen [Rosetta bugs in the logs, which caused tests to fail](https://twitter.com/steipete/status/1338152854662549509?s=21). Twitter birds tell me that the Big Sur 11.1 comes with many fixes to Rosetta, so this seems like a transitionary issue.
 
 The machines are marginally cheaper to host (129$/month vs 159$/month on MacStadium) but are still only on limited availability ([we only got 2 even though we ordered 5](https://twitter.com/steipete/status/1337170464460988417?s=21)) and software is still experimental. There's currently more problems than benefits in updating your fleet to M1, especially if you need to support versions below iOS 14.
 
