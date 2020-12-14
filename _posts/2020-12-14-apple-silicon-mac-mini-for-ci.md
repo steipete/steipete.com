@@ -21,13 +21,13 @@ There's a detailed article coming next in our [series about Continuous Integrati
 
 ## Installing Rosetta 2
 
-The first thing you'll need to do on the new machines is installing Rosetta. This is curiously not default in Big Sur, but it only takes a few seconds via the terminal:
+The first thing you'll need to do on the new machines is installing Rosetta to enable Intel emulation. This is curiously not default in Big Sur, but it only takes a few seconds via the terminal:
 
 ```
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 ```
 
-## Cinc for arm
+## Cinc for Darwin/ARM
 
 There's no Chef or [Cinc](https://cinc.sh/start/client/) release yet for Apple Silicon, which is both a blessing and a curse. It does make CI easier, since the Cinc client will run in x64 emulation mode, so anything it installs will also default to x64, which is slower but generally works.
 
@@ -37,17 +37,17 @@ Careful: The Chef/Cinc situation is tricky. Don't mindlessly update the gems, as
 
 ## APFS Containers
 
-We automate diskutil to create a new encrypted volume for our code. This ensures that our source code is always encrypted. If hardware is replaced, the data is useless. We manually enter the disk password on a power cycle or when the OS reboots because of an update.
+We automate diskutil to create a new encrypted volume for the ci user. This ensures that our source code is always encrypted. If hardware is replaced, the data is useless. We manually enter the disk password on a power cycle or when the OS reboots because of an update.
 
-On Apple Silicon, the main APFS container is disk3 and not disk1. Currently it's hardcoded, but we should change the script to parse `diskutil list` to detect the container automatically. It took me quite a while to understand why Cinc stopped with Error: -69493: You can't add any more APFS Volumes to its APFS Container". I mention it here so there's [at least one result on Google with this error.](https://twitter.com/steipete/status/1337711727023157249?s=21) 🙃
+On Apple Silicon, the main APFS container is disk3 and not disk1. Currently this change is hardcoded, eventually I'll modify the the script to parse `diskutil list` to detect the container automatically. It took me quite a while to understand why Cinc stopped with Error: -69493: You can't add any more APFS Volumes to its APFS Container". I mention it here so there's [at least one result on Google with this error.](https://twitter.com/steipete/status/1337711727023157249?s=21) 🙃
 
 ## Detecting Apple Silicon via Scripts
 
-We use Buildkite as our CI agent, and they just recently released [3.26.0 with an experimental native executable for Apple Silicon](https://github.com/buildkite/agent/releases/tag/v3.26.0). It's running on a pre-release version of Go, but so far it's been stable for us.
+We use Buildkite as our CI agent, and they just recently released [3.26.0 with an experimental native executable for Apple Silicon](https://github.com/buildkite/agent/releases/tag/v3.26.0). It's running on a pre-release version of Go, but so far it's been stable.
 
 There is no universal build, so the download script needs adjustment. To not hardcode this, I've been using a trick to detect the *real* architecture at runtime, since the script runs in Rosetta emulation mode and the usual ways would all report Intel.
 
-Here's the full block for Ruby, the interesting part is `sysctl -in sysctl.proc_translated`. It returns 0 if you run on arm, 1 if Rosetta 2, and NOTHING if you run on an Intel-Mac. Everything else is a dance to get the shell output back into Chef-flavored Ruby.
+Here's the full block for Ruby, the interesting part is `sysctl -in sysctl.proc_translated`. It returns `0` if you run on arm, `1` if Rosetta 2, and NOTHING if you run on an Intel-Mac. Everything else is a dance to get the shell output back into Chef-flavored Ruby.
 
 ```ruby
 action_class do
