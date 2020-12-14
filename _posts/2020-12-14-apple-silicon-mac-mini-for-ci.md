@@ -70,6 +70,8 @@ The best part: This will still work, even if we later switch to Cinc binaries th
 
 I've experimented with using the "Release Candidate" of Xcode 12.3 as main Xcode version, however there's currently [a bug that prevents installing any non-bundled Simulators](https://twitter.com/steipete/status/1337738685282988032?s=21) (we still support iOS 12 in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/)), which caused Cinc to stop with an error. For now we stay at Xcode 12.2, hoping that Apple fixes this soon. I assume this is a server-side error so it shouldn't be hard to fix.
 
+There's [a promising fix in Xcode 12.3](https://twitter.com/steipete/status/1336428545791434752) for "improved responsiveness of macOS mouse and keyboard events while under heavy load, such as when building a large project while running Simulator", and a fix for [random lockups of the CoreSimulator service](https://twitter.com/steipete/status/1332348616145563653), so I'm itching to upgrade as soon as possible.
+
 ## Test Troubles
 
 Some features in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/) use WKWebView, like Reader Mode that reflows PDFs so they are easier to read on mobile devices. These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
