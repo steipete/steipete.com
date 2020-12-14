@@ -121,7 +121,9 @@ Luckily there's a way to break out: I've been prefixing the `xcodebuild` command
 
 I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur and now throws ["Bootstrap failed: 125: Unknown error: 125"](https://twitter.com/steipete/status/1338155208044638210?s=21) if the service is already running. This again had no Google results, so it took a good bit to understand. Sometimes it would also write "Disk I/O error 5" which caused me to request a complete reset of the machine with MacStadium, only to see the same error many hours later again. In our case the fix was to explicitly unload the Buildkite service before registering it again - this only did show up since the automation script stopped half way due to my various tweaks.
 
-## Conclusion
+## Results
+
+![Buildkite Test Results](/assets/img/2020/apple-silicon-ci/buildkite.png)
 
 The M1 runs our tests around 10% faster on iOS 14. Tests on older versions of iOS are [around 30% slower](https://twitter.com/steipete/status/1338219014338850816?s=21), since the Simulator runs via Rosetta's emulation mode. I've also seen [Rosetta bugs in the logs, which caused tests to fail](https://twitter.com/steipete/status/1338152854662549509?s=21). Twitter birds tell me that the Big Sur 11.1 comes with many fixes to Rosetta, so this seems like a transitionary issue.
 
