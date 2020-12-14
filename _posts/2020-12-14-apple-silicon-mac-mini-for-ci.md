@@ -132,3 +132,5 @@ I've also seen [Rosetta bugs in the logs, which caused tests to fail](https://tw
 The machines are marginally cheaper to host (129$/month vs 159$/month on MacStadium) but are still only on limited availability ([we only got 2 even though we ordered 5](https://twitter.com/steipete/status/1337170464460988417?s=21)) and software is still experimental. There's currently more problems than benefits in updating your fleet to M1, especially if you need to support versions below iOS 14.
 
 [My Twitter research](https://twitter.com/steipete/status/1333809139190034433?s=21) thread contains a few more details, and various stages of frustration and delight. Follow me if you enjoy such stories.
+
+PS: The header graphic is not broken, it's a random VNC corruption and I [rolled with it](https://twitter.com/facethewolf/status/1337733279454294019?s=21).
