@@ -115,7 +115,7 @@ I've tried switching to arm-based Ruby. The latest version 2.7.2 does support co
 
 Luckily there's a way to break out: I've been prefixing the `xcodebuild` command with `arch -arm64e` to enforce the native context. This is currently hardcoded in a branch, and I'll use a similar trick to detect the native architecture as in the Ruby script above. Sadly there's no `arch -native` command that would do this for us.
 
-This is important - [performance is really terrible](https://twitter.com/steipete/status/1338152854662549509?s=21) if Clang runs in Intel-emulation mode.
+This is important! [Performance is really terrible](https://twitter.com/steipete/status/1338152854662549509?s=21) if Clang runs in Intel-emulation mode.
 
 ## More Weirdness
 
