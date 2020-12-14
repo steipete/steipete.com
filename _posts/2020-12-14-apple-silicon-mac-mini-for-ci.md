@@ -15,11 +15,9 @@ A recap: We run a raw Mac mini setup (6-core 3.2 GHz, 64 GB RAM, 1TB SSD, 10Gbs)
 
 ## Automization Voes
 
-We're using [Cinc](https://cinc.sh/) (the open source binary package of [Chef](https://www.chef.io/products/chef-automate)) + [knife zero](https://knife-zero.github.io/) to automate the setup process for new nodes. It does everything from creating a ci user with an apfs-encrypted drive, configuring firewall rules, installing dependencies like [ccache for faster compiling](https://pspdfkit.com/blog/2020/faster-compilation-with-ccache/) and Ruby for scripting, to installing Xcode and all Simulators. After a few hours, setup is complete and the machine automatically registers itself on Buildkite as new agent.
+We're using [Cinc](https://cinc.sh/) (the open source binary package of [Chef](https://www.chef.io/products/chef-automate)) + [knife zero](https://knife-zero.github.io/) to automate the setup process for new nodes. It does everything from creating a ci user with an apfs-encrypted drive, configuring firewall rules, installing dependencies like [ccache for faster compiling](https://pspdfkit.com/blog/2020/faster-compilation-with-ccache/) and Ruby for scripting, to installing Xcode and required Simulators. After a few hours, setup is complete and the machine automatically registers itself on Buildkite as new agent.
 
-There's a detailed article coming next in our [series about Continuous Integration for Small iOS/macOS Teams](https://pspdfkit.com/blog/2020/continuous-integration-for-small-ios-macos-teams/) that goes into more detail on this setup.
-
-Of course, there have been a few issues along the way to make the automation work with Apple Silicon.
+There's a detailed article coming next in our [series about Continuous Integration for Small iOS/macOS Teams](https://pspdfkit.com/blog/2020/continuous-integration-for-small-ios-macos-teams/) that goes into more detail on this setup. Of course, there have been a few issues along the way to make the automation work with Apple Silicon.
 
 ## Installing Rosetta 2
 
