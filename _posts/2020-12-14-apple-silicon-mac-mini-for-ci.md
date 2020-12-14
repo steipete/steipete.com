@@ -105,19 +105,19 @@ private func processIsTranslated() -> Int32 {
 
 ## Memory Is Tight
 
-We've been running 6 parallel instances of our tests (one per core) on Intel, however to make things work well for the M1 chip we reduced the workload to 4 instances. There's really only 4 fast cores, and 4 low-power cores, which perform badly and cause various issues with timeouts in tests. The machine also starts swapping too much memory, as the 16 GB really aren't all that much. Reducing the number to 4 seems to be the best solution to get both more predictable test results and a faster result.
+We've been running 6 parallel instances of our tests (one per core) on Intel via the `-parallel-testing-worker-count` option. To make things work well for the M1 chip I reduced the workload to 4 instances. There's really only 4 fast cores, and 4 low-power cores, which perform badly and cause various issues with timeouts in tests. The machine also starts swapping too much memory, as the 16 GB really aren't all that much. Reducing the number to 4 seems to be the best solution to get both more predictable test results and a faster result.
 
 ## Breaking Out of Rosetta
 
-Even though our Buildkite agent runs natively, I missed that Cinc installs an Intel-version of Ruby, and we use Ruby to script CI and parse test results. The Intel-Ruby kicks off `xcodebuild`, which then also runs in emulation mode because we're already in an emulation context. 
+Even though our Buildkite agent runs natively, I missed that Cinc installs an Intel-version of Ruby (via `asdf`), and we use Ruby to script CI and parse test results. The Intel-Ruby kicks off `xcodebuild`, which then also runs in emulation mode because we're already in an emulation context. 
 
 I've tried switching to arm-based Ruby. The latest version 2.7.2 does support compiling to arm, but there's still many gems that use native dependencies that haven't been updated yet. Realistically, it will take a while until we can switch to native Ruby there. 
 
 Luckily there's a way to break out: I've been prefixing the `xcodebuild` command with `arch -arm64e` to enforce the native context. This is currently hardcoded in a branch, and I'll use a similar trick to detect the native architecture as in the Ruby script above. Sadly there's no `arch -native` command that would do this for us.
 
-[Performance is really terrible](https://twitter.com/steipete/status/1338152854662549509?s=21) if Clang runs in Intel-emulation mode.
+This is important - [performance is really terrible](https://twitter.com/steipete/status/1338152854662549509?s=21) if Clang runs in Intel-emulation mode.
 
-## Final Weirdness
+## More Weirdness
 
 I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur and now throws ["Bootstrap failed: 125: Unknown error: 125"](https://twitter.com/steipete/status/1338155208044638210?s=21) if the service is already running. This again had no Google results, so it took a good bit to understand. Sometimes it would also write "Disk I/O error 5" which caused me to request a complete reset of the machine with MacStadium, only to see the same error many hours later again. In our case the fix was to explicitly unload the Buildkite service before registering it again - this only did show up since the automation script stopped half way due to my various tweaks.
 
