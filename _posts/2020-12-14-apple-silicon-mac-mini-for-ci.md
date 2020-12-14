@@ -4,10 +4,10 @@ title: "On Using Apple Silicon Mac mini for Continuous Integration"
 date: 2020-12-14 11:30:00 +0200
 tags: iOS development
 image: /assets/img/2020/apple-silicon-ci/trippin.png
-description: "Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. Does it work? Is it worth it? Read and find out."
+description: "Ever since the M1 was announced, I’ve been curious how well Apple's new Mac mini would perform for our CI system. Does it work? Is it worth it? Read and find out!"
 ---
 
-Ever since the M1 was announced, we were curious how well Apple's new Mac mini would perform for our CI system. A few days ago we finally got access to two M1 Mac mini's hosted on MacStadium (8-core M1, 16 GB unified memory, 1TB SSD, 1Gbs).
+Ever since the M1 was announced, I’ve been  curious how well Apple's new Mac mini would perform for our CI system. A few days ago we finally got access to two M1 Mac mini's hosted on MacStadium (8-core M1, 16 GB unified memory, 1TB SSD, 1Gbs).
 
 The Geekbench Score is 1705/7379 vs 1100/5465 so the promise is over 30% more performance, even more so for single-threaded operations Linking, code-signing are all tasks that Apple didn't parallelize yet, so single-core performance is a significant factor for CI performance.
 
