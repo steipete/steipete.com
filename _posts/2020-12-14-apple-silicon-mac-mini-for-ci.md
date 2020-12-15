@@ -72,6 +72,8 @@ I've experimented with using the "Release Candidate" of Xcode 12.3 as main Xcode
 
 There's [a promising fix in Xcode 12.3](https://twitter.com/steipete/status/1336428545791434752) for "improved responsiveness of macOS mouse and keyboard events while under heavy load, such as when building a large project while running Simulator", and a fix for [random lockups of the CoreSimulator service](https://twitter.com/steipete/status/1332348616145563653), so I'm itching to upgrade as soon as possible.
 
+**Update:** Apple fixed this issue server-side, list is loading now.
+
 ## Test Troubles
 
 Some features in our [iOS PDF SDK](https://pspdfkit.com/pdf-sdk/ios/) use `WKWebView`, like [Reader View that reflows PDFs so they are easier to read on mobile devices](https://pspdfkit.com/pdf-sdk/reader-view/#ios). These tests [crash with a memory allocator error on Big Sur](https://steipete.com/posts/apple-silicon-m1-a-developer-perspective/). 
