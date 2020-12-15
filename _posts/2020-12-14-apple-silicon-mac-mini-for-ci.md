@@ -119,9 +119,11 @@ Luckily there's a way to break out: I've been prefixing the `xcodebuild` command
 
 This is important! [Performance is really terrible](https://twitter.com/steipete/status/1338152854662549509?s=21) if Clang runs in Intel-emulation mode.
 
-## More Weirdness
+## launchctl Weirdness
 
-I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur and now throws ["Bootstrap failed: 125: Unknown error: 125"](https://twitter.com/steipete/status/1338155208044638210?s=21) if the service is already running. This again had no Google results, so it took a good bit to understand. Sometimes it would also write "Disk I/O error 5" which caused me to request a complete reset of the machine with MacStadium, only to see the same error many hours later again. In our case the fix was to explicitly unload the Buildkite service before registering it again - this only did show up since the automation script stopped half way due to my various tweaks.
+I've encountered a few other weird issues. `launchctl` changed a bit in Big Sur and now throws ["Bootstrap failed: 125: Unknown error: 125"](https://twitter.com/steipete/status/1338155208044638210?s=21) or " Load error 5: input/output error" if the service is already running. This again had no Google results, so it took a good bit to understand. Sometimes it would also write "Disk I/O error 5 or  Load error 5: input/output error" which caused me to request a complete reset of the machine with MacStadium, only to see the same error many hours later again.
+
+In our case the fix was to explicitly unload the Buildkite service before registering it again - this only did show up since the automation script stopped half way due to my various tweaks. It is also important that you are logged in as the user you're registering the service for (via screen sharing)
 
 ## Results
 
