@@ -138,3 +138,5 @@ The machines are marginally cheaper to host (129$/month vs 159$/month on MacStad
 [My Twitter research](https://twitter.com/steipete/status/1333809139190034433?s=21) thread contains a few more details, and various stages of frustration and delight. Follow me if you enjoy such stories.
 
 PS: The header graphic is not broken, it's a random VNC corruption and I [rolled with it](https://twitter.com/facethewolf/status/1337733279454294019?s=21).
+
+**Update:** We decided to keep the M1's after all, since we found two valid bugs in our codebase that only happen on arm64. This is a valid reason to deal with the current difficulties in setup.
