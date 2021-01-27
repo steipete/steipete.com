@@ -85,6 +85,8 @@ class ColorPickerWrapperController: UIViewController {
 }
 ```
 
+Using this setup, the color picker can be pushed on a navigation controller stack. There's a short flickering as the remote plugin is loaded, but it's usable.
+
 ## Catalyst Is Different
 
 In a surprising decision, Apple shows a completely different color picker when your app runs on the Mac, and it doesn't matter if the app runs via Catalyst (Scaled Interface), Catalyst (Optimized for Mac) or via the iOS Emulation that's new on Apple Silicon (Designed for iPad).
