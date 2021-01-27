@@ -7,9 +7,9 @@ image: /assets/img/2021/tap-longpress-button-swiftui/header.gif
 description: "My task today was quite simple: adding an optional long-press handler to a button in SwiftUI. Not so difficult, eh? You'd be surprised how tricky it can get."
 ---
 
-My task today was quite simple: adding an optional long-press handler to a button in SwiftUI. Not so difficult, eh?
+My task today was quite simple: adding an optional long-press handler to a button in SwiftUI. A regular tap opens our website and a long press does… something else. Not so difficult, right?
 
-## Native Version
+## Naive First Version
 
 Here's my first naive iteration:
 
@@ -25,11 +25,9 @@ Button(action: {
 }
 ```
 
-While above works to detect a long press, by adding a gesture to the image, the button no longer fires. Alright, not quote what we want. 
+While above works to detect a long press, by adding a gesture to the image, the button no longer fires. Alright, not quite what we want.  Let's move the gesture out of the label and to the button.
 
 ## Moving Things Around-Version
-
-Let's move the gesture out of the label and to the button.
 
 ```swift
 Button(action: {
@@ -43,9 +41,9 @@ Button(action: {
 }
 ```
 
-## Being Fancy with `simultaneousGesture`
-
 Great! Now the button tap works again - unfortunately the long press gesture doesn't work anymore. Okay, let's use `simultaneousGesture` to tell SwiftUI that we really care about both gestures.
+
+## Being Fancy with `simultaneousGesture`
 
 ```swift
 Button(action: {
@@ -60,9 +58,9 @@ Button(action: {
 Spacer()
 ```
 
-## Two Gestures Are Better Than One
-
 Great - that works. However now we always trigger both the long press and the action, which isn't quite what we want. We want either-or, so let's try adding a second gesture instead:
+
+## Two Gestures Are Better Than One
 
 ```swift
 Button(action: {
@@ -113,9 +111,11 @@ If we can ignore the long press on Catalyst, then this combination works.
     }
 ```
 
+In our case, we really want the long press though, so what to do? I remembered a trick I used im my [Presenting Popovers from SwiftUI](https://pspdfkit.com/blog/2020/popovers-from-swiftui-uibarbutton/) article, we can use a `ZStack` and just use UIKit for what doesn't work in SwiftUI.
+
 ## The Nuclear Option
 
-In our case, we really want the long press though, so what to do? I remembered a trick I used im my [Presenting Popovers from SwiftUI](https://pspdfkit.com/blog/2020/popovers-from-swiftui-uibarbutton/) article, we can use a `ZStack` and just use UIKit for what doesn't work in SwiftUI.
+The usage is simple:
 
 ```swift
 LongPressButton(action: {
@@ -128,7 +128,7 @@ LongPressButton(action: {
 })
 ```
 
-Simple enough? Now let's talk about this `LongPressButton` subclass…
+Now, let's talk about this `LongPressButton` subclass…
 
 ```swift
 @available(iOS 13.0, *)
