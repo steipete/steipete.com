@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "ColorPicker Under The Hood"
-date: 2020-12-14 11:30:00 +0200
+title: "The new iOS Color Picker Under The Hood"
+date: 2021-01-27 22:00:00 +0200
 tags: iOS development
-image: /assets/img/2021/apple-silicon-ci/trippin.png
-description: "Let's look at the new color picker on iOS 14, Catalyst, and its AppKit legacy: NSColorPanel"
+image: /assets/img/2021/ios-color-picker/header.png
+description: "While macOS offers a system-provided color picker since OS X 10.0 Cheetah, iOS developers had to wait a bit longer. Let's take a closer look at the new ColorPicker (SwiftUI) and UIColorPickerViewController (UIKit) controls."
 ---
 
 While macOS offers a system-provided color picker since OS X 10.0 Cheetah, iOS developers had to wait a bit longer. With iOS 14, Apple added [`UIColorPickerViewController`](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller) and [`UIColorWell`](https://developer.apple.com/documentation/uikit/uicolorwell), which somewhat correspond to their older AppKit parents [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) and [`NSColorWell`](https://developer.apple.com/documentation/appkit/nscolorwell).
