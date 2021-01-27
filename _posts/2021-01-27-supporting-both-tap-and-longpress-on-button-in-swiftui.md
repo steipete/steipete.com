@@ -205,4 +205,4 @@ And here we go. This version works exactly as we expect, on iOS 13, iOS 14, Cata
 
 ## Conclusion
 
-So what's really about that secret long press action? It does enable the Debug Mode of [PDF Viewer](https://pdfviewer.io), showing various settings that aren't really useful for regular folks, but help with QA testing. If you're curious, download PDF Viewer, long-press on our icon in the Settings footer and see.
+So what's really about that secret long press action? It does enable the Debug Mode of [PDF Viewer](https://pdfviewer.io), showing various settings that aren't really useful for regular folks, but help with QA testing. If you're curious, download our app (it's free), long-press on our icon in the Settings footer and see.
