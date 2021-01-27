@@ -131,7 +131,6 @@ LongPressButton(action: {
 Now, let's talk about this `LongPressButton` subclass…
 
 ```swift
-@available(iOS 13.0, *)
 struct LongPressButton<Label>: View where Label: View {
     let label: (() -> Label)
     let action: () -> Void
@@ -155,7 +154,6 @@ struct LongPressButton<Label>: View where Label: View {
     }
 }
 
-@available(iOS 13.0, *)
 private struct TappableView: UIViewRepresentable {
     let action: () -> Void
     let longPressAction: () -> Void
@@ -203,7 +201,7 @@ private struct TappableView: UIViewRepresentable {
 }
 ```
 
-And here we go. This version works exactly as we expect, on iOS 13, iOS 14, Catalyst on Catalina and Big Sur. UIKit is verbose but it works. And with the power of SwiftUI we can hide all that code behind a convenient new button subclass.
+And here we go. This version works exactly as we expect, on iOS 13, iOS 14, Catalyst on Catalina and Big Sur. **UIKit is verbose but it works.** And with the power of SwiftUI we can hide all that code behind a convenient new button subclass.
 
 ## Conclusion
 
