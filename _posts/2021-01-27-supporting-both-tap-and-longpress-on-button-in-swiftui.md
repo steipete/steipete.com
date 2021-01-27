@@ -79,11 +79,11 @@ Button(action: {
 Spacer()
 ```
 
-It… works! It does exactly what we expect and it's nicely calling either tap or long press. Wohoo! So let's do some QA and test everywhere. iOS 13: check. iOS 14: check. Catalyst on Big Sur: … does not work. Neither tap nor long tap.
+It… works! It does exactly what we expect and it's nicely calling either tap or long press. Wohoo! So let's do some QA and test everywhere. iOS 13: check. iOS 14: check. Let's compile the Catalyst version to be sure. And: it does not work. Neither tap nor long tap. The button has no effect at all.
 
 ## Catalyst… always Catalyst!
 
-If we can ignore the long press on Catalyst, then this combination works.
+If we can ignore the long press on Catalyst, then this combination works at least for the regular action.
 
 ```swift
     @State var didLongPress = false
