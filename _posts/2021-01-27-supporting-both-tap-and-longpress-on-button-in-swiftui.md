@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Supporting both Tap and LongPress on a Button in SwiftUI"
-date: 2021-01-27 12:00:00 +0200
+date: 2021-01-27 18:30:00 +0200
 tags: iOS SwiftUI development
 image: /assets/img/2021/tap-longpress-button-swiftui/header.gif
 description: "My task today was quite simple: adding an optional long-press handler to a button in SwiftUI. Not so difficult, eh? You'd be surprised how tricky it can get."
