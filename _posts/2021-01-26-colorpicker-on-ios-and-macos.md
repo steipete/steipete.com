@@ -85,7 +85,7 @@ class ColorPickerWrapperController: UIViewController {
 }
 ```
 
-Using this setup, the color picker can be pushed on a navigation controller stack. There's a short flickering as the remote plugin is loaded, but it's usable.
+Using this setup, the color picker can be pushed on a navigation controller stack. There's a short flickering as the remote plugin is loaded, but it's usable. These issues have been reported under FB8980868.
 
 ## Catalyst Is Different
 
@@ -106,6 +106,8 @@ class ColorPickerSigleton {
 ```
 
 If you use `UIColorWell`, then this is automatically handled for you.
+
+If the color picker is used via Catalyst's scaled mode, then this scaling [reduces the size of the picker to 0.77](https://twitter.com/steipete/status/1353708480511750148?s=21). This bug is reported via FB8980868. I recommend switching to the Optimized for Mac scaling mode to make the color picker normal sized. (Careful about [surprising crashes](https://steipete.com/posts/forbidden-controls-in-catalyst-mac-idiom/) when enabling this mode)
 
 ## Understanding AppKit's `NSColorPanel`
 
@@ -128,3 +130,5 @@ To understand why it's required to use `UIColorPickerViewController` like a sing
 ```
 
 ## Conclusion
+
+Apple's new color picker is a great addition to UIKit. It hasn't been widely tested and misses some polish, but it's a good and simple choice for selecting colors.
