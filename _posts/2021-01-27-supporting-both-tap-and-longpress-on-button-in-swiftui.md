@@ -203,6 +203,47 @@ private struct TappableView: UIViewRepresentable {
 
 And here we go. This version works exactly as we expect, on iOS 13, iOS 14, Catalyst on Catalina and Big Sur. **UIKit is verbose but it works.** And with the power of SwiftUI we can hide all that code behind a convenient new button subclass.
 
+In our project, this code is by far smaller, as we use small categories to allow block-based gesture recognizers and [automatic wrapping of UIViews](https://github.com/AvdLee/SwiftUIKitView):
+
+```swift
+struct LongPressButton<Label>: View where Label: View {
+    let label: (() -> Label)
+    let action: () -> Void
+    let longPressAction: () -> Void
+    let longPressDelay: TimeInterval
+
+    init(action: @escaping () -> Void, onLongPress: @escaping () -> Void, longPressDelay: TimeInterval = 2, label: @escaping () -> Label) {
+        self.label = label
+        self.action = action
+        self.longPressAction = onLongPress
+        self.longPressDelay = longPressDelay
+    }
+
+    var body: some View {
+        Button(action: {
+        }, label: {
+            ZStack {
+                label()
+                UIViewContainer(UIView().then {
+                    let tapGestureRecognizer = UITapGestureRecognizer(name: "Tap") { sender in
+                        guard sender.state == .ended else { return }
+                        action()
+                    }
+                    $0.addGestureRecognizer(tapGestureRecognizer)
+                    let doubleTapGestureRecognizer = UILongPressGestureRecognizer(name: "Long Press") { sender in
+                        guard sender.state == .began else { return }
+                        longPressAction()
+                    }
+                    doubleTapGestureRecognizer.minimumPressDuration = longPressDelay
+                    doubleTapGestureRecognizer.require(toFail: tapGestureRecognizer)
+                    $0.addGestureRecognizer(doubleTapGestureRecognizer)
+                })
+            }
+        })
+    }
+}
+```
+
 ## Addendum: Why Use Button?
 
 Twitter folks have commented that this would all be much easier, if I wouldn't use Button but - like here - the image directly. This indeed makes the SwiftUI tap gestures work much better, but also misses out a few neat default features that Button has:
