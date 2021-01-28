@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The new iOS Color Picker Under The Hood"
-date: 2021-01-27 22:00:00 +0200
+date: 2021-01-28 10:00:00 +0200
 tags: iOS development
 image: /assets/img/2021/ios-color-picker/header.png
 description: "While macOS offers a system-provided color picker since OS X 10.0 Cheetah, iOS developers had to wait a bit longer. Let's take a closer look at the new ColorPicker (SwiftUI) and UIColorPickerViewController (UIKit) controls."
