@@ -158,6 +158,25 @@ extension UIHostingController {
 
 Because the window itself is shown and deallocated within the same runloop, it will never be visible. This workaround only uses public API and is safe to use. I reported this issue to Apple via FB8984997. [You can read the full bug report and sample project here.](https://github.com/PSPDFKit-labs/radar.apple.com/commit/8768d5c9fecd602625cc10b7a7c98f2bbc0cda4a)
 
+## Bonus: Build `keyboardShortcut` for iOS 13
+
+After fixing the iOS 14 version of keyboard shortcut, I realized that the principle is quite simple, and it can be rewritten in around 100 lines of Swift, to have this feature available on iOS 13 as well.
+
+The syntax is similar, however I haven't found a public way to call an existing action block on button, so the `onKeyCommand` modifier takes a block that is executed instead.
+
+```swift
+Button(action: {
+      print("Button Tapped!!")
+  }) {
+      Text("Button")
+  }
+.onKeyCommand("e", modifiers: [.control]) {
+    print("Control-E pressed")
+}
+```
+
+[You can read the full gist here.](https://gist.github.com/steipete/03d412f3752611f8f4554372a29cc29d)
+
 ## Conclusion
 
 I hope this post is helping folks when they google "keyboardShortcut SwiftUI not working", provides a safe workaround and inspires a few folks to dig deeper. Swift is harder to reverse engineer, but it's still possible. This was the first time I had to set breakpoints for binary Swift symbols, so it's good to see that this still works when using lldb manually.
