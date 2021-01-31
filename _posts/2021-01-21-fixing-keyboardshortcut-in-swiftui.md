@@ -118,7 +118,7 @@ Next, let's see if there are any other places that would call this setter. I lik
  
  This is mangled Swift, but it's not hard to see what the unmangled function name is called - it's our `didChangeAllowedBehaviors(from:to")` and a lambda inside it. Nowhere else. 
  
- ## Who triggers `didChangeAllowedBehaviors`?
+## Who triggers `didChangeAllowedBehaviors`?
  
  Who triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked.
   
