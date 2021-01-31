@@ -30,7 +30,7 @@ Simple enough. However it just didn't work in production. After simplifying my s
 - SwiftUI app lifecycle, iOS 14: ✅
 - SwiftUI app lifecycle, Catalyst Big Sur: ✅[^1]
 
-[^1] I've seen issues with keyboard handling in Catalyst, so I recommend testing everything before you rely on this functionality there.
+[^1]: I've seen issues with keyboard handling in Catalyst, so I recommend testing everything before you rely on this functionality there.
 
 Right. So things work pretty much everywhere, but not in the use case that likely will be most common out there - when mixing SwiftUI and UIKit.
 
