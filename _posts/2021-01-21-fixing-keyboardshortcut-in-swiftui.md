@@ -25,10 +25,10 @@ struct ContentView: View {
 
 Simple enough. However it just didn't work in production. After simplifying my setup and eventually writing my own example project, I've eventually got the realization that my code is correct, and that this just doesn't work. But surely Apple tested this? Let's try a few combinations:
 
-UIKit app lifecycle, iOS 14: ❌
-UIKit app lifecycle, Catalyst Big Sur: ✅*
-SwiftUI app lifecycle, iOS 14: ✅
-SwiftUI app lifecycle, Catalyst Big Sur: ✅*
+- UIKit app lifecycle, iOS 14: ❌
+- UIKit app lifecycle, Catalyst Big Sur: ✅*
+- SwiftUI app lifecycle, iOS 14: ✅
+- SwiftUI app lifecycle, Catalyst Big Sur: ✅*
 
 (* I've seen issues with keyboard handling in Catalyst, so I recommend testing everything before you rely on this functionality there.)
 
