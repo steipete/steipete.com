@@ -28,7 +28,7 @@ Simple enough. However it just didn't work in production. After simplifying my s
 - UIKit app lifecycle, iOS 14: ❌
 - UIKit app lifecycle, Catalyst Big Sur: ✅[^1]
 - SwiftUI app lifecycle, iOS 14: ✅
-- SwiftUI app lifecycle, Catalyst Big Sur: ✅[^1]
+- SwiftUI app lifecycle, Catalyst Big Sur: ✅
 
 [^1]: I've seen issues with keyboard handling in Catalyst, so I recommend testing everything before you rely on this functionality there.
 
