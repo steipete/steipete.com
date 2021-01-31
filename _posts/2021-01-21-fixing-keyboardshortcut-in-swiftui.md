@@ -160,9 +160,7 @@ Because the window itself is shown and deallocated within the same runloop, it w
 
 ## Bonus: Build `keyboardShortcut` for iOS 13
 
-After fixing the iOS 14 version of keyboard shortcut, I realized that the principle is quite simple, and it can be rewritten in around 100 lines of Swift, to have this feature available on iOS 13 as well.
-
-The syntax is similar, however I haven't found a public way to call an existing action block on button, so the `onKeyCommand` modifier takes a block that is executed instead.
+After fixing the iOS 14 version of keyboard shortcut, I realized that the principle is quite simple, and it can be rewritten in around 100 lines of Swift, to have this feature available on iOS 13 as well. The syntax is practically the same:
 
 ```swift
 Button(action: {
@@ -170,9 +168,7 @@ Button(action: {
   }) {
       Text("Button")
   }
-.onKeyCommand("e", modifiers: [.control]) {
-    print("Control-E pressed")
-}
+.onKeyCommand("e", modifiers: [.control])
 ```
 
 [You can read the full gist here.](https://gist.github.com/steipete/03d412f3752611f8f4554372a29cc29d)
