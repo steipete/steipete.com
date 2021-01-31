@@ -76,7 +76,7 @@ Now let's look at who sets `keyboardShortcutBridge`. It seems there's a codepath
 
 Now let's analyze what we see here:
 
-- There's a class named KeyboardShortcutBridge in SwiftUI
+- There's a class named `KeyboardShortcutBridge` in SwiftUI
 - It has one method marked `@objc`: `_performShortcutKeyCommand:`, therefore objc metadata is emitted (init, cxx_destruct)
 - It uses `UIKeyCommand` under the hood, an API you will be familiar if you ever added keyboard support on iOS
 - There is a setter for the Swift property that sets this object: `SwiftUI.UIHostingController.keyboardShortcutBridge.setter`
@@ -118,20 +118,20 @@ Next, let's see if there are any other places that would call this setter. I lik
  
  This is mangled Swift, but it's not hard to see what the unmangled function name is called - it's our `didChangeAllowedBehaviors(from:to")` and a lambda inside it. Nowhere else. 
  
+ ## Who triggers `didChangeAllowedBehaviors`?
+ 
  Who triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked.
   
- - `int _$s7SwiftUI16AppSceneDelegateC9sceneItemAA0D4ListV0G0VyF()`
- - `int _$s7SwiftUI16RootViewDelegateC07hostingD0_9didMoveToyAA010_UIHostingD0CyxG_So8UIWindowCSgtAA0D0RzlF(int arg0, int arg1)`
+ - `_$s7SwiftUI16AppSceneDelegateC9sceneItemAA0D4ListV0G0VyF()`
+ - `_$s7SwiftUI16RootViewDelegateC07hostingD0_9didMoveToyAA010_UIHostingD0CyxG_So8UIWindowCSgtAA0D0RzlF(int arg0, int arg1)`
 
 So there's two mechanisms that trigger this:
 - SwiftUI-based app lifecycle
-- A RootView delegate
+- A root view delegate
 
-This matches our previous tests. SwiftUI app lifecycle works, and if we add the `UIHostingController` as a root view controller, the RootView delegate also triggers the change.
+This matches our previous tests. SwiftUI app lifecycle works, and if we add the `UIHostingController` as a root view controller, the RootView delegate also triggers the change. We can check via a fuzzy breakpoint if a `RootViewDelegate` is created in the non-working variant via `breakpoint set --func-regex RootViewDelegate`, and sure enough there are 13 matches, but none fires. 
 
-We can check via a fuzzy breakpoint if a RootViewDelegate is created in the non-working variant via `breakpoint set --func-regex RootViewDelegate`, and sure enough there are 13 matches, but non fires. 
-
-When searching for `RootViewDelegate(` in the full-text SwiftUI.m, there is only one match, in `s7SwiftUI14_UIHostingViewC15didMoveToWindowyyF`. This further confirms our theory.
+When searching for `RootViewDelegate(` in the full-text `SwiftUI.m` file, there is only one match, in `s7SwiftUI14_UIHostingViewC15didMoveToWindowyyF`. This further confirms our theory. It seems Apple simply forgot a code path to create the keyboard shortcut bridge for the most likely use case - using SwiftUI in existing UIKit apps, where it makes sense. 
 
 ## Tweaking the Workaround
 
@@ -145,6 +145,7 @@ extension UIHostingController {
     /// When `UIHostingController` is used as a non-root controller with UIKit app lifecycle,
     /// keyboard shortcuts created in SwiftUI are not working (as of iOS 14.4).
     /// This workaround is harmless and triggers an internal state change that enables keyboard shortcut bridging.
+    /// See https://steipete.com/posts/fixing-keyboardshortcut-in-swiftui/
     func applyKeyboardShortcutFix() {
         #if !targetEnvironment(macCatalyst)
         let window = UIWindow()
