@@ -156,9 +156,7 @@ extension UIHostingController {
 }
 ``` 
 
-Because the window itself is shown and deallocated within the same runloop, it will never be visible. This workaround only uses public API and is safe to use. I have reported this issue to Apple via FB8984997.
-
-[You can read the full bug report and sample project here.](https://github.com/PSPDFKit-labs/radar.apple.com/commit/8768d5c9fecd602625cc10b7a7c98f2bbc0cda4a)
+Because the window itself is shown and deallocated within the same runloop, it will never be visible. This workaround only uses public API and is safe to use. I reported this issue to Apple via FB8984997. [You can read the full bug report and sample project here.](https://github.com/PSPDFKit-labs/radar.apple.com/commit/8768d5c9fecd602625cc10b7a7c98f2bbc0cda4a)
 
 ## Conclusion
 
