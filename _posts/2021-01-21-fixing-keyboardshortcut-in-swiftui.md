@@ -168,7 +168,7 @@ Button(action: {
   }) {
       Text("Button")
   }
-.onKeyCommand("e", modifiers: [.control])
+.keyCommand("e", modifiers: [.control])
 ```
 
 [You can read the full gist here.](https://gist.github.com/steipete/03d412f3752611f8f4554372a29cc29d)
