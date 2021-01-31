@@ -157,6 +157,8 @@ extension UIHostingController {
 
 Because the window itself is shown and deallocated within the same runloop, it will never be visible. This workaround only uses public API and is safe to use. I have reported this issue to Apple via FB8984997.
 
+[You can read the full bug report and sample project here.](https://github.com/PSPDFKit-labs/radar.apple.com/commit/8768d5c9fecd602625cc10b7a7c98f2bbc0cda4a)
+
 ## Conclusion
 
 I hope this post is helping folks when they google "keyboardShortcut SwiftUI not working", provides a safe workaround and inspires a few folks to dig deeper. Swift is harder to reverse engineer, but it's still possible. This was the first time I had to set breakpoints for binary Swift symbols, so it's good to see that this still works when using lldb manually.
