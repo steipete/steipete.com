@@ -209,7 +209,7 @@ private struct TappableView: UIViewRepresentable {
 
 And here we go. This version works exactly as we expect on iOS 13 and iOS 14, and on Catalyst on Catalina and Big Sur. **UIKit is verbose, but it works.** And with the power of SwiftUI, we can hide all that code behind a convenient new button subclass.
 
-In our project, this code is much smaller, as we use small categories to allow block-based gesture recognizers and [automatic wrapping of UIViews](https://github.com/AvdLee/SwiftUIKitView):
+[In our project](https://pspdfkit.com/pdf-sdk/ios/), this code is much smaller, as we use small categories to allow block-based gesture recognizers and [automatic wrapping of UIViews](https://github.com/AvdLee/SwiftUIKitView):
 
 ```swift
 struct LongPressButton<Label>: View where Label: View {
@@ -252,7 +252,7 @@ struct LongPressButton<Label>: View where Label: View {
 
 ## Addendum: Why Use Button?
 
-Twitter folks have commented that this would all be much easier if I wouldn’t use Button but — like here — the image directly. This indeed makes the SwiftUI tap gestures work much better, but it also misses out a few neat default features that Button has:
+Twitter folks have commented that this would all be much easier if I didn’t use `Button` but rather — like shown here — the `Image` struct directly. This indeed makes the SwiftUI tap gestures work much better, but it also misses out a few neat default features that Button has:
 
 - Automatically highlighting on tap; then fading that out if the mouse goes too far away
 - Automatically tinting the image when the window is active and using gray when the window is inactive again (especially noticeable on Catalyst)
@@ -262,4 +262,4 @@ I’ve tried various variations, but it seems `longPress` is buggy on Catalyst. 
 
 ## Conclusion
 
-So what’s really about that secret long press action? It does enable the Debug Mode of [PDF Viewer](https://pdfviewer.io), showing various settings that aren’t really useful for regular folks, but that help with QA testing. If you’re curious, download our app (it’s free), long press on our icon in the Settings footer, and see for yourself.
+So what’s really special about the secret long-press action? It does enable the Debug Mode of [PDF Viewer](https://pdfviewer.io), showing various settings that aren’t really useful for regular folks, but that help with QA testing. If you’re curious, download our app (it’s free), long press on our icon in the Settings footer, and see for yourself.
