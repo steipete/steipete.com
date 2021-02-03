@@ -252,7 +252,7 @@ struct LongPressButton<Label>: View where Label: View {
 
 ## Addendum: Why Use Button?
 
-Twitter folks have commented that this would all be much easier if I didn’t use `Button` but rather — like shown here — the `Image` struct directly. This indeed makes the SwiftUI tap gestures work much better, but it also misses out a few neat default features that Button has:
+Twitter folks have commented that this would all be much easier if I didn’t use `Button` but — like here — the `Image` struct directly. This indeed makes the SwiftUI tap gestures work much better, but it also misses out a few neat default features that Button has:
 
 - Automatically highlighting on tap; then fading that out if the mouse goes too far away
 - Automatically tinting the image when the window is active and using gray when the window is inactive again (especially noticeable on Catalyst)
