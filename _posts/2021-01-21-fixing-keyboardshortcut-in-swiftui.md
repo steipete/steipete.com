@@ -70,9 +70,9 @@ in _TtGC7SwiftUI19UIHostingControllerV15SwiftUIKeyboard11SwiftUIView_:
 
 Good old `_ivarDescription` is still useful and shows Swift ivars as well; it can’t show the real type, but it’s good enough to confirm that there’s indeed a `keyboardShortcutBridge`.
 
-## Who Sets keyboardShortcutBridge?
+## What Sets keyboardShortcutBridge?
 
-Now let’s look at who sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out if it really exists. 
+Now let’s look at what sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out if it really exists. 
 
 When we load SwiftUI’s binary in Hopper and search for this name, we find quite a few matches:
 
@@ -122,9 +122,9 @@ Next, let’s see if there are any other places that would call this setter. I l
  
 This is mangled Swift, but it’s not hard to see what the unmangled function name is called — it’s our `didChangeAllowedBehaviors(from:to")` with a lambda inside it, and not anywhere else. 
  
-## Who Triggers didChangeAllowedBehaviors?
+## What Triggers didChangeAllowedBehaviors?
 
-Who triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked:
+What triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked:
   
  - `_$s7SwiftUI16AppSceneDelegateC9sceneItemAA0D4ListV0G0VyF()`
  - `_$s7SwiftUI16RootViewDelegateC07hostingD0_9didMoveToyAA010_UIHostingD0CyxG_So8UIWindowCSgtAA0D0RzlF(int arg0, int arg1)`
