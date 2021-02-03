@@ -72,9 +72,7 @@ Good old `_ivarDescription` is still useful and shows Swift ivars as well; it ca
 
 ## What Sets keyboardShortcutBridge?
 
-Now let’s look at what sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out if it really exists. 
-
-When we load SwiftUI’s binary in Hopper and search for this name, we find quite a few matches:
+Now let’s look at what sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out if that’s the case. When we load SwiftUI’s binary in Hopper and search for this name, we find quite a few matches:
 
 ![Hopper search for keyboardShortcutBridge](/assets/img/2021/fixing-keyboardshortcut-in-swiftui/keyboardShortcutBridge.png)
 
