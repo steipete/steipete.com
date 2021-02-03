@@ -4,10 +4,10 @@ title: "Fixing keyboardShortcut in SwiftUI"
 date: 2021-01-31 13:30:00 +0200
 tags: iOS SwiftUI development
 image: /assets/img/2021/fixing-keyboardshortcut-in-swiftui/header.png
-description: "`keyboardShortcut` is a convenient way to add shortcuts in SwiftUI. However, it likely won’t work. I’ve been curious why that is, so follow along with me for a round of SwiftUI debugging! Spoiler: The workaround is at the end of this article."
+description: "`keyboardShortcut` is a convenient way to add shortcuts in SwiftUI. However, it likely won’t work. I was curious why that is, so follow along with me for a round of SwiftUI debugging! Spoiler: The workaround is at the end of this article."
 ---
 
-iOS 14 introduced `keyboardShortcut`, a convenient native way to add keyboard shortcuts to SwiftUI. However, if you end up using it, it likely won’t work. I’ve been curious why that is, so follow along with me for a round of SwiftUI debugging! Spoiler: The workaround is at the end of this article.
+iOS 14 introduced `keyboardShortcut`, a convenient native way to add keyboard shortcuts to SwiftUI. However, if you end up using it, it likely won’t work. I was curious why that is, so follow along with me for a round of SwiftUI debugging! Spoiler: The workaround is at the end of this article.
 
 ## Behavior Inventory
 
@@ -70,20 +70,20 @@ in _TtGC7SwiftUI19UIHostingControllerV15SwiftUIKeyboard11SwiftUIView_:
 
 Good old `_ivarDescription` is still useful and shows Swift ivars as well; it can’t show the real type, but it’s good enough to confirm that there’s indeed a `keyboardShortcutBridge`.
 
-## Who Sets `keyboardShortcutBridge`?
+## What Sets keyboardShortcutBridge?
 
-Now let’s look at who sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out. When we load SwiftUI’s binary in Hopper and search for this name, we find quite a few matches:
+Now let’s look at what sets `keyboardShortcutBridge`. It seems there’s a code path where this object isn’t set, so let’s find out if that’s the case. When we load SwiftUI’s binary in Hopper and search for this name, we find quite a few matches:
 
 ![Hopper search for keyboardShortcutBridge](/assets/img/2021/fixing-keyboardshortcut-in-swiftui/keyboardShortcutBridge.png)
 
 Now let’s analyze what we see here:
 
-- There’s a class named `KeyboardShortcutBridge` in SwiftUI
-- It has one method marked `@objc`: `_performShortcutKeyCommand:`, therefore Objective-C metadata is emitted (init, cxx_destruct)
-- It uses `UIKeyCommand` under the hood, which is an API you’ll be familiar with if you’ve ever added keyboard support on iOS
-- There’s a setter for the Swift property that sets this object: `SwiftUI.UIHostingController.keyboardShortcutBridge.setter`
+- There’s a class named `KeyboardShortcutBridge` in SwiftUI.
+- It has one method marked `@objc`: `_performShortcutKeyCommand:`, therefore Objective-C metadata is emitted (init, cxx_destruct).
+- It uses `UIKeyCommand` under the hood, which is an API you’ll be familiar with if you’ve ever added keyboard support on iOS.
+- There’s a setter for the Swift property that sets this object: `SwiftUI.UIHostingController.keyboardShortcutBridge.setter`.
 
-Using Xcode’s breakpoint list isn’t working too well for SwiftUI. Adding the setter there isn’t working (fully qualified). Instead, let’s try using LLDB directly and fuzzy-searching for the breakpoint. You’ll want to stop your program early (before the `UIHostingController` is created) and add the breakpoint manually:
+Using Xcode’s breakpoint list isn’t working too well for SwiftUI. Adding the setter there isn’t working (fully qualified). Instead, let’s try using LLDB directly and fuzzy-searching for the breakpoint. You’ll want to stop your program early (before `UIHostingController` is created) and add the breakpoint manually:
 
 ```
 (lldb) breakpoint set --func-regex keyboardShortcutBridge
@@ -113,16 +113,16 @@ We see that the code responsible for calling the setter is in `didChangeAllowedB
 
 Next, let’s see if there are any other places that would call this setter. I like to use a full pseudo-code export of SwiftUI. You can create this via Hopper > File > Produce Pseudo-Code File For All Procedures…. This will take many hours and produce a file named `SwiftUI.m` that’s more than 100&nbsp;MB in size. Once this is done, use a text editor that can open large files,[^2] and search for `SwiftUI.UIHostingController.keyboardShortcutBridge.setter`. The only two code paths are these:
 
-[^2]: In the early years, Sublime Text was my editor of choice, but nowadays, the Electron-based Visual Studio Code is way faster in both opening and searching this file.
+[^2]: In the early years, Sublime Text was my editor of choice, but nowadays, the Electron-based Visual Studio Code is way faster in both opening and searching this file and those of a similar size.
 
 - `int _$s7SwiftUI19UIHostingControllerC25didChangeAllowedBehaviors4from2toyAC0gH0Vyx_G_AItF(int arg0)`
 - `void _$s7SwiftUI19UIHostingControllerC25didChangeAllowedBehaviors4from2toyAC0gH0Vyx_G_AItFAA15ModifiedContentVyAA7AnyViewVAA12RootModifierVG_Tg5(int arg0)`
  
-This is mangled Swift, but it’s not hard to see what the unmangled function name is called — it’s our `didChangeAllowedBehaviors(from:to")` and a lambda inside it. Nowhere else. 
+This is mangled Swift, but it’s not hard to see what the unmangled function name is called — it’s our `didChangeAllowedBehaviors(from:to")` with a lambda inside it, and not anywhere else. 
  
-## Who Triggers didChangeAllowedBehaviors?
+## What Triggers didChangeAllowedBehaviors?
 
-Who triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked:
+What triggers an allowed behavior change? We can search for `SwiftUI.UIHostingController.allowedBehaviors.setter`, since `didChangeAllowedBehaviors` is triggered when the setter is invoked:
   
  - `_$s7SwiftUI16AppSceneDelegateC9sceneItemAA0D4ListV0G0VyF()`
  - `_$s7SwiftUI16RootViewDelegateC07hostingD0_9didMoveToyAA010_UIHostingD0CyxG_So8UIWindowCSgtAA0D0RzlF(int arg0, int arg1)`
@@ -132,7 +132,7 @@ So there are two mechanisms that trigger this:
 - The SwiftUI-based app lifecycle
 - A root view delegate
 
-This lines up with our previous tests. SwiftUI app lifecycle works, and if we add `UIHostingController` as a root view controller, the RootView delegate also triggers the change. We can check via a fuzzy breakpoint if a `RootViewDelegate` is created in the non-working variant via `breakpoint set --func-regex RootViewDelegate`, and sure enough, there are 13 matches, but not one fires. 
+This lines up with our previous tests. SwiftUI app lifecycle works, and if we add `UIHostingController` as a root view controller, the `RootViewDelegate` also triggers the change. We can check via a fuzzy breakpoint if a `RootViewDelegate` is created in the non-working variant via `breakpoint set --func-regex RootViewDelegate`, and sure enough, there are 13 matches, but not one fires. 
 
 When searching for `RootViewDelegate(` in the full-text `SwiftUI.m` file, there’s only one match, in `s7SwiftUI14_UIHostingViewC15didMoveToWindowyyF`. This further confirms our theory. It seems Apple simply forgot a code path to create the keyboard shortcut bridge for the most likely use case of using SwiftUI in existing UIKit apps, which is where it makes most sense. 
 
@@ -178,4 +178,4 @@ Button(action: {
 
 ## Conclusion
 
-I hope this post helps folks when they google “keyboardShortcut SwiftUI not working,” provides a safe workaround, and inspires a few people to dig deeper. Swift is harder to reverse engineer, but it’s still possible. This was the first time I had to set breakpoints for binary Swift symbols, so it’s good to see that this still works when using LLDB manually.
+I hope this post helps folks when they google “keyboardShortcut SwiftUI not working,” provides a safe workaround, and inspires a few people to dig deeper. Swift is harder to reverse engineer than Objective-C is, but it’s still possible. This was the first time I had to set breakpoints for binary Swift symbols, so it’s good to see that this still works when using LLDB manually.
