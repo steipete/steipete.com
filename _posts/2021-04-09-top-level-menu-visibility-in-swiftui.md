@@ -97,4 +97,4 @@ And that's it. Toggling the menu works just as expected.[^1]
 
 ## Conclusion
 
-This is a good reminder that even when writing a "Pure SwiftUI" application, the underlying frameworks are there and can help you whenever you run into a limitation of SwiftUI. Since this feels like an omission, I've opened a radar for the SwiftUI team.
+This is a good reminder that even when writing a "Pure SwiftUI" application, the underlying frameworks are there and can help you whenever you run into a limitation of SwiftUI. Since this feels like an omission, I've opened a radar (FB9074334) for the SwiftUI team.
