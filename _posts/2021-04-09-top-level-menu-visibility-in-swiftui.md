@@ -41,7 +41,7 @@ There's a superb guide over at [TrozWare about SwifUI Mac Menus](https://troz.ne
 
 ## Showing Menus Conditionally
 
-Within `CommandMenu` it's easy to use `if`/`else`. SwiftUI uses `@ViewBuilder` as result builder and conditionals are correctly implemented.
+Within `CommandMenu` it's easy to use `if`/`else` to conditionally show menu entries. SwiftUI uses `@ViewBuilder` as resultbuilder and conditionals are correctly implemented.
 
 ```swift
 CommandMenu("Animals") {
@@ -52,23 +52,11 @@ CommandMenu("Animals") {
     }
 ```
 
-However if we try the same at the top level, we get an error: `"Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'"`. The SwiftUI-team didn't implement any branching logic into the `@CommandsBuilder`.
+However if we try the same at the top level, we get an error: `"Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'"`gs. The SwiftUI-team didn't implement any branching logic into the `@CommandsBuilder`.
 
 ![Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'](/assets/img/2021/top-level-menu-visibility-swiftui/flow-statement.png)
 
-And while we could somewhat work around this by returning an array, this at most would allow replacing the menu:
-
-```swift
-func command() -> CommandMenu<AnyView> {
-    if showDebugMenu {
-            return CommandMenu("Debug") { AnyView(Button("Test") {}) }
-        } else {
-              return CommandMenu("Prod") { AnyView(Button("Test") {}) }
-        }
-}
-```
-
-After [a discussion on Twitter](https://twitter.com/steipete/status/1380518850073092096?s=21), @LeoNatan suggested to [drop back into AppKit](https://twitter.com/leonatan/status/1380545179157925888?s=21), and that's what I ended up doing.
+After [a discussion on Twitter](https://twitter.com/steipete/status/1380518850073092096?s=21), there really doesn't seem a SwiftUI-way to trigger the visibility of top-level menus. @LeoNatan suggested to [drop back into AppKit](https://twitter.com/leonatan/status/1380545179157925888?s=21), and that's what I ended up doing:
 
 ```swift
 static func triggerDebugMenuVisibilityHack() {
@@ -83,7 +71,7 @@ static func triggerDebugMenuVisibilityHack() {
 }
 ```
 
-Make sure to trigger this on app start and whenever the debug value changes:
+Make sure to trigger this both on app start and whenever the debug value changes:
 
 ```swift
 .onAppear {
@@ -94,10 +82,7 @@ Make sure to trigger this on app start and whenever the debug value changes:
 }
 ```
 
-And that's it. Toggling the menu works just as expected.[^1]
-
-[^1]: In our update method we have to skip a runloop so the SwiftUI glue has time to set up the menu, however this gets called so early in the app startup lifecycle that it's not visible. So while not the most elegant solution, this works perfectly fine.
-
+And that's it. Toggling the menu works just as expected. In our update method we have to skip a runloop so the SwiftUI glue has time to set up the menu, however this gets called so early in the app startup lifecycle that it's not visible. So while not the most elegant solution, this works perfectly fine.
 
 ## Conclusion
 
