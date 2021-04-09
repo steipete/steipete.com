@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Top-Level Menu Visibility in SwiftUI for macOS"
-date: 2021-04-09 18:-00:00 +0200
+date: 2021-04-09 18:00:00 +0200
 tags: iOS SwiftUI development
 image: /assets/img/2021/top-level-menu-visibility-swiftui/flow-statement.png
 description: "SwiftUI's new app lifecycles makes it extremely simple to create menus on-demand. Modifying a top-level menu however is surprisingly hard.."
@@ -11,15 +11,15 @@ description: "SwiftUI's new app lifecycles makes it extremely simple to create m
 div.post-content > img:first-child { display:none; }
 </style>
 
-Pretty much all Mac apps have a semi-hidden Debug menu that can be triggered via a user defaults entry or via settings. Naturally I wanted to add the same in my latest project. I'm building a new "universal" app (meaning iOS+macOS) and support only the latest OS, so I'm using the new SwiftUI lifecycle.
+Pretty much all Mac apps have a semi-hidden Debug menu that can be triggered via a user defaults entry or via settings. Naturally I wanted to add the same in my latest project. I'm building a new "universal" app (meaning iOS *and* macOS), supporting only the latest OSes, so I can using the new SwiftUI app lifecycle.
 
-SwiftUI is really a lot of fun to work with. Sure, there are bugs and warts and parts that simply aren't finished yet, especially on the Mac, but overall what Apple built here is really great, and it's so much faster to build apps with it. SwiftUI makes the hard things simple, and sometimes it makes the simple things hard. 
+SwiftUI is really a lot of fun to work with. Sure, [there are bugs, warts](/posts/state-of-swiftui/) and parts that simply aren't finished yet, especially on the Mac, but overall what Apple built here is really great, and it's so much faster to build apps with it. SwiftUI makes the hard things simple, and sometimes it makes the simple things hard. 
 
 ## Menus in SwiftUI App Lifecycle
 
-Let's look at a typical menu definition in the new Big Sur/iOS 14 SwiftUI App Lifecycle. The syntax is quite easy and just works, and SwiftUI updates menus on-demand on state changes, just as you would expect.
+Let's look at a typical menu definition in the new Big Sur/iOS 14 SwiftUI App Lifecycle. The syntax is straightforward and fits right into the concepts of SwiftUI. Bingings work as well and menus change on-demand as state changes.
 
-```
+```swift
 @main
 struct SampleApp: App {
     var body: some Scene {
@@ -37,13 +37,13 @@ struct SampleApp: App {
 }
 ```
 
-There's a superb guide over at [TrozWare about SwifUI Mac Menus](https://troz.net/post/2021/swiftui_mac_menus/) that explains everything in detail - including a way how to move the menu logic into a separate file. Let's move on to the interesting bits.
+There's a superb guide over at [TrozWare about SwifUI Mac Menus](https://troz.net/post/2021/swiftui_mac_menus/) that explains everything in detail - including a way how to move the menu logic into a separate file. Highly recommended. Let's move on to the interesting bits.
 
 ## Showing Menus Conditionally
 
-Within `CommandMenu` it's easy to use if/else. SwiftUI uses `@ViewBuilder` as result builder and conditionals are correctly implemented.
+Within `CommandMenu` it's easy to use `if`/`else`. SwiftUI uses `@ViewBuilder` as result builder and conditionals are correctly implemented.
 
-```
+```swift
 CommandMenu("Animals") {
     if user.likesCats {
         Button("Show Cat Picture") { }        
@@ -52,7 +52,7 @@ CommandMenu("Animals") {
     }
 ```
 
-However if we try the same at the top level, we get an error: "Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'". The SwiftUI-team didn't implement any branching logic into the `@CommandsBuilder`.
+However if we try the same at the top level, we get an error: `"Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'"`. The SwiftUI-team didn't implement any branching logic into the `@CommandsBuilder`.
 
 ![Closure containing control flow statement cannot be used with result builder 'CommandsBuilder'](/assets/img/2021/top-level-menu-visibility-swiftui/flow-statement.png)
 
