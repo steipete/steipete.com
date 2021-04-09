@@ -3,9 +3,13 @@ layout: post
 title: "Top-Level Menu Visibility in SwiftUI for macOS"
 date: 2021-04-09 18:-00:00 +0200
 tags: iOS SwiftUI development
-image: /assets/img/2021/tap-longpress-button-swiftui/header.gif
+image: /assets/img/2021/top-level-menu-visibility-swiftui/flow-statement.png
 description: "SwiftUI's new app lifecycles makes it extremely simple to create menus on-demand. Modifying a top-level menu however is surprisingly hard.."
 ---
+
+<style type="text/css">
+div.post-content > img:first-child { display:none; }
+</style>
 
 Pretty much all Mac apps have a semi-hidden Debug menu that can be triggered via a user defaults entry or via settings. Naturally I wanted to add the same in my latest project. I'm building a new "universal" app (meaning iOS+macOS) and support only the latest OS, so I'm using the new SwiftUI lifecycle.
 
