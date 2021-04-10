@@ -302,6 +302,14 @@ Update thanks to [Kay Butter](https://twitter.com/kaybutter/status/1310310136473
 
 Apple peeps: I reported this feature request via FB8704637.
 
+## Update: A Honest Voice
+
+It's been quiet around `OSLogStore` for many months, but finally there's a new semi-official note on it. Quinn “The Eskimo!” talks about it [in this DevForum entry](https://developer.apple.com/forums/thread/650843?answerId=668567022#668567022)
+
+> In iOS 14 beta we added the OSLog framework to the iOS SDK, along with a new initialiser to OSLogStore that allowed iOS apps to read their own log messages. Unfortunately this feature didn’t work properly )-: and so it was removed very late in the iOS 14 beta cycle. (...) What I can say is that the OSLog team are well aware of the demand for this feature from third-party developers.
+
+This gives me high hopes that we see this feature finally land in iOS 15. WWDC 2021 is going to be exciting!
+
 ## Further Reading
 
 - [Unified Logging and Activity Tracing, WWDC 2016](https://developer.apple.com/videos/play/wwdc2016/721/)
