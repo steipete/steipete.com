@@ -16,7 +16,7 @@ With iOS 14, Apple improved the built-in logging framework and added many missin
 ## [Does OSLogStore Work Yet?](http://doesoslogstoreworkyet.com)
 
 <p style="font-size: 300%;">No.*</p> 
-*Surprisingly, Apple removed `OSLogStore` from iOS with the GM release. [Jump to the changes made in iOS 14 GM](#update-tested-with-ios-14-gm).
+*Surprisingly, Apple removed `OSLogStore` from iOS with the GM release. [Jump to the latest update "An Honest Voice, April 2021"](#update-an-honest-voice).
 
 ## Why OSLog Is Awesome
 
@@ -302,7 +302,7 @@ Update thanks to [Kay Butter](https://twitter.com/kaybutter/status/1310310136473
 
 Apple peeps: I reported this feature request via FB8704637.
 
-## Update: A Honest Voice
+## Update: An Honest Voice
 
 It's been quiet around `OSLogStore` for many months, but finally there's a new semi-official note on it. Quinn “The Eskimo!” talks about it [in this DevForum entry](https://developer.apple.com/forums/thread/650843?answerId=668567022#668567022)
 
