@@ -29,6 +29,8 @@ There is a chance that Apple fixes these issues, but it’s not something to cou
 
 **Update 3:** Great news! The WebKit crash when running on Rosetta 2 will be resolved with a future update in Big Sur.
 
+**Update 4 (May 2021):** This is now fixed with Xcode 12.5 and macOS 11.3.
+
 ## Docker
 
 We use Docker to automate our website and load environments for our [Web and Server PDF SDKs](https://pspdfkit.com/pdf-sdk/web/). Docker posted a [status update blog post](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/) admitting that its client currently won’t work with Apple Silicon, but that the company is [working on it](https://github.com/docker/roadmap/issues/142). There are more [hacky ways to use Apple’s Hypervisor to run Docker containers manually](https://finestructure.co/blog/2020/11/27/running-docker-on-apple-silicon-m1-follow-up), but they need ARM-based containers.
