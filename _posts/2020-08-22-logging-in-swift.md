@@ -16,7 +16,7 @@ With iOS 14, Apple improved the built-in logging framework and added many missin
 ## [Does OSLogStore Work Yet?](http://doesoslogstoreworkyet.com)
 
 <p style="font-size: 300%;">YES!*</p> 
-*Apple removed `OSLogStore` from iOS 14 at the very last moment, but brought it back in iOS 15. As of iOS 15 beta 7 and macOS Monterey beta 5 (21A5304g) `OSLogStore` finally works. [Jump to the latest update "Update: iOS 15](#update-ios15).
+*Apple removed `OSLogStore` from iOS 14 at the very last moment, but brought it back in iOS 15. As of iOS 15 beta 7 and macOS Monterey beta 5 (21A5304g) `OSLogStore` finally works. [Jump to the latest update "Update: iOS 15](#update-ios-15).
 
 ## Why OSLog Is Awesome
 
