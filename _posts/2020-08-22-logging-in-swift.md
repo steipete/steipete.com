@@ -15,8 +15,8 @@ With iOS 14, Apple improved the built-in logging framework and added many missin
 
 ## [Does OSLogStore Work Yet?](http://doesoslogstoreworkyet.com)
 
-<p style="font-size: 300%;">No.*</p> 
-*Surprisingly, Apple removed `OSLogStore` from iOS with the GM release. [Jump to the latest update "An Honest Voice, April 2021"](#update-an-honest-voice).
+<p style="font-size: 300%;">YES!*</p> 
+*Apple removed `OSLogStore` from iOS 14 at the very last moment, but brought it back in iOS 15. As of iOS 15 beta 7 and macOS Monterey beta 5 (21A5304g) `OSLogStore` finally works. [Jump to the latest update "Update: iOS 15](#update-ios15).
 
 ## Why OSLog Is Awesome
 
@@ -309,6 +309,10 @@ It's been quiet around `OSLogStore` for many months, but finally there's a new s
 > In iOS 14 beta we added the OSLog framework to the iOS SDK, along with a new initialiser to OSLogStore that allowed iOS apps to read their own log messages. Unfortunately this feature didn’t work properly )-: and so it was removed very late in the iOS 14 beta cycle. (...) What I can say is that the OSLog team are well aware of the demand for this feature from third-party developers.
 
 This gives me high hopes that we see this feature finally land in iOS 15. WWDC 2021 is going to be exciting!
+
+## Update: iOS 15
+
+As of iOS 15 and macOS Monterey, `OSLogStore` works just as expected. No entitlements or hacks needed. It works in the Simulator, on device, on macOS and macOS Catalyst. [Try out the OSLogTest project here](https://github.com/steipete/OSLogTest).
 
 ## Further Reading
 
